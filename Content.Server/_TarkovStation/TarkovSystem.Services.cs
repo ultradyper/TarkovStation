@@ -11,6 +11,8 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.CombatMode;
 using Content.Shared.Preferences;
 using Content.Shared.Humanoid;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
@@ -20,6 +22,7 @@ public sealed partial class TarkovSystem
 {
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedCombatModeSystem _combatMode = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
     private void InitializeHubPolicy()
     {
         SubscribeLocalEvent<TarkovHubProtectedComponent, InteractionAttemptEvent>(OnServiceInteractionAttempt);
@@ -36,6 +39,21 @@ public sealed partial class TarkovSystem
         // No observer scouting, including before character creation or after a raid death.
         args.Handled = true;
         args.Result = false;
+        // Succumb and rage quit use the ghost command. Resolve death here before
+        // blocking observer creation, otherwise both buttons leave players in crit forever.
+        if (args.Mind.CurrentEntity is not { } body
+            || !TryComp<TarkovPlayerComponent>(body, out var player)
+            || player.Closed || player.Raid == "") return;
+        if (_mobState.IsCritical(body))
+        {
+            _mobState.ChangeMobState(body, MobState.Dead);
+            args.Result = true;
+        }
+        else if (_mobState.IsDead(body))
+        {
+            CloseLife(body);
+            args.Result = true;
+        }
     }
 
     private void ProtectHub()

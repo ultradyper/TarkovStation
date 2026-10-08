@@ -23,12 +23,14 @@ public static class TarkovRaidConditions
     };
 
     // Native planetary lighting colors; keep the selected expedition phase stable for 15 minutes.
-    public static Color Ambient(TarkovDayPhase phase) => Color.FromHex(phase switch
+    public static Color Ambient(TarkovDayPhase phase) => phase switch
     {
-        TarkovDayPhase.Evening => "#99745C",
-        TarkovDayPhase.Night => "#2B3143",
-        _ => "#E6CB8B",
-    });
+        // MapLight uses linear light. Daylight should read as daylight even on dark
+        // dirt/grass textures; the old yellow tint made daytime resemble dusk.
+        TarkovDayPhase.Day => new Color(1.35f, 1.32f, 1.25f),
+        TarkovDayPhase.Evening => new Color(0.85f, 0.65f, 0.47f),
+        _ => Color.FromHex("#2B3143"),
+    };
 
     public static float LootBudget(TarkovDayPhase phase) => phase switch
     {

@@ -299,6 +299,18 @@ public sealed partial class TarkovSystem
         // Keep the chosen expedition lighting stable. A random native offset would contradict the console.
         RemComp<LightCycleComponent>(map);
         _maps.SetAmbientLight(Comp<MapComponent>(map).MapId, TarkovRaidConditions.Ambient(raid.DayPhase));
+        // Sun shadows have a separate native clock. Freeze them as well so a
+        // daytime raid does not retain the random midnight/dusk shadow settings.
+        RemComp<SunShadowCycleComponent>(map);
+        var sunlight = EnsureComp<SunShadowComponent>(map);
+        sunlight.Direction = raid.DayPhase == TarkovDayPhase.Evening ? new Vector2(-2.5f, -0.1f) : new Vector2(0.5f, -1f);
+        sunlight.Alpha = raid.DayPhase switch
+        {
+            TarkovDayPhase.Day => 0.25f,
+            TarkovDayPhase.Evening => 0.35f,
+            _ => 0f,
+        };
+        Dirty(map, sunlight);
         var entities = AllEntityQuery<MetaDataComponent, TransformComponent>();
         while (entities.MoveNext(out var uid, out var meta, out var xform))
         {
