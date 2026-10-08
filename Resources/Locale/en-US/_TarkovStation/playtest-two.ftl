@@ -204,4 +204,3 @@ ent-TarkovStationCycleFragment = cycle memory fragment
 
 ent-TarkovStationSheetUranium10 = uranium
     .desc = Ten sheets of uranium.
-

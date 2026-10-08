@@ -204,4 +204,3 @@ ent-TarkovStationCycleFragment = фрагмент памяти цикла
 
 ent-TarkovStationSheetUranium10 = уран
     .desc = Десять листов урана.
-
