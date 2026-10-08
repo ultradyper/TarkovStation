@@ -32,6 +32,8 @@ namespace Content.Server._TarkovStation;
 
 public sealed partial class TarkovSystem
 {
+    // Beyond the guards' 14-tile aggro radius, including every member of a party.
+    private const float LandingNpcDistance = 18f;
     [Dependency] private BiomeSystem _biome = default!;
     [Dependency] private DungeonSystem _dungeon = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
@@ -365,6 +367,17 @@ public sealed partial class TarkovSystem
             ClearPad(map, pos, 1);
             Spawn("MobCarp", new EntityCoordinates(map, pos));
         }
+        // Guard/monster placement happens after the original pads are prepared.
+        // Choose the actual landings only once all inhabitants are on the map.
+        positions.Clear();
+        index = 0;
+        foreach (var group in groups)
+        {
+            var angle = 2 * MathF.PI * index++ / Math.Max(1, groups.Length) + MathF.PI / 2;
+            if (TryFindLandingPositions((map, raid), group.ToArray(), positions, angle)) continue;
+            RejectDeployment(map, raid, "tarkov-error-landing");
+            return;
+        }
         // Commit the whole roster once, after successful map construction and validation.
         var error = Write("system", "deploy-" + raid.Id, "deploy", d =>
         {
@@ -402,31 +415,16 @@ public sealed partial class TarkovSystem
         foreach (var group in users.GroupBy(u => data.Accounts[u].Party == "" ? u : data.Accounts[u].Party))
         {
             var angle = Random.Shared.NextSingle() * MathF.Tau;
-            var center = new Vector2(MathF.Cos(angle), MathF.Sin(angle)) * raid.Comp.Radius * 0.68f;
+            if (!TryFindLandingPositions(raid, group.ToArray(), positions, angle))
+            {
+                foreach (var member in users)
+                    if (TrySession(member, out var session)) SendState(session, "tarkov-error-landing");
+                return;
+            }
             foreach (var user in group)
             {
                 if (FindPlayer(user) is not { } body || !Alive(body)) return;
-                // Sample the reserved perimeter route. Do not clear tiles or erase objects during late entry.
-                EntityCoordinates? spawn = null;
-                for (var attempt = 0; attempt < 256; attempt++)
-                {
-                    var point = center + new Vector2(Random.Shared.Next(-3, 4), Random.Shared.Next(-3, 4));
-                    var tile = point.Floored();
-                    if (_maps.GetTileRef(raid.Owner, Comp<MapGridComponent>(raid), tile).Tile.IsEmpty
-                        || _turf.IsTileBlocked(raid.Owner, tile, CollisionGroup.MobMask)) continue;
-                    var at = new Vector2(tile.X + 0.5f, tile.Y + 0.5f);
-                    if (positions.Values.Any(p => Vector2.Distance(p.Position, at) < 1f)) continue;
-                    spawn = new EntityCoordinates(raid.Owner, at);
-                    break;
-                }
-                if (spawn == null)
-                {
-                    foreach (var member in users)
-                        if (TrySession(member, out var session)) SendState(session, "tarkov-error-landing");
-                    return;
-                }
                 bodies[user] = body;
-                positions[user] = spawn.Value;
                 roster.Add((user, Guid.NewGuid().ToString("N"), CaptureRoots(body, user, "raid")));
             }
         }
@@ -453,6 +451,47 @@ public sealed partial class TarkovSystem
             Feedback(member.User, TarkovFeedback.Departure);
             if (TrySession(member.User, out var session)) SendState(session, "tarkov-deployed");
         }
+    }
+
+    private bool TryFindLandingPositions(Entity<TarkovRaidComponent> raid, string[] group,
+        Dictionary<string, EntityCoordinates> positions, float preferredAngle)
+    {
+        var inhabitants = new List<Vector2>();
+        var mobs = AllEntityQuery<MobStateComponent, TransformComponent>();
+        while (mobs.MoveNext(out var uid, out var mob, out var transform))
+        {
+            if (transform.MapUid != raid.Owner || HasComp<TarkovPlayerComponent>(uid)
+                || mob.CurrentState is MobState.Dead or MobState.Invalid
+                || EntityManager.IsQueuedForDeletion(uid)) continue;
+            inhabitants.Add(_transform.GetWorldPosition(uid));
+        }
+        var grid = Comp<MapGridComponent>(raid);
+        var landingTile = IoCManager.Resolve<ITileDefinitionManager>()["FloorDirt"].TileId;
+        for (var attempt = 0; attempt < 256; attempt++)
+        {
+            // Search the full perimeter, then the outer band, rather than retrying
+            // beside the same guard. Existing late-entry maps are never cleared.
+            var angle = preferredAngle + attempt * 2.399963f;
+            var radius = raid.Comp.Radius * (attempt < 128 ? 0.68f : 0.82f);
+            var center = new Vector2(MathF.Cos(angle), MathF.Sin(angle)) * radius;
+            var candidate = new Dictionary<string, EntityCoordinates>();
+            for (var member = 0; member < group.Length; member++)
+            {
+                var tile = (center + new Vector2(member % 2 * 2 - 1, member / 2 * 2 - 1)).Floored();
+                var point = new Vector2(tile.X + 0.5f, tile.Y + 0.5f);
+                // Prefer prepared dirt routes/pads over unmodified terrain in the
+                // outer band. Late entry must not bulldoze the existing map.
+                if (_maps.GetTileRef(raid.Owner, grid, tile).Tile.TypeId != landingTile
+                    || _turf.IsTileBlocked(raid.Owner, tile, CollisionGroup.MobMask)
+                    || inhabitants.Any(npc => Vector2.DistanceSquared(npc, point) < LandingNpcDistance * LandingNpcDistance)
+                    || positions.Values.Any(p => Vector2.DistanceSquared(p.Position, point) < 1f)) break;
+                candidate[group[member]] = new EntityCoordinates(raid.Owner, point);
+            }
+            if (candidate.Count != group.Length) continue;
+            foreach (var (user, point) in candidate) positions[user] = point;
+            return true;
+        }
+        return false;
     }
 
     private void ClearPad(EntityUid map, Vector2 center, int radius)
