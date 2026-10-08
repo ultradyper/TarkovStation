@@ -307,7 +307,7 @@ public sealed partial class TarkovSystem
         sunlight.Alpha = raid.DayPhase switch
         {
             TarkovDayPhase.Day => 0.25f,
-            TarkovDayPhase.Evening => 0.35f,
+            TarkovDayPhase.Evening => 0.2f,
             _ => 0f,
         };
         Dirty(map, sunlight);
@@ -315,6 +315,7 @@ public sealed partial class TarkovSystem
         while (entities.MoveNext(out var uid, out var meta, out var xform))
         {
             if (xform.MapUid != map || uid == map) continue;
+            if (IsRaidPoster(meta)) { QueueDel(uid); continue; }
             if (HasComp<AccessReaderComponent>(uid)) RemCompDeferred<AccessReaderComponent>(uid);
             if (HasComp<GhostRoleComponent>(uid)) RemCompDeferred<GhostRoleComponent>(uid);
             if (HasComp<GhostTakeoverAvailableComponent>(uid)) RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
@@ -496,16 +497,38 @@ public sealed partial class TarkovSystem
     private void CompleteExtraction(EntityUid body)
     {
         if (_repository == null || !TryComp<TarkovPlayerComponent>(body, out var player) || !Alive(body)) return;
-        var records = CaptureRoots(body, player.User, "hub");
-        var error = Write(player.User, "extract-" + player.Life, "extract", data =>
+        List<TarkovStoredItem> records;
+        try
         {
-            var result = TarkovEconomy.Extract(data, player.User, player.Raid, player.Life, Utc);
-            if (result != null) return result;
-            foreach (var missing in data.Items.Values.Where(i => i.Owner == player.User && i.Location == "raid")) missing.Location = "lost";
-            foreach (var record in records) data.Items[record.Id] = record;
-            return null;
-        });
-        if (error != null) return;
+            records = CaptureRoots(body, player.User, "hub");
+        }
+        catch (Exception exception)
+        {
+            // A serialization failure must not repeat every simulation tick or
+            // leave the UI frozen at the last second. Keep the physical gear.
+            Log.Error($"Extraction inventory capture failed: {exception}");
+            RejectExtraction(player, "tarkov-error-extraction-save");
+            return;
+        }
+        string? error;
+        try
+        {
+            error = Write(player.User, "extract-" + player.Life, "extract", data =>
+            {
+                var result = TarkovEconomy.Extract(data, player.User, player.Raid, player.Life, Utc);
+                if (result != null) return result;
+                foreach (var missing in data.Items.Values.Where(i => i.Owner == player.User && i.Location == "raid")) missing.Location = "lost";
+                foreach (var record in records) data.Items[record.Id] = record;
+                return null;
+            });
+        }
+        catch (Exception exception)
+        {
+            Log.Error($"Extraction transaction failed: {exception}");
+            RejectExtraction(player, "tarkov-error-extraction-save");
+            return;
+        }
+        if (error != null) { RejectExtraction(player, error); return; }
         player.Raid = "";
         player.Exit = null;
         player.ExtractAt = TimeSpan.Zero;
@@ -513,6 +536,18 @@ public sealed partial class TarkovSystem
         Feedback(player.User, TarkovFeedback.Extracted);
         if (TrySession(player.User, out var session)) SendState(session, "tarkov-extracted", "stash");
     }
+
+    private void RejectExtraction(TarkovPlayerComponent player, string message)
+    {
+        player.ExtractAt = TimeSpan.Zero;
+        player.Exit = null;
+        player.LastExtractionTick = 0;
+        Feedback(player.User, TarkovFeedback.ExtractionCancelled);
+        if (TrySession(player.User, out var session)) SendState(session, message);
+    }
+
+    private static bool IsRaidPoster(MetaDataComponent metadata)
+        => metadata.EntityPrototype?.ID.Contains("Poster", StringComparison.OrdinalIgnoreCase) == true;
 
     private void OnExitInteract(Entity<TarkovExitComponent> ent, ref InteractHandEvent args)
     {

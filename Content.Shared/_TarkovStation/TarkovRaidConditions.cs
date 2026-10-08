@@ -28,7 +28,7 @@ public static class TarkovRaidConditions
         // MapLight uses linear light. Daylight should read as daylight even on dark
         // dirt/grass textures; the old yellow tint made daytime resemble dusk.
         TarkovDayPhase.Day => new Color(1.35f, 1.32f, 1.25f),
-        TarkovDayPhase.Evening => new Color(0.85f, 0.65f, 0.47f),
+        TarkovDayPhase.Evening => new Color(1.2f, 1.06f, 0.88f),
         _ => Color.FromHex("#2B3143"),
     };
 

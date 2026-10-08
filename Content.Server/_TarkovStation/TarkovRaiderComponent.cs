@@ -13,6 +13,11 @@ public sealed partial class TarkovRaiderComponent : Component
     [DataField] public int LootedItems;
     [DataField] public int Reloads;
     [DataField] public bool KnifeMode;
+    /// <summary>Native gun spread in degrees while this NPC holds the weapon.</summary>
+    [DataField] public float MinimumSpread = 6f;
+    [DataField] public float MaximumSpread = 14f;
+    [DataField] public float FireRateScale = 0.7f;
+    [DataField] public float ReactionSeconds = 0.6f;
     /// <summary>Unreachable or exhausted targets expire instead of pinning the inhabitant forever.</summary>
     [DataField] public Dictionary<EntityUid, TimeSpan> IgnoredLoot = new();
 }

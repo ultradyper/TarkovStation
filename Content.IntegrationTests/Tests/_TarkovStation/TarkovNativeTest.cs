@@ -779,6 +779,9 @@ public sealed class TarkovNativeTest
             {
                 var em = server.EntMan;
                 em.EnsureComponent<GodmodeComponent>(combatBody);
+                // The looting fixture must be idle. A surviving armed guard is
+                // still an enemy of this friendly looter and takes combat priority.
+                em.QueueDeleteEntity(armedGuard);
                 var at = em.GetComponent<TransformComponent>(combatBody).Coordinates;
                 looterStart = at.Position + new System.Numerics.Vector2(-5, 0);
                 looter = em.SpawnEntity("TarkovStationRaidGuard", new Robust.Shared.Map.EntityCoordinates(at.EntityId, looterStart));
@@ -849,8 +852,23 @@ public sealed class TarkovNativeTest
                 Assert.That(firedAndHit, Is.True, archetype + " must chamber ammunition and hit using native combat");
                 await server.WaitPost(() => server.EntMan.QueueDeleteEntity(variant));
             }
-            if (mode.Repository.Read().Accounts[user].Location == "raid") await Request(TarkovAction.Extract);
+            if (mode.Repository.Read().Accounts[user].Location == "raid")
+            {
+                // NPC hit/reload/knife assertions are complete. Isolate normal
+                // evacuation from bleeding and delayed shots from the combat fixture.
+                await server.WaitPost(() =>
+                {
+                    var em = server.EntMan;
+                    var body = em.EntityQuery<TarkovPlayerComponent>().Single(p => p.User == user && !p.Closed).Owner;
+                    em.System<Content.Shared.Administration.Systems.RejuvenateSystem>().PerformRejuvenate(body);
+                    em.EnsureComponent<GodmodeComponent>(body);
+                    var exit = em.EntityQuery<TarkovExitComponent>().First().Owner;
+                    em.System<SharedTransformSystem>().SetCoordinates(body, em.GetComponent<TransformComponent>(exit).Coordinates);
+                });
+                await Request(TarkovAction.Extract);
+            }
             await pair.RunTicksSync(60); await second.WaitRunTicks(60);
+            Assert.That(mode.Repository.Read().Accounts[user].Location, Is.EqualTo("hub"));
             await server.WaitPost(() =>
             {
                 var em = server.EntMan;
@@ -861,6 +879,15 @@ public sealed class TarkovNativeTest
             await SecondRequest(TarkovAction.Extract);
             await pair.RunTicksSync(90); await second.WaitRunTicks(90);
             Assert.That(mode.Repository.Read().Accounts[other].Location, Is.EqualTo("hub"));
+            await server.WaitPost(() =>
+            {
+                if (!server.EntMan.EntityQuery<TarkovRaidComponent>().Any()) return;
+                var em = server.EntMan;
+                Console.Error.WriteLine("Raid cleanup accounts: " + string.Join(';', mode.Repository.Read().Accounts.Values
+                    .Select(a => $"{a.Name} test={a.TestBot} location={a.Location} raid={a.Raid}")));
+                Console.Error.WriteLine("Raid cleanup bodies: " + string.Join(';', em.EntityQuery<TarkovPlayerComponent>()
+                    .Select(p => $"{p.User} raid={p.Raid} closed={p.Closed} state={em.GetComponent<Content.Shared.Mobs.Components.MobStateComponent>(p.Owner).CurrentState} extract={p.ExtractAt}")));
+            });
             await server.WaitAssertion(() => Assert.That(server.EntMan.EntityQuery<TarkovRaidComponent>(), Is.Empty,
                 "An empty raid must end before its 15-minute deadline"));
             await Request(TarkovAction.LeaveParty);

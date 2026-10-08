@@ -45,6 +45,12 @@ public sealed partial class TarkovSystem
 
     private void OnRaidStackInitialized(Entity<MetaDataComponent> ent)
     {
+        if (Enabled && IsRaidPoster(ent.Comp)
+            && HasComp<TarkovRaidComponent>(Transform(ent).MapUid))
+        {
+            QueueDel(ent);
+            return;
+        }
         if (!Enabled || !HasComp<StackComponent>(ent) || Goods(ent.Comp.EntityPrototype?.ID ?? "") == null
             || !TryComp<TarkovRaidComponent>(Transform(ent).MapUid, out var raid)
             || (TryComp<TarkovItemComponent>(ent, out var existing) && existing.Id != "")) return;
@@ -66,10 +72,14 @@ public sealed partial class TarkovSystem
         var result = new List<EntityUid>();
         var stack = new Stack<EntityUid>();
         stack.Push(root);
-        while (stack.TryPop(out var uid) && result.Count < 512)
+        while (stack.TryPop(out var uid))
         {
             if (Deleted(uid))
                 continue;
+            // Loaded ammunition and nested bags are real entities too. Never
+            // silently truncate their inventory at the former 512-entity cap.
+            if (result.Count >= 4096)
+                throw new InvalidOperationException("Item tree exceeds 4096 entities: " + MetaData(root).EntityPrototype?.ID);
             result.Add(uid);
             var children = Transform(uid).ChildEnumerator;
             while (children.MoveNext(out var child))
@@ -104,8 +114,10 @@ public sealed partial class TarkovSystem
         }
         node.Write(writer);
         var result = writer.ToString();
-        if (result.Length > 524288)
-            throw new InvalidOperationException("Item snapshot too large");
+        // A filled bag can legitimately exceed 512 KiB. Snapshots are stored in
+        // dedicated SQLite blobs, not sent as one network packet.
+        if (result.Length > 8 * 1024 * 1024)
+            throw new InvalidOperationException($"Item snapshot too large: {MetaData(uid).EntityPrototype?.ID}, entities={members.Count}, chars={result.Length}");
         return result;
     }
 

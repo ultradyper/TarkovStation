@@ -12,6 +12,7 @@
   },
   "engine_layout": "vendored",
   "engine_local_changes": [
-    "Robust.Server/ServerStatus/StatusHost.cs"
+    "Robust.Server/ServerStatus/StatusHost.cs",
+    "Robust.Shared/Physics/Systems/SharedPhysicsSystem.Contacts.cs"
   ]
 }

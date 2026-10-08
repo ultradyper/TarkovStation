@@ -37,3 +37,4 @@ tarkov-error-extracting = Extraction is already in progress. Stay near the beaco
 ts-item-container = Inside: { $container }
 ts-category-equipment = Equipment
 ts-raid-preparing = The shared map is being prepared. Your departure will join it when ready; no separate raid will be created.
+tarkov-error-extraction-save = Your equipment could not be saved. You still have your items. Retry extraction or contact an administrator.

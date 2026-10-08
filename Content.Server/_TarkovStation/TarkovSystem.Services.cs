@@ -252,9 +252,12 @@ public sealed partial class TarkovSystem
         var bots = AllEntityQuery<TarkovTestBotComponent, TarkovPlayerComponent>();
         while (bots.MoveNext(out var uid, out var bot, out var player))
         {
-            if (player.Closed || player.Raid == "" || !Alive(uid)) continue;
+            if (player.Closed || player.Raid == "") continue;
             if (data.Accounts.TryGetValue(bot.OwnerUser, out var owner) && owner.Location == "hub")
-                CompleteExtraction(uid);
+            {
+                if (Alive(uid)) CompleteExtraction(uid);
+                else _mobState.ChangeMobState(uid, MobState.Dead);
+            }
         }
     }
 

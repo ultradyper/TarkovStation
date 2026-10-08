@@ -263,6 +263,14 @@ public abstract partial class SharedPhysicsSystem
         // Broadphase has already done the faster check for collision mask / layers
         // so no point duplicating
 
+        // TarkovStation-Add: moving/remapping fixtures can leave duplicate or
+        // self-pairs in the broadphase batch. Reject them before allocating and
+        // linking a contact: Dictionary.Add throwing afterwards leaves the
+        // world's contact lists partially updated and breaks later map cleanup.
+        if (entA.Owner == entB.Owner || ReferenceEquals(fixtureA, fixtureB)
+            || fixtureA.Contacts.ContainsKey(fixtureB) || fixtureB.Contacts.ContainsKey(fixtureA))
+            return;
+
         DebugTools.Assert(!fixtureA.Contacts.ContainsKey(fixtureB),
             $"{ToPrettyString(entB)} fixture {fixtureBId} was already in contact with {ToPrettyString(entA)} fixture {fixtureAId}");
         DebugTools.Assert(!fixtureB.Contacts.ContainsKey(fixtureA),

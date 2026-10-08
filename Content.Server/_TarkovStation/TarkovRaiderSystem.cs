@@ -2,6 +2,7 @@
 
 using System.Linq;
 using Content.Server.NPC.HTN;
+using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Shared._TarkovStation.Components;
 using Content.Shared._TarkovStation.Prototypes;
@@ -12,6 +13,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Projectiles;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
@@ -19,6 +22,7 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Wieldable;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -39,6 +43,51 @@ public sealed partial class TarkovRaiderSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IGameTiming _timing = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<GunComponent, GunRefreshModifiersEvent>(OnGunModifiers, after: [typeof(SharedWieldableSystem)]);
+        SubscribeLocalEvent<EntityTerminatingEvent>(OnProjectileSourceTerminating);
+    }
+
+    private void OnProjectileSourceTerminating(ref EntityTerminatingEvent args)
+    {
+        var source = args.Entity.Owner;
+        if (!HasComp<MobStateComponent>(source) && !HasComp<GunComponent>(source)) return;
+        if (!HasComp<TarkovRaiderComponent>(source) && !HasComp<TarkovPlayerComponent>(source)
+            && !HasComp<TarkovItemComponent>(source) && !HasComp<TarkovRaidComponent>(Transform(source).MapUid)) return;
+        // A missed round can outlive its shooter or a weapon put into the stash.
+        // Clear retired sources before PVS attempts to serialize their entity IDs.
+        var query = AllEntityQuery<ProjectileComponent>();
+        while (query.MoveNext(out var uid, out var projectile))
+        {
+            var changed = false;
+            if (projectile.Shooter == source) { projectile.Shooter = null; changed = true; }
+            if (projectile.Weapon == source) { projectile.Weapon = null; changed = true; }
+            if (changed) Dirty(uid, projectile);
+        }
+    }
+
+    private void OnGunModifiers(Entity<GunComponent> ent, ref GunRefreshModifiersEvent args)
+    {
+        // RefreshModifiers returns to the base weapon values after it is dropped
+        // or looted. The player's gun is never permanently nerfed by its NPC owner.
+        if (!TryComp<TarkovRaiderComponent>(ent.Comp.Holder, out var raider)) return;
+        args.MinAngle = Angle.FromDegrees(Math.Max(args.MinAngle.Degrees, raider.MinimumSpread));
+        args.MaxAngle = Angle.FromDegrees(Math.Max(args.MaxAngle.Degrees, raider.MaximumSpread));
+        args.FireRate = Math.Min(4f, args.FireRate * raider.FireRateScale);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        // Native HTN adds/removes the combat component as plans change. Its
+        // exclusive startup event belongs to NPCCombatSystem.
+        var query = EntityQueryEnumerator<TarkovRaiderComponent, NPCRangedCombatComponent>();
+        while (query.MoveNext(out _, out var raider, out var combat))
+            combat.ShootDelay = raider.ReactionSeconds;
+    }
 
     private IEnumerable<EntityUid> Equipment(EntityUid owner)
     {
