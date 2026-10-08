@@ -15,4 +15,6 @@ public sealed partial class TarkovGoodsPrototype : IPrototype
     [DataField] public LocId Category = "ts-category-supplies";
     [DataField] public int Rarity;
     [DataField] public bool Purchasable = true;
+    /// <summary>Consumable solution whose remaining volume scales the buyback quote.</summary>
+    [DataField] public string? PricedSolution;
 }

@@ -37,6 +37,7 @@ public sealed partial class TarkovClientSystem : EntitySystem
     [Dependency] private IStateManager _states = default!;
     private TarkovOnboardingWindow? _entry;
     private TarkovServiceWindow? _service;
+    private TarkovGuideWindow? _guide;
     private PanelContainer? _hud;
     private PanelContainer? _entryBackdrop;
     private Label? _hudIdentity;
@@ -48,6 +49,7 @@ public sealed partial class TarkovClientSystem : EntitySystem
     private Label? _noticeText;
     private TimeSpan _noticeUntil;
     private string _noticeKey = "";
+    private string _noticeSector = "";
     /// <summary>The actual rendered lifecycle notice, exposed for native UI verification.</summary>
     public string NoticeText => _noticeText?.Text ?? "";
     /// <summary>Most recent explicit action reply, retained across passive HUD snapshots for diagnostics/tests.</summary>
@@ -61,7 +63,7 @@ public sealed partial class TarkovClientSystem : EntitySystem
 
     public override void Shutdown()
     {
-        _closingFromServer = true; _entry?.Dispose(); _service?.Dispose(); _hud?.Dispose(); _entryBackdrop?.Dispose(); _notice?.Dispose(); base.Shutdown();
+        _closingFromServer = true; _entry?.Dispose(); _service?.Dispose(); _guide?.Dispose(); _hud?.Dispose(); _entryBackdrop?.Dispose(); _notice?.Dispose(); base.Shutdown();
     }
 
     public override void FrameUpdate(float frameTime)
@@ -70,7 +72,7 @@ public sealed partial class TarkovClientSystem : EntitySystem
         if (!_cfg.GetCVar(TarkovCVars.Enabled))
         {
             _closingFromServer = true;
-            _entry?.Dispose(); _entry = null; _service?.Dispose(); _service = null;
+            _entry?.Dispose(); _entry = null; _service?.Dispose(); _service = null; _guide?.Dispose(); _guide = null;
             if (_hud != null) _hud.Visible = false;
             if (_entryBackdrop != null) _entryBackdrop.Visible = false;
             if (_notice != null) _notice.Visible = false;
@@ -101,8 +103,8 @@ public sealed partial class TarkovClientSystem : EntitySystem
             if (_noticeText != null)
                 _noticeText.Text = _noticeKey == "ts-notice-extraction-started" && _snapshot?.ExtractionSeconds > 0
                     ? Loc.GetString("ts-notice-extraction", ("seconds", _snapshot.ExtractionSeconds))
-                    : _noticeKey == "" ? "" : Loc.GetString(_noticeKey);
-            LayoutContainer.SetPosition(_notice, new Vector2(MathF.Max(0, (_ui.WindowRoot.Size.X - 500) / 2), 110));
+                    : _noticeKey == "" ? "" : NoticeMessage();
+            LayoutContainer.SetPosition(_notice, new Vector2(MathF.Max(0, (_ui.WindowRoot.Size.X - _notice.Size.X) / 2), 110));
         }
         if (_hud != null)
         {
@@ -119,7 +121,7 @@ public sealed partial class TarkovClientSystem : EntitySystem
 
     private void OnFeedback(TarkovFeedbackEvent feedback)
     {
-        var key = feedback.Cue switch
+        var key = feedback.Cue == TarkovFeedback.RaidEvent ? feedback.Message : feedback.Cue switch
         {
             TarkovFeedback.ExtractionStarted => "ts-notice-extraction-started",
             TarkovFeedback.ExtractionCancelled => "ts-notice-extraction-cancelled",
@@ -130,15 +132,19 @@ public sealed partial class TarkovClientSystem : EntitySystem
             _ => "",
         };
         if (key == "") return;
-        if (feedback.Cue == TarkovFeedback.Warning && _noticeKey == "ts-notice-extraction-started"
+        if ((feedback.Cue is TarkovFeedback.Warning or TarkovFeedback.RaidEvent) && _noticeKey == "ts-notice-extraction-started"
             && _snapshot?.ExtractionSeconds > 0) return;
         _noticeKey = key;
+        _noticeSector = feedback.Sector;
         EnsureNotice();
-        _noticeText!.Text = Loc.GetString(key);
+        _noticeText!.Text = NoticeMessage();
         _noticeText.FontColorOverride = feedback.Cue is TarkovFeedback.Warning or TarkovFeedback.ExtractionCancelled
             ? TarkovTheme.Warning : TarkovTheme.Accent;
-        _noticeUntil = _timing.CurTime + TimeSpan.FromSeconds(5);
+        _noticeUntil = _timing.CurTime + TimeSpan.FromSeconds(feedback.Cue == TarkovFeedback.RaidEvent ? 12 : 5);
     }
+
+    private string NoticeMessage() => Loc.GetString(_noticeKey,
+        ("sector", _noticeSector == "" ? "" : Loc.GetString(_noticeSector)));
 
     private void EnsureNotice()
     {
@@ -159,7 +165,20 @@ public sealed partial class TarkovClientSystem : EntitySystem
         if (_hud != null) return;
         var stack = TarkovTheme.Column(3);
         _hudIdentity = TarkovTheme.Label("", muted: true); _hudStatus = TarkovTheme.Label("");
-        stack.AddChild(_hudIdentity); stack.AddChild(_hudStatus);
+        var identity = TarkovTheme.Row(8);
+        identity.AddChild(_hudIdentity);
+        var help = TarkovTheme.Button("?", () =>
+        {
+            _guide?.Dispose();
+            _guide = new TarkovGuideWindow();
+            _guide.OpenCentered();
+        });
+        help.SetWidth = 30;
+        help.MinHeight = 26;
+        help.HorizontalExpand = false;
+        help.ToolTip = Loc.GetString("ts-guide-title");
+        identity.AddChild(help);
+        stack.AddChild(identity); stack.AddChild(_hudStatus);
         _cancelReady = TarkovTheme.Button(Loc.GetString("tarkov-cancel-ready"), () => Send(new TarkovRequestEvent { Action = TarkovAction.CancelReady }));
         _cancelReady.Visible = false; _cancelReady.MinHeight = 26; stack.AddChild(_cancelReady);
         _hud = TarkovTheme.Panel(stack, padding: 8); _hud.MinWidth = 320; _hud.HorizontalExpand = false;

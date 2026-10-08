@@ -124,6 +124,14 @@ public sealed class HungerSystem : EntitySystem
         UpdateCurrentThreshold(uid, component);
     }
 
+    // TarkovStation-Add: mode-specific decay, preserving nutrition already consumed.
+    public void SetBaseDecayRate(Entity<HungerComponent> entity, float rate)
+    {
+        SetAuthoritativeHungerValue(entity, GetHunger(entity.Comp));
+        entity.Comp.BaseDecayRate = Math.Max(0f, rate);
+        DoHungerThresholdEffects(entity.Owner, entity.Comp, force: true);
+    }
+
     /// <summary>
     /// Sets <see cref="HungerComponent.LastAuthoritativeHungerValue"/> and
     /// <see cref="HungerComponent.LastAuthoritativeHungerChangeTime"/>, and dirties this entity. This "resets" the

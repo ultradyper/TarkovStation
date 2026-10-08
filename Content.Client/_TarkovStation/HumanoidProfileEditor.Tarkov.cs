@@ -10,6 +10,8 @@ public sealed partial class HumanoidProfileEditor
         TabContainer.SetTabVisible(1, false);
         TabContainer.SetTabVisible(2, false);
         TabContainer.SetTabVisible(3, false);
+        MarkingsTab.Visible = false;
+        TabContainer.SetTabVisible(4, false);
         ProfileHighlight.Visible = false;
         WarningLabel.Visible = false;
         SpeciesButton.Disabled = true;

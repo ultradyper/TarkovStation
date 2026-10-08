@@ -11,7 +11,7 @@ public sealed partial class TarkovSystem
     [Dependency] private SharedAudioSystem _feedbackAudio = default!;
 
     /// <summary>Private, server-confirmed feedback. Passive UI polling never calls this method.</summary>
-    private void Feedback(string user, TarkovFeedback cue)
+    private void Feedback(string user, TarkovFeedback cue, string message = "", string sector = "")
     {
         if (!TrySession(user, out var session) || !session.Channel.IsConnected) return;
         var path = cue switch
@@ -23,12 +23,13 @@ public sealed partial class TarkovSystem
             TarkovFeedback.ExtractionStarted => "/Audio/Machines/high_tech_confirm.ogg",
             TarkovFeedback.ExtractionTick => "/Audio/Machines/quickbeep.ogg",
             TarkovFeedback.Extracted => "/Audio/Machines/chime.ogg",
+            TarkovFeedback.RaidEvent => "/Audio/Machines/high_tech_confirm.ogg",
             TarkovFeedback.Warning => "/Audio/Misc/notice2.ogg",
             TarkovFeedback.Death => "/Audio/Machines/twobeep.ogg",
             _ => "/Audio/Machines/beep.ogg",
         };
         _feedbackAudio.PlayGlobal(new SoundPathSpecifier(path), session, AudioParams.Default.WithVolume(-8f));
-        RaiseNetworkEvent(new TarkovFeedbackEvent { Cue = cue }, session);
+        RaiseNetworkEvent(new TarkovFeedbackEvent { Cue = cue, Message = message, Sector = sector }, session);
     }
 
     private static TarkovFeedback ActionFeedback(TarkovAction action) => action switch

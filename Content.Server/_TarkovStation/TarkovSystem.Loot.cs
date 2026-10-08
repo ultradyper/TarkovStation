@@ -15,7 +15,7 @@ public sealed partial class TarkovSystem
     {
         var random = new Random(raid.Seed);
         var catalogue = _proto.EnumeratePrototypes<TarkovGoodsPrototype>().ToDictionary(g => g.ID);
-        var count = Math.Clamp(6 + raid.Participants.Count * 2 + (int)raid.DayPhase * 2, 8, 60);
+        var count = Math.Clamp(6 + raid.Radius / 4 + (int)raid.DayPhase * 2, 8, 60);
         for (var i = 0; i < count; i++)
         {
             var zone = i % 3;
@@ -43,7 +43,7 @@ public sealed partial class TarkovSystem
             }
         }
         // The valuable central cache is guarded. Existing native HTN provides movement, targeting and firing.
-        for (var i = 0; i < TarkovRaidConditions.Guards(raid.DayPhase, raid.Participants.Count); i++)
+        for (var i = 0; i < TarkovRaidConditions.Guards(raid.DayPhase, raid.Radius / 10); i++)
         {
             var position = (i % 3) switch
             {

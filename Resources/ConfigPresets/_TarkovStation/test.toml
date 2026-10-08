@@ -52,6 +52,8 @@ enabled = false
 [shuttle]
 arrivals = false
 emergency = false
+auto_call_time = 0
+auto_call_extension_time = 0
 grid_fill = false
 preload_grids = false
 [procgen]

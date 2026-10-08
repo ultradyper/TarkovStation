@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: CrateGenericSteel
+  id: TarkovStationAirdropCrate
+  name: airdrop supply crate
+  components:
+  - type: PointLight
+    color: '#FFA54A'
+    radius: 5
+    energy: 2
+    castShadows: false
+
+- type: entity
+  id: TarkovStationAirdropSignal
+  name: drop zone signal
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Objects/Misc/flare.rsi
+    state: flare_burn
+    shader: unshaded
+  - type: PointLight
+    color: '#FF6A30'
+    radius: 7
+    energy: 3
+    castShadows: false
+
+- type: entity
+  id: TarkovStationAirdropDescending
+  name: descending supply crate
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: Structures/Storage/Crates/generic.rsi
+    state: icon
+    noRot: true
+    drawdepth: OverMobs
+  - type: TarkovAirdropVisual
+  - type: PointLight
+    color: '#FFA54A'
+    radius: 5
+    castShadows: false
+
+- type: entity
+  parent: MobCarp
+  id: TarkovStationMigratingFauna
+  name: migrating predator
+  components:
+  - type: TarkovMigration
+  - type: HTN
+    rootTask:
+      task: TarkovStationMigrationCompound
+
+- type: htnCompound
+  id: TarkovStationMigrationCompound
+  branches:
+  - tasks:
+    - !type:HTNCompoundTask
+      task: MeleeCombatCompound
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:TarkovMigrationTargetOperator
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        targetKey: TarkovMigrationTarget
+        rangeKey: TarkovMigrationRange
+        pathfindInPlanning: true
+    - !type:HTNPrimitiveTask
+      operator: !type:TarkovMigrationAdvanceOperator
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound

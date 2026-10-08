@@ -80,6 +80,7 @@ public sealed class TarkovRaidFailureTest
                 Does.Not.StartWith("tarkov-error"), action.ToString()));
         }
         await Request(TarkovAction.AcceptRules);
+        await Request(TarkovAction.AcceptGuide);
         await Request(TarkovAction.Create, "Scavengers", "Assault");
         foreach (var phase in new[] { TarkovDayPhase.Day, TarkovDayPhase.Evening, TarkovDayPhase.Night })
         {

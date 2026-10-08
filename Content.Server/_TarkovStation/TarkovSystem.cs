@@ -14,6 +14,8 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -49,6 +51,8 @@ public sealed partial class TarkovSystem : EntitySystem
     [Dependency] private MapLoaderSystem _loader = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private ThirstSystem _thirst = default!;
 
     private TarkovRepository? _repository;
     private EntityUid? _hub;
@@ -61,6 +65,7 @@ public sealed partial class TarkovSystem : EntitySystem
     private readonly HashSet<string> _pendingJoins = new();
     // Rules acknowledgement belongs to the authenticated connection and current cycle.
     private readonly HashSet<string> _rulesAccepted = new();
+    private readonly HashSet<string> _guideRead = new();
     private bool Enabled => _cfg.GetCVar(TarkovCVars.Enabled);
     private static long Utc => DateTimeOffset.UtcNow.ToUnixTimeSeconds();
     public TarkovRepository? Repository => _repository;
@@ -144,6 +149,7 @@ public sealed partial class TarkovSystem : EntitySystem
         _queueEnds = null;
         _pendingJoins.Clear();
         _rulesAccepted.Clear();
+        _guideRead.Clear();
     }
 
     /// <summary>Route station join/observe requests through this mode's onboarding and saved character.</summary>
@@ -273,7 +279,8 @@ public sealed partial class TarkovSystem : EntitySystem
     {
         if (_hub == null || FindPlayer(account.User) != null)
             return;
-        var profile = ReadProfile(account.Profile);
+        var storedProfile = ReadProfile(account.Profile);
+        var profile = storedProfile.WithCharacterAppearance(storedProfile.Appearance.WithMarkings(new()));
         var mob = _spawn.SpawnPlayerMob(HubCoordinates(), null, profile, null);
         var player = EnsureComp<TarkovPlayerComponent>(mob);
         player.User = account.User;
@@ -281,6 +288,16 @@ public sealed partial class TarkovSystem : EntitySystem
         player.Branch = account.Branch;
         player.Life = account.Life;
         EnsureComp<TarkovCombatCreditComponent>(mob);
+        if (TryComp<HungerComponent>(mob, out var hunger))
+        {
+            _hunger.SetBaseDecayRate((mob, hunger), _cfg.GetCVar(TarkovCVars.HungerRate));
+            _hunger.SetHunger(mob, hunger.Thresholds[HungerThreshold.Okay], hunger);
+        }
+        if (TryComp<ThirstComponent>(mob, out var thirst))
+        {
+            _thirst.SetBaseDecayRate((mob, thirst), _cfg.GetCVar(TarkovCVars.ThirstRate));
+            _thirst.SetThirst(mob, thirst, thirst.ThirstThresholds[ThirstThreshold.Okay]);
+        }
         EnsureComp<TarkovHubProtectedComponent>(mob);
         Dirty(mob, player);
         var mind = _mind.GetOrCreateMind(session.UserId);
@@ -299,7 +316,7 @@ public sealed partial class TarkovSystem : EntitySystem
         if (flavor.Length > 1000) flavor = flavor[..1000];
         var profile = HumanoidCharacterProfile.DefaultWithSpecies("Human").WithName(name)
             .WithAge(input.Age).WithFlavorText(flavor).WithSex(input.Sex).WithGender(input.Gender)
-            .WithCharacterAppearance(new HumanoidCharacterAppearance(input.Appearance));
+            .WithCharacterAppearance(input.Appearance.WithMarkings(new()));
         profile.EnsureValid(session, IoCManager.Instance!);
         return profile;
     }

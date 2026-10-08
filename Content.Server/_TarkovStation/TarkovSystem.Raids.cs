@@ -88,6 +88,7 @@ public sealed partial class TarkovSystem
         if (_repository == null || _hub == null) return "tarkov-error-starting";
         var data = _repository.Read();
         var current = CurrentRaid();
+        if (current is { } running && running.Comp.DeadParticipants.Contains(user)) return "tarkov-error-raid-death-lock";
         var duration = current == null || HasComp<TarkovGenerationComponent>(current.Value.Owner)
             ? _cfg.GetCVar(TarkovCVars.RaidSeconds)
             : Math.Max(0, (current.Value.Comp.EndsAt - _timing.CurTime).TotalSeconds);
@@ -141,6 +142,7 @@ public sealed partial class TarkovSystem
         while (raids.MoveNext(out var uid, out var raid))
         {
             if (HasComp<TarkovGenerationComponent>(uid)) continue;
+            UpdateRaidEvent((uid, raid));
             var remaining = (raid.EndsAt - _timing.CurTime).TotalSeconds;
             var warning = remaining <= 60 ? 2 : remaining <= 300 ? 1 : 0;
             if (warning > raid.WarningStage)
@@ -213,7 +215,8 @@ public sealed partial class TarkovSystem
         foreach (var user in _ready.ToArray())
         {
             if (!data.Accounts.TryGetValue(user, out var a) || a.TestBot) continue;
-            if (FindPlayer(user) is not { } body || !Alive(body)) CancelReady(user, "tarkov-error-not-alive");
+            if (current is { } running && running.Comp.DeadParticipants.Contains(user)) CancelReady(user, "tarkov-error-raid-death-lock");
+            else if (FindPlayer(user) is not { } body || !Alive(body)) CancelReady(user, "tarkov-error-not-alive");
             else if (!TrySession(user, out var session) || session.Status != Robust.Shared.Enums.SessionStatus.InGame)
                 CancelReady(user, "tarkov-queue-disconnected");
             else if (data.Trades.Values.Any(t => t.Status == "open" && (t.A == user || t.B == user)))
@@ -246,13 +249,14 @@ public sealed partial class TarkovSystem
             JoinRaid(existing, users, data);
             return;
         }
-        var radius = users.Count <= 4 ? 40 : users.Count <= 10 ? 60 : 80;
+        var plan = TarkovRaidPlan.Create(data.Cycle, data.RaidSequence);
+        var radius = plan.Radius;
         EntityUid? map = null;
         try
         {
             map = _maps.CreateMap(out var mapId, runMapInit: false);
-            var seed = Random.Shared.Next();
-            var biome = new[] { "Grasslands", "LowDesert", "Snow" }[seed % 3];
+            var seed = plan.Seed;
+            var biome = plan.Biome;
             _biome.EnsurePlanet(map.Value, _proto.Index<BiomeTemplatePrototype>(biome), seed,
                 mapLight: TarkovRaidConditions.Ambient(TarkovRaidConditions.Phase(data.RaidSequence)));
             var grid = Comp<MapGridComponent>(map.Value);
@@ -264,6 +268,8 @@ public sealed partial class TarkovSystem
             raid.Seed = seed;
             raid.Participants = users;
             raid.Radius = radius;
+            raid.Biome = biome;
+            raid.EventKind = plan.Event;
             raid.DayPhase = TarkovRaidConditions.Phase(data.RaidSequence);
             _metadata.SetEntityName(map.Value, Loc.GetString("tarkov-raid-name", ("seed", seed % 10000)));
             _biome.Preload(map.Value, Comp<BiomeComponent>(map.Value), new Box2(-radius, -radius, radius, radius));
@@ -360,8 +366,9 @@ public sealed partial class TarkovSystem
         }
 
         ClearRaidRoutes(map, raid);
+        PrepareRaidEvent((map, raid));
         PopulateRaidLoot(map, raid);
-        for (var i = 0; i < TarkovRaidConditions.Monsters(raid.DayPhase, raid.Participants.Count); i++)
+        for (var i = 0; i < TarkovRaidConditions.Monsters(raid.DayPhase, raid.Radius / 10); i++)
         {
             var pos = new Vector2((i % 3 - 1) * 8, (i / 3 - 1) * 8);
             ClearPad(map, pos, 1);
@@ -408,7 +415,7 @@ public sealed partial class TarkovSystem
     private void JoinRaid(Entity<TarkovRaidComponent> raid, List<string> users, TarkovData data)
     {
         // Existing loot, NPCs, radius, phase and expiry are never rebuilt by later departures.
-        if (raid.Comp.EndsAt <= _timing.CurTime) return;
+        if (raid.Comp.EndsAt <= _timing.CurTime || users.Any(raid.Comp.DeadParticipants.Contains)) return;
         var roster = new List<(string User, string Life, List<TarkovStoredItem> Items)>();
         var positions = new Dictionary<string, EntityCoordinates>();
         var bodies = new Dictionary<string, EntityUid>();
@@ -642,6 +649,9 @@ public sealed partial class TarkovSystem
     {
         if (_repository == null || !TryComp<TarkovPlayerComponent>(body, out var player) || player.Closed) return;
         player.Closed = true;
+        if (CurrentRaid() is { } raid && raid.Comp.Id == player.Raid)
+            raid.Comp.DeadParticipants.Add(player.User);
+        CancelReady(player.User, "tarkov-error-raid-death-lock");
         Feedback(player.User, TarkovFeedback.Death);
         var credit = CompOrNull<TarkovCombatCreditComponent>(body);
         Write(player.User, "death-" + player.Life, "death", data =>

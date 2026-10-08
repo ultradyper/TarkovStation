@@ -18,6 +18,7 @@ public sealed class TarkovOnboardingWindow : DefaultWindow
     private readonly IEntityManager _entities;
     private readonly Action _openDiscord;
     private bool _showingRules;
+    private bool _showingGuide;
     private readonly BoxContainer _content = TarkovTheme.Column(10);
     private readonly BoxContainer _identity = TarkovTheme.Column(10);
     private readonly BoxContainer _factions = TarkovTheme.Column(10);
@@ -53,7 +54,11 @@ public sealed class TarkovOnboardingWindow : DefaultWindow
         {
             if (_cycle != state.Cycle || !_showingRules) BuildRules(state);
         }
-        else if (_cycle != state.Cycle || _editor == null || _showingRules) Build(state);
+        else if (!state.GuideRead)
+        {
+            if (_cycle != state.Cycle || !_showingGuide) BuildGuide(state);
+        }
+        else if (_cycle != state.Cycle || _editor == null || _showingRules || _showingGuide) Build(state);
         if (state.Message != "")
         {
             _feedback.Text = Loc.GetString(state.Message);
@@ -66,6 +71,7 @@ public sealed class TarkovOnboardingWindow : DefaultWindow
     {
         _cycle = state.Cycle;
         _showingRules = true;
+        _showingGuide = false;
         _enter = null;
         _editor?.Dispose();
         _editor = null;
@@ -93,10 +99,25 @@ public sealed class TarkovOnboardingWindow : DefaultWindow
         _content.AddChild(actions);
     }
 
+    private void BuildGuide(TarkovStateEvent state)
+    {
+        _cycle = state.Cycle;
+        _showingRules = false;
+        _showingGuide = true;
+        _enter = null;
+        _editor?.Dispose();
+        _editor = null;
+        _content.RemoveAllChildren();
+        _content.AddChild(new TarkovGuide(() => _send(new TarkovRequestEvent { Action = TarkovAction.AcceptGuide }), true));
+        _feedback.Text = "";
+        _content.AddChild(_feedback);
+    }
+
     private void Build(TarkovStateEvent state)
     {
         _cycle = state.Cycle;
         _showingRules = false;
+        _showingGuide = false;
         _identity.Visible = true; _feedback.Text = "";
         _content.RemoveAllChildren(); _identity.RemoveAllChildren(); _factions.RemoveAllChildren(); _choices.RemoveAllChildren(); _editor?.Dispose();
         var intro = TarkovTheme.Column(4);

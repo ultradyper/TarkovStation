@@ -44,7 +44,7 @@ ts-stash-note = Stored items survive your death. Capacity: 64 root items or cont
 ts-store-item = Store
 ts-take-item = Take
 ts-raid-briefing = BEYOND PEREVAL
-ts-raid-briefing-text = The initial roster determines the territory size. Later departures join the same map until the raid ends.
+ts-raid-briefing-text = Map size and conditions are chosen in advance, regardless of population. Late departures join the active raid. After dying, you cannot enter it again until it ends.
     Explore buildings and find supplies and trophies. Other parties and dangerous creatures may be present.
 ts-ready-departure = Equipment ready. Deploy.
 ts-extraction-briefing = Two green beacons near opposite edges are your way back.

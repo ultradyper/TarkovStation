@@ -13,6 +13,8 @@ public sealed partial class TarkovServiceWindow
     private readonly Label _queueNotice = TarkovTheme.Label("");
     private readonly Label _conditionsTitle = TarkovTheme.Label("", true);
     private readonly RichTextLabel _conditions = TarkovTheme.Paragraph("");
+    private readonly RichTextLabel _mapBriefing = TarkovTheme.Paragraph("");
+    private readonly RichTextLabel _eventBriefing = TarkovTheme.Paragraph("");
     private readonly RichTextLabel _activeRaid = TarkovTheme.Paragraph("");
     private TarkovButton? _readyButton;
     private TarkovButton? _cancelButton;
@@ -24,6 +26,8 @@ public sealed partial class TarkovServiceWindow
         var briefing = TarkovTheme.Column(12);
         briefing.AddChild(_conditionsTitle);
         briefing.AddChild(_conditions);
+        briefing.AddChild(_mapBriefing);
+        briefing.AddChild(_eventBriefing);
         briefing.AddChild(_activeRaid);
         briefing.AddChild(TarkovTheme.Label(Loc.GetString("ts-raid-briefing"), true));
         briefing.AddChild(TarkovTheme.Paragraph(Loc.GetString("ts-raid-briefing-text")));
@@ -62,15 +66,24 @@ public sealed partial class TarkovServiceWindow
         var phase = TarkovRaidConditions.Key(state.DayPhase);
         _conditionsTitle.Text = Loc.GetString("ts-conditions-title", ("phase", Loc.GetString("ts-phase-" + phase)));
         _conditions.SetMessage(Loc.GetString("ts-conditions-" + phase));
+        _mapBriefing.SetMessage(Loc.GetString("ts-map-briefing",
+            ("size", Loc.GetString("ts-map-size-" + TarkovRaidPlan.SizeKey(state.RaidRadius))),
+            ("biome", Loc.GetString("ts-biome-" + state.RaidBiome)), ("width", state.RaidRadius * 2)));
+        var eventKey = TarkovRaidPlan.EventKey(state.RaidEvent);
+        var eventState = Loc.GetString("ts-event-" + eventKey + "-stage-" + state.EventStage);
+        _eventBriefing.SetMessage(Loc.GetString("ts-event-briefing", ("event", Loc.GetString("ts-event-" + eventKey)),
+            ("detail", Loc.GetString("ts-event-" + eventKey + "-description")), ("status", eventState))
+            + (state.ActiveRaid && state.EventStage < 2 ? "\n" + Loc.GetString("ts-event-countdown", ("time", TimeSpan.FromSeconds(state.EventSeconds).ToString(@"mm\:ss"))) : "")
+            + (state.ActiveRaid && state.EventSector != "" && state.EventStage > 0 ? "\n" + Loc.GetString("ts-event-sector", ("sector", Loc.GetString(state.EventSector))) : ""));
         _activeRaid.SetMessage(Loc.GetString(state.ActiveRaid
             ? state.ActiveRaidSeconds > 0 ? "ts-raid-existing" : "ts-raid-preparing" : "ts-raid-next",
             ("time", TimeSpan.FromSeconds(state.ActiveRaidSeconds).ToString(@"mm\:ss"))));
         _queueDetails.Text = Loc.GetString("ts-party-readiness", ("ready", state.ReadyCount), ("total", state.PartyCount));
-        _queueNotice.Text = state.QueueNotice == "" ? "" : Loc.GetString(state.QueueNotice);
-        _queueNotice.Visible = state.QueueNotice != "";
+        _queueNotice.Text = state.RaidReentryBlocked ? Loc.GetString("tarkov-error-raid-death-lock") : state.QueueNotice == "" ? "" : Loc.GetString(state.QueueNotice);
+        _queueNotice.Visible = state.RaidReentryBlocked || state.QueueNotice != "";
         if (_readyButton != null)
         {
-            _readyButton.Disabled = state.Ready || state.Location != "hub";
+            _readyButton.Disabled = state.RaidReentryBlocked || state.Ready || state.Location != "hub";
             _readyButton.Text = Loc.GetString(state.ActiveRaid ? "ts-ready-join" : "ts-ready-departure");
         }
         if (_cancelButton != null) _cancelButton.Disabled = !state.Ready;

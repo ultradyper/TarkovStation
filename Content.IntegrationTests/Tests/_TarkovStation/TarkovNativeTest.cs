@@ -138,6 +138,7 @@ public sealed class TarkovNativeTest
             await Request(TarkovAction.Create, "Scavengers", "Assault", expectRejection: true);
             Assert.That(mode.Repository!.Read().Accounts.ContainsKey(user), Is.False, "Creation cannot bypass rules acknowledgement");
             await Request(TarkovAction.AcceptRules);
+            await Request(TarkovAction.AcceptGuide);
             await Request(TarkovAction.Create, "Scavengers", "Assault");
             var data = mode.Repository!.Read();
             Assert.That(data.Accounts.ContainsKey(user), Is.True, "Character request must reach the actual server over the client connection");
@@ -526,6 +527,7 @@ public sealed class TarkovNativeTest
             }
             await SecondRequest(TarkovAction.Refresh);
             await SecondRequest(TarkovAction.AcceptRules);
+            await SecondRequest(TarkovAction.AcceptGuide);
             await SecondRequest(TarkovAction.Create, "Exiles", "Engineer");
             var other = second.User!.Value.ToString();
             Assert.That(other, Is.Not.EqualTo(user));

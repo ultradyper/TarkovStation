@@ -3,9 +3,10 @@
 injector-draw-text = Забор
 injector-inject-text = Введение
 injector-invalid-injector-toggle-mode = Неверный режим
+# TarkovStation-Edit: fixed-volume medipens do not supply transferVolume to their HUD.
 injector-volume-label =
     Объём: [color=white]{ $currentVolume }/{ $totalVolume }[/color]
-    Режим: [color=white]{ $modeString }[/color] ([color=white]{ $transferVolume } ед.[/color])
+    Режим: [color=white]{ $modeString }[/color]
 
 ## Entity
 

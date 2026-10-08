@@ -19,4 +19,6 @@ public sealed class TarkovCVars
     public static readonly CVarDef<int> StartingMoney = CVarDef.Create("tarkov.starting_money", 2500, CVar.SERVERONLY);
     public static readonly CVarDef<string> Database = CVarDef.Create("tarkov.database", "tarkov-alpha.db", CVar.SERVERONLY);
     public static readonly CVarDef<bool> TestBots = CVarDef.Create("tarkov.test_bots", false, CVar.SERVERONLY);
+    public static readonly CVarDef<float> HungerRate = CVarDef.Create("tarkov.hunger_rate", 0.0125f, CVar.SERVERONLY);
+    public static readonly CVarDef<float> ThirstRate = CVarDef.Create("tarkov.thirst_rate", 0.0375f, CVar.SERVERONLY);
 }

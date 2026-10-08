@@ -107,6 +107,14 @@ public sealed class ThirstSystem : EntitySystem
         SetThirst(uid, component, component.CurrentThirst + amount);
     }
 
+    // TarkovStation-Add: refresh the authoritative rate without refilling the thirst meter.
+    public void SetBaseDecayRate(Entity<ThirstComponent> entity, float rate)
+    {
+        entity.Comp.BaseDecayRate = Math.Max(0f, rate);
+        DirtyField(entity, entity.Comp, nameof(ThirstComponent.BaseDecayRate));
+        UpdateEffects(entity, entity.Comp);
+    }
+
     public void SetThirst(EntityUid uid, ThirstComponent component, float amount)
     {
         component.CurrentThirst = Math.Clamp(amount,

@@ -137,3 +137,27 @@
     - CombatKnife
     - FlashlightLantern
     - Gauze
+
+- type: entity
+  parent: TarkovStationMilitaryModule
+  id: TarkovStationNavigationCore
+  name: sealed navigation core
+  description: A working route calculation core. Lom pays well for its encrypted transit records.
+  components:
+  - type: Sprite
+    color: '#F0AB74'
+- type: entity
+  parent: TarkovStationSignalRecorder
+  id: TarkovStationCycleFragment
+  name: cycle memory fragment
+  description: A rare intact memory fragment from outside the current cycle.
+  components:
+  - type: Sprite
+    color: '#F095AA'
+- type: entity
+  parent: SheetUranium
+  id: TarkovStationSheetUranium10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10

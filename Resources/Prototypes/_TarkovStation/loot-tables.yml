@@ -82,6 +82,18 @@
     weight: 10
   - goods: Welder
     weight: 6
+  - goods: EmergencyMedipen
+    weight: 10
+  - goods: TarkovStationSurgicalKit
+    weight: 4
+  - goods: WeaponRevolverDeckard
+    weight: 6
+  - goods: WeaponShotgunDoubleBarreled
+    weight: 6
+  - goods: SpeedLoaderMagnum
+    weight: 7
+  - goods: WeaponSniperMosin
+    weight: 3
 - type: tarkovLootTable
   id: TarkovStationFacilityLoot
   budget: 2400
@@ -121,3 +133,51 @@
     weight: 10
   - goods: MagazinePistolSubMachineGun
     weight: 10
+
+  - goods: WeaponSubMachineGunC20r
+    weight: 5
+  - goods: WeaponSubMachineGunWt550
+    weight: 5
+  - goods: WeaponPistolN1984
+    weight: 5
+  - goods: WeaponShotgunBulldog
+    weight: 3
+  - goods: CombatMedipen
+    weight: 6
+  - goods: TarkovStationSurgicalKit
+    weight: 7
+  - goods: TarkovStationNavigationCore
+    weight: 1
+- type: tarkovLootTable
+  id: TarkovStationAirdropLoot
+  budget: 4200
+  rolls: 6
+  entries:
+  - goods: WeaponSubMachineGunC20r
+    weight: 9
+  - goods: WeaponSubMachineGunWt550
+    weight: 9
+  - goods: WeaponShotgunBulldog
+    weight: 7
+  - goods: WeaponRevolverPython
+    weight: 7
+  - goods: WeaponSniperHristov
+    weight: 3
+  - goods: ClothingOuterArmorBulletproof
+    weight: 10
+  - goods: TarkovStationSurgicalKit
+    weight: 12
+  - goods: CombatMedipen
+    weight: 12
+  - goods: EmergencyMedipen
+    weight: 10
+  - goods: MagazinePistolSubMachineGun
+    weight: 9
+  - goods: MagazineShotgun
+    weight: 8
+  - goods: MagazineBoxAntiMateriel
+    weight: 5
+  - goods: TarkovStationNavigationCore
+    weight: 3
+  - goods: TarkovStationCycleFragment
+    weight: 1

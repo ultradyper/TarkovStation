@@ -22,7 +22,7 @@ ts-rule-4 = 4. We do not present ourselves as a Roleplay project, but follow LRP
 ts-rule-5 = 5. ERP is prohibited.
 ts-rules-gameplay = Raid alliances rely on trust. Any player, including your faction or party members, may attack. Death loses the equipment you brought into the raid; your stash remains. The shared ten-hour cycle ends with rankings and a character and property wipe.
 ts-rules-agreement = I have read the rules and agree to follow them.
-ts-rules-continue = Agree and create a character
+ts-rules-continue = Accept and read the guide
 ts-discord = Our Discord server
 
 # One-shot action notifications.

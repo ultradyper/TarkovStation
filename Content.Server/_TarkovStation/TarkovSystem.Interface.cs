@@ -77,8 +77,15 @@ public sealed partial class TarkovSystem
             _rulesAccepted.Add(before.Cycle + ":" + user);
             return null;
         }
+        if (request.Action == TarkovAction.AcceptGuide)
+        {
+            if (!_rulesAccepted.Contains(before.Cycle + ":" + user)) return "tarkov-error-rules";
+            _guideRead.Add(before.Cycle + ":" + user);
+            return null;
+        }
         if (request.Action == TarkovAction.Create)
         {
+            if (!_guideRead.Contains(before.Cycle + ":" + user)) return "tarkov-error-guide";
             if (!request.AcceptedRules || !_rulesAccepted.Contains(before.Cycle + ":" + user)) return "tarkov-error-rules";
             if (_hub == null || request.Profile == null || !_proto.HasIndex<TarkovFactionPrototype>(request.Id)
                 || !_proto.TryIndex<TarkovKitPrototype>(request.Extra, out var kit) || kit.Emergency)
@@ -227,17 +234,29 @@ public sealed partial class TarkovSystem
         {
             Enabled = Enabled, NeedsCharacter = account?.Created != true, Cycle = d.Cycle,
             RulesAccepted = account?.Created == true || _rulesAccepted.Contains(d.Cycle + ":" + user),
+            GuideRead = account?.Created == true || _guideRead.Contains(d.Cycle + ":" + user),
             RemainingSeconds = Math.Max(0, d.EndsUtc - Utc), User = user, Message = message, OpenPage = page,
             CharacterName = account?.Name ?? "", Faction = account?.Faction ?? "", Branch = account?.Branch ?? "",
             Balance = account?.Balance ?? 0, Reserved = account?.Reserved ?? 0, Location = account?.Location ?? "hub",
             Ready = _ready.Contains(user) || PendingDeployment(user), QueueSeconds = _queueEnds == null ? 0 : Math.Max(1, (long)(_queueEnds.Value - _timing.CurTime).TotalSeconds),
             TestMode = _cfg.GetCVar(TarkovCVars.TestBots),
         };
+        var plan = TarkovRaidPlan.Create(d.Cycle, d.RaidSequence);
+        state.RaidRadius = plan.Radius;
+        state.RaidBiome = plan.Biome;
+        state.RaidEvent = plan.Event;
         state.DayPhase = TarkovRaidConditions.Phase(d.RaidSequence);
         if (CurrentRaid() is { } activeRaid)
         {
             state.ActiveRaid = true;
             state.DayPhase = activeRaid.Comp.DayPhase;
+            state.RaidRadius = activeRaid.Comp.Radius;
+            state.RaidBiome = activeRaid.Comp.Biome;
+            state.RaidEvent = activeRaid.Comp.EventKind;
+            state.EventStage = activeRaid.Comp.EventStage;
+            state.EventSeconds = Math.Max(0, (long)(activeRaid.Comp.EventAt - _timing.CurTime).TotalSeconds);
+            state.EventSector = EventSector(activeRaid.Comp.EventPosition);
+            state.RaidReentryBlocked = activeRaid.Comp.DeadParticipants.Contains(user);
             state.ActiveRaidSeconds = HasComp<TarkovGenerationComponent>(activeRaid.Owner) ? 0
                 : Math.Max(0, (long)(activeRaid.Comp.EndsAt - _timing.CurTime).TotalSeconds);
         }
@@ -353,7 +372,7 @@ public sealed partial class TarkovSystem
         {
             Id = item.Id, Name = item.Name + (item.Quantity > 1 ? " ×" + item.Quantity : ""),
             Prototype = item.Prototype, Price = item.Emergency ? 0 : item.Value, Detail = detail,
-            Count = item.Quantity, Rarity = goods?.Rarity ?? 0, Category = goods?.Category ?? "ts-category-supplies",
+            Count = item.Quantity, Rarity = goods?.Rarity ?? 0, Category = goods?.Category ?? "ts-category-scrap",
         };
     }
 }

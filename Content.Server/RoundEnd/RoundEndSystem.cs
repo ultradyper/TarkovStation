@@ -383,6 +383,9 @@ namespace Content.Server.RoundEnd
 
         public override void Update(float frameTime)
         {
+            // TarkovStation-Add: the persistent cycle owns round completion, never the station autocall.
+            if (_cfg.GetCVar(Content.Shared._TarkovStation.TarkovCVars.Enabled))
+                return;
             // Check if we should auto-call.
             int mins = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
                                         : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);

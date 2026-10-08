@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: Medkit
+  id: TarkovStationSurgicalKit
+  name: field surgery kit
+  description: A complete set of reusable surgical tools. Requires knowledge of surgery and a suitable patient position.
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+  - type: StorageFill
+    contents:
+    - id: Scalpel
+    - id: Hemostat
+    - id: Retractor
+    - id: Cautery
+    - id: Saw
+    - id: Drill
+    - id: Bonesetter
+    - id: BoneGel
+    - id: Gauze

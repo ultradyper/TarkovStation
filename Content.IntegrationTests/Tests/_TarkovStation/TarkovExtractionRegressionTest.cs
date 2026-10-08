@@ -82,6 +82,7 @@ public sealed class TarkovExtractionRegressionTest
             await pair.RunTicksSync(15);
         }
         await Request(TarkovAction.AcceptRules);
+        await Request(TarkovAction.AcceptGuide);
         await Request(TarkovAction.Create, "Scavengers", "Assault");
         await server.WaitAssertion(() => Assert.That(mode.Admin(new[] { "partner", user }), Is.EqualTo("tarkov-success")));
         await Request(TarkovAction.Ready);

@@ -9,7 +9,7 @@ namespace Content.Shared._TarkovStation;
 public enum TarkovFeedback : byte
 {
     Confirm, Money, Storage, Error, Departure, ExtractionStarted, ExtractionCancelled,
-    ExtractionTick, Extracted, Warning, Death,
+    ExtractionTick, Extracted, Warning, Death, RaidEvent,
 }
 
 /// <summary>One-shot notification, separate from periodically refreshed interface state.</summary>
@@ -17,6 +17,8 @@ public enum TarkovFeedback : byte
 public sealed class TarkovFeedbackEvent : EntityEventArgs
 {
     public TarkovFeedback Cue;
+    public string Message = "";
+    public string Sector = "";
 }
 
 [Serializable, NetSerializable]
@@ -26,7 +28,7 @@ public enum TarkovAction : byte
     Ready, CancelReady, Extract, CreateContract, AcceptContract, DeliverContract, ConfirmContract,
     CancelContract, OfferTrade, AcceptTrade, CancelTrade, SetTradeMoney, AddTradeItem,
     RemoveTradeItem, EmergencyKit, ReturnToHub, TestPartner, CloseService,
-    AcceptRules,
+    AcceptRules, AcceptGuide,
 }
 
 /// <summary>Requests carry intent only. Sender, prices, ownership and outcomes come from the server.</summary>
@@ -68,6 +70,7 @@ public sealed class TarkovStateEvent : EntityEventArgs
     public bool Enabled;
     public bool NeedsCharacter;
     public bool RulesAccepted;
+    public bool GuideRead;
     public string Cycle = "";
     public long RemainingSeconds;
     public string User = "";
@@ -84,6 +87,13 @@ public sealed class TarkovStateEvent : EntityEventArgs
     public bool ActiveRaid;
     public long ActiveRaidSeconds;
     public TarkovDayPhase DayPhase;
+    public int RaidRadius;
+    public string RaidBiome = "Grasslands";
+    public TarkovRaidEventKind RaidEvent;
+    public int EventStage;
+    public long EventSeconds;
+    public string EventSector = "";
+    public bool RaidReentryBlocked;
     public long ExtractionSeconds;
     public bool Ready;
     public bool TestMode;

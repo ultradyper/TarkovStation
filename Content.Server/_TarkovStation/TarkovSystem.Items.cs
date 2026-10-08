@@ -11,6 +11,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Roles;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Stacks;
@@ -37,6 +39,7 @@ public sealed partial class TarkovSystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutions = default!;
 
     private void InitializeItems()
     {
@@ -222,8 +225,22 @@ public sealed partial class TarkovSystem
     {
         if (TryComp<TarkovItemComponent>(uid, out var tag) && tag.Emergency) return 0;
         var goods = Goods(MetaData(uid).EntityPrototype?.ID ?? "");
-        if (goods == null) return 0;
+        if (goods == null)
+        {
+            // Portable expedition scrap has a small salvage value. Free hub items
+            // and untracked internal gun entities do not gain value from this fallback.
+            return HasComp<ItemComponent>(uid) && !HasComp<CartridgeAmmoComponent>(uid) && tag?.FoundRaid != null && tag.FoundRaid != ""
+                ? TryComp<StackComponent>(uid, out var scrap) ? Math.Clamp(scrap.Count, 0, 10000) : 5 : 0;
+        }
         var price = (long)goods.Sell;
+        if (goods.PricedSolution is { } solutionName
+            && _solutions.TryGetSolution(uid, solutionName, out _, out var solution)
+            && _proto.Index(goods.Product).TryComp<SolutionContainerManagerComponent>(out var initial, EntityManager.ComponentFactory)
+            && initial.Solutions is { } prototypeSolutions && prototypeSolutions.TryGetValue(solutionName, out var prototypeSolution))
+        {
+            var maximum = prototypeSolution.Volume.Float();
+            if (maximum > 0) price = 2 + (long)(Math.Max(0, price - 2) * Math.Clamp(solution.Volume.Float() / maximum, 0, 1));
+        }
         if (TryComp<StackComponent>(uid, out var stack)
             && _proto.Index(goods.Product).TryComp<StackComponent>(out var unit, EntityManager.ComponentFactory))
             price = price * stack.Count / Math.Max(1, unit.Count);

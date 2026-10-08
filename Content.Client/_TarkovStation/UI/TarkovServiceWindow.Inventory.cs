@@ -12,9 +12,11 @@ public sealed partial class TarkovServiceWindow
 {
     private readonly LineEdit _search = new() { HorizontalExpand = true, MinHeight = 36 };
     private SpriteView? _portrait;
-    private readonly OptionButton _marketCategory = new() { MinWidth = 150, MinHeight = 34 };
+    private readonly OptionButton _marketCategory = new() { MinWidth = 190, MinHeight = 34 };
     private readonly List<string> _marketCategories = new();
     private string _category = "";
+    private int _rarity = -1;
+    private readonly OptionButton _marketRarity = new() { MinWidth = 150, MinHeight = 34 };
     private string _categoriesKey = "";
     private string _shopSection = "goods";
     private readonly Dictionary<string, TarkovButton> _shopSections = new();
@@ -50,7 +52,15 @@ public sealed partial class TarkovServiceWindow
         market.AddChild(sections);
         _search.PlaceHolder = Loc.GetString("ts-search");
         _search.OnTextChanged += _ => { _fingerprints.Remove("market"); if (_state != null) UpdateShop(_state); };
-        var filters = TarkovTheme.Row(8); filters.AddChild(_search); filters.AddChild(_marketCategory);
+        var filters = TarkovTheme.Row(8); filters.AddChild(_search); filters.AddChild(_marketCategory); filters.AddChild(_marketRarity);
+        _marketRarity.AddItem(Loc.GetString("ts-rarity-all"), 0);
+        for (var rarity = 0; rarity <= 6; rarity++) _marketRarity.AddItem(Loc.GetString("ts-rarity-" + rarity), rarity + 1);
+        _marketRarity.SelectId(0);
+        _marketRarity.OnItemSelected += e =>
+        {
+            _marketRarity.SelectId(e.Id); _rarity = e.Id - 1;
+            _fingerprints.Remove("market"); if (_state != null) UpdateShop(_state);
+        };
         _marketCategory.OnItemSelected += e =>
         {
             _marketCategory.SelectId(e.Id); _category = _marketCategories[e.Id];
@@ -74,7 +84,7 @@ public sealed partial class TarkovServiceWindow
             foreach (var category in categories) { _marketCategory.AddItem(Loc.GetString(category), _marketCategories.Count); _marketCategories.Add(category); }
             _marketCategory.SelectId(0); _category = "";
         }
-        items = items.Where(r => (_category == "" || r.Category == _category) && r.Name.Contains(_search.Text, StringComparison.OrdinalIgnoreCase));
+        items = items.Where(r => (_rarity < 0 || r.Rarity == _rarity) && (_category == "" || r.Category == _category) && r.Name.Contains(_search.Text, StringComparison.OrdinalIgnoreCase));
         RenderList("market", items, row =>
         {
             var content = TarkovTheme.Column(8);
@@ -89,7 +99,7 @@ public sealed partial class TarkovServiceWindow
             content.AddChild(TarkovTheme.Button(Loc.GetString(selling ? "ts-sell-price" : "ts-buy-price", ("price", row.Price)),
                 () => Request(action, row.Id), true, selling ? row.Price <= 0 : state.Balance < row.Price));
             return TarkovTheme.Panel(content);
-        }, state.Balance + _shopSection + _search.Text + _category, _shopSection == "goods" ? 2 : 1);
+        }, state.Balance + _shopSection + _search.Text + _category + _rarity, _shopSection == "goods" ? 2 : 1);
     }
 
     private void BuildStash()

@@ -20,7 +20,7 @@ public static class TarkovTheme
     public static readonly Color Warning = Color.FromHex("#F0B088");
     public static Color RarityColor(int rarity) => Color.FromHex(rarity switch
     {
-        1 => "#BED59B", 2 => "#A8CBE8", 3 => "#CDB5EB", 4 => "#E7CE92", _ => "#BEC6BE",
+        1 => "#BED59B", 2 => "#A8CBE8", 3 => "#CDB5EB", 4 => "#E7CE92", 5 => "#F0AB74", 6 => "#F095AA", _ => "#BEC6BE",
     });
     public static BoxContainer Column(int gap = 10) => new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = gap, HorizontalExpand = true };
     public static BoxContainer Row(int gap = 10) => new() { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = gap, HorizontalExpand = true };

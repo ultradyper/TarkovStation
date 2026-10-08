@@ -16,4 +16,11 @@ public sealed partial class TarkovRaidComponent : Component
     /// <summary>Fixed at creation; late entry does not alter lighting, loot or threat budget.</summary>
     [DataField] public TarkovDayPhase DayPhase;
     [DataField] public int WarningStage;
+    [DataField] public HashSet<string> DeadParticipants = new();
+    [DataField] public string Biome = "Grasslands";
+    [DataField] public TarkovRaidEventKind EventKind;
+    [DataField] public int EventStage;
+    [DataField] public TimeSpan EventAt;
+    [DataField] public System.Numerics.Vector2 EventPosition;
+    [DataField] public EntityUid? EventMarker;
 }

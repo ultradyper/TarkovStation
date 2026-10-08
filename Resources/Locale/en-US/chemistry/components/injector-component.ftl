@@ -15,7 +15,9 @@
 
 injector-volume-transfer-label = Volume: [color=white]{$currentVolume}/{$totalVolume}u[/color]
     Mode: [color=white]{$modeString}[/color] ([color=white]{$transferVolume}u[/color])
+# TarkovStation-Edit: keep the fixed-volume injector HUD contract aligned with the Russian label.
 injector-volume-label = Volume: [color=white]{$currentVolume}/{$totalVolume}u[/color]
+    Mode: [color=white]{$modeString}[/color]
     Mode: [color=white]{$modeString}[/color]
 injector-toggle-verb-text = Toggle Injector Mode
 

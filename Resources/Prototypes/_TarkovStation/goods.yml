@@ -5,21 +5,21 @@
   product: WeaponPistolMk58
   buy: 900
   sell: 300
-  category: ts-category-weapons
+  category: ts-category-pistols
   rarity: 0
 - type: tarkovGoods
   id: WeaponShotgunSawn
   product: WeaponShotgunSawn
   buy: 1400
   sell: 450
-  category: ts-category-weapons
+  category: ts-category-shotguns
   rarity: 0
 - type: tarkovGoods
   id: WeaponRifleLecter
   product: WeaponRifleLecter
   buy: 2200
   sell: 700
-  category: ts-category-weapons
+  category: ts-category-rifles
   rarity: 1
 - type: tarkovGoods
   id: MagazinePistol
@@ -96,7 +96,7 @@
   product: ClothingBackpackSatchel
   buy: 150
   sell: 40
-  category: ts-category-supplies
+  category: ts-category-bags
   rarity: 0
 - type: tarkovGoods
   id: ClothingUniformJumpsuitColorGrey
@@ -117,14 +117,14 @@
   product: DrinkWaterBottleFull
   buy: 60
   sell: 5
-  category: ts-category-supplies
+  category: ts-category-food
   rarity: 0
 - type: tarkovGoods
   id: FoodSnackNutribrick
   product: FoodSnackNutribrick
   buy: 100
   sell: 10
-  category: ts-category-supplies
+  category: ts-category-food
   rarity: 0
 - type: tarkovGoods
   id: SheetGlass10
@@ -194,21 +194,21 @@
   product: WeaponRifleAk
   buy: 2600
   sell: 800
-  category: ts-category-weapons
+  category: ts-category-rifles
   rarity: 2
 - type: tarkovGoods
   id: WeaponSubMachineGunDrozd
   product: WeaponSubMachineGunDrozd
   buy: 1900
   sell: 580
-  category: ts-category-weapons
+  category: ts-category-smgs
   rarity: 1
 - type: tarkovGoods
   id: WeaponShotgunKammerer
   product: WeaponShotgunKammerer
   buy: 1600
   sell: 480
-  category: ts-category-weapons
+  category: ts-category-shotguns
   rarity: 1
 - type: tarkovGoods
   id: MagazineLightRifle
@@ -229,42 +229,42 @@
   product: ClothingBackpack
   buy: 450
   sell: 90
-  category: ts-category-equipment
+  category: ts-category-bags
   rarity: 0
 - type: tarkovGoods
   id: ClothingBackpackDuffel
   product: ClothingBackpackDuffel
   buy: 850
   sell: 180
-  category: ts-category-equipment
+  category: ts-category-bags
   rarity: 1
 - type: tarkovGoods
   id: ClothingOuterArmorBasic
   product: ClothingOuterArmorBasic
   buy: 1100
   sell: 280
-  category: ts-category-equipment
+  category: ts-category-armor
   rarity: 1
 - type: tarkovGoods
   id: ClothingOuterArmorBulletproof
   product: ClothingOuterArmorBulletproof
   buy: 2000
   sell: 600
-  category: ts-category-equipment
+  category: ts-category-armor
   rarity: 2
 - type: tarkovGoods
   id: ClothingOuterVestWeb
   product: ClothingOuterVestWeb
   buy: 750
   sell: 180
-  category: ts-category-equipment
+  category: ts-category-armor
   rarity: 1
 - type: tarkovGoods
   id: ClothingHeadHelmetBasic
   product: ClothingHeadHelmetBasic
   buy: 650
   sell: 160
-  category: ts-category-equipment
+  category: ts-category-armor
   rarity: 1
 - type: tarkovGoods
   id: ClothingMaskGas
@@ -320,5 +320,436 @@
   product: CombatKnife
   buy: 400
   sell: 95
-  category: ts-category-weapons
+  category: ts-category-melee
   rarity: 0
+
+- type: tarkovGoods
+  id: WeaponPistolViper
+  product: WeaponPistolViper
+  buy: 1200
+  sell: 310
+  category: ts-category-pistols
+  rarity: 1
+
+- type: tarkovGoods
+  id: WeaponPistolN1984
+  product: WeaponPistolN1984
+  buy: 2400
+  sell: 560
+  category: ts-category-pistols
+  rarity: 2
+
+- type: tarkovGoods
+  id: WeaponRevolverDeckard
+  product: WeaponRevolverDeckard
+  buy: 1800
+  sell: 440
+  category: ts-category-pistols
+  rarity: 1
+
+- type: tarkovGoods
+  id: WeaponRevolverInspector
+  product: WeaponRevolverInspector
+  buy: 1600
+  sell: 390
+  category: ts-category-pistols
+  rarity: 1
+
+- type: tarkovGoods
+  id: WeaponRevolverPython
+  product: WeaponRevolverPython
+  buy: 3800
+  sell: 1000
+  category: ts-category-pistols
+  rarity: 3
+
+- type: tarkovGoods
+  id: WeaponRevolverMateba
+  product: WeaponRevolverMateba
+  buy: 6500
+  sell: 1600
+  category: ts-category-pistols
+  rarity: 4
+
+- type: tarkovGoods
+  id: WeaponSniperMosin
+  product: WeaponSniperMosin
+  buy: 2200
+  sell: 560
+  category: ts-category-rifles
+  rarity: 2
+
+- type: tarkovGoods
+  id: WeaponSniperHristov
+  product: WeaponSniperHristov
+  buy: 8500
+  sell: 2300
+  category: ts-category-rifles
+  rarity: 5
+
+- type: tarkovGoods
+  id: WeaponSubMachineGunC20r
+  product: WeaponSubMachineGunC20r
+  buy: 4500
+  sell: 1050
+  category: ts-category-smgs
+  rarity: 3
+
+- type: tarkovGoods
+  id: WeaponSubMachineGunWt550
+  product: WeaponSubMachineGunWt550
+  buy: 3400
+  sell: 850
+  category: ts-category-smgs
+  rarity: 2
+
+- type: tarkovGoods
+  id: WeaponSubMachineGunAtreides
+  product: WeaponSubMachineGunAtreides
+  buy: 5500
+  sell: 1400
+  category: ts-category-smgs
+  rarity: 4
+
+- type: tarkovGoods
+  id: WeaponShotgunEnforcer
+  product: WeaponShotgunEnforcer
+  buy: 3200
+  sell: 800
+  category: ts-category-shotguns
+  rarity: 2
+
+- type: tarkovGoods
+  id: WeaponShotgunDoubleBarreled
+  product: WeaponShotgunDoubleBarreled
+  buy: 1000
+  sell: 240
+  category: ts-category-shotguns
+  rarity: 0
+
+- type: tarkovGoods
+  id: WeaponShotgunBulldog
+  product: WeaponShotgunBulldog
+  buy: 4900
+  sell: 1200
+  category: ts-category-shotguns
+  rarity: 3
+
+- type: tarkovGoods
+  id: MagazineMagnum
+  product: MagazineMagnum
+  buy: 300
+  sell: 85
+  category: ts-category-ammo
+  rarity: 1
+
+- type: tarkovGoods
+  id: MagazineMagnumSubMachineGun
+  product: MagazineMagnumSubMachineGun
+  buy: 450
+  sell: 130
+  category: ts-category-ammo
+  rarity: 2
+
+- type: tarkovGoods
+  id: MagazinePistolSubMachineGunTopMounted
+  product: MagazinePistolSubMachineGunTopMounted
+  buy: 320
+  sell: 90
+  category: ts-category-ammo
+  rarity: 1
+
+- type: tarkovGoods
+  id: MagazineShotgun
+  product: MagazineShotgun
+  buy: 400
+  sell: 110
+  category: ts-category-ammo
+  rarity: 1
+
+- type: tarkovGoods
+  id: SpeedLoaderMagnum
+  product: SpeedLoaderMagnum
+  buy: 260
+  sell: 70
+  category: ts-category-ammo
+  rarity: 1
+
+- type: tarkovGoods
+  id: SpeedLoaderLightRifle
+  product: SpeedLoaderLightRifle
+  buy: 240
+  sell: 65
+  category: ts-category-ammo
+  rarity: 1
+
+- type: tarkovGoods
+  id: MagazineLightRifleBox
+  product: MagazineLightRifleBox
+  buy: 900
+  sell: 240
+  category: ts-category-ammo
+  rarity: 2
+
+- type: tarkovGoods
+  id: TarkovStationSurgicalKit
+  product: TarkovStationSurgicalKit
+  buy: 1900
+  sell: 70
+  category: ts-category-surgery
+  rarity: 2
+
+- type: tarkovGoods
+  id: Scalpel
+  product: Scalpel
+  buy: 220
+  sell: 40
+  category: ts-category-surgery
+  rarity: 0
+
+- type: tarkovGoods
+  id: Hemostat
+  product: Hemostat
+  buy: 220
+  sell: 40
+  category: ts-category-surgery
+  rarity: 0
+
+- type: tarkovGoods
+  id: Retractor
+  product: Retractor
+  buy: 220
+  sell: 40
+  category: ts-category-surgery
+  rarity: 0
+
+- type: tarkovGoods
+  id: Cautery
+  product: Cautery
+  buy: 260
+  sell: 45
+  category: ts-category-surgery
+  rarity: 0
+
+- type: tarkovGoods
+  id: Saw
+  product: Saw
+  buy: 380
+  sell: 65
+  category: ts-category-surgery
+  rarity: 1
+
+- type: tarkovGoods
+  id: Drill
+  product: Drill
+  buy: 380
+  sell: 65
+  category: ts-category-surgery
+  rarity: 1
+
+- type: tarkovGoods
+  id: Bonesetter
+  product: Bonesetter
+  buy: 250
+  sell: 45
+  category: ts-category-surgery
+  rarity: 1
+
+- type: tarkovGoods
+  id: BoneGel
+  product: BoneGel
+  buy: 180
+  sell: 30
+  category: ts-category-surgery
+  rarity: 0
+
+- type: tarkovGoods
+  id: MedicatedSuture
+  product: MedicatedSuture
+  buy: 250
+  sell: 65
+  category: ts-category-medical
+  rarity: 1
+
+- type: tarkovGoods
+  id: MedkitAdvancedFilled
+  product: MedkitAdvancedFilled
+  buy: 2200
+  sell: 200
+  category: ts-category-medical
+  rarity: 3
+
+- type: tarkovGoods
+  id: MedkitCombatFilled
+  product: MedkitCombatFilled
+  buy: 2900
+  sell: 250
+  category: ts-category-medical
+  rarity: 4
+
+- type: tarkovGoods
+  id: SheetPlastic10
+  product: SheetPlastic10
+  buy: 180
+  sell: 45
+  category: ts-category-resources
+  rarity: 0
+
+- type: tarkovGoods
+  id: SheetPlasteel10
+  product: SheetPlasteel10
+  buy: 650
+  sell: 180
+  category: ts-category-resources
+  rarity: 2
+
+- type: tarkovGoods
+  id: TarkovStationSheetUranium10
+  product: TarkovStationSheetUranium10
+  buy: 550
+  sell: 160
+  category: ts-category-resources
+  rarity: 2
+
+- type: tarkovGoods
+  id: SheetPlasma10
+  product: SheetPlasma10
+  buy: 450
+  sell: 130
+  category: ts-category-resources
+  rarity: 1
+
+- type: tarkovGoods
+  id: GoldOre1
+  product: GoldOre1
+  buy: 0
+  sell: 45
+  category: ts-category-valuables
+  rarity: 1
+  purchasable: false
+
+- type: tarkovGoods
+  id: SilverOre1
+  product: SilverOre1
+  buy: 0
+  sell: 30
+  category: ts-category-valuables
+  rarity: 1
+  purchasable: false
+
+- type: tarkovGoods
+  id: DiamondOre1
+  product: DiamondOre1
+  buy: 0
+  sell: 120
+  category: ts-category-valuables
+  rarity: 3
+  purchasable: false
+
+- type: tarkovGoods
+  id: PowerCellHigh
+  product: PowerCellHigh
+  buy: 900
+  sell: 230
+  category: ts-category-technical
+  rarity: 2
+
+- type: tarkovGoods
+  id: Multitool
+  product: Multitool
+  buy: 350
+  sell: 80
+  category: ts-category-technical
+  rarity: 1
+
+- type: tarkovGoods
+  id: HandheldGPSBasic
+  product: HandheldGPSBasic
+  buy: 250
+  sell: 50
+  category: ts-category-technical
+  rarity: 0
+
+- type: tarkovGoods
+  id: RadioHandheld
+  product: RadioHandheld
+  buy: 250
+  sell: 50
+  category: ts-category-technical
+  rarity: 0
+
+- type: tarkovGoods
+  id: ClothingHandsGlovesLatex
+  product: ClothingHandsGlovesLatex
+  buy: 120
+  sell: 20
+  category: ts-category-surgery
+  rarity: 0
+
+- type: tarkovGoods
+  id: BodyBag
+  product: BodyBag
+  buy: 180
+  sell: 35
+  category: ts-category-equipment
+  rarity: 0
+
+- type: tarkovGoods
+  id: EmergencyMedipen
+  product: EmergencyMedipen
+  buy: 350
+  sell: 70
+  category: ts-category-medical
+  rarity: 1
+  pricedSolution: pen
+
+- type: tarkovGoods
+  id: AntiPoisonMedipen
+  product: AntiPoisonMedipen
+  buy: 300
+  sell: 60
+  category: ts-category-medical
+  rarity: 1
+  pricedSolution: pen
+
+- type: tarkovGoods
+  id: CombatMedipen
+  product: CombatMedipen
+  buy: 1400
+  sell: 280
+  category: ts-category-medical
+  rarity: 3
+  pricedSolution: pen
+
+- type: tarkovGoods
+  id: SpaceMedipen
+  product: SpaceMedipen
+  buy: 1000
+  sell: 200
+  category: ts-category-medical
+  rarity: 2
+  pricedSolution: pen
+
+- type: tarkovGoods
+  id: MagazineBoxAntiMateriel
+  product: MagazineBoxAntiMateriel
+  buy: 1800
+  sell: 420
+  category: ts-category-ammo
+  rarity: 3
+- type: tarkovGoods
+  id: TarkovStationNavigationCore
+  product: TarkovStationNavigationCore
+  buy: 0
+  sell: 3300
+  category: ts-category-valuables
+  rarity: 5
+  purchasable: false
+- type: tarkovGoods
+  id: TarkovStationCycleFragment
+  product: TarkovStationCycleFragment
+  buy: 0
+  sell: 5200
+  category: ts-category-valuables
+  rarity: 6
+  purchasable: false
