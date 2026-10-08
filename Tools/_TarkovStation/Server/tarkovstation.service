@@ -3,8 +3,7 @@
 Description=TarkovStation server
 After=network-online.target
 Wants=network-online.target
-StartLimitIntervalSec=300
-StartLimitBurst=6
+StartLimitIntervalSec=0
 
 [Service]
 Type=simple

@@ -4,13 +4,26 @@
 bindto = "0.0.0.0"
 port = 1212
 tickrate = 30
-max_connections = 32
+max_connections = 64
 [status]
 enabled = true
 connectaddress = ""
 [game]
-desc = "TarkovStation: мирный хаб, торговля, рейды и общий десятичасовой цикл. Рейдовый режим."
-hostname = "TarkovStation | Перевал / 17"
+soft_max_players = 64
+desc = """
+🎯 Открытое пре-альфа тестирование
+
+TARKOV STATION вдохновлён Escape from Tarkov и создан на базе Space Station 14.
+
+🏚 Мирный хаб, торговля, схрон и контракты игроков.
+🚀 Рейды на планеты, ценный лут и живая эвакуация. Союзы держатся на доверии.
+⏳ Общий цикл длится 10 часов и заканчивается рейтингом и вайпом.
+
+🛠 Сейчас идёт открытое пре-альфа тестирование. Игра развивается: присоединяйся, делись впечатлениями и сообщай об ошибках.
+🤝 Набираем команду: администраторов, Discord-модераторов, разработчиков и мапперов. Анкеты и подробности в Discord.
+💬 Заходи в Discord, находи напарников и следи за обновлениями. Исходники и контрибуции на GitHub.
+"""
+hostname = "[RU] [LRP] TARKOV STATION"
 defaultpreset = "TarkovStation"
 map = "TarkovStationHub"
 map_rotation = false
@@ -22,6 +35,9 @@ role_loadout_timers = false
 round_restart_time = 5.0
 [hub]
 advertise = false
+# Set the public ss14:// address and hosting region before enabling advertisement.
+server_url = ""
+tags = "lang:ru,rp:low"
 [auth]
 mode = 1
 allowlocal = false
@@ -68,7 +84,7 @@ enable_during_round = true
 
 [server]
 id = "TarkovStation"
-lobby_name = "TarkovStation"
+lobby_name = "[RU] [LRP] TARKOV STATION"
 rules_file = "TarkovStationRules"
 
 [infolinks]
