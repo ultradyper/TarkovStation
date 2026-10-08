@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: CargoTechnician
+  name: job-name-cargotech
+  description: job-description-cargotech
+  playTimeTracker: JobCargoTechnician
+  startingGear: CargoTechGear
+  icon: "JobIconCargoTechnician"
+  supervisors: job-supervisors-qm
+  guides: # goobstation
+  - Cargo
+  goobcoins: 20 #Goob content
+  access:
+  - Cargo
+  - Maintenance
+  extendedAccess:
+  - Salvage
+  - External # goobstation
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: BoxingDay
+    prototype: BoxCardboard
+  alternateTitles: # Reserve - alternate titles
+  - CargoTechnicianCourier
+  - CargoTechnicianPilot
+  - CargoTechnicianClerk
+
+- type: startingGear
+  id: CargoTechGear
+  equipment:
+    ears: ClothingHeadsetCargo
+    pocket1: AppraisalTool
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: CargoTechnicianChameleonOutfit
+  job: CargoTechnician
+  equipment:
+    head: ClothingHeadHatCargosoft
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterWinterCargo
+    neck: ClothingNeckScarfStripedBrown
+    gloves: ClothingHandsGlovesFingerless
+
+- type: jobAlternateTitle
+  id: CargoTechnicianCourier
+  name: job-name-alt-cargotech-1
+
+- type: jobAlternateTitle
+  id: CargoTechnicianPilot
+  name: job-name-alt-cargotech-2
+
+- type: jobAlternateTitle
+  id: CargoTechnicianClerk
+  name: job-name-alt-cargotech-3

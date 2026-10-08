@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: localizedDataset
+  id: FigurinesDevil
+  values:
+    prefix: figurines-devil-
+    count: 11
+
+- type: localizedDataset
+  id: FigurinesBrigmedic
+  values:
+    prefix: figurines-brigmedic-
+    count: 10

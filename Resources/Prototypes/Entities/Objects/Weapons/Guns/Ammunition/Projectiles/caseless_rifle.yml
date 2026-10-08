@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: BulletCaselessRifle
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  name: bullet (9.5mm HP) # Goobstation edit
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 25 # Goobstation edit
+      armorPenetration: -0.3 # Goobstation
+
+- type: entity
+  id: BulletCaselessRiflePractice
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
+  name: bullet (9.5mm practice) # Goobstation edit
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 2

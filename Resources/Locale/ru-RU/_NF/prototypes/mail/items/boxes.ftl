@@ -1,0 +1,16 @@
+ent-BoxSoapsAssorted = набор ароматизированного мыла
+    .desc = Коробка с различными видами душистого мыла. О, лаванда.
+ent-BoxSoapsAssortedOmega = { ent-BoxSoapsAssorted }
+    .desc = Коробка с различными видами душистого мыла. О, блюспейс.
+ent-BoxBuildABuddyHuman = набор для создания приятеля
+    .desc = Набор для создания приятеля "Генри-человек". Требуется небольшая сборка.
+    .suffix = { species-name-human }
+ent-BoxBuildABuddyReptilian = набор для создания приятеля
+    .desc = Набор для создания приятеля "Рэнди-рептилия". Требуется небольшая сборка.
+    .suffix = { species-name-reptilian }
+ent-BoxBuildABuddySlime = набор для создания приятеля
+    .desc = Набор для создания приятеля "Слизняк Стивен". Требуется небольшая сборка.
+    .suffix = { species-name-slime }
+ent-BoxBuildABuddyVulpkanin = набор для создания приятеля
+    .desc = Набор для создания приятеля "Валери-вульпканинка". Требуется небольшая сборка.
+    .suffix = { species-name-vulpkanin }

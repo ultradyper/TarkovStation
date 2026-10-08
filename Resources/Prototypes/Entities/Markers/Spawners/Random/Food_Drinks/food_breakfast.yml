@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: RandomFoodBreakfast
+  name: random food spawner
+  suffix: Meal
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree  # Reserve: Better spawners
+  components:
+  - type: Transform
+    anchored: false  # Reserve: Better spawners
+  - type: Sprite
+    layers:
+      - sprite: Objects/Consumable/Food/breakfast.rsi
+        state: fullamerican
+  - type: RandomSpawner
+    prototypes:
+      - FoodBreakfastAmerican
+      - FoodBreakfastEnglish
+    chance: 0.8
+    offset: 0.0

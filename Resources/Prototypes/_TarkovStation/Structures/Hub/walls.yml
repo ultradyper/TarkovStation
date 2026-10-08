@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: WallRiveted
+  id: TarkovStationHubWall
+  name: patched bunker wall
+  description: Old riveted panels, kept together by repairs and stubbornness.
+  components:
+  - type: Sprite
+    color: "#8B8174"
+  - type: Godmode

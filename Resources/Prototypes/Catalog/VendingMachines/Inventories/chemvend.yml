@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: ChemVendInventory
+  startingInventory:
+    Jug: 8 #Goob edit - Energy Chem
+    JugAluminium: 2
+    JugCarbon: 4
+    JugChlorine: 2 #Goob edit
+    JugCopper: 2
+    JugEthanol: 2
+    JugFluorine: 2 #Goob edit
+    JugHydrogen: 3
+    JugIodine: 2 #Goob edit
+    JugIron: 2
+    JugLithium: 2
+    JugMercury: 2 #Goob edit
+    JugNitrogen: 3
+    JugOxygen: 3
+    JugPhosphorus: 2 #Goob edit
+    JugPotassium: 2
+    JugRadium: 2 #Goob edit
+    JugSilicon: 2
+    JugSodium: 2
+    JugSugar: 3
+    JugSulfur: 2 #Goob edit
+  contrabandInventory:
+    DrinkLithiumFlask: 1
+    StrangePill: 3
+    ChemistryBottleToxin: 1
+    ChemistryBottleLead: 2
+  emaggedInventory: # Goobsation
+    VestineChemistryVial: 1
+
+- type: vendingMachineInventory
+  id: ChemVendInventorySyndicate
+  startingInventory:
+    Jug: 8 #Goob edit
+    JugAluminium: 2
+    JugCarbon: 4
+    JugChlorine: 2 #Goob edit
+    JugCopper: 2
+    JugEthanol: 2
+    JugFluorine: 2 #Goob edit
+    JugHydrogen: 3
+    JugIodine: 2 #Goob edit
+    JugIron: 2
+    JugLithium: 2
+    JugMercury: 2 #Goob edit
+    JugNitrogen: 3
+    JugOxygen: 3
+    JugPhosphorus: 2 #Goob edit
+    JugPotassium: 2
+    JugRadium: 2 #Goob edit
+    JugSilicon: 2
+    JugSodium: 2
+    JugSugar: 3
+    JugSulfur: 2 #Goob edit
+    JugWeldingFuel: 2 #Goob edit
+    PlasmaChemistryVial: 2 #Goob edit
+  contrabandInventory:
+    DrinkLithiumFlask: 1
+    StrangePill: 3
+    ChemistryBottlePax: 3
+    ChemistryBottleMuteToxin: 3
+    ChemistryBottleLead: 2
+    ChemistryBottleToxin: 1
+

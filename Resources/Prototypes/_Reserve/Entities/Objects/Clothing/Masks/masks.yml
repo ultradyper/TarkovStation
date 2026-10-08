@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ClothingMaskBreath, BaseCivilianContraband]
+  id: ClothingMaskBreathBotanistAdvanced
+  name: botanical breath mask
+  description: This sturdy breathing mask also protects botanist's face from thorny plants.
+  components:
+  - type: Sprite
+    sprite: &botanical_mask_sprite _Reserve/Clothing/Mask/botanical.rsi
+  - type: Clothing
+    sprite: *botanical_mask_sprite
+  - type: Armor
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Slash: 0.90
+        Piercing: 0.85
+
+- type: entity
+  parent: [ClothingMaskBreath, BaseMedicalScienceContraband]
+  id: ClothingMaskBreathChemist
+  name: chemical breath mask
+  description: This mask protects against light chemical hazards.
+  components:
+  - type: Sprite
+    sprite: &chemist_mask_sprite _Reserve/Clothing/Mask/chemical.rsi
+  - type: Clothing
+    sprite: *chemist_mask_sprite
+  - type: Armor
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Caustic: 0.80

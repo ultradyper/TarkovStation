@@ -1,0 +1,105 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Quartermaster
+  name: job-name-qm
+  description: job-description-qm
+  playTimeTracker: JobQuartermaster
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobCargoTechnician
+      time: 5h
+    - !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 2.5h
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 10h
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
+  weight: 10
+  startingGear: QuartermasterGear
+  icon: "JobIconQuarterMaster"
+  supervisors: job-supervisors-captain
+  #canBeAntag: false
+  antagAdvantage: 75 # Goobstation
+  guides: # goobstation
+  - Cargo
+  - QuartermasterSOP
+  - CargoSOP
+  - Command
+  goobcoins: 40 #Goob content
+  access:
+  - Cargo
+  - Salvage
+  - Quartermaster
+  - Maintenance
+  - External
+  - Command
+  - Brig
+  - Cryogenics
+  - External # goobstation
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+      - type: QuartermasterTraining
+  alternateTitles: # Reserve - alternate titles
+  - QuartermasterRequisitionsOfficer
+  - QuartermasterDeckChief
+  - QuartermasterWarehouseSupervisor
+  - QuartermasterSupplyForeman
+  - QuartermasterLogisticsCoordinator
+
+- type: startingGear
+  id: QuartermasterGear
+  equipment:
+    id: QuartermasterPDA
+    belt: BoxFolderClipboardThreePapers
+    ears: ClothingHeadsetAltCargo # Goobstation
+    eyes: ClothingEyesGlassesAppraisalCommand # Reserve-CommandHUD
+    #pocket1: AppraisalTool # Reserve-CommandHUD
+  storage:
+    back:
+    - Flash
+    - TelescopicBaton # Goobstation
+
+- type: chameleonOutfit
+  id: QuartermasterChameleonOutfit
+  job: Quartermaster
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatQMsoft
+    eyes: ClothingEyesGlassesSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterWinterQM
+    neck: ClothingNeckCloakQm
+    gloves: ClothingHandsKnuckleDustersQM
+
+- type: jobAlternateTitle
+  id: QuartermasterRequisitionsOfficer
+  name: job-name-alt-qm-1
+
+- type: jobAlternateTitle
+  id: QuartermasterDeckChief
+  name: job-name-alt-qm-2
+  femaleName: job-name-alt-qm-2-f
+  maleName: job-name-alt-qm-2-m
+
+- type: jobAlternateTitle
+  id: QuartermasterWarehouseSupervisor
+  name: job-name-alt-qm-3
+  femaleName: job-name-alt-qm-3-f
+  maleName: job-name-alt-qm-3-m
+
+- type: jobAlternateTitle
+  id: QuartermasterSupplyForeman
+  name: job-name-alt-qm-4
+
+- type: jobAlternateTitle
+  id: QuartermasterLogisticsCoordinator
+  name: job-name-alt-qm-5

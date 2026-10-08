@@ -1,0 +1,31 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Tajaran
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTajaran" Caption=""/>
+  </Box>
+
+  Tajara are a species of omnivorous, bipedal humanoids with features strongly resembling Terran felines.
+  Their most distinguishing traits include a layer of fur, large ears atop their heads, and a tail that aids in balance.
+  They hail from the icy moon of [color=turquoise]Ahdomai[/color], only relatively recently making their debut on the galactic stage.
+  Originally a clan-centric society, Tajara endured centuries of dictatorial rule.
+  Following a civil war, their government fractured, and power returned to the clans, where it remains to this day.
+
+  ## Benefits
+
+  - Their soft feet allow them to [color=#1e90ff]walk shoeless without making noise[/color].
+  - They can [color=#1e90ff]fit into duffel bags[/color].
+  - They use their claws for unarmed attacks, dealing [color=#ec3a3a]Slash[/color] and [color=#ec3a3a]Piercing[/color] damage.
+  - Their layer of fur makes them take [color=#1e90ff]20% less Cold damage.[/color]
+
+  ## Drawbacks
+
+  - Due to their small stature, Tajara take [color=#ffa500]15% more Brute damage.[/color]
+  - They take [color=#ffa500]20% more Heat damage.[/color]
+
+
+</Document>

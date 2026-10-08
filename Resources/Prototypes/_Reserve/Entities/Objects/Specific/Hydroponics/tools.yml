@@ -1,0 +1,140 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Watering Cans
+
+- type: entity
+  parent: DrinkBase
+  id: WateringCan
+  name: watering can
+  description: A watering can that can hold slightly more water than a bucket, and doesn't spill it.
+  components:
+  - type: Clickable
+  - type: Edible
+    edible: Drink
+    solution: bucket
+    destroyOnEmpty: false
+  - type: Sprite
+    sprite: _Reserve/Objects/Specific/Hydroponics/watering_can.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: MixableSolution
+    solution: bucket
+  - type: SolutionTransfer
+    transferAmount: 100
+    maxTransferAmount: 100
+    minTransferAmount: 10
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 1
+  - type: RefillableSolution
+    solution: bucket
+  - type: DrainableSolution
+    solution: bucket
+  - type: SolutionItemStatus
+    solution: bucket
+  - type: Appearance
+  - type: ExaminableSolution
+    solution: bucket
+  - type: Tag
+    tags:
+      - Bucket
+  - type: SolutionContainerManager
+    solutions:
+      bucket:
+        maxVol: 300
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 75
+      Plastic: 75
+
+- type: entity
+  parent: [WateringCan, BaseCivilianContraband]
+  id: WateringCanExperimental
+  name: experimental watering can
+  description: An experimental watering can that slowly refills itself.
+  components:
+  - type: Sprite
+    sprite: _Reserve/Objects/Specific/Hydroponics/watering_can_experimental.rsi
+  - type: SolutionContainerManager
+    solutions:
+      bucket:
+        maxVol: 300
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 125
+      Plastic: 125
+      Plasma: 50
+  - type: SolutionRegeneration
+    solution: bucket
+    generated:
+      reagents:
+        - ReagentId: Water
+          Quantity: 2.0
+  - type: ReverseEngineering
+    difficulty: 4
+    recipes:
+      - WateringCanExperimental
+
+- type: entity
+  parent: WateringCanExperimental
+  id: BluespaceWateringCanExperimental
+  name: bluespace EWC
+  description: A bluespace-enhanced experimental watering can that slowly refills itself and has a larger capacity.
+  components:
+  - type: Sprite
+    state: icon_bluespace
+  - type: SolutionContainerManager
+    solutions:
+      bucket:
+        maxVol: 900
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 125
+      Plastic: 125
+      Plasma: 50
+      BSCrystal: 12
+  - type: ReverseEngineering
+    difficulty: 5
+    recipes:
+      - BluespaceWateringCanExperimental
+
+# endregion
+
+# region Sprays
+
+- type: entity
+  parent: SprayBottle
+  id: SeedEmUpSpray
+  name: Seed-Em-Up
+  description: Cures plant infertility. Use sparingly.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Hydroponics/sprays.rsi
+    layers:
+    - state: nolabelspray
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Sedin
+          Quantity: 10
+  - type: DrainableSolution
+    solution: drink
+  - type: Item
+    sprite: Objects/Tools/Hydroponics/sprays.rsi
+  - type: SolutionContainerVisuals
+    maxFillLevels: 0
+    inHandsMaxFillLevels: 0
+
+# endregion

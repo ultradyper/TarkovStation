@@ -1,0 +1,58 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Server.Popups;
+using Content.Server.Salvage.JobBoard;
+using Content.Shared.Cargo.Components;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Timing;
+using Content.Shared.Cargo.Systems;
+using Robust.Shared.Audio.Systems;
+
+namespace Content.Server.Cargo.Systems;
+
+public sealed class PriceGunSystem : SharedPriceGunSystem
+{
+    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private readonly PricingSystem _pricingSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly CargoSystem _bountySystem = default!;
+    [Dependency] private readonly SalvageJobBoardSystem _salvageJobBoard = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    protected override bool GetPriceOrBounty(Entity<PriceGunComponent> entity, EntityUid target, EntityUid user, bool cooldownPopup = false) // Reserve-CooldownPopup
+    {
+        // Reserve-CooldownPopup-Start
+        if (!TryComp(entity.Owner, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((entity.Owner, useDelay)))
+        {
+            if (cooldownPopup)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("price-gun-cooldown"), user, user);
+            }
+            return false;
+        }
+        // Reserve-CooldownPopup-End
+
+        // Check if we're scanning a bounty crate
+        if (_bountySystem.IsBountyComplete(target, out _))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("price-gun-bounty-complete"), user, user);
+        }
+        else if (_salvageJobBoard.FulfillsSalvageJob(target, null, out _))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("price-gun-salvjob-complete"), user, user);
+        }
+        else // Otherwise appraise the price
+        {
+            var price = _pricingSystem.GetPrice(target);
+            _popupSystem.PopupEntity(Loc.GetString("price-gun-pricing-result",
+                    ("object", Identity.Entity(target, EntityManager)),
+                    ("price", $"{price:F2}")),
+                user,
+                user);
+        }
+
+        _audio.PlayPvs(entity.Comp.AppraisalSound, entity.Owner);
+        _useDelay.TryResetDelay((entity.Owner, useDelay));
+        return true;
+    }
+}

@@ -1,0 +1,15 @@
+ent-ClickTestBase = дебаг: тест клика
+    .suffix = DEBUG
+    .desc = { "" }
+ent-ClickTestRotatingCornerVisible = дебаг: тест клика, RotatingCornerVisible
+    .desc = { ent-ClickTestBase.desc }
+ent-ClickTestRotatingCornerVisibleNoRot = дебаг: тест клика, RotatingCornerVisibleNoRot
+    .desc = { ent-ClickTestRotatingCornerVisible.desc }
+ent-ClickTestRotatingCornerInvisible = дебаг: тест клика, RotatingCornerInvisible
+    .desc = { ent-ClickTestBase.desc }
+ent-ClickTestRotatingCornerInvisibleNoRot = дебаг: тест клика, RotatingCornerInvisibleNoRot
+    .desc = { ent-ClickTestRotatingCornerInvisible.desc }
+ent-ClickTestFixedCornerVisible = дебаг: тест клика, FixedCornerVisible
+    .desc = { ent-ClickTestBase.desc }
+ent-ClickTestFixedCornerInvisible = дебаг: тест клика, FixedCornerInvisible
+    .desc = { ent-ClickTestBase.desc }

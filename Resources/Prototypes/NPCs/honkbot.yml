@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: MIT
+
+- type: htnCompound
+  id: HonkbotCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound

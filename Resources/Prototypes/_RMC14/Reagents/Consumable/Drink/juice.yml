@@ -1,0 +1,14 @@
+- type: reagent ##RMC14
+  id: JuiceMango
+  name: reagent-name-juice-mango
+  parent: BaseJuice
+  desc: reagent-desc-juice-mango
+  physicalDesc: reagent-physical-desc-citric
+  flavor: mango
+  color: "#FFBF34"
+  metamorphicSprite:
+    sprite: _Reserve/Objects/Consumable/Drinks/mango.rsi  # Reserve: Orchid's Barmania - Vendichaos
+    state: icon_empty
+  metamorphicMaxFillLevels: 4  # Reserve: Orchid's Barmania - Vendichaos
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false

@@ -1,0 +1,67 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<controls:PatronPerksWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._RMC14.LinkAccount"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    Title="{Loc 'rmc-ui-patron-perks'}"
+    MinSize="625 475">
+    <TabContainer Name="Tabs" Access="Public">
+        <!-- Reserve edit start: Maecenas System -->
+        <BoxContainer Name="MainTab" Access="Public" Orientation="Vertical" Margin="5">
+            <RichTextLabel Name="MainTabLabel" Text="{Loc 'rmc-ui-lobby-main-description'}" Access="Public" />
+        </BoxContainer>
+        <!-- Reserve edit end: Maecenas System -->
+        <BoxContainer Name="LobbyMessageTab" Access="Public" Orientation="Vertical" Margin="5">
+            <Label Text="{Loc 'rmc-ui-lobby-message-description'}" />
+            <LineEdit Name="LobbyMessage" Access="Public" Margin="0 10 0 0" />
+            <Button Name="LobbyMessageSaveButton" Access="Public" Text="{Loc 'rmc-ui-save'}" />
+        </BoxContainer>
+        <BoxContainer Name="ShoutoutTab" Access="Public" Orientation="Vertical" Visible="False"
+                      Margin="5">
+            <BoxContainer Access="Public" Orientation="Vertical">
+                <Label Text="{Loc 'rmc-ui-shoutout-nt-title'}" />
+                <Label Text="{Loc 'rmc-ui-shoutout-nt-description'}" />
+                <RichTextLabel Name="NTShoutoutExample" Access="Public" />
+                <LineEdit Name="NTShoutout" Access="Public" Margin="0 10 0 0" />
+                <Button Name="NTShoutoutSaveButton" Access="Public" Text="{Loc 'rmc-ui-save'}" />
+            </BoxContainer>
+            <cc:HSeparator Margin="0 15" />
+            <Label Text="{Loc 'rmc-ui-shoutout-info'}" />
+        </BoxContainer>
+        <BoxContainer Name="GhostColorTab" Access="Public" Orientation="Vertical" Margin="5">
+            <Label Name="GhostColorLabel" Text="{Loc 'rmc-ui-ghost-color-description'}" Access="Public" /> <!-- Reserve edit: Maecenas System -->
+            <ColorSelectorSliders Name="GhostColorSliders" Access="Public" Margin="0 10 0 0" />
+            <Button Name="GhostColorClearButton" Access="Public" Text="{Loc 'rmc-ui-ghost-color-clear'}" />
+            <Button Name="GhostColorSaveButton" Access="Public" Text="{Loc 'rmc-ui-save'}"
+                    Disabled="True" Margin="0 0 0 10" />
+        <!-- </BoxContainer>  // Reserve edit: Maecenas System -->
+        <!-- Goob start - ghost cosmetics -->
+        <!-- <BoxContainer Name="GhostCosmeticsTab" Access="Public" Orientation="Horizontal" Margin="5">  // Reserve edit: Maecenas System -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Name="GhostCosmeticsLabel" Text="{Loc 'goob-ui-ghost-cosmetics-description'}" Access="Public" /> <!-- Reserve edit: Maecenas System -->
+                <BoxContainer Name="GhostParticlesRow" Access="Public" Orientation="Horizontal" Margin="0 10 0 0">
+                    <Label Text="{Loc 'goob-ui-ghost-cosmetics-particles'}" HorizontalExpand="True" />
+                    <OptionButton Name="GhostParticlesButton" Access="Public" MinWidth="220" />
+                </BoxContainer>
+                <BoxContainer Name="GhostHatRow" Access="Public" Orientation="Horizontal" Margin="0 5 0 0">
+                    <Label Text="{Loc 'goob-ui-ghost-cosmetics-hat'}" HorizontalExpand="True" />
+                    <OptionButton Name="GhostHatButton" Access="Public" MinWidth="220" />
+                </BoxContainer>
+                <BoxContainer Name="GhostMaskRow" Access="Public" Orientation="Horizontal" Margin="0 5 0 0">
+                    <Label Text="{Loc 'goob-ui-ghost-cosmetics-mask'}" HorizontalExpand="True" />
+                    <OptionButton Name="GhostMaskButton" Access="Public" MinWidth="220" />
+                </BoxContainer>
+                <Button Name="GhostCosmeticsSaveButton" Access="Public" Text="{Loc 'rmc-ui-save'}"
+                        Disabled="True" Margin="0 10 0 0" /> <!-- Reserve edit: Maecenas System -->
+            </BoxContainer>
+            <PanelContainer Margin="10 0 0 0" VerticalAlignment="Center" StyleClasses="AngleRect">
+                <SpriteView Name="GhostCosmeticsPreview" Access="Public" Scale="3 3" SetSize="128 128"
+                            OverrideDirection="South" />
+            </PanelContainer>
+        </BoxContainer>
+        <!-- Goob end -->
+    </TabContainer>
+</controls:PatronPerksWindow>

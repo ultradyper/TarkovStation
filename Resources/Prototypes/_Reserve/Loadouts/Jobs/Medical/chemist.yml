@@ -1,0 +1,144 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Effects
+
+- type: loadoutEffectGroup
+  id: AdvancedChemist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 36000  # 10 hours
+
+- type: loadoutEffectGroup
+  id: SeniorChemist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 108000  # 30 hours
+
+- type: loadoutEffectGroup
+  id: LeadChemist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 180000  # 50 hours
+
+# endregion
+
+# region Groups
+
+- type: loadoutGroup
+  id: ChemistGloves
+  name: loadout-group-chemist-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LatexGloves
+  - NitrileGloves
+  - ChemistGlovesMitts
+  - ChemistGlovesEnviroWhite
+  - ChemistGlovesEnviro
+  - ChemistGlovesAdvanced
+
+- type: loadoutGroup
+  id: ChemistGoggles
+  name: loadout-group-chemist-goggles
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ChemistGoggles
+  - ChemistMedicGoggles
+  - ChemistMedicGogglesAdvanced
+  - Glasses
+  - CheapSunglasses
+  - GlassesJamjar
+  - GlassesJensen
+
+- type: loadoutGroup
+  id: ChemistMasks
+  name: loadout-group-chemist-masks
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - SterileMask
+  - ChemistMaskAdvanced
+
+# endregion
+
+# region Goggles
+
+- type: loadout
+  id: ChemistGoggles
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: AdvancedChemist
+  equipment:
+    eyes: ClothingEyesGlassesChemical
+
+# endregion
+
+# region Gloves
+
+- type: loadout
+  id: ChemistGlovesMitts
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: AdvancedChemist
+  equipment:
+    gloves: ClothingHandsGlovesMittsChemist
+
+- type: loadout
+  id: ChemistGlovesEnviroWhite
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChemist
+  equipment:
+    gloves: ClothingHandsGlovesEnviroglovesWhite
+
+- type: loadout
+  id: ChemistGlovesEnviro
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChemist
+  equipment:
+    gloves: ClothingHandsGlovesEnviroglovesNitrile
+
+- type: loadout
+  id: ChemistGlovesAdvanced
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LeadChemist
+  equipment:
+    gloves: ClothingHandsGlovesChemistAdvanced
+
+# endregion
+
+# region Masks
+
+- type: loadout
+  id: ChemistMaskAdvanced
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChemist
+  equipment:
+    mask: ClothingMaskBreathChemist
+
+# endregion
+
+# region Outer Clothing
+
+- type: loadout
+  id: ChemistApronAdvanced
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LeadChemist
+  equipment:
+    outerClothing: ClothingOuterApronChemist
+
+# endregion

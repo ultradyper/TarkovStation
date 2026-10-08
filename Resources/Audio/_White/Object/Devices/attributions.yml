@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- files: ["experimentalsyndicateteleport.ogg"]
+  license: "CC-BY-NC-SA-4.0"
+  copyright: "Taken from White Dream"
+  source: "https://github.com/frosty-dev/ss14-core/blob/master/Resources/Audio/White/Devices/expsyndicateteleport.ogg"

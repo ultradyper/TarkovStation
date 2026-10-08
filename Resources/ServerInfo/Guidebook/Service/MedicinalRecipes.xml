@@ -1,0 +1,13 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+
+# Medicinal Recipes
+
+These preparations have interesting medical effects, or are just straight-up medicines.
+
+<GuideFoodIngredientGroupEmbed Group="Medicinal"/>  <!--Reserve edit: Fix recipe categories-->
+
+</Document>

@@ -1,0 +1,13 @@
+collective-mind-dragon = Космический дракон
+collective-mind-lingmind = Разум улья
+collective-mind-tidemind = Приливной разум
+collective-mind-blobmind = Блоб-разум
+collective-mind-mansus-link = Связь с Мансусом
+collective-mind-abductormind = Разум Абдукторов
+collective-mind-binary = Двоичный
+collective-mind-mousemind = Мышиный разум
+collective-mind-dronemind = Разум дрона
+collective-mind-empathy = Сочувствие
+collective-mind-bingle = Бингл-разум
+collective-mind-shadow-mind = Разум Теней
+collective-mind-xeno = Разум Улья

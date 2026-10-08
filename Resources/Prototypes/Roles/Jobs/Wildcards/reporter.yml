@@ -1,0 +1,56 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Reporter
+  name: job-name-reporter
+  description: job-description-reporter
+  playTimeTracker: JobReporter
+  startingGear: ReporterGear
+  icon: "JobIconReporter"
+  goobcoins: 15 #Goob content
+  supervisors: job-supervisors-hop
+  weight: 2  # Reserve edit: Fix Service Department job order
+  access:
+  - Service
+  - Maintenance
+  - Journalism # goob
+  alternateTitles: # Reserve - alternate titles
+  - ReporterInfluencer
+  - ReporterDocumentarian
+  - ReporterMediaCoordinator
+
+- type: startingGear
+  id: ReporterGear
+  equipment:
+    shoes: ClothingShoesColorWhite
+    id: ReporterPDA
+    ears: ClothingHeadsetService
+  storage: # DeltaV: Give reporters tape recording equipment
+    back:
+    - TapeRecorder
+    - CassetteTape
+    - CassetteTape
+    - MicrophoneInstrument # Goobstation
+
+- type: chameleonOutfit
+  id: ReporterChameleonOutfit
+  job: Reporter
+  equipment:
+    head: ClothingHeadHatFedoraGrey
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterCoatTrench
+    neck: ClothingNeckTieRed
+    gloves: ClothingHandsGlovesFingerless
+
+- type: jobAlternateTitle
+  id: ReporterInfluencer
+  name: job-name-alt-reporter-1
+
+- type: jobAlternateTitle
+  id: ReporterDocumentarian
+  name: job-name-alt-reporter-2
+
+- type: jobAlternateTitle
+  id: ReporterMediaCoordinator
+  name: job-name-alt-reporter-3

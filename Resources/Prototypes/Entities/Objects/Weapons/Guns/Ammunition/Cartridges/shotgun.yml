@@ -1,0 +1,175 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  abstract: true
+  parent: BaseCartridge
+  id: BaseShellShotgun
+  name: shell (12 Gauge) # Goobstation
+  components:
+  - type: Tag
+    tags:
+    - ShellShotgun
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
+  id: ShellShotgunBeanbag
+  name: shell (12 Gauge beanbag) # Goobstation
+  components:
+  - type: Tag
+    tags:
+    - ShellShotgun
+    - ShellShotgunLight
+  - type: Sprite
+    layers:
+      - state: beanbag
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunBeanbag
+  - type: SpentAmmoVisuals
+    state: "beanbag"
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband]
+  id: ShellShotgunSlug
+  name: shell (12 Gauge slug) # Goobstation
+  components:
+  - type: Sprite
+    layers:
+      - state: slug
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunSlug
+  - type: SpentAmmoVisuals
+    state: "slug"
+
+- type: entity
+  parent: BaseShellShotgun
+  id: ShellShotgunFlare
+  name: shell (12 Gauge flare) # Goobstation
+  components:
+  - type: Tag
+    tags:
+    - ShellShotgun
+    - ShellShotgunLight
+  - type: Sprite
+    layers:
+      - state: flare
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunFlare
+  - type: SpentAmmoVisuals
+    state: "flare"
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  id: ShellShotgun
+  name: shell (12 Gauge) # Goobstation
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunSpread
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  id: ShellShotgunIncendiary
+  name: shell (12 Gauge incendiary) # Goobstation
+  components:
+  - type: Sprite
+    layers:
+      - state: incendiary
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunIncendiarySpread
+  - type: SpentAmmoVisuals
+    state: "incendiary"
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  id: ShellShotgunPractice
+  name: shell (12 Gauge practice) # Goobstation
+  components:
+  - type: Sprite
+    layers:
+      - state: practice
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunPracticeSpread
+  - type: SpentAmmoVisuals
+    state: "practice"
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  id: ShellTranquilizer
+  name: shell (12 Gauge tranquilizer) # Goobstation
+  components:
+  - type: Tag
+    tags:
+    - ShellShotgun
+    - ShellShotgunLight
+  - type: Sprite
+    layers:
+      - state: tranquilizer
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunTranquilizer
+  - type: ChemicalAmmo
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 7
+  - type: SolutionTransfer
+    maxTransferAmount: 7
+  - type: SpentAmmoVisuals
+    state: "tranquilizer"
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  id: ShellShotgunImprovised
+  name: improvised shotgun shell
+  description: A homemade shotgun shell loaded with chunks of glass shrapnel. Surprisingly effective, but the spread is so wide that you couldn't hit the broad side of a barn.
+  components:
+  - type: Tag
+    tags:
+    - ShellShotgun
+    - ShellShotgunLight
+  - type: Sprite
+    layers:
+      - state: improvised
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Construction
+    graph: ImprovisedShotgunShellGraph
+    node: shell
+  - type: CartridgeAmmo
+    proto: PelletShotgunImprovisedSpread
+  - type: SpentAmmoVisuals
+    state: "improvised"
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  id: ShellShotgunUranium
+  name: uranium shotgun shell
+  description: The standard cartridge used by most modern shotguns. Uranium ammunition replaces the lead core of the pellets with fissile material, irradiating targets from the inside.
+  components:
+    - type: Sprite
+      layers:
+        - state: depleted-uranium
+          map: [ "enum.AmmoVisualLayers.Base" ]
+    - type: CartridgeAmmo
+      proto: PelletShotgunUraniumSpread
+    - type: SpentAmmoVisuals
+      state: "depleted-uranium"

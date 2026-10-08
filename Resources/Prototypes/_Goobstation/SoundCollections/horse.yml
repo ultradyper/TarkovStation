@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+
+- type: soundCollection
+  id: FootstepHorse
+  files:
+    - /Audio/_Goobstation/Effects/Horse/horsewalk1.ogg
+    - /Audio/_Goobstation/Effects/Horse/horsewalk2.ogg
+    - /Audio/_Goobstation/Effects/Horse/horsewalk3.ogg
+    - /Audio/_Goobstation/Effects/Horse/horsewalk4.ogg

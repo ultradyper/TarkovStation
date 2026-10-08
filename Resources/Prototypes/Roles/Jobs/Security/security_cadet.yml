@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: SecurityCadet
+  name: job-name-cadet
+  description: job-description-cadet
+  playTimeTracker: JobSecurityCadet
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10h # Goobstation
+      inverted: true # stop playing intern if you're good at security!
+  startingGear: SecurityCadetGear
+  icon: "JobIconSecurityCadet"
+  supervisors: job-supervisors-security
+  canBeAntag: false
+  guides: # goobstation
+  - Security
+  - OfficerCadetSOP
+  - SearchesSOP
+  goobcoins: 30 #Goob content
+  weight: 6  # Reserve edit: Fix Assistant job order
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - External
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial # goobstation
+    components:
+      - type: SecurityStaff
+
+- type: startingGear
+  id: SecurityCadetGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity #Goobstation
+    shoes: ClothingShoesBootsJack # Goobstation edit
+    #outerClothing: ClothingOuterArmorBasic # Goobstation
+    id: SecurityCadetPDA
+    ears: ClothingHeadsetAltSecurityRegular # Goobstation
+    belt: ClothingBeltSecurityFilled
+    #pocket1: WeaponDisabler #Goobstation (Disablers in belts)
+    pocket2: BookSecurity
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+
+- type: chameleonOutfit
+  id: SecurityCadetChameleonOutfit
+  job: SecurityCadet
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetBasic
+    eyes: ClothingEyesHudSecurity
+    mask: ClothingMaskGasSecurity
+    neck: ClothingNeckScarfStripedRed
+    belt: ClothingBeltSecurity
+    gloves: ClothingHandsGlovesColorBlack

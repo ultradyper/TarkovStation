@@ -1,0 +1,46 @@
+<Document>
+
+  # Крав-мага
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingHandsGlovesKravMaga" Caption=""/>
+  </Box>
+
+  [bold]Крав-мага[/bold] - это [textlink="боевое искусство" link="MartialArts"] [bold]самообороны[/bold], разработанное [bold]древними военными[/bold] на Терре шесть веков назад.
+  Его можно изучить за годы [bold]тренировок[/bold] или получить от продвинутых [bold]наномашин[/bold], встроенных в [bold]перчатки[/bold].
+  На станции единственную пару [bold]перчаток Крав-мага[/bold] можно найти в шкафчике [bold]смотрителя[/bold]. [bold]Антагонисты Синдиката[/bold] могут использовать [bold]имплант Крав-мага[/bold] для того же эффекта.
+
+  ## Боевые действия
+
+  [bold]Атаки Крав-мага[/bold] отличаются от [bold]комбо[/bold] большинства боевых искусств. Пользователь должен сначала [bold]подготовить нужную атаку[/bold]
+  на [bold]панели действий[/bold], а затем выполнить обычный [bold]удар[/bold] по противнику.
+
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+  </Box>
+
+  ### Подсечка
+
+  <Box>
+    <GuideEntityEmbed Entity="ActionLegSweep" Caption=""/>
+  </Box>
+
+  [bold]Сносит ноги из-под противника[/bold], чтобы [bold]сбить его с ног[/bold].
+
+  ### Удар по шее
+
+  <Box>
+    <GuideEntityEmbed Entity="ActionNeckChop" Caption=""/>
+  </Box>
+
+  [bold]Сильный удар ребром ладони[/bold] временно [bold]лишает противника способности говорить[/bold].
+
+  ### Удар в лёгкие
+
+  <Box>
+    <GuideEntityEmbed Entity="ActionLungPunch" Caption=""/>
+  </Box>
+
+    Наносит урон [color=Purple][bold]выносливости[/bold][/color] и [color=Yellow][bold]временно лишает[/bold][/color] противника [bold]способности дышать[/bold].
+
+</Document>

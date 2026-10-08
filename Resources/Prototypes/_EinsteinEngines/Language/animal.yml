@@ -1,0 +1,259 @@
+# Reserve edit start: Fix languages in chat
+# Languages spoken by various animals and critters.
+- type: language
+  id: Cat
+  speech:
+    color: "#e8a030dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    # reserve edit
+    - мур
+    - мяу
+    - мрр
+    - мряу
+
+- type: language
+  id: Dog
+  speech:
+    color: "#8b5a2bdd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    # reserve edit
+    - вух
+    - гав
+    - ррр
+    - гаф
+    - рафф
+    - грр
+
+- type: language
+  id: Fox
+  speech:
+    color: "#d45a20dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    # reserve edit
+    - уфф
+    - рафф
+    - грр
+    - йип
+    - йап
+    - мях
+
+- type: language
+  id: Xeno
+  speech:
+    color: "#6b2d5cdd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 8 # I was crazy once
+    replacement:
+    # reserve edit
+    - с
+    - С
+
+- type: language
+  id: Monkey
+  speech:
+    color: "#a0622bdd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 8 # They locked me in a room...
+    replacement:
+    # reserve edit
+    - у
+    - к
+
+- type: language
+  id: Mouse
+  speech:
+    color: "#9e9e9edd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - скви
+    - ик
+    - пи
+    - ип
+    - чуу
+    - ее
+    - фви
+    - хе
+
+- type: language
+  id: Chicken
+  speech:
+    color: "#f0c020dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - ку
+    - куу
+    - кар
+
+- type: language
+  id: Duck
+  speech:
+    color: "#f5d742dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - к
+    - ак
+    - квак
+
+- type: language
+  id: Cow
+  speech:
+    color: "#4a3728dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - муу
+    - мууу
+
+- type: language
+  id: Sheep
+  speech:
+    color: "#d4c9a8dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - ба
+    - баа
+    - аа
+
+- type: language
+  id: Kangaroo
+  speech:
+    color: "#c19a6bdd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - шре
+    - ачк
+    - чуу
+    - чооо
+
+- type: language
+  id: Pig
+  speech:
+    color: "#f4a0b0dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - хрю # Please someone come up with something better
+
+- type: language
+  id: Crab
+  speech:
+    color: "#e04040dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - клиц
+    - клац
+    - щелк
+
+- type: language
+  id: Kobold
+  speech:
+    color: "#3d8b37dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement:
+    # reserve edit
+    - йип
+    - йап
+    - гар
+    - грр
+    - ар
+    - скре
+    - ет
+    - гронк
+    - хисс
+    - сс
+    - ее
+
+- type: language
+  id: Hissing
+  speech:
+    color: "#556b2fdd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement:
+    # reserve edit
+    - хсс
+    - исс
+    - сс
+    - ис
+
+- type: language
+  id: Penguin
+  speech:
+    color: "#3a4a6bdd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 3
+    replacement: # I'm out of ideas
+    # reserve edit
+    - пен
+    - пенг
+    - вон
+    - вонк
+    - вонг
+
+- type: language # Goobstation - For Deer
+  id: Deer
+  speech:
+    color: "#8b7355dd"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit
+    - нгх
+    - ни
+    - брр
+# Reserve edit end: Fix languages in chat

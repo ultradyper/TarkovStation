@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: BlueshieldOfficer
+  name: job-name-bso
+  description: job-description-bso
+  playTimeTracker: JobBlueshieldOfficer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 90000 # 25 hours
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 54000 # 15 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 90000 # 25 hours
+    - !type:AgeRequirement
+      requiredAge: 21
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
+  guides:
+  - BlueshieldOfficerSOP
+  - Command
+  - Succession
+  goobcoins: 45
+  weight: 20
+  startingGear: BlueshieldOfficerGear
+  icon: "JobIconBlueshield"
+  joinNotifyCrew: true
+  supervisors: job-supervisors-ntr-centcom
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - External
+  - Cryogenics
+  - Maintenance
+  - Engineering
+  - Medical
+  - Research
+  - Command
+  - CentralCommand
+  - BlueshieldOfficer
+  - Service
+  - Hydroponics
+  - Cargo
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, BluespaceLifelineImplant ] # Go big, or go home.
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+      - type: Condemned
+        soulOwnedNotDevil: true
+  alternateTitles: # Reserve - alternate titles
+  - BlueshieldOfficerAgent
+  - BlueshieldOfficerBodyguard
+
+- type: startingGear
+  id: BlueshieldOfficerGear
+  equipment:
+    eyes: ClothingEyesGlassesBSO
+    #gloves: ClothingHandsGlovesCombat - Goobstation, moved to loadouts
+    id: BlueshieldPDA
+    ears: ClothingHeadsetAltBlueshield
+    belt: ClothingBeltMilitaryWebbingFilled
+    pocket1: UniqueBlueshieldOfficerLockerTeleporter
+  storage:
+    back:
+    - Flash
+    - ClothingBSOMaskGasSwat
+    - CombatKnife
+
+- type: chameleonOutfit
+  id: BlueshieldOfficerChameleonOutfit
+  job: BlueshieldOfficer
+  equipment:
+    head: ClothingHeadHatBeretEliteNavyOfficer
+    eyes: ClothingEyesGlassesBSO
+    mask: ClothingMaskGasSecurity
+    ears: ClothingHeadsetAltBlueshield
+    outerClothing: ClothingBlueshieldArmourVest
+    neck: ClothingNeckMantleBlueshield
+    gloves: ClothingHandsGlovesCombat
+    jumpsuit: ClothingUniformJumpsuitBlueshieldOfficer
+    id: BlueshieldPDA
+    back: ClothingBackpackBlueshield
+    shoes: ClothingShoesBootsJack
+
+- type: jobAlternateTitle
+  id: BlueshieldOfficerAgent
+  name: job-name-alt-bso-1
+
+- type: jobAlternateTitle
+  id: BlueshieldOfficerBodyguard
+  name: job-name-alt-bso-2

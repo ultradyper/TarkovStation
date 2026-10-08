@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: CottonPizza
+  start: start
+  graph:
+  - node: start
+    entity: FoodDoughCotton
+    edges:
+    - to: flat
+      steps:
+      - tool: Rolling
+        doAfter: 1
+  - node: flat
+    entity: FoodDoughCottonFlat

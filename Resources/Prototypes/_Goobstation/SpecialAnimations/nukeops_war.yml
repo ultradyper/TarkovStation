@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: specialAnimation
+  id: NukeOpsWarAnimation
+  animation: !type:SpecialAnimationData
+    totalDuration: 5.8
+    scale: 15.0
+    maxOpacity: 0.7
+    fadeInDuration: 1.6
+    fadeOutDuration: 1.6
+    startPosition: -500,-400
+    endPosition: -500,0
+    text: "ОБЬЯВЛЕНИЕ ВОЙНЫ" # Reserve edit
+    textPosition: -200,150
+    textOverrideColor: Red
+    textFontPath: "/Fonts/NotoSans/NotoSans-Bold.ttf"
+    textFontSize: 28

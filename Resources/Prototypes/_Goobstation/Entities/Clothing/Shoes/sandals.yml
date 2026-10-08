@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesSandals
+  name: sandals
+  description: A pair of simple but stylish sandals.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Shoes/Specific/sandals.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Shoes/Specific/sandals.rsi

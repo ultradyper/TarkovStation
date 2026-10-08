@@ -1,0 +1,90 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: RoyalCrateSupplyDrop
+  name: supply drop
+  description: Airdropped crate containing valuable battle equipment.
+  suffix: DO NOT MAP, Battle Royale
+  parent: CratePirate
+  components:
+  - type: AmbientSound
+    volume: -12
+    range: 6
+    sound:
+      collection: AmbienceHoly
+  - type: PointLight
+    enabled: true
+    color: "#FFD700"
+    radius: 3
+    softness: 1
+    autoRot: true
+    castShadows: false
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: RoyalCrateSupplyDropTable
+
+- type: entityTable
+  id: RoyalCrateSupplyDropTable
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: RoyaleArmorTable
+      prob: 0.33
+      rolls: !type:RangeNumberSelector
+        range: 0, 1
+    - !type:NestedSelector
+      tableId: RoyaleHelmetTable
+      prob: 0.33
+      rolls: !type:RangeNumberSelector
+        range: 0, 1
+    - !type:NestedSelector
+      tableId: RoyaleMedicalTable
+      prob: 0.33
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+    - !type:NestedSelector
+      tableId: RoyalePistolTable
+      prob: 0.33
+      rolls: !type:RangeNumberSelector
+        range: 0, 1
+    - !type:NestedSelector
+      tableId: RoyalePistolAmmoTable
+      prob: 0.5
+      rolls: !type:RangeNumberSelector
+        range: 0, 3
+    - !type:NestedSelector
+      tableId: RoyaleShotgunTable
+      prob: 0.33
+      rolls: !type:RangeNumberSelector
+        range: 0, 1
+    - !type:NestedSelector
+      tableId: RoyaleShotgunAmmoTable
+      prob: 0.5
+      rolls: !type:RangeNumberSelector
+        range: 0, 3
+    - !type:NestedSelector
+      tableId: RoyaleCarbineTable
+      prob: 0.33
+      rolls: !type:RangeNumberSelector
+        range: 0, 1
+    - !type:NestedSelector
+      tableId: RoyaleCarbineAmmoTable
+      prob: 0.5
+      rolls: !type:RangeNumberSelector
+        range: 0, 3
+    - !type:NestedSelector
+      tableId: RoyaleHeavyTable
+      prob: 0.2
+      rolls: !type:RangeNumberSelector
+        range: 0, 1
+    - !type:NestedSelector
+      tableId: RoyaleGrenadeTable #grenades + ammo for heavy table
+      prob: 0.33
+      rolls: !type:RangeNumberSelector
+        range: 0, 1
+    - !type:NestedSelector
+      tableId: RoyaleMeleeTable
+      prob: 0.5
+      rolls: !type:RangeNumberSelector
+        range: 0, 1

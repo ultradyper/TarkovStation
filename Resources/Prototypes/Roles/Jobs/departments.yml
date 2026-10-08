@@ -1,0 +1,199 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: department
+  id: Cargo
+  name: department-Cargo
+  description: department-Cargo-description
+  color: "#A46106"
+  weight: 30 # Reserve-Edit
+  buttonStyle: ButtonColorCargoDepartment # Reserve-Edit
+  roles:
+  - CargoTechnician
+  - Quartermaster
+  - SalvageSpecialist
+  - ShaftMiner # Lavaland Change
+
+- type: department
+  id: Civilian
+  name: department-Civilian
+  description: department-Civilian-description
+  color: "#9FED58"
+  weight: -10
+  buttonStyle: ButtonColorCivilianDepartment # Reserve-Edit
+  roles:
+  - Bartender
+  - Botanist
+  - Boxer
+  - Chaplain
+  - Chef
+  - Clown
+  - HeadOfPersonnel
+  - Janitor
+  - Lawyer
+  - Librarian
+  - Mime
+  - Musician
+  - Passenger
+  - Reporter
+  - RadioHost # Goobstation # Reserve edit - moved from Specific to Service
+  - Visitor
+  - Zookeeper
+  - ServiceWorker
+  - PartyMaker # event-restricted, Goobstation
+
+- type: department
+  id: CentralCommand
+  name: department-CentralCommand
+  description: department-CentralCommand-description
+  color: "#0c344d"
+  buttonStyle: ButtonColorCentralCommandDepartment # Reserve-Edit
+  roles:
+  - CentralCommandOfficial
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  - HecuOperative
+  - BlueshieldOfficer # Goobstation - Start
+  - NanotrasenRepresentative
+  - NanotrasenCareerTrainer
+  - NavyOfficer
+  - NavyCaptain
+  - NavyOfficerUndercover
+  - SpecialOperationsOfficer
+  - Diplomat
+  - GovernmentMan # Goobstation - End
+  editorHidden: false
+  weight: 120
+
+- type: department
+  id: Command
+  name: department-Command
+  description: department-Command-description
+  color: "#334E6D"
+  buttonStyle: ButtonColorCommandDepartment # Reserve-Edit
+  roles:
+  - Captain
+  - ChiefEngineer
+  - ChiefMedicalOfficer
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  - ResearchDirector
+  - Quartermaster
+  - BlueshieldOfficer # Goobstation
+  - NanotrasenRepresentative # Goobstation
+  - NanotrasenCareerTrainer # Goobstation
+  - CentralCommandOfficial
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  - HecuOperative
+  - CommandMaid # event-restricted, Goobstation
+  primary: false
+  weight: 100
+
+- type: department
+  id: Engineering
+  name: department-Engineering
+  description: department-Engineering-description
+  color: "#EFB341"
+  weight: 40 # Reserve-Edit
+  buttonStyle: ButtonColorEngineeringDepartment # Reserve-Edit
+  roles:
+  - AtmosphericTechnician
+  - ChiefEngineer
+  - StationEngineer
+  - TechnicalAssistant
+
+- type: department
+  id: Medical
+  name: department-Medical
+  description: department-Medical-description
+  color: "#52B4E9"
+  weight: 50 # Reserve-Edit
+  buttonStyle: ButtonColorMedicalDepartment # Reserve-Edit
+  roles:
+  - Chemist
+  - ChiefMedicalOfficer
+  - MedicalDoctor
+  - MedicalIntern
+  - Psychologist
+  - Paramedic
+  - Virologist # Gooby goob ba gooby goob ba
+
+- type: department
+  id: Security
+  name: department-Security
+  description: department-Security-description
+  color: "#DE3A3A"
+  weight: 20
+  buttonStyle: ButtonColorSecurityDepartment # Reserve-Edit
+  roles:
+  - HeadOfSecurity
+  - SecurityCadet
+  - SecurityOfficer
+  - Detective
+  - Warden
+  - Brigmedic # Goob
+  - SecurityClown # event-restricted, Goob
+
+- type: department
+  id: Science
+  name: department-Science
+  description: department-Science-description
+  color: "#D381C9"
+  weight: 60 # Reserve-Edit
+  buttonStyle: ButtonColorScienceDepartment # Reserve-Edit
+  roles:
+  - ResearchDirector
+  - Scientist
+  - ResearchAssistant
+  - Roboticist #Goob
+
+- type: department
+  id: Silicon
+  name: department-Silicon
+  description: department-Silicon-description
+  color: "#D381C9"
+  weight: 10 # Reserve-Edit
+  buttonStyle: ButtonColorSiliconDepartment # Reserve-Edit
+  roles:
+  - Borg
+  - StationAi
+
+- type: department
+  id: Specific
+  name: department-Specific
+  description: department-Specific-description
+  color: "#40A166" # Reserve-Edit
+  weight: 10
+  buttonStyle: ButtonColorSpecificDepartment # Reserve-Edit
+  roles: []
+  # Reserve edit - no need for this, moved RadioHost to Service
+  # - RadioHost # Goobstation
+  # - Boxer
+  # - Reporter
+  # - Zookeeper
+  # - Psychologist
+  primary: false
+  editorHidden: true
+
+- type: department
+  id: Unknown
+  name: department-Unknown
+  description: department-Unknown-description
+  color: "#969696"
+  weight: 0
+  buttonStyle: ButtonColorUnknownDepartment # Reserve-Edit
+  roles: []
+  primary: false
+  editorHidden: true

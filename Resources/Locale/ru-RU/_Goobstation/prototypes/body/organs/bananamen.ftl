@@ -1,0 +1,15 @@
+ent-OrganBananaMenStomach = { ent-FoodBanana }
+    .desc = Очень странный на вид банан, похоже, что внутри у него есть место для хранения пищи.
+    .suffix = Орган, Желудок
+ent-OrganBananaMenLiver = { ent-FoodBanana }
+    .desc = Очень странно выглядящий банан, похоже, что внутри у него есть место для метаболизма химических веществ.
+    .suffix = Орган, Печень
+ent-OrganBananaMenHeart = { ent-FoodBanana }
+    .desc = Очень странно выглядящий банан, похоже, что он почти бьется.
+    .suffix = Орган, Сердце
+ent-OrganBananaMenLungs = { ent-FoodBanana }
+    .desc = Очень странный на вид банан, он выглядит достаточно дряблым, чтобы хранить воздух или что-то в этом роде.
+    .suffix = Орган, Лёгкие
+ent-OrganBananaMenKidneys = { ent-FoodBanana }
+    .desc = Очень странный на вид банан, похоже, его можно использовать для фильтрации загрязняющих веществ.
+    .suffix = Орган, Почки

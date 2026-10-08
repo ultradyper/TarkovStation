@@ -1,0 +1,202 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# tables
+
+- type: entityTable
+  id: CalmPestEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: SnailMigrationLowPop
+    - id: CockroachMigration
+    - id: MouseMigration
+
+- type: entityTable
+  id: SpicyPestEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: KingRatMigration
+    - id: SnailMigration
+
+# events
+
+- type: entity
+  id: MouseMigration
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
+    startAudio:
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
+    earliestStart: 15
+    weight: 6
+    duration: 30 # DeltaV: was 50, used as a delay now
+    chaos: # Goobstation
+      Mess: 10 # there's 15 morbillion mice usually and they're easy to kill
+    eventType: Neutral # Goobstation
+  # Goobstation
+  - type: GameRule
+    chaosScore: 20
+  - type: VentCrittersRule
+    table: !type:GroupSelector # DeltaV: EntityTable instead of spawn entries
+      children:
+      - id: SpawnMobMouse
+      - id: MobMouseCancer
+        weight: 0.02
+      - id: SpawnMobScurret  # Reserve edit: Super Scurret - let scurrets spawn from infestation
+        weight: 0.01
+# Events always spawn a critter regardless of Probability https://github.com/space-wizards/space-station-14/issues/28480 I added the Rat King to their own event with a player cap.
+
+- type: entity
+  id: KingRatMigration
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
+    startAudio:
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
+    earliestStart: 15
+    weight: 6
+    duration: 30 # DeltaV: was 50, used as a delay now
+    minimumPlayers: 30 # Hopefully this is enough for the Rat King's potential Army (it was not, raised from 15 -> 30)
+    chaos: # Goobstation
+      Mess: 10
+      Hostile: 1 # low chance to spawn rat king
+    eventType: HostilesSpawn # Goobstation
+  # Goobstation
+  - type: GameRule
+    chaosScore: 25
+  - type: VentCrittersRule
+    table: !type:GroupSelector # DeltaV: EntityTable instead of spawn entries
+      children:
+      # Goobstation
+      - id: SpawnMobMouse
+      - id: MobMouseCancer
+        weight: 0.02
+      - id: MobLootbug # Goobstation
+        weight: 0.08
+      - id: SpawnMobScurret  # Reserve edit: Super Scurret - let scurrets spawn from infestation
+        weight: 0.01
+    specialEntries:
+    - id: SpawnPointGhostRatKing
+      prob: 0.001
+
+- type: entity
+  id: CockroachMigration
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
+    startAudio:
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
+    weight: 6
+    duration: 30 # DeltaV: was 50, used as a delay now
+    chaos: # Goobstation
+      Mess: 15
+      Hostile: 2
+    eventType: Neutral # Goobstation
+  # Goobstation
+  - type: GameRule
+    chaosScore: 20
+  - type: VentCrittersRule
+    table: !type:GroupSelector # DeltaV: EntityTable instead of spawn entries
+      children:
+      - id: MobCockroach
+        weight: 0.79
+      - id: MobMothroach
+        weight: 0.20
+      - id: MobMothroachMustard # Goob-Mothroaches-Start
+        weight: 0.20
+      - id: MobMothroachLeopard
+        weight: 0.20
+      - id: MobMothroachCecropia
+        weight: 0.20
+      - id: MobMothroachLunar
+        weight: 0.20 # Goob-Mothroaches-End
+      - id: MobSquackroach # Goobstation
+        weight: 0.1
+      - id: MobLootbug # Goobstation
+        weight: 0.3
+      - id: MobMoproach
+        weight: 0.01
+      - id: MobCockroachBig  # Reserve edit: Madagascar cockroach
+        weight: 0.01
+
+- type: entity
+  id: SnailMigrationLowPop
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
+    startAudio:
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
+    weight: 6
+    duration: 30 # DeltaV: was 50, used as a delay now
+    chaos: # Goobstation
+      Friend: -5
+      Mess: 5
+    eventType: Neutral # Goobstation
+  # Goobstation
+  - type: GameRule
+    chaosScore: 20
+  - type: VentCrittersRule
+    table: !type:GroupSelector # DeltaV: EntityTable instead of spawn entries
+      children:
+      - id: MobSnail
+      - id: MobSnailSpeed
+      - id: MobSnailMoth
+
+- type: entity
+  id: SnailMigration
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
+    startAudio:
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
+    earliestStart: 15
+    weight: 6
+    duration: 30 # DeltaV: was 50, used as a delay now
+    minimumPlayers: 30
+    chaos: # Goobstation
+      Mess: 5
+      Hostile: 1 # the very low gib snail prob
+    eventType: Chaotic # Goobstation
+  # Goobstation
+  - type: GameRule
+    chaosScore: 30
+  - type: VentCrittersRule
+    table: !type:GroupSelector # DeltaV: EntityTable instead of spawn entries
+      children:
+      - id: MobSnail
+        weight: 0.84
+      - id: MobSnailSpeed
+        weight: 0.08
+      - id: MobSnailMoth
+        weight: 0.08
+      # Goobstation
+      - id: MobSnailInstantDeath
+        weight: 0.0004

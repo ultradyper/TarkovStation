@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: SauceDispenserMachineCircuitboard
+  icon: { sprite: Structures/smalldispensers.rsi, state: sauce }
+  result: SauceDispenserMachineCircuitboard
+
+- type: latheRecipe
+  parent: EnergyChemDispenserMachineCircuitboard
+  id: EnergyDrinkDispenserMachineCircuitboard
+  result: EnergyDrinkDispenserMachineCircuitboard
+  icon:
+    sprite: _Reserve/Objects/Structures/dispensers.rsi
+    state: drinks
+
+- type: latheRecipe
+  parent: EnergyChemDispenserMachineCircuitboard
+  id: EnergySodaDispenserMachineCircuitboard
+  result: EnergySodaDispenserMachineCircuitboard
+  icon:
+    sprite: _Reserve/Objects/Structures/dispensers.rsi
+    state: soda
+
+- type: latheRecipe
+  parent: EnergyChemDispenserMachineCircuitboard
+  id: EnergyBoozeDispenserMachineCircuitboard
+  result: EnergyBoozeDispenserMachineCircuitboard
+  icon:
+    sprite: _Reserve/Objects/Structures/dispensers.rsi
+    state: alcohol
+
+- type: latheRecipe
+  parent: EnergyChemDispenserMachineCircuitboard
+  id: EnergySauceDispenserMachineCircuitboard
+  result: EnergySauceDispenserMachineCircuitboard
+  icon:
+    sprite: _Reserve/Objects/Structures/dispensers.rsi
+    state: sauce

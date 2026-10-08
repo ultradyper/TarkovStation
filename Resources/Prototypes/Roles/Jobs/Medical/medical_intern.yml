@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: MedicalIntern
+  name: job-name-intern
+  description: job-description-intern
+  playTimeTracker: JobMedicalIntern
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 10h # Goobstation
+      inverted: true # stop playing intern if you're good at med!
+  startingGear: MedicalInternGear
+  icon: "JobIconMedicalIntern"
+  supervisors: job-supervisors-medicine
+  guides: # goobstation
+  - MedicalDoctor
+  - Cloning
+  - Medicine
+  goobcoins: 20 #Goob content
+  weight: 6  # Reserve edit: Fix Assistant job order
+  access:
+  - Medical
+  - Maintenance
+  # Shitmed change
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SurgerySpeedModifier
+      speedModifier: 1.25
+
+- type: startingGear
+  id: MedicalInternGear
+  equipment:
+    shoes: ClothingShoesColorWhite
+    id: MedicalInternPDA
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+    pocket2: BookMedicalReferenceBook
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: MedicalInternChameleonOutfit
+  job: MedicalIntern
+  equipment:
+    head: ClothingHeadHatBeretMedic
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatLabOpened
+    gloves: ClothingHandsGlovesLatex

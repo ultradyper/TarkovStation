@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: GeneDrobeInventory
+  startingInventory:
+    ClothingUniformJumpsuitGenetics: 2
+    ClothingUniformJumpskirtGenetics: 2
+    ClothingShoesColorWhite: 2
+    ClothingOuterCoatLabGene: 2
+    ClothingOuterWinterGen: 2
+    ClothingBackpackGenetics: 2
+    ClothingBackpackSatchelGenetics: 2
+    ClothingBackpackDuffelGenetics: 2
+    ClothingBackpackMessengerGenetics: 2 # Frontier

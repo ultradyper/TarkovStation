@@ -1,0 +1,16 @@
+ent-OrganSpaceAnimalLungs = { ent-OrganAnimalLungs }
+    .desc = { ent-OrganAnimalLungs.desc }
+    .suffix = Космическое животное
+ent-OrganSpaceAnimalHeart = { ent-OrganAnimalHeart }
+    .desc = { ent-OrganAnimalHeart.desc }
+    .suffix = Космическое животное
+ent-OrganGoliathHeart = { ent-OrganAnimalHeart }
+    .desc = { ent-OrganAnimalHeart.desc }
+    .suffix = Голиаф
+ent-OrganDragonLungs = { ent-OrganAnimalLungs }
+    .desc = { ent-OrganAnimalLungs.desc }
+    .suffix = Дракон
+ent-OrganLaserEyes = лазерные глаза хищника
+    .desc = { ent-OrganHumanEyes.desc }
+ent-OrganCobraHeart = железа кобры
+    .desc = { ent-OrganAnimalHeart.desc }

@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: SpawnVendingMachineRestockFoodDrink
+  name: Vending Machine Restock
+  suffix: "food or drink"
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree  # Reserve: Better spawners
+  components:
+  - type: Transform
+    anchored: false  # Reserve: Better spawners
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: base
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: refill_discount
+  - type: ConditionalSpawner
+    prototypes:
+      - VendingMachineRestockDiscountDans
+      - VendingMachineRestockChang
+      - VendingMachineRestockDonut
+      - VendingMachineRestockGetmoreChocolateCorp
+      - VendingMachineRestockRobustSoftdrinks
+      - VendingMachineRestockHotDrinks
+      - VendingMachineRestockHappyHonk
+      - VendingMachineRestockCondimentStation
+
+- type: entity
+  id: SpawnVendingMachineRestockFood
+  name: Vending Machine Restock
+  suffix: "food"
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree  # Reserve: Better spawners
+  components:
+  - type: Transform
+    anchored: false  # Reserve: Better spawners
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: base
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: refill_donuts
+  - type: ConditionalSpawner
+    prototypes:
+      - VendingMachineRestockDiscountDans
+      - VendingMachineRestockChang
+      - VendingMachineRestockDonut
+      - VendingMachineRestockGetmoreChocolateCorp
+      - VendingMachineRestockHappyHonk
+      - VendingMachineRestockCondimentStation
+      - VendingMachineRestockSweetToof # Goobstation
+
+- type: entity
+  id: SpawnVendingMachineRestockDrink
+  name: Vending Machine Restock
+  suffix: "drink"
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree  # Reserve: Better spawners
+  components:
+  - type: Transform
+    anchored: false  # Reserve: Better spawners
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: base
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: refill_cola
+  - type: ConditionalSpawner
+    prototypes:
+      - VendingMachineRestockRobustSoftdrinks
+      - VendingMachineRestockHotDrinks

@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: MIT
+
+- type: reactiveGroup
+  id: Flammable
+
+- type: reactiveGroup
+  id: Extinguish
+
+- type: reactiveGroup
+  id: Acidic

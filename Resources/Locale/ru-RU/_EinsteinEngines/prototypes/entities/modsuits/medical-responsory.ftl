@@ -1,0 +1,27 @@
+ent-ClothingModsuitResponsoryMedical = управление модсьюта "Медответ"
+    .desc = Основной контроллер для модсьюта "Медответ".
+ent-ClothingModsuitGauntletsResponsoryMedical = перчатки модсьюта "Медответ"
+    .desc = Пара перчаток, сшитых для модного модсьюта "Медответ".
+ent-ClothingModsuitHelmetResponsoryMedical = шлем модсьюта "Медответ"
+    .desc = Передовой шлем, разработанный NanoTrasen для модсьюта "Медответ". Он оснащен встроенным дисплеем HUD.
+ent-ClothingModsuitChestplateResponsoryMedical = нагрудный щиток модсьюта "Медответ"
+    .desc = Передовой нагрудный щиток, разработанный NanoTrasen для модсьюта "Медответ". Он оснащен приводимыми в действие сервоприводами для снижения нагрузки на оборудование.
+ent-ClothingModsuitBootsResponsoryMedical = ботинки модсьюта "Медответ"
+    .desc = Передовая пара ботинок для модсьюта "Медответ".
+ent-SuitStorageResponsoryMedical = { ent-SuitStorageBase }
+    .desc = { ent-SuitStorageBase.desc }
+    .suffix = Модсьют "Медответ", ОБР
+
+ent-ClothingModsuitMedical = управление медицинским скафандром быстрого реагирования
+    .desc = Главный контроллер для медицинского модсьюта.
+ent-ClothingModsuitGauntletsMedical = рукавицы для медицинского модсьюта быстрого реагирования
+    .desc = Пара перчаток, сшитых для модного модсьюта медицинского персонала.
+ent-ClothingModsuitHelmetMedical = шлем медицинского спасательного модсьюта
+    .desc = Передовой шлем, разработанный NanoTrasen для медицинского модсьюта. Он оснащен встроенным дисплеем HUD.
+ent-ClothingModsuitChestplateMedical = нагрудный щиток медицинского защитного модсьюта
+    .desc = Передовой нагрудный щиток, разработанный NanoTrasen для медицинского модсьюта. Он оснащен приводимыми в действие сервоприводами для снижения нагрузки на оборудование.
+ent-ClothingModsuitBootsMedical = ботинки медицинского назначения модсьют
+    .desc = Передовая пара ботинок для медицинского модсьюта.
+ent-SuitStorageMedical = { ent-SuitStorageBase }
+    .desc = { ent-SuitStorageBase.desc }
+    .suffix = Медицинский модсьют

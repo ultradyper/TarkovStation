@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+## Static
+- type: latheRecipePack
+  id: MiningToolsStatic
+  recipes:
+  - Fulton
+  - FultonBeacon
+  - OreBag
+
+- type: latheRecipePack
+  id: SalvageExplosivesStatic # emag-locked
+  recipes:
+  - SeismicCharge
+
+## Dynamic
+- type: latheRecipePack
+  id: MiningWeapons
+  recipes:
+  - WeaponProtoKineticAccelerator
+  - WeaponProtoKineticShotgun
+  - WeaponProtoKineticRepeater
+  - WeaponProtoKineticPistol
+  - WeaponPlasmaCutter
+  # - WeaponPlasmaRifle
+
+- type: latheRecipePack
+  id: MiningBoards
+  recipes:
+  - ShuttleGunKineticCircuitboard
+
+- type: latheRecipePack
+  id: MiningUpgrades
+  recipes:
+  - PKAUpgradeDamage
+  - PKAUpgradeRange
+  - PKAUpgradeFireRate
+  - PKAUpgradeSpace

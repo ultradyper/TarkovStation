@@ -1,0 +1,91 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  name: nuclear authentication disk
+  parent: [BaseItem, BaseGrandTheftContraband]
+  id: NukeDisk
+  description: A nuclear auth disk, capable of arming a nuke if used along with a code. Note from nanotrasen reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!"
+  components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/disk_pickup.ogg
+      params:
+        volume: -7
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/disk_drop.ogg
+      params:
+        volume: -7
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/disk_drop.ogg
+      params:
+        volume: -7
+  # Goobstation edit end
+  - type: NukeDisk
+  - type: SpecialRespawn
+    prototype: NukeDisk
+  - type: Sprite
+    sprite: Objects/Misc/nukedisk.rsi
+    state: icon
+  - type: StaticPrice
+    price: 2000
+  - type: CargoSellBlacklist
+  - type: ArrivalsBlacklist
+  - type: WarpPoint
+    follow: true
+    location: nuke disk
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: Tag
+    tags:
+    - CD  # To fit inside CD racks and CD cases.  # Reserve: CD disks fix
+    - HighRiskItem
+    - GhostOnlyWarp
+  - type: StealTarget
+    stealGroup: NukeDisk
+  - type: SupermatterImmune # Goobstation
+  # Reserve: CD disks fix start
+  - type: Item
+    size: Tiny
+  # Reserve: CD disks fix end
+
+- type: entity
+  name: nuclear authentication disk
+  parent: [BaseItem, BaseGrandTheftContraband]
+  id: NukeDiskFake
+  suffix: Fake
+  description: A nuclear auth disk, capable of arming a nuke if used along with a code. Note from nanotrasen reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!"
+  components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/disk_pickup.ogg
+      params:
+        volume: -7
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/disk_drop.ogg
+      params:
+        volume: -7
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/disk_drop.ogg
+      params:
+        volume: -7
+  # Goobstation edit end
+  - type: Sprite
+    sprite: Objects/Misc/nukedisk.rsi
+    state: icon
+  - type: StaticPrice
+    price: 1 # it's worth even less than normal items. Perfection.
+  - type: Tag
+    tags:
+    - CD  # To fit inside CD racks and CD cases.  # Reserve: CD disks fix
+    - FakeNukeDisk
+  # Reserve: CD disks fix start
+  - type: Item
+    size: Tiny
+  # Reserve: CD disks fix end

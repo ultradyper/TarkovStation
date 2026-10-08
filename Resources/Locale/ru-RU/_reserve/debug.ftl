@@ -1,0 +1,15 @@
+ent-Audio = дебаг: аудио
+    .desc = Аудиообъект, используемый движком.
+    .suffix = DEBUG
+ent-debugRotation = дебаг: поворот
+    .desc = { "" }
+    .suffix = DEBUG
+ent-debugRotation1 = дебаг: поворот 1
+    .desc = { "" }
+    .suffix = DEBUG
+ent-debugRotation4 = дебаг: поворот 4
+    .desc = { "" }
+    .suffix = DEBUG
+ent-debugRotationTex = дебаг: поворот Tex
+    .desc = { "" }
+    .suffix = DEBUG

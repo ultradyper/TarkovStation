@@ -1,0 +1,11 @@
+ent-MobMouseBlob = { ent-MobMouse }
+    .desc = { ent-MobMouse.desc }
+    .suffix = Блоб
+ent-MobMouseCancerBlob = раковая мышь
+    .desc = Токсичная. Скуик!
+    .suffix = Блоб
+ent-SpawnPointGhostBlobRat = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }
+    .suffix = Мышь-носитель блоба, Блоб
+ent-MindRoleBlob = Блоб
+    .desc = { ent-BaseMindRoleAntag.desc }

@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: Tag
+  id: EnergySword
+
+- type: Tag
+  id: XenomorphItem
+
+- type: Tag
+  id: FluxCore
+
+- type: Tag
+  id: FluxCoreSmall
+
+- type: Tag
+  id: EvacPod

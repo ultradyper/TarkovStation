@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: edgeSpreader
+  id: Kudzu
+  updatesPerSecond: 1
+
+- type: edgeSpreader
+  id: Puddle
+  updatesPerSecond: 16
+
+- type: edgeSpreader
+  id: Smoke
+  updatesPerSecond: 16 # goob edit - this isn't even used anywhere.
+
+- type: edgeSpreader
+  id: MetalFoam
+  updatesPerSecond: 16
+  preventSpreadOnSpaced: false

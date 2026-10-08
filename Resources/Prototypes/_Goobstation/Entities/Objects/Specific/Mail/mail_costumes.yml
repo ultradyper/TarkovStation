@@ -1,0 +1,83 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: PackageDelivery
+  id: MailCosplayMaid
+  suffix: Cosplay, Maid
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingUniformJumpskirtJanimaid
+      orGroup: Uniform
+    - id: ClothingUniformJumpskirtJanimaidmini
+      orGroup: Uniform
+    - id: MegaSprayBottle
+    - id: ClothingHandsGlovesColorWhite
+
+- type: entity
+  parent: PackageDelivery
+  id: MailCosplayWizard
+  suffix: Cosplay, Wizard
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingOuterWizard
+    - id: ClothingHeadHatWizard
+    - id: ClothingShoesWizard
+    - id: PonderingOrb
+      prob: 0.3
+    - id: RGBStaff
+      prob: 0.1
+
+- type: entity
+  parent: PackageDelivery
+  id: MailCosplayNurse
+  suffix: Cosplay, Nurse
+  components:
+  - type: Mail
+    contents:
+      - id: ClothingUniformJumpskirtOfLife
+      - id: ClothingHeadNurseHat
+      - id: Syringe
+
+- type: entity
+  parent: PackageDelivery
+  id: MailCosplayTacticalMaid
+  suffix: Cosplay, Tactical Maid
+  components:
+  - type: Mail
+    contents:
+      - id: ClothingUniformJumpskirtTacticalMaid
+      - id: ClothingHeadHatTacticalMaidHeadband
+      - id: MegaSprayBottle
+      - id: ClothingHandsTacticalMaidGloves
+
+- type: entity
+  parent: PackageDelivery
+  id: MailNoir
+  suffix: noir
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingUniformJumpsuitDetectiveGrey
+    - id: ClothingUniformJumpskirtDetectiveGrey
+    - id: ClothingHeadHatBowlerHat
+    - id: ClothingOuterCoatGentle
+
+- type: entity
+  parent: LetterDelivery
+  id: MailFishingCap
+  suffix: Fishing Cap
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingHeadFishCap
+
+- type: entity
+  parent: LetterDelivery
+  id: MailSunglasses
+  suffix: Sunglasses
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingEyesGlassesSunglasses

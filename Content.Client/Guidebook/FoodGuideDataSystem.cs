@@ -1,0 +1,271 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Client.Botany.Components;
+using Content.Shared.Construction.Prototypes;
+using Content.Shared.Construction;
+using Content.Shared.Construction.NodeEntities;
+using Content.Shared.Construction.Steps;
+using Content.Shared.Chemistry.Reaction;
+using Content.Shared.EntityEffects.Effects.EntitySpawning;
+using Content.Shared.Kitchen;
+using Content.Shared.Nutrition.Components;
+using Robust.Shared.Prototypes;
+using System.Linq;
+
+namespace Content.Client.Guidebook;
+
+public enum FoodEntitySourceKind
+{
+    MixingReaction,
+    SliceFrom,
+    RollFrom,
+    Hydroponics,
+}
+
+public readonly record struct FoodEntitySource(
+    FoodEntitySourceKind Kind,
+    ReactionPrototype? Reaction,
+    EntProtoId? SourceEntity,
+    string? SeedId,
+    string Group = "Ingredients"  // Reserve edit: Fix recipe categories
+);
+
+public sealed partial class FoodGuideDataSystem : EntitySystem
+{
+    private const string RollingToolQuality = "Rolling";
+
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+
+    private readonly Dictionary<EntProtoId, List<FoodEntitySource>> _sources = new();
+    private readonly Dictionary<EntProtoId, List<FoodRecipePrototype>> _microwaveByResult = new();
+    private readonly HashSet<EntProtoId> _plantEntities = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+        Rebuild();
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
+    {
+        if (ev.ByType.ContainsKey(typeof(ReactionPrototype))
+            || ev.ByType.ContainsKey(typeof(EntityPrototype))
+            || ev.ByType.ContainsKey(typeof(FoodRecipePrototype))
+            || ev.ByType.ContainsKey(typeof(ConstructionGraphPrototype)))
+            Rebuild();
+    }
+
+    public IReadOnlyList<FoodEntitySource> GetSources(EntProtoId entityId)
+    {
+        return _sources.GetValueOrDefault(entityId) ?? [];
+    }
+
+    public IReadOnlyList<FoodEntitySource> GetNonPlantSources(EntProtoId entityId)
+    {
+        return GetSources(entityId).Where(s => s.Kind != FoodEntitySourceKind.Hydroponics).ToList();
+    }
+
+    public IReadOnlyList<FoodRecipePrototype> GetMicrowaveRecipes(EntProtoId result)
+    {
+        return _microwaveByResult.GetValueOrDefault(result) ?? [];
+    }
+
+    public bool IsPlant(EntProtoId entityId) => _plantEntities.Contains(entityId);
+
+    public bool HasObtainSource(EntProtoId entityId)
+    {
+        if (IsPlant(entityId))
+            return false;
+
+        if (GetMicrowaveRecipes(entityId).Count > 0)
+            return true;
+
+        foreach (var source in GetNonPlantSources(entityId))
+        {
+            if (source.Kind is FoodEntitySourceKind.MixingReaction
+                or FoodEntitySourceKind.SliceFrom
+                or FoodEntitySourceKind.RollFrom)
+                return true;
+        }
+
+        return false;
+    }
+
+    public IEnumerable<EntityPrototype> GetGuideIngredients()
+    {
+        var ids = new HashSet<EntProtoId>();
+
+        foreach (var recipe in _prototypes.EnumeratePrototypes<FoodRecipePrototype>())
+        {
+            foreach (var solid in recipe.IngredientsSolids.Keys)
+            {
+                if (!IsPlant(solid))
+                    ids.Add(solid);
+            }
+
+            if (!IsPlant(recipe.Result))  // Reserve edit: Fix recipe categories
+                ids.Add(recipe.Result);
+        }
+
+        foreach (var id in ids.ToList())
+        {
+            foreach (var source in GetSources(id))
+            {
+                if (source.SourceEntity is { } parent && !IsPlant(parent))
+                    ids.Add(parent);
+            }
+        }
+
+        AddSliceProducts(ids); // Reserve edit: guide-book #323
+
+        return ids
+            .Where(HasObtainSource)
+            .Select(id => _prototypes.Index<EntityPrototype>(id))
+            .OrderBy(p => p.Name);
+    }
+
+    // Reserve edit start: guide-book #323
+    private void AddSliceProducts(HashSet<EntProtoId> ids)
+    {
+        foreach (var (entityId, sources) in _sources)
+        {
+            if (ids.Contains(entityId))
+                continue;
+
+            foreach (var source in sources)
+            {
+                if (source.Kind != FoodEntitySourceKind.SliceFrom)
+                    continue;
+
+                ids.Add(entityId);
+                break;
+            }
+        }
+    }
+    // Reserve edit end: guide-book #323
+
+    private void Rebuild()
+    {
+        _sources.Clear();
+        _microwaveByResult.Clear();
+        _plantEntities.Clear();
+
+        var pendingSlices = new Dictionary<string, (EntProtoId Slice, EntProtoId Parent, string? Group)>();  // Reserve edit: Fix recipe categories
+
+        foreach (var entity in _prototypes.EnumeratePrototypes<EntityPrototype>())
+        {
+            if (entity.Abstract)
+                continue;
+
+            if (entity.TryComp<SliceableFoodComponent>(out var sliceable, _componentFactory)
+                && sliceable.Slice is { } sliceId)
+            {
+                pendingSlices[sliceId + entity.ID] = (sliceId, entity.ID, sliceable.Group);  // Reserve edit: Fix recipe categories
+            }
+
+            // Reserve edit: ComponentRegistryEntry no longer exposes the raw mapping; read the deserialized component instead
+            if (entity.TryComp<ProduceComponent>(out var produce, _componentFactory)
+                && !string.IsNullOrEmpty(produce.SeedId))
+            {
+                _plantEntities.Add(entity.ID);
+                AddSource(entity.ID, new FoodEntitySource(FoodEntitySourceKind.Hydroponics, null, null, produce.SeedId));
+            }
+        }
+
+        IndexConstructionRollingSources();
+
+        foreach (var reaction in _prototypes.EnumeratePrototypes<ReactionPrototype>())
+        {
+            foreach (var effect in reaction.Effects)
+            {
+                // Reserve edit: CreateEntityReactionEffect renamed to SpawnEntity upstream
+                if (effect is not SpawnEntity spawnEffect)
+                    continue;
+
+                AddSource(spawnEffect.Entity, new FoodEntitySource(FoodEntitySourceKind.MixingReaction, reaction, null, null));
+            }
+        }
+
+        foreach (var recipe in _prototypes.EnumeratePrototypes<FoodRecipePrototype>())
+        {
+            if (!_microwaveByResult.TryGetValue(recipe.Result, out var list))
+            {
+                list = new List<FoodRecipePrototype>();
+                _microwaveByResult[recipe.Result] = list;
+            }
+
+            list.Add(recipe);
+
+            // Reserve edit start: Fix recipe categories - inherit group from parent
+            foreach (var (slice, sliceData) in pendingSlices)
+            {
+                if (sliceData.Parent.ToString() == recipe.Result && sliceData.Group == null)
+                    pendingSlices[slice] = (sliceData.Slice, sliceData.Parent, recipe.Group);
+            }
+            // Reserve edit end: Fix recipe categories - inherit group from parent
+        }
+
+        foreach (var (slice, sliceData) in pendingSlices)  // Reserve edit: Fix recipe categories
+        {
+            AddSource(sliceData.Slice, new FoodEntitySource(
+                FoodEntitySourceKind.SliceFrom, null, sliceData.Parent, null, sliceData.Group is null ? "Ingredients" : sliceData.Group
+            ));
+            // Reserve remove: guide-book #323
+        }
+
+        foreach (var list in _microwaveByResult.Values)
+            list.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+    }
+
+    private void IndexConstructionRollingSources()
+    {
+        foreach (var graph in _prototypes.EnumeratePrototypes<ConstructionGraphPrototype>())
+        {
+            foreach (var node in graph.Nodes.Values)
+            {
+                if (!TryGetGraphNodeEntityId(node.Entity, out var sourceEntity))
+                    continue;
+
+                foreach (var edge in node.Edges)
+                {
+                    if (!graph.Nodes.TryGetValue(edge.Target, out var targetNode))
+                        continue;
+
+                    if (!TryGetGraphNodeEntityId(targetNode.Entity, out var resultEntity))
+                        continue;
+
+                    if (!edge.Steps.Any(step => step is ToolConstructionGraphStep toolStep
+                            && toolStep.Tool == RollingToolQuality))
+                        continue;
+
+                    AddSource(resultEntity, new FoodEntitySource(FoodEntitySourceKind.RollFrom, null, sourceEntity, null));
+                }
+            }
+        }
+    }
+
+    private static bool TryGetGraphNodeEntityId(IGraphNodeEntity entity, out EntProtoId id)
+    {
+        if (entity is StaticNodeEntity staticEntity && !string.IsNullOrEmpty(staticEntity.Id))
+        {
+            id = new EntProtoId(staticEntity.Id);
+            return true;
+        }
+
+        id = default;
+        return false;
+    }
+
+    private void AddSource(EntProtoId entityId, FoodEntitySource source)
+    {
+        if (!_sources.TryGetValue(entityId, out var list))
+        {
+            list = new List<FoodEntitySource>();
+            _sources[entityId] = list;
+        }
+
+        list.Add(source);
+    }
+}

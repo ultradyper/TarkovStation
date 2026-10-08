@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: BananiumSword
+  graph:
+    - node: start
+      edges:
+        - to: bananiumSword
+          steps:
+            - tag: ToySword
+              name: construction-graph-tag-toy-sword
+              icon:
+                sprite: Objects/Weapons/Melee/e_sword.rsi
+                state: e_sword
+              doAfter: 2
+            - material: Bananium
+              amount: 10
+              doAfter: 1
+    - node: bananiumSword
+      entity: BananiumSword

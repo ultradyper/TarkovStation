@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: MIT
+
+- type: constructionGraph
+  id: LightTorch
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: torch
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+    - node: torch
+      entity: Torch

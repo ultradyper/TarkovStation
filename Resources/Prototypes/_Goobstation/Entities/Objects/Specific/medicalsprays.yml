@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity # Not very specific anymore but whatever
+  name: styptic powder spray bottle
+  id: SprayBottleStypticPowder
+  suffix: Filled, Styptic powder
+  parent: SprayBottleBase # Can't parent actual spray bottles because solution fill visuals. todo goob.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Medical/Stypticspray.rsi
+    layers:
+    - state: icon
+  - type: Tag
+    tags:
+    - Spray
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: StypticPowder
+          Quantity: 100
+
+- type: entity
+  name: silver sulfadiazine spray bottle
+  id: SprayBottleSilverSulfadiazine
+  suffix: Filled, Silver sulfadiazine
+  parent: SprayBottleBase # Can't parent actual spray bottles because solution fill visuals. todo goob.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Medical/Silverspray.rsi
+    layers:
+    - state: icon
+  - type: Tag
+    tags:
+    - Spray
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: SilverSulfadiazine
+          Quantity: 100

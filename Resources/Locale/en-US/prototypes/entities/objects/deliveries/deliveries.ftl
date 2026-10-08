@@ -1,0 +1,12 @@
+ent-BaseDelivery = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-PackageDelivery = package
+    .desc = { ent-BaseDelivery.desc }
+ent-LetterDelivery = letter
+    .desc = { ent-BaseDelivery.desc }
+ent-MailAdminFun = { ent-LetterDelivery }
+    .suffix = Admeme
+    .desc = { ent-LetterDelivery.desc }
+ent-MailLargeAdminFun = { ent-PackageDelivery }
+    .suffix = Admeme
+    .desc = { ent-PackageDelivery.desc }

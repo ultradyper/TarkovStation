@@ -1,0 +1,386 @@
+using System;
+using System.Numerics;
+using System.Text;
+using Robust.Client.ResourceManagement;
+using Robust.Shared.IoC;
+using Robust.Shared.Maths;
+
+namespace Robust.Client.Graphics
+{
+    /// <summary>
+    ///     Describes an outline drawn around text.
+    /// </summary>
+    public readonly record struct TextOutline(float Thickness, Color Color)
+    {
+        /// <summary>
+        ///     The default text outline.
+        /// </summary>
+        public static TextOutline Default => new(1f, Color.Black);
+
+        /// <summary>
+        ///     Creates an outline from optional settings.
+        /// </summary>
+        public static TextOutline? FromOverrides(float? thickness, Color? color)
+        {
+            if (thickness is null && color is null)
+                return null;
+
+            var actualThickness = thickness ?? Default.Thickness;
+            return actualThickness > 0
+                ? new TextOutline(actualThickness, color ?? Default.Color)
+                : null;
+        }
+    }
+
+    /// <summary>
+    ///     A generic font for rendering of text.
+    ///     Does not contain properties such as size. Those are specific to children such as <see cref="VectorFont" />
+    /// </summary>
+    public abstract class Font
+    {
+        /// <summary>
+        ///     The maximum amount a glyph goes above the baseline, in pixels.
+        /// </summary>
+        public abstract int GetAscent(float scale);
+
+        /// <summary>
+        ///     The maximum glyph height of a line of text in pixels, not relative to the baseline.
+        /// </summary>
+        public abstract int GetHeight(float scale);
+
+        /// <summary>
+        ///     The maximum amount a glyph drops below the baseline, in pixels.
+        /// </summary>
+        public abstract int GetDescent(float scale);
+
+        /// <summary>
+        ///     The distance between the baselines of two consecutive lines, in pixels.
+        ///     Basically, if you encounter a new line, this is how much you need to move down the cursor.
+        /// </summary>
+        public abstract int GetLineHeight(float scale);
+
+        /// <summary>
+        ///     The distance between the edges of two consecutive lines, in pixels.
+        /// </summary>
+        public int GetLineSeparation(float scale)
+        {
+            return GetLineHeight(scale) - GetHeight(scale);
+        }
+
+        /// <summary>
+        ///     Draw a character at a certain baseline position on screen.
+        /// </summary>
+        /// <param name="handle">The drawing handle to draw to.</param>
+        /// <param name="rune">The Unicode code point to draw.</param>
+        /// <param name="baseline">The baseline from which to draw the character.</param>
+        /// <param name="scale">DPI scale factor to render the font at.</param>
+        /// <param name="color">The color of the character to draw.</param>
+        /// <param name="fallback">If the character is not available, render "�" instead.</param>
+        /// <returns>How much to advance the cursor to draw the next character.</returns>
+        public abstract float DrawChar(
+            DrawingHandleBase handle, Rune rune, Vector2 baseline, float scale,
+            Color color, bool fallback=true);
+
+        /// <summary>
+        ///     Draws only the outline of a character and returns its advance.
+        /// </summary>
+        /// <remarks>
+        ///     Rendering outlines separately from glyph fills allows text renderers to batch both passes by texture.
+        /// </remarks>
+        public abstract float DrawCharOutline(
+            DrawingHandleBase handle, Rune rune, Vector2 baseline, float scale,
+            TextOutline outline, bool fallback=true);
+
+        /// <summary>
+        ///     Gets metrics describing the dimensions and positioning of a single glyph in the font.
+        /// </summary>
+        /// <param name="rune">The unicode codepoint to fetch the glyph metrics for.</param>
+        /// <param name="scale">DPI scale factor to render the font at.</param>
+        /// <param name="fallback">
+        ///     If the character is not available, return data for "�" instead.
+        ///     This can still fail if the font does not define � itself.
+        /// </param>
+        /// <returns>
+        ///     <c>null</c> if this font does not have a glyph for the specified character,
+        ///     otherwise the metrics you asked for.
+        /// </returns>
+        /// <seealso cref="TryGetCharMetrics"/>
+        public abstract CharMetrics? GetCharMetrics(Rune rune, float scale, bool fallback=true);
+
+        /// <summary>
+        ///     Try-pattern version of <see cref="GetCharMetrics"/>.
+        /// </summary>
+        public bool TryGetCharMetrics(Rune rune, float scale, out CharMetrics metrics, bool fallback=true)
+        {
+            var maybe = GetCharMetrics(rune, scale);
+            if (maybe.HasValue)
+            {
+                metrics = maybe.Value;
+                return true;
+            }
+
+            metrics = default;
+            return false;
+        }
+    }
+
+    /// <summary>
+    ///     Font type that renders vector fonts such as OTF and TTF fonts from a <see cref="FontResource"/>
+    /// </summary>
+    public sealed class VectorFont : Font
+    {
+        public int Size { get; }
+
+        internal IFontInstanceHandle Handle { get; }
+
+        public VectorFont(FontResource res, int size)
+        {
+            Size = size;
+            Handle = IoCManager.Resolve<IFontManagerInternal>().MakeInstance(res.FontFaceHandle, size);
+        }
+
+        internal VectorFont(IFontInstanceHandle handle, int size)
+        {
+            Size = size;
+            Handle = handle;
+        }
+
+        public override int GetAscent(float scale) => Handle.GetAscent(scale);
+        public override int GetHeight(float scale) => Handle.GetHeight(scale);
+        public override int GetDescent(float scale) => Handle.GetDescent(scale);
+        public override int GetLineHeight(float scale) => Handle.GetLineHeight(scale);
+
+        public override float DrawChar(DrawingHandleBase handle, Rune rune, Vector2 baseline, float scale, Color color, bool fallback=true)
+        {
+            if (!TryGetGlyph(rune, scale, fallback, 0, out var metrics, out var texture, out _))
+                return 0;
+
+            if (texture == null)
+                return metrics.Advance;
+
+            var glyphPosition = baseline + new Vector2(metrics.BearingX, -metrics.BearingY);
+            DrawGlyph(handle, texture, glyphPosition, color);
+            return metrics.Advance;
+        }
+
+        public override float DrawCharOutline(
+            DrawingHandleBase handle, Rune rune, Vector2 baseline, float scale,
+            TextOutline outline, bool fallback=true)
+        {
+            if (!TryGetGlyph(rune, scale, fallback, outline.Thickness, out var metrics, out var texture, out var outlinedGlyph))
+                return 0;
+
+            if (outline.Thickness > 0 && texture != null && outlinedGlyph is { } glyph)
+            {
+                var outlinePosition = baseline + new Vector2(glyph.Left, -glyph.Top);
+                DrawGlyph(handle, glyph.Texture, outlinePosition, outline.Color);
+            }
+
+            return metrics.Advance;
+        }
+
+        private bool TryGetGlyph(
+            Rune rune,
+            float scale,
+            bool fallback,
+            float outlineThickness,
+            out CharMetrics metrics,
+            out Texture? texture,
+            out OutlinedGlyph? outlinedGlyph)
+        {
+            if (Handle.TryGetGlyph(rune, scale, outlineThickness, out metrics, out texture, out outlinedGlyph))
+                return true;
+
+            if (!fallback || Rune.IsWhiteSpace(rune))
+                return false;
+
+            return Handle.TryGetGlyph(new Rune('�'), scale, outlineThickness, out metrics, out texture, out outlinedGlyph);
+        }
+
+        private static void DrawGlyph(DrawingHandleBase handle, Texture texture, Vector2 position, Color color)
+        {
+            if (handle is DrawingHandleWorld worldhandle)
+                worldhandle.DrawTextureRect(texture, Box2.FromDimensions(position, texture.Size), color);
+            else
+                handle.DrawTexture(texture, position, color);
+        }
+
+        public override CharMetrics? GetCharMetrics(Rune rune, float scale, bool fallback=true)
+        {
+            var metrics = Handle.GetCharMetrics(rune, scale);
+            if (metrics == null && !Rune.IsWhiteSpace(rune) && fallback)
+                return Handle.GetCharMetrics(new Rune('�'), scale);
+            return metrics;
+        }
+    }
+
+    public sealed class StackedFont : Font
+    {
+        // _main is the "default" font; the top of the Stack.
+        public readonly Font _main;
+        public readonly Font[] Stack;
+
+        public StackedFont(params Font[] args)
+        {
+            if (args.Length < 1)
+                throw new ArgumentException("At least one font is required");
+
+            Stack = args;
+            _main = args[0];
+        }
+
+        // All metrics methods use the default font (_main).
+        // Technically these could vary between stacked fonts, but that is a case
+        // that really should already be avoided for so many other reasons.
+        public override int GetAscent(float scale) => _main.GetAscent(scale);
+        public override int GetHeight(float scale) => _main.GetHeight(scale);
+        public override int GetDescent(float scale) => _main.GetDescent(scale);
+        public override int GetLineHeight(float scale) => _main.GetLineHeight(scale);
+
+        // DrawChar just proxies to the stack, or invokes _main's fallback.
+        public override float DrawChar(DrawingHandleBase handle, Rune rune, Vector2 baseline, float scale, Color color, bool fallback=true)
+        {
+            foreach (var f in Stack)
+            {
+                var w = f.DrawChar(handle, rune, baseline, scale, color, fallback: false);
+                if (w != 0f)
+                    return w;
+            }
+
+            if (fallback)
+                return _main.DrawChar(handle, rune, baseline, scale, color, fallback: true);
+
+            return 0f;
+        }
+
+        public override float DrawCharOutline(
+            DrawingHandleBase handle, Rune rune, Vector2 baseline, float scale,
+            TextOutline outline, bool fallback=true)
+        {
+            foreach (var f in Stack)
+            {
+                var w = f.DrawCharOutline(handle, rune, baseline, scale, outline, fallback: false);
+                if (w != 0f)
+                    return w;
+            }
+
+            if (fallback)
+                return _main.DrawCharOutline(handle, rune, baseline, scale, outline, fallback: true);
+
+            return 0f;
+        }
+
+        public override CharMetrics? GetCharMetrics(Rune rune, float scale, bool fallback=true)
+        {
+            foreach (var f in Stack)
+            {
+                var m = f.GetCharMetrics(rune, scale, fallback: false);
+                if (m != null)
+                    return m;
+            }
+
+            if (!Rune.IsWhiteSpace(rune) && fallback)
+                return _main.GetCharMetrics(rune, scale, fallback: true);
+
+            return null;
+        }
+    }
+
+    public sealed class DummyFont : Font
+    {
+        public override int GetAscent(float scale) => default;
+        public override int GetHeight(float scale) => default;
+        public override int GetDescent(float scale) => default;
+        public override int GetLineHeight(float scale) => default;
+
+        public override float DrawChar(DrawingHandleBase handle, Rune rune, Vector2 baseline, float scale, Color color, bool fallback=true)
+        {
+            // Nada, it's a dummy after all.
+            return 0;
+        }
+
+        public override float DrawCharOutline(
+            DrawingHandleBase handle, Rune rune, Vector2 baseline, float scale,
+            TextOutline outline, bool fallback=true)
+        {
+            // Nada, it's a dummy after all.
+            return 0;
+        }
+
+        public override CharMetrics? GetCharMetrics(Rune rune, float scale, bool fallback=true)
+        {
+            // Nada, it's a dummy after all.
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Possible values for font weights. Larger values have thicker font strokes.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// These values are based on the <c>usWeightClass</c> property of the OpenType specification:
+    /// https://learn.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="ISystemFontFace.Weight"/>
+    public enum FontWeight : ushort
+    {
+        Thin = 100,
+        ExtraLight = 200,
+        UltraLight = ExtraLight,
+        Light = 300,
+        SemiLight = 350,
+        Normal = 400,
+        Regular = Normal,
+        Medium = 500,
+        SemiBold = 600,
+        DemiBold = SemiBold,
+        Bold = 700,
+        ExtraBold = 800,
+        UltraBold = ExtraBold,
+        Black = 900,
+        Heavy = Black,
+        ExtraBlack = 950,
+        UltraBlack = ExtraBlack,
+    }
+
+    /// <summary>
+    /// Possible slant values for fonts.
+    /// </summary>
+    /// <seealso cref="ISystemFontFace.Slant"/>
+    public enum FontSlant : byte
+    {
+        // NOTE: Enum values correspond to DWRITE_FONT_STYLE.
+        Normal = 0,
+        Oblique = 1,
+
+        // FUN FACT: they're called "italics" because they look like the Leaning Tower of Pisa.
+        // Don't fact-check that.
+        Italic = 2
+    }
+
+    /// <summary>
+    /// Possible values for font widths. Larger values are proportionally wider.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// These values are based on the <c>usWidthClass</c> property of the OpenType specification:
+    /// https://learn.microsoft.com/en-us/typography/opentype/spec/os2#uswidthclass
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="ISystemFontFace.Width"/>
+    public enum FontWidth : ushort
+    {
+        UltraCondensed = 1,
+        ExtraCondensed = 2,
+        Condensed = 3,
+        SemiCondensed = 4,
+        Normal = 5,
+        Medium =  Normal,
+        SemiExpanded = 6,
+        Expanded = 7,
+        ExtraExpanded = 8,
+        UltraExpanded = 9,
+    }
+}

@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: accessLevel
+  id: NanotrasenRepresentative
+  name: id-card-access-level-ntr
+
+- type: accessLevel
+  id: BlueshieldOfficer
+  name: id-card-access-level-bso

@@ -1,0 +1,123 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+## Static
+
+- type: latheRecipePack
+  id: TopicalsStatic
+  recipes:
+  - Brutepack
+  - Ointment
+  - Gauze
+
+- type: latheRecipePack
+  id: BasicChemistryStatic
+  recipes:
+  - Beaker
+  - LargeBeaker
+  - Syringe
+  - Dropper #Goobstation
+  - PillCanister
+  - HandLabeler
+  - ChemistryEmptyVial
+  - ChemistryEmptyVialSmall
+  - ChemicalPayload # Goobstation?
+  - Dropper
+
+- type: latheRecipePack
+  parent: BasicChemistryStatic
+  id: ChemistryStatic
+  recipes:
+  - Jug
+  - ChemistryEmptyBottle01
+  - ClothingEyesGlassesChemical
+
+- type: latheRecipePack
+  id: SurgeryStatic
+  recipes:
+  - Scalpel
+  - Retractor
+  - Cautery
+  - Drill
+  - Saw
+  - Hemostat
+
+- type: latheRecipePack
+  id: MedicalStatic
+  recipes:
+  - Implanter
+  - Defibrillator
+  - HandheldHealthAnalyzer
+  - DiseaseSwab
+  - BodyBag
+  - WhiteCane
+  - OffsetCane
+  - OffsetCaneWood
+  - JetInjector
+
+- type: latheRecipePack
+  id: RollerBedsStatic
+  recipes:
+  - RollerBedSpawnFolded
+  - CheapRollerBedSpawnFolded
+  - EmergencyRollerBedSpawnFolded
+
+- type: latheRecipePack
+  id: MedicalClothingStatic
+  recipes:
+  - ClothingHandsGlovesLatex
+  - ClothingHandsGlovesNitrile
+  - ClothingMaskSterile
+  # Reserve edit start: Orchid's Barmania - Service Heaven
+  - ClothingOuterApronChemist
+  - ClothingHandsGlovesChemistAdvanced
+  - ClothingHandsGlovesMittsChemist
+  - ClothingMaskBreathChemist
+  # Reserve edit end: Orchid's Barmania - Service Heaven
+
+# These are all empty
+- type: latheRecipePack
+  id: EmptyMedkitsStatic
+  recipes:
+  - Medkit
+  - MedkitBurn
+  - MedkitToxin
+  - MedkitO2
+  - MedkitBrute
+  - MedkitAdvanced
+  - MedkitRadiation
+#  - MedkitCombat #goob - Move combat kit to research
+
+- type: latheRecipePack
+  id: MedicalBoardsStatic
+  recipes:
+  - ElectrolysisUnitMachineCircuitboard
+  - CentrifugeMachineCircuitboard
+  - ChemDispenserMachineCircuitboard
+  - ChemMasterMachineCircuitboard
+  - CondenserMachineCircuitBoard
+  - HotplateMachineCircuitboard
+
+## Dynamic
+
+# Shared with protolathe
+- type: latheRecipePack
+  id: Chemistry
+  recipes:
+  - CryostasisBeaker
+  - SyringeCryostasis
+  - BluespaceBeaker
+  - SyringeBluespace
+  #- LauncherSyringe # Goob i think  we dont have these
+  #- MiniSyringe # Goob i think  we dont have these
+  - AdvancedJetInjector
+  - MedkitCombat #goob - Move combat kit to research
+  - VialBluespace # goob edit - bluespace vials
+  - CryostasisCigarette # goob - cryo cig
+
+- type: latheRecipePack
+  id: MedicalBoards
+  recipes:
+  - StasisBedMachineCircuitboard
+  - CryoPodMachineCircuitboard
+  - BiomassReclaimerMachineCircuitboard
+  - StasisOperatingTableCircuitboard # Corvax-Goob-StasisOperatingTable
+  - EnergyChemDispenserMachineCircuitboard #Goob

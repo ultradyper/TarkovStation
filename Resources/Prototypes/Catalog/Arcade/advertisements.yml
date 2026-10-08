@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: localizedDataset
+  id: BlockGameAds
+  values:
+    prefix: advertisement-block-game-
+    count: 13
+
+- type: localizedDataset
+  id: SpaceVillainAds
+  values:
+    prefix: advertisement-space-villain-
+    count: 15

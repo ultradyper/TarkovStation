@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Paramedic
+  name: job-name-paramedic
+  description: job-description-paramedic
+  playTimeTracker: JobParamedic
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 2.5h
+  startingGear: ParamedicGear
+  icon: "JobIconParamedic"
+  supervisors: job-supervisors-cmo
+  guides: # goobstation
+  - MedicalDoctor
+  - Medical
+  - Medicine
+  goobcoins: 20 #Goob content
+  weight: 9  # Reserve edit: Fix Assistant job order
+  access:
+  - Medical
+  - Maintenance
+  - External # goobstation
+  extendedAccess:
+  - Chemistry
+  # Shitmed change
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SurgerySpeedModifier
+      speedModifier: 1.25
+  alternateTitles: # Reserve - alternate titles
+  - ParamedicTraumaSpecialist
+  - ParamedicEmergencyMedicalTechnician
+
+- type: startingGear
+  id: ParamedicGear
+  equipment:
+    id: ParamedicPDA
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalEMTFilled
+  storage:
+    back:
+    - EmergencyRollerBedSpawnFolded
+
+- type: chameleonOutfit
+  id: ParamedicChameleonOutfit
+  job: Paramedic
+  equipment:
+    head: ClothingHeadHatParamedicsoft
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatParamedicWB
+    gloves: ClothingHandsGlovesLatex
+
+- type: jobAlternateTitle
+  id: ParamedicTraumaSpecialist
+  name: job-name-alt-paramedic-1
+
+- type: jobAlternateTitle
+  id: ParamedicEmergencyMedicalTechnician
+  name: job-name-alt-paramedic-2

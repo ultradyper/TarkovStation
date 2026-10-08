@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: reagent
+  id: TripleCitrus
+  name: reagent-name-triple-citrus
+  parent: BaseDrink
+  desc: reagent-desc-triple-citrus
+  physicalDesc: reagent-physical-desc-lemony-fresh
+  flavor: sour
+  color: "#d9f929"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:SatiateThirst
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1
+      - !type:ImmunityModifier # 1/2 of immurin
+        gainRateModifier: 0.000259272486435 # sqrt(1/2) * immurin
+        strengthModifier: 0.00314269680524 # sqrt(1/2) * immurin
+        statusLifetime: 3 # 3s per 1u
+      - !type:DiseaseProgressChange
+        affectedType: Viral
+        progressModifier: -0.0041666666666 #1/8th of devirate

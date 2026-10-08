@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: CrateVendingMachineRestockSweetToofFilled
+  parent: CratePlastic
+  name: SweetToof restock crate
+  description: Contains a restock box for a Sweet-Toof candy dispenser.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: VendingMachineRestockSweetToof
+        amount: 2

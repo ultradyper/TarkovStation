@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: GlassesMedHUD
+  graph:
+    - node: start
+      edges:
+        - to: glassesMed
+          steps:
+            - tag: Sunglasses
+              name: construction-graph-tag-sun-glasses
+              icon:
+                sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+                state: icon
+              doAfter: 5
+            - tag: HudMedical
+              name: construction-graph-tag-medical-hud
+              icon:
+                sprite: Clothing/Eyes/Hud/med.rsi
+                state: icon
+              doAfter: 5
+            - material: Cable
+              amount: 5
+              doAfter: 5
+
+    - node: glassesMed
+      entity: ClothingEyesGlassesMed
+      edges:
+      - to: start
+        steps:
+        - tool: Screwing
+          doAfter: 5
+        completed:
+        - !type:SpawnPrototype
+          prototype: ClothingEyesGlassesSunglasses
+        - !type:SpawnPrototype
+          prototype: ClothingEyesHudMedical
+        - !type:DeleteEntity

@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  name: construction ghost
+  id: constructionghost
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: '#3F38'
+  - type: ConstructionGhost
+  - type: Clickable
+  - type: InteractionOutline
+  - type: GuideHelp
+    guides:
+    - Construction

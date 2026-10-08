@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: WallTorchGraph
+  graph:
+    - node: start
+      edges:
+        - to: wallTorch
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 4
+    - node: wallTorch
+      entity: TorchWall

@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: MIT
+
+namespace Content.Server.NPC.Queries.Queries;
+
+/// <summary>
+/// Adds entities to a query.
+/// </summary>
+[ImplicitDataDefinitionForInheritors]
+public abstract partial class UtilityQuery
+{
+
+}

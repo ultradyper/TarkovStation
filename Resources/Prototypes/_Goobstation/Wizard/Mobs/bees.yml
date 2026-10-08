@@ -1,0 +1,195 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: MobAngryBee
+  id: MobAngryBeeWizard
+  abstract: true
+  components:
+  - type: FadingTimedDespawn
+    lifetime: 48
+    fadeOutTime: 2
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 12.5
+  - type: InjectableSolution
+    solution: bloodstream
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 0.25
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 1
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound # Humanoid for staff of change shenanigans
+
+# I intentionally don't use suffixes so it's funnier
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeLicoxide
+  name: bee (licoxide)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Licoxide
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeAmatoxin
+  name: bee (amatoxin)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Amatoxin
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeLexorin
+  name: bee (lexorin)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Lexorin
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeChloralHydrate
+  name: bee (chloral hydrate)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeUnstableMutagen
+  name: bee (unstable mutagen)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: UnstableMutagen
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeMindbreakerToxin
+  name: bee (mindbreaker toxin)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: MindbreakerToxin
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeePax
+  name: bee (pax)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Pax
+        Quantity: 1
+
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeLead
+  name: bee (lead)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Lead
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeLipolicide
+  name: bee (lipolicide)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Lipolicide
+        Quantity: 1
+
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeImpedrezene
+  name: bee (impedrezene)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Impedrezene
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeRazorium
+  name: bee (razorium)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Razorium
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeMuteToxin
+  name: bee (mute toxin)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: MuteToxin
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeBuzzochloricBees # Bees bees
+  name: bee (buzzochloric bees)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: BuzzochloricBees
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeLaughter
+  name: bee (laughter)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Laughter
+        Quantity: 1
+
+- type: entity
+  parent: MobAngryBeeWizard
+  id: BeeToxin
+  name: bee (toxin)
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1

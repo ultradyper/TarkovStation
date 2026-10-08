@@ -1,0 +1,163 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  abstract: true
+  parent: Clothing
+  id: UnsensoredClothingUniformBase
+  components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cloth_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cloth_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/cloth_drop.ogg
+      params:
+        volume: -4
+  # Goobstation edit end
+  - type: Sprite
+    state: icon
+  - type: Clothing
+    slots: [innerclothing]
+    equipSound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 3
+  - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
+    materialComposition:
+      Cloth: 150
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 30
+      stain: # Reserve - clothing stains
+        maxVol: 5
+  # Reserve start - clothing stains
+  - type: Appearance
+  - type: Stainable # Reserve
+    clothingVisuals:
+      jumpsuit:
+      - sprite: _Gabystation/Effects/blood.rsi
+        state: uniformblood
+    itemVisuals:
+      left:
+      - sprite: Effects/Stains/jumpsuit.rsi
+        state: inhand-right
+      right:
+      - sprite: Effects/Stains/jumpsuit.rsi
+        state: inhand-left
+    iconVisuals:
+    - sprite: _Gabystation/Effects/blood.rsi
+      state: uniformbloodicon
+  # Reserve end - clothing stains
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - Skirt # Goobstation
+
+- type: entity
+  abstract: true
+  parent: UnsensoredClothingUniformBase
+  id: UnsensoredClothingUniformSkirtBase
+  components:
+  - type: Clothing
+    slots: [innerclothing]
+    femaleMask: UniformTop
+  # Reserve start - clothing stains
+  - type: Stainable
+    clothingVisuals:
+      jumpsuit:
+      - sprite: _Gabystation/Effects/blood.rsi
+        state: uniformblood
+    itemVisuals:
+      left:
+      - sprite: Effects/Stains/jumpskirt.rsi
+        state: inhand-right
+      right:
+      - sprite: Effects/Stains/jumpskirt.rsi
+        state: inhand-left
+    iconVisuals:
+    - sprite: _Gabystation/Effects/blood.rsi
+      state: uniformbloodicon
+  # Reserve end - clothing stains
+
+
+- type: entity
+  abstract: true
+  parent: UnsensoredClothingUniformBase
+  id: ClothingUniformBase
+  components:
+  - type: SuitSensor
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    transmitFrequencyId: SuitSensor
+    savableAddress: false
+  - type: WirelessNetworkConnection
+    range: 1200
+  - type: StationLimitedNetwork
+  - type: PhysicalComposition #Goobstation - Recycle update
+    materialComposition:
+      Cloth: 75
+  - type: SuitSensorShockable # Goobstation
+
+- type: entity
+  abstract: true
+  parent: ClothingUniformBase
+  id: ClothingUniformSkirtBase
+  components:
+  - type: Clothing
+    slots: [innerclothing]
+    femaleMask: UniformTop
+  - type: Tag
+    tags:
+    - Skirt
+    - ClothMade
+    - WhitelistChameleon
+
+# Goobstation
+
+- type: entity
+  abstract: true
+  parent: BaseFoldable
+  id: ClothingUniformFoldableBase
+  components:
+  - type: Foldable
+    canFoldInsideContainer: true
+    unfoldVerbText: unfold-verb-clothing-jacket
+    foldVerbText: fold-verb-clothing-jacket
+  - type: FoldableClothing
+    foldedEquippedPrefix: folded
+  # Reserve start - clothing stains
+  - type: Stainable
+    clothingVisuals:
+      jumpsuit:
+      - sprite: _Gabystation/Effects/blood.rsi
+        state: uniformblood
+    itemVisuals:
+      left:
+      - sprite: Effects/Stains/jumpskirt.rsi
+        state: inhand-right
+      right:
+      - sprite: Effects/Stains/jumpskirt.rsi
+        state: inhand-left
+    iconVisuals:
+    - sprite: _Gabystation/Effects/blood.rsi
+      state: uniformbloodicon
+  # Reserve end - clothing stains

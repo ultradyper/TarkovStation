@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: TankDispenserEVAInventory
+  startingInventory:
+    OxygenTankFilled: 10
+    NitrogenTankFilled: 10
+    PlasmaTankFilled: 10 # EE Plasmeme Change
+    WaterVaporTankFilled: 10 # Goob, Feroxi
+
+- type: vendingMachineInventory
+  id: TankDispenserEngineeringInventory
+  startingInventory:
+    PlasmaTankFilled: 10
+    NitrogenTankFilled: 10
+    OxygenTankFilled: 10
+    WaterVaporTankFilled: 10 # Goob, Feroxi

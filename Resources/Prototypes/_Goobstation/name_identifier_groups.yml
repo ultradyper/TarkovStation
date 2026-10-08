@@ -1,0 +1,9 @@
+- type: nameIdentifierGroup
+  id: Task
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: XenobioBounty
+  minValue: 0
+  maxValue: 999

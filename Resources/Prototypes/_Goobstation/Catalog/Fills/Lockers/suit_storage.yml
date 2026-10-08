@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+#bso hardsuit
+- type: entity
+  id: SuitStorageBlueshield
+  parent: SuitStorageBase
+  suffix: BSO Hardsuit
+  components:
+  - type: StorageFill
+    contents:
+        - id: OxygenTankFilled
+        - id: ClothingMaskBreath
+        - id: NitrogenTankFilled
+
+#Detective's hardsuit 
+- type: entity
+  id: SuitStorageDetective
+  parent: SuitStorageBase
+  suffix: Detective
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerDetectiveHardsuit
+  - type: AccessReader
+    access: [["Detective"]]
+
+#Contractor
+- type: entity
+  id: SuitStorageHardsuitContractor
+  parent: SuitStorageBase
+  suffix: Contractor Hardsuit
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageHardsuitContractor
+
+- type: entityTable
+  id: FillSuitStorageHardsuitContractor
+  table: !type:AllSelector
+    children:
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+    - id: WaterVaporTankFilled
+    - id: ClothingOuterHardsuitContractor
+    - id: ClothingMaskGasSyndicate

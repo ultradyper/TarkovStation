@@ -1,0 +1,151 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: technology
+  id: AdvancedHydroponics
+  name: research-technology-advanced-hydroponics
+  icon:
+    sprite: _Reserve/Objects/Specific/Hydroponics/watering_can_experimental.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - WateringCanExperimental
+  - ClothingOuterApronBotanistAdvanced
+  - ClothingHandsGlovesBotanistAdvanced
+  - ClothingMaskBreathBotanistAdvanced
+  - ClothingEyesGogglesBotanistAdvanced
+  position: -2,8
+  technologyPrerequisites:
+  - Hydroponics
+
+- type: technology
+  id: BluespaceHydroponics
+  name: research-technology-bluespace-hydroponics
+  icon:
+    sprite: DeltaV/Objects/Specific/Hydroponics/plant_bag_holding.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 3
+  cost: 5000
+  recipeUnlocks:
+  - BluespaceWateringCanExperimental
+  - PlantBagOfHolding
+  position: -3,8
+  technologyPrerequisites:
+  - AdvancedHydroponics
+
+- type: technology
+  id: BluespaceCleaning
+  name: research-technology-bluespace-cleaning
+  icon:
+    sprite: _Reserve/Objects/Specific/Janitorial/bluespace_trashbag.rsi
+    state: icon-0
+  discipline: CivilianServices
+  tier: 3
+  cost: 5000
+  recipeUnlocks:
+  - BluespaceBucket
+  - TrashBagOfHolding
+  position: -2,7
+  technologyPrerequisites:
+  - AdvancedCleaning
+
+- type: technology
+  id: Bartending
+  name: research-technology-basic-bartending
+  icon:
+    sprite: _Reserve/Objects/Consumable/Drinks/shaker.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BoozeDispenserMachineCircuitboard
+  - SodaDispenserMachineCircuitboard
+  - DrinkShakerAdvanced
+  - DrinkKettleAdvanced
+  position: -1,9
+  technologyPrerequisites:
+  - Hydroponics
+
+- type: technology
+  id: AdvancedBartending
+  name: research-technology-advanced-bartending
+  icon:
+    sprite: _Reserve/Objects/Structures/dispensers.rsi
+    state: drinks
+  discipline: CivilianServices
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - EnergyDrinkDispenserMachineCircuitboard
+  - EnergySodaDispenserMachineCircuitboard
+  - EnergyBoozeDispenserMachineCircuitboard
+  position: -2,9
+  technologyPrerequisites:
+  - Bartending
+
+- type: technology
+  id: BluespaceBartending
+  name: research-technology-bluespace-bartending
+  icon:
+    sprite: _Reserve/Objects/Consumable/Drinks/shaker.rsi
+    state: icon_bluespace
+  discipline: CivilianServices
+  tier: 3
+  cost: 2500
+  recipeUnlocks:
+  - DrinkShakerBluespace
+  - BluespaceDrinkShakerAdvanced
+  - BluespaceDrinkKettleAdvanced
+  position: -3,9
+  technologyPrerequisites:
+  - AdvancedBartending
+
+- type: technology
+  id: Cooking
+  name: research-technology-basic-cooking
+  icon:
+    sprite: _Reserve/Clothing/Hands/Gloves/mitts.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 1
+  cost: 1500
+  recipeUnlocks:
+  - SauceDispenserMachineCircuitboard
+  - ClothingHandsGlovesMitts
+  position: 0,8
+  technologyPrerequisites:
+  - Hydroponics
+
+- type: technology
+  id: AdvancedCooking
+  name: research-technology-advanced-cooking
+  icon:
+    sprite: _Reserve/Objects/Structures/dispensers.rsi
+    state: sauce
+  discipline: CivilianServices
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - EnergySauceDispenserMachineCircuitboard
+  - ServiceEnergyChemMachineCircuitboard
+  position: 0,9
+  technologyPrerequisites:
+  - Cooking
+
+- type: technology
+  id: BluespaceCooking
+  name: research-technology-bluespace-cooking
+  icon:
+    sprite: _Reserve/Clothing/Head/Hats/chefhat.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 3
+  cost: 1000
+  recipeUnlocks:
+  - ClothingHeadHatChefBluespace
+  position: 1,9
+  technologyPrerequisites:
+  - AdvancedCooking

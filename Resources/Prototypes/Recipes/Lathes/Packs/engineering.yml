@@ -1,0 +1,100 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+## Static
+
+- type: latheRecipePack
+  id: ToolsStatic
+  recipes:
+  - VoiceSensor
+  - Wirecutter
+  - Screwdriver
+  - Welder
+  - Wrench
+  - CrowbarGreen
+  - Multitool
+  - NetworkConfigurator
+  - Signaller
+  - SprayPainter
+  - GeigerCounter #Goob station
+  - SprayPainterAmmo
+  - FlashlightLantern
+  - HandheldGPSBasic
+  - TRayScanner
+  - UtilityBelt
+  - ClothingOuterVestTank
+  - HandheldStationMap
+  - ClothingHeadHatWelding
+  - ClothingHeadHatCone
+  - WeaponHammer
+
+- type: latheRecipePack
+  id: AtmosStatic
+  recipes:
+  - AirTank
+  - GasAnalyzer
+
+- type: latheRecipePack
+  id: ElectronicsStatic
+  recipes:
+  - IntercomElectronics
+  - FirelockElectronics
+  - DoorElectronics
+  - AirAlarmElectronics
+  - StationMapElectronics
+  - FireAlarmElectronics
+  - MailingUnitElectronics
+  - SignalTimerElectronics
+  - APCElectronics
+  - SMESMachineCircuitboard
+  - SubstationMachineCircuitboard
+  - WallmountSubstationElectronics
+  - CellRechargerCircuitboard
+  - WeaponCapacitorRechargerCircuitboard
+  - FreezerElectronics
+  - CameraElectronics # goob
+
+- type: latheRecipePack
+  id: EngineeringBoardsStatic
+  recipes:
+  - SpaceHeaterMachineCircuitBoard
+  - CondenserMachineCircuitBoard # Goob
+
+## Dynamic
+
+- type: latheRecipePack
+  id: AdvancedTools
+  recipes:
+  - PowerDrill
+  - WelderExperimental
+  - JawsOfLife
+
+- type: latheRecipePack
+  id: AtmosTools
+  recipes:
+  - HolofanProjector
+
+- type: latheRecipePack
+  id: EngineeringWeapons
+  recipes:
+  - WeaponParticleDecelerator
+
+- type: latheRecipePack
+  parent:
+  - EngineeringBoardsGoob # Goobstation
+  id: EngineeringBoards
+  recipes:
+  - ThermomachineFreezerMachineCircuitBoard
+  - HellfireFreezerMachineCircuitBoard
+  - PortableScrubberMachineCircuitBoard
+  - SolarControlComputerCircuitboard
+  - SolarTrackerElectronics
+  - GasRecyclerMachineCircuitboard
+  - PortableGeneratorPacmanMachineCircuitboard
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+  - PortableGeneratorJrPacmanMachineCircuitboard
+  - EmitterCircuitboard
+  - TelecomServerCircuitboard
+  - SMESAdvancedMachineCircuitboard
+  - HolopadMachineCircuitboard
+  - TeslaCoilCircuitboard
+  - RadiationCollectorCircuitboard
+  - ReverseEngineeringMachineCircuitboard #reserve: nyano port

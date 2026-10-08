@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: SpesosCounterfeit
+  graph:
+    - node: start
+      edges:
+        - to: spesos
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/spray2.ogg
+          steps:
+            - tool: Slicing
+              doAfter: 2
+            - tool: Painting
+              doAfter: 2
+    - node: spesos
+      entity: SpaceCashCounterfeit50

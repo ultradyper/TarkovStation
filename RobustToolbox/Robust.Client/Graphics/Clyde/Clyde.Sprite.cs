@@ -1,0 +1,283 @@
+using System;
+using System.Buffers;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics;
+using System.Threading.Tasks;
+using Robust.Client.GameObjects;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Graphics;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Maths;
+using Robust.Shared.Physics;
+using Robust.Shared.Threading;
+using Robust.Shared.Utility;
+
+namespace Robust.Client.Graphics.Clyde;
+
+// this partial class contains code specific to querying, processing & sorting sprites.
+internal partial class Clyde
+{
+    [Shared.IoC.Dependency] private IParallelManager _parMan = default!;
+    private readonly RefList<SpriteData> _drawingSpriteList = new();
+    private const int _spriteProcessingBatchSize = 25;
+
+    private void GetSprites(MapId map, Viewport view, IEye eye, Box2Rotated worldBounds, out int[] indexList)
+    {
+        ProcessSpriteEntities(map, view, eye, worldBounds, _drawingSpriteList);
+
+        var count = _drawingSpriteList.Count;
+
+        indexList = ArrayPool<int>.Shared.Rent(count);
+        var sortItems = ArrayPool<SpriteSortItem>.Shared.Rent(count);
+
+        for (var i = 0; i < count; i++)
+        {
+            ref var data = ref _drawingSpriteList[i];
+            sortItems[i] = new SpriteSortItem(
+                i,
+                data.Sprite.DrawDepth,
+                data.Sprite.RenderOrder,
+                data.SpriteScreenBB.Top,
+                data.Uid);
+        }
+
+        // TODO better sorting? parallel merge sort?
+        Array.Sort(sortItems, 0, count);
+
+        for (var i = 0; i < count; i++)
+        {
+            indexList[i] = sortItems[i].Index;
+        }
+
+        ArrayPool<SpriteSortItem>.Shared.Return(sortItems);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private void ProcessSpriteEntities(MapId map, Viewport view, IEye eye, Box2Rotated worldBounds, RefList<SpriteData> list)
+    {
+        var query = _entityManager.GetEntityQuery<TransformComponent>();
+        var gridQuery = _entityManager.GetEntityQuery<MapGridComponent>();
+        var renderQueryBounds = _transformSystem.GetRenderCullingBounds(map, worldBounds);
+        var viewScale = eye.Scale * view.RenderScale * new Vector2(EyeManager.PixelsPerMeter, -EyeManager.PixelsPerMeter);
+        var treeData = new BatchData()
+        {
+            Sys = _entityManager.EntitySysManager.GetEntitySystem<TransformSystem>(),
+            ViewRotation = eye.Rotation,
+            ViewScale = viewScale,
+            PreScaleViewOffset = view.Size / 2f / viewScale,
+            ViewPosition = eye.Position.Position + eye.Offset
+        };
+
+        // We need to batch the actual tree query, or alternatively we need just get the list of sprites and then
+        // parallelize the rotation & bounding box calculations.
+        var index = 0;
+        var added = 0;
+        var opts = new ParallelOptions { MaxDegreeOfParallelism = _parMan.ParallelProcessCount };
+
+        foreach (var (treeOwner, comp) in _spriteTreeSystem.GetIntersectingTrees(map, renderQueryBounds))
+        {
+            var treeXform = query.GetComponent(treeOwner);
+            var treePose = _transformSystem.GetRenderWorldTransform((treeOwner, treeXform));
+            var bounds = _transformSystem.GetInvRenderWorldMatrix((treeOwner, treeXform)).TransformBox(renderQueryBounds);
+            var pixelSnapOffset = Vector2.Zero;
+            DebugTools.Assert(treeXform.MapUid == treeXform.ParentUid || !treeXform.ParentUid.IsValid());
+
+            if (gridQuery.HasComponent(treeOwner))
+            {
+                pixelSnapOffset = GetPixelSnapOffset(
+                    treePose.Position,
+                    treeData.ViewPosition,
+                    treeData.ViewRotation,
+                    treeData.ViewScale,
+                    view.Size);
+            }
+
+            treeData = treeData with
+            {
+                TreePixelSnapOffset = pixelSnapOffset,
+            };
+
+            comp.Tree.QueryAabb(ref list,
+                static (ref RefList<SpriteData> state, in ComponentTreeEntry<SpriteComponent> value) =>
+                {
+                    ref var entry = ref state.AllocAdd();
+                    entry.Uid = value.Uid;
+                    entry.Sprite = value.Component;
+                    entry.Xform = value.Transform;
+                    return true;
+                }, bounds, true);
+
+            // Get bounding boxes & world positions
+            added = list.Count - index;
+            var batches = added/_spriteProcessingBatchSize;
+
+            // TODO also do sorting here & use a merge sort later on for y-sorting?
+            if (batches > 1)
+                Parallel.For(0, batches, opts, (i) => ProcessSprites(list, index + i * _spriteProcessingBatchSize, _spriteProcessingBatchSize, treeData));
+            else
+                batches = 0;
+
+            var remainder = added - _spriteProcessingBatchSize * batches;
+            if (remainder > 0)
+                ProcessSprites(list, index + batches * _spriteProcessingBatchSize, remainder, treeData);
+
+            index += batches * _spriteProcessingBatchSize + remainder;
+        }
+    }
+
+    internal static Vector2 GetPixelSnapOffset(
+        Vector2 worldPosition,
+        Vector2 viewPosition,
+        Angle viewRotation,
+        Vector2 viewScale,
+        Vector2 viewportSize)
+    {
+        var viewPositionRelative = viewRotation.RotateVec(worldPosition - viewPosition);
+        var screenPosition = viewPositionRelative * viewScale + viewportSize / 2f;
+        var screenOffset = screenPosition.Rounded() - screenPosition;
+        var viewOffset = screenOffset / viewScale;
+        return (-viewRotation).RotateVec(viewOffset);
+    }
+
+    /// <summary>
+    ///     This function computes a sprites world position, rotation, and screen-space bounding box. The position &
+    ///     rotation are required in general, but the bounding box is only really needed for y-sorting & if the
+    ///     sprite has a post processing shader.
+    /// </summary>
+    private void ProcessSprites(
+        RefList<SpriteData> list,
+        int startIndex,
+        int count,
+        in BatchData batch)
+    {
+        for (int i = startIndex; i < startIndex + count; i++)
+        {
+            ref var data = ref list[i];
+            DebugTools.Assert(data.Sprite.Visible);
+
+            // To help explain the remainder of this function, it should be functionally equivalent to the following
+            // three lines of code, but has been expanded & simplified to speed up the calculation:
+            //
+            // (data.WorldPos, data.WorldRot) = batch.Sys.GetRenderWorldPositionRotation((data.Uid, data.Xform));
+            // var spriteWorldBB = data.Sprite.CalculateRotatedBoundingBox(data.WorldPos, data.WorldRot, batch.ViewRotation);
+            // data.SpriteScreenBB = Viewport.GetWorldToLocalMatrix().TransformBox(spriteWorldBB);
+
+            var (pos, rot) = batch.Sys.GetRenderWorldPositionRotation((data.Uid, data.Xform));
+            pos += batch.TreePixelSnapOffset;
+            data.WorldRot = rot;
+            data.WorldPos = pos;
+
+            var finalRotation = (float) (data.Sprite.NoRotation
+                ? data.Sprite.Rotation
+                : data.Sprite.Rotation + rot + batch.ViewRotation);
+
+            // false for 99.9% of sprites
+            if (data.Sprite.Offset != Vector2.Zero)
+            {
+                pos += data.Sprite.NoRotation
+                    ? (-batch.ViewRotation).RotateVec(data.Sprite.Offset)
+                    : rot.RotateVec(data.Sprite.Offset);
+            }
+
+            pos = batch.ViewRotation.RotateVec(pos - batch.ViewPosition);
+
+            // special casing angle = n*pi/2 to avoid box rotation & bounding calculations doesn't seem to give significant speedups.
+            data.SpriteScreenBB = TransformCenteredBox(
+                _spriteSystem.GetLocalBounds((data.Uid, data.Sprite)),
+                finalRotation,
+                pos + batch.PreScaleViewOffset,
+                batch.ViewScale);
+        }
+    }
+
+    /// <summary>
+    /// This is effectively a specialized combination of a <see cref="Matrix3Helpers.TransformBox(Matrix3x2, in Box2)"/>.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static unsafe Box2 TransformCenteredBox(in Box2 box, float angle, in Vector2 offset, in Vector2 scale)
+    {
+        var boxVec = Unsafe.As<Box2, Vector128<float>>(ref Unsafe.AsRef(in box));
+        var sin = Vector128.Create(MathF.Sin(angle));
+        var cos = Vector128.Create(MathF.Cos(angle));
+        var boxX = Vector128.Shuffle(boxVec, Vector128.Create(0, 0, 2, 2));
+        var boxY = Vector128.Shuffle(boxVec, Vector128.Create(1, 3, 3, 1));
+
+        var x = boxX * cos - boxY * sin;
+        var y = boxX * sin + boxY * cos;
+        var lbrt = SimdHelpers.GetAABB(x, y);
+
+        // This function is for sprites, which flip the y-axis via the scale, so we need to flip t & b.
+        DebugTools.Assert(scale.Y < 0);
+        lbrt = Vector128.Shuffle(lbrt, Vector128.Create(0,3,2,1));
+
+        var offsetVec = Unsafe.As<Vector2, Vector128<float>>(ref Unsafe.AsRef(in offset)); // upper undefined
+        var scaleVec = Unsafe.As<Vector2, Vector128<float>>(ref Unsafe.AsRef(in scale)); // upper undefined
+        offsetVec = Vector128.Shuffle(offsetVec, Vector128.Create(0, 1, 0, 1));
+        scaleVec = Vector128.Shuffle(scaleVec, Vector128.Create(0, 1, 0, 1));
+
+        // offset and scale box.
+        // note that the scaling here is scaling the whole space, not jut the box. I.e., the centre of the box is changing
+        lbrt = (lbrt + offsetVec) * scaleVec;
+        return Unsafe.As<Vector128<float>, Box2>(ref lbrt);
+    }
+
+    private struct SpriteData
+    {
+        public EntityUid Uid;
+        public SpriteComponent Sprite;
+        public TransformComponent Xform;
+        public Vector2 WorldPos;
+        public Angle WorldRot;
+        public Box2 SpriteScreenBB;
+    }
+
+    private readonly struct BatchData
+    {
+        public TransformSystem Sys { get; init; }
+        public Angle ViewRotation { get; init; }
+        public Vector2 ViewScale { get; init; }
+        public Vector2 PreScaleViewOffset { get; init; }
+        public Vector2 ViewPosition { get; init; }
+        public Vector2 TreePixelSnapOffset { get; init; }
+    }
+
+    private readonly struct SpriteSortItem : IComparable<SpriteSortItem>
+    {
+        public readonly int Index;
+        private readonly int _drawDepth;
+        private readonly uint _renderOrder;
+        private readonly float _ySort;
+        private readonly EntityUid _uid;
+
+        public SpriteSortItem(int index, int drawDepth, uint renderOrder, float ySort, EntityUid uid)
+        {
+            Index = index;
+            _drawDepth = drawDepth;
+            _renderOrder = renderOrder;
+            _ySort = ySort;
+            _uid = uid;
+        }
+
+        public int CompareTo(SpriteSortItem other)
+        {
+            var cmp = _drawDepth.CompareTo(other._drawDepth);
+            if (cmp != 0)
+                return cmp;
+
+            cmp = _renderOrder.CompareTo(other._renderOrder);
+
+            if (cmp != 0)
+                return cmp;
+
+            // compare the top of the sprite's BB for y-sorting. Because screen coordinates are flipped, the "top" of the BB is actually the "bottom".
+            cmp = _ySort.CompareTo(other._ySort);
+
+            if (cmp != 0)
+                return cmp;
+
+            return _uid.CompareTo(other._uid);
+        }
+    }
+}

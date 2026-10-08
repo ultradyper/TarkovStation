@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: Tag
+  id: Cable  # For mapping editor
+
+- type: Tag
+  id: Card  # Folder fix
+
+- type: Tag
+  id: CDCase  # So we can put CD cases in a CD rack  # CD disks fix
+
+- type: Tag
+  id: Disposal  # For mapping editor

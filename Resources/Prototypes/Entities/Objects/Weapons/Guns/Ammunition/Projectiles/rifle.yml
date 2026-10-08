@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseBullet
+  id: BulletRifle
+  categories: [ HideSpawnMenu ]
+  name: bullet (.20 rifle)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 17
+      armorPenetration: 0.15 # Goobstation
+
+- type: entity
+  parent: BaseBulletPractice
+  id: BulletRiflePractice
+  categories: [ HideSpawnMenu ]
+  name: bullet (.20 rifle practice)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 2
+
+- type: entity
+  parent: BaseBulletIncendiary
+  id: BulletRifleIncendiary
+  categories: [ HideSpawnMenu ]
+  name: bullet (.20 rifle incendiary)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 3 # Goobstation
+        Heat: 2 # Goobstation
+
+- type: entity
+  parent: BaseBulletUranium
+  id: BulletRifleUranium
+  categories: [ HideSpawnMenu ]
+  name: bullet (.20 rifle uranium)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 9 # Goobstation
+        Piercing: 10 # Goobstation

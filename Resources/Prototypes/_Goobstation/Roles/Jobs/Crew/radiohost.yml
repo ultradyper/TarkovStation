@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: RadioHost
+  name: job-name-radiohost
+  description: job-description-radiohost
+  playTimeTracker: JobRadioHost
+  startingGear: RadioHostGear
+  icon: "JobIconRadioHost"
+  supervisors: job-supervisors-hop
+  goobcoins: 15 #Goob content
+  weight: 3  # Reserve edit: Fix Service Department job order
+  access:
+  - Maintenance
+  - Journalism
+  - Service
+  alternateTitles: # Reserve - alternate titles
+  - RadioHostPodcaster
+  - RadioHostConspiracyTheorist
+
+- type: startingGear
+  id: RadioHostGear
+  equipment:
+    ears: ClothingHeadsetAltRadioHost
+    eyes: ClothingEyesGlassesSunglasses
+    belt: ClothingBeltStorageWaistbag
+    shoes: ClothingShoesColorBlack
+    id: RadioHostPDA
+
+- type: chameleonOutfit
+  id: RadioHostChameleonOutfit
+  job: RadioHost
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+    ear: ClothingHeadsetAltRadioHost
+    jumpsuit: ClothingUniformJumpsuitHawaiBlack
+    shoes: ClothingShoesColorBlack
+    id: RadioHostPDA
+
+- type: jobAlternateTitle
+  id: RadioHostPodcaster
+  name: job-name-alt-radiohost-1
+
+- type: jobAlternateTitle
+  id: RadioHostConspiracyTheorist
+  name: job-name-alt-radiohost-2

@@ -1,0 +1,19 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Humans
+
+  <Box>
+    <GuideEntityEmbed Entity="MobHumanDummy" Caption=""/>
+  </Box>
+
+  Depending on who you ask, humans are either unremarkable or the universal standard to which everything else is compared.
+
+  ## Benefits
+  - They interact [color=#1e90ff]about 20% faster[/color] compared to other species.
+
+  ## Drawbacks
+  - None!
+</Document>

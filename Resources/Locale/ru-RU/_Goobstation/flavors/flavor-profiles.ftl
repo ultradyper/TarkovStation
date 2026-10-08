@@ -1,0 +1,10 @@
+flavor-base-futuristic = футуристично
+flavor-base-offensive = оскорбительно
+flavor-base-sigma = сигмовато
+flavor-complex-fentanyl = как горящая смола
+flavor-base-tears = как солёные слёзы
+flavor-base-alienblood = как пришелец
+flavor-base-old = как старьё
+flavor-base-robust = робастно
+flavor-complex-unicorntears = как слёзы единорогов
+flavor-base-chuddy = жвачно

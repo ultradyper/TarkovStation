@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# REplaced whit _imp dronetemplate
+# - type: inventoryTemplate
+#  id: drone
+#  slots:
+#  - name: head
+#    slotTexture: head
+#    slotFlags: HEAD
+#    uiWindowPos: 1,0
+#    strippingWindowPos: 0,0
+#    displayName: Head
+#    offset: 0, -0.45

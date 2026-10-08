@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+#Lost Frontier Prospector
+
+- type: loadoutEffectGroup
+  id: MasterMiner
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 72000 #20 hours
+
+- type: loadout
+  id: MinerCloak
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterMiner
+  equipment:
+    neck: ClothingNeckCloakSalvagerSupreme
+
+- type: startingGear
+  id: LostFrontierProspectorSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    shoes: ClothingShoesBootsSalvage
+    id: SalvagePDA
+    back: ClothingBackpackSalvage
+    ears: ClothingHeadsetCargo
+
+- type: loadout
+  id: SalvageEnvirosuit
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitSalvage
+  effects:
+  - !type:SpeciesLoadoutEffect # Goobstation - EE Plasmeme Change.
+    species:
+    - Plasmaman
+
+- type: loadout
+  id: SalvageEnvirohelm
+  equipment:
+    head: ClothingHeadEnvirohelmSalvage
+  effects:
+  - !type:SpeciesLoadoutEffect # Goobstation - EE Plasmeme Change.
+    species:
+    - Plasmaman
+
+- type: loadout
+  id: SalvageEnvirogloves
+  equipment:
+    gloves: ClothingHandsGlovesEnviroglovesSalvage
+  effects:
+  - !type:SpeciesLoadoutEffect # Goobstation - EE Plasmeme Change.
+    species:
+    - Plasmaman
+
+
+# Salvage
+- type: loadout
+  id: SalvageSpecialistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+
+- type: loadout
+  id: SalvageSpecialistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageSpecialist
+
+- type: loadout
+  id: SalvageSpecialistOveralls
+  equipment:
+    jumpsuit: ClothingUniformOverallsSalvageSpecialist
+
+- type: loadout
+  id: SalvageSpecialistMJ
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMilitarySalvageSpecialist
+
+
+# Shaft Miner
+- type: loadout
+  id: ShaftMinerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitShaftMiner
+
+- type: loadout
+  id: ShaftMinerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtShaftMiner
+
+- type: loadout
+  id: ShaftMinerOveralls
+  equipment:
+    jumpsuit: ClothingUniformOverallsShaftMiner
+
+- type: loadout
+  id: ShaftMinerMJ
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMilitaryShaftMiner

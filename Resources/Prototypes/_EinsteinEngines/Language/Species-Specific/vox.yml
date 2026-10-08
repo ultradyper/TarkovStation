@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# PORTED FROM FLOOFSTATION
+# Vox language
+- type: language
+  id: NewKinPidgin
+  isVisibleLanguage: true
+  speech:
+    color: "#a489a0"
+    fontId: RubikMarkerHatch # Reserve edit: Fix languages in chat
+    fontSize: 12
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    # reserve edit start
+    - ка
+    - ра
+    - ма
+    - са
+    - на
+    - та
+    - ла
+    - ша
+    - ти
+    - хи
+    - ки
+    - йа
+    - та
+    - ха
+    - ка
+    - я
+    - чи
+    - ча
+    - ках
+    - скре
+    - ахк
+    - ек
+    - равк
+    - краа
+    - ии
+    - кри
+    - ка
+    # reserve edit end

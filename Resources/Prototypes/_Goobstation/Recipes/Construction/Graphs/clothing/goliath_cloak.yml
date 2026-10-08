@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: GoliathCloak
+  graph:
+  - node: start
+    edges:
+    - to: cloak
+      steps:
+      - material: GoliathHide
+        amount: 1
+        doAfter: 2
+  - node: cloak
+    entity: ClothingNeckCloakGoliathCloak

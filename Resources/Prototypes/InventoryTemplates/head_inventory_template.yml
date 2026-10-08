@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: MIT
+
+- type: inventoryTemplate
+  id: head
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 0,1
+    strippingWindowPos: 0,0
+    displayName: Head

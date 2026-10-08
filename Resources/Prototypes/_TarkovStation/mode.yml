@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: gamePreset
+  id: TarkovStation
+  alias:
+  - tarkov
+  name: tarkov-preset-name
+  description: tarkov-preset-description
+  showInVote: false
+  minPlayers: 0
+  rules:
+  - TarkovStationRule
+- type: entity
+  id: TarkovStationRule
+  parent: BaseGameRule
+  components:
+  - type: TarkovRule
+- type: entity
+  id: TarkovStationHubStation
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  components:
+  - type: StationJobs
+    availableJobs:
+      Passenger:
+      - -1
+      - -1
+- type: gameMap
+  id: TarkovStationHub
+  mapName: Перевал / 17
+  mapPath: /Maps/_TarkovStation/Hub/terminal.yml
+  randomRotation: false
+  maxRandomOffset: 0
+  minPlayers: 0
+  stations:
+    TarkovHub:
+      stationProto: TarkovStationHubStation
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: Перевал / 17

@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: body
+  id: Goliath
+  name: "goliath"
+  root: chest
+  slots:
+    chest:
+      part: ChestGoliath
+      connections:
+      - groin
+      organs:
+        lungs: OrganAnimalLungs
+        heart: OrganGoliathHeart # Allows you to use a slower version of their tentacles.
+    groin:
+      part: GroinGoliath
+      connections:
+      - legs
+      organs:
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
+    legs:
+      part: LegsGoliath
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal

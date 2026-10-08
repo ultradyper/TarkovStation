@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: ChangInventory
+  startingInventory:
+    FoodCondimentPacketSoy: 5
+    FoodSnackCookieFortune: 5
+    DrinkRamen: 3
+    DrinkHellRamen: 3
+    FoodSnackChowMein: 3
+    FoodSnackDanDanNoodles: 3
+    PairedChopsticks: 3
+  contrabandInventory:
+    FoodBakedDumplings: 2
+    FoodSoupMiso: 2
+    # Reserve: Orchid's Barmania - Vendichaos start
+    DrinkEggCooked: 2
+    DrinkTomYamSoup: 2
+    # Reserve: Orchid's Barmania - Vendichaos end
+  emaggedInventory:
+    # Reserve: Orchid's Barmania - Vendichaos start
+    DrinkCapsaicinOilGlass: 2
+    # Reserve: Orchid's Barmania - Vendichaos end

@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: language
+  id: Calcic
+  isVisibleLanguage: true
+  speech:
+    # Reserve edit start: Fix languages in chat
+    fontId: ComicRelief
+    boldFontId: ComicReliefBold
+    # Reserve edit end: Fix languages in chat
+    color: "#e3dac9"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    # reserve edit start
+      - к
+      - чк
+      - ачк
+      - ичк
+      - кл
+      - тк
+      - ск
+      - иск
+      - так
+      - кл
+      - хс
+      - sс
+      - кс
+      - лк
+      - дк
+      - гк
+      - ка
+      - ска
+      - ла
+      - пк
+      - вк
+      - ак
+      - ик
+      - ип
+      - ски
+      - бк
+      - кб
+      - та
+      - ис
+      - ит
+      - ли
+      - ди
+      - дс
+      - я
+      - счк
+      - чрк
+      - хс
+      - вс
+      - мк
+      - ааа
+      - скрааа
+      - скее
+      - хсс
+      - раа
+      - клк
+      - тк
+      - стк
+      - клц
+      # reserve edit end

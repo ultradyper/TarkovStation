@@ -1,0 +1,96 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  save: false
+  name: Urist McHands The Dwarf
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobDwarf
+  abstract: true
+  components:
+  - type: Hunger
+  - type: Thirst
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+#  Goob disabled due to h/w slider probably. # Goobstation: port EE height/width sliders (below is not needed with height/width sliders implemented)
+#  - type: ScaleVisuals
+#    scale: 1, 0.8
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35 # Goobstation: port EE height/width sliders (previous value was lower (also a goobstation change), but the height/width sliders will lower this size automatically)
+        density: 240 # goob edit - but they r buff
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Body
+    prototype: Dwarf
+    requiredLegs: 2
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: Vocal
+    sounds:
+      Male: UnisexDwarf
+      Female: FemaleDwarf
+      Unsexed: UnisexDwarf
+#  - type: ReplacementAccent Reserve edit
+#    accent: dwarf
+  - type: ZombieAccentOverride #Goob
+    accent: zombieDwarf #Goob
+  - type: Speech
+    # speechSounds: Bass Reserve edit
+  - type: LanguageKnowledge # Einstein Engines - Languages
+    speaks:
+    - TauCetiBasic
+    - SolCommon
+    understands:
+    - TauCetiBasic
+    - SolCommon
+  - type: HumanoidAppearance
+    species: Dwarf
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: InnateMiningScannerViewer # Frontier
+    pingSound: null
+    viewRange: 3 # Goob value
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobDwarfDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite #goob edit
+#  - type: ScaleVisuals #goob sliders
+#    scale: 1, 0.8
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

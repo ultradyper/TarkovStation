@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: LetterDelivery
+  id: MailScienceRareMaterials
+  suffix: Rare materials
+  components:
+  - type: Mail
+    contents:
+    - id: IngotGold
+      amount: 0
+      maxAmount: 5
+    - id: IngotSilver
+      amount: 0
+      maxAmount: 5
+    - id: SheetUranium
+      amount: 0
+      maxAmount: 2

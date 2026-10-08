@@ -1,0 +1,15 @@
+ent-MailMedicalBasicSupplies = { ent-PackageDelivery }
+    .suffix = Базовые медикаменты
+    .desc = { ent-PackageDelivery.desc }
+ent-MailMedicalMedicinePills = { ent-PackageDelivery }
+    .suffix = Таблетки
+    .desc = { ent-PackageDelivery.desc }
+ent-MailMedicalEmergencyPens = { ent-PackageDelivery }
+    .suffix = Медипены
+    .desc = { ent-PackageDelivery.desc }
+ent-MailMedicalStabilizers = { ent-PackageDelivery }
+    .suffix = Стабилизаторы
+    .desc = { ent-PackageDelivery.desc }
+ent-MailMedicalChemistrySupplement = { ent-PackageDelivery }
+    .suffix = Поставка химикатов
+    .desc = { ent-PackageDelivery.desc }

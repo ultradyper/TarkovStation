@@ -1,0 +1,84 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: ChiefMedicalOfficer
+  name: job-name-cmo
+  description: job-description-cmo
+  playTimeTracker: JobChiefMedicalOfficer
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 2.5h
+    - !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 5h
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 10h
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
+  weight: 10
+  startingGear: CMOGear
+  icon: "JobIconChiefMedicalOfficer"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  guides: # goobstation
+  - Medical
+  - ChiefMedicalOfficerSOP
+  - MedicalSOP
+  - Command
+  - Chemicals
+  - Virology
+  goobcoins: 40 #Goob content
+  access:
+  - Medical
+  - Command
+  - Maintenance
+  - Chemistry
+  - ChiefMedicalOfficer
+  - Brig
+  - Cryogenics
+  - External # goobstation
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+  # Shitmed Change
+  - !type:AddComponentSpecial
+    components:
+    - type: SurgerySpeedModifier
+      speedModifier: 2
+  alternateTitles: # Reserve - alternate titles
+  - ChiefMedicalOfficerLeadDoctor
+
+- type: startingGear
+  id: CMOGear
+  equipment:
+    id: CMOPDA
+    ears: ClothingHeadsetAltMedical # Goobstation
+    eyes: ClothingEyesGlassesMedChemFlash #Omu
+    belt: ClothingBeltMedicalFilled
+  storage:
+    back:
+    - Flash
+    - TelescopicBaton # Goobstation
+
+- type: chameleonOutfit
+  id: ChiefMedicalOfficerChameleonOutfit
+  job: ChiefMedicalOfficer
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretCmo
+    eyes: ClothingEyesGlassesMedChemFlash # Omu
+    mask: ClothingMaskSterile
+    neck: ClothingCloakCmo
+    outerClothing: ClothingOuterCoatLabCmo
+    gloves: ClothingHandsGlovesNitrile
+
+- type: jobAlternateTitle
+  id: ChiefMedicalOfficerLeadDoctor
+  name: job-name-alt-cmo-1

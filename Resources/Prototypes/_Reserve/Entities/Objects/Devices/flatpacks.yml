@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseFlatpack
+  id: SauceDispenserFlatpack
+  name: sauce dispenser flatpack
+  description: A flatpack used for constructing a sauce dispenser.
+  components:
+  - type: Flatpack
+    entity: SauceDispenserEmpty
+
+- type: entity
+  parent: BaseFlatpack
+  id: EnergyDrinkDispenserFlatpack
+  name: energy drink dispenser flatpack
+  description: A flatpack used for constructing an energy drink dispenser.
+  components:
+  - type: Flatpack
+    entity: EnergyDrinkDispenser
+
+- type: entity
+  parent: BaseFlatpack
+  id: EnergySodaDispenserFlatpack
+  name: energy soda dispenser flatpack
+  description: A flatpack used for constructing an energy soda dispenser.
+  components:
+  - type: Flatpack
+    entity: EnergySodaDispenser
+
+- type: entity
+  parent: BaseFlatpack
+  id: EnergyBoozeDispenserFlatpack
+  name: energy booze dispenser flatpack
+  description: A flatpack used for constructing an energy booze dispenser.
+  components:
+  - type: Flatpack
+    entity: EnergyBoozeDispenser
+
+- type: entity
+  parent: BaseFlatpack
+  id: EnergySauceDispenserFlatpack
+  name: energy sauce dispenser flatpack
+  description: A flatpack used for constructing an energy sauce dispenser.
+  components:
+  - type: Flatpack
+    entity: EnergySauceDispenser

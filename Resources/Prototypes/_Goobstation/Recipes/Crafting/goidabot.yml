@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# - type: construction
+#   id: GoidaBot
+#   graph: GoidaBot
+#   startNode: start
+#   targetNode: bot
+#   category: construction-category-utilities
+#   objectType: Item

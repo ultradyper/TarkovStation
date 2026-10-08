@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckOldClothWrap
+  name: old cloth wrap
+  description: A tattered fabric wrap, faded over the years. Smells faintly of cigars.
+  components:
+  - type: Sprite
+    sprite: _EinsteinEngines/Clothing/Neck/Mantles/oldmantle.rsi
+  - type: Clothing
+    sprite: _EinsteinEngines/Clothing/Neck/Mantles/oldmantle.rsi
+

@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+ts-category-weapons = Weapons
+ts-category-ammo = Ammunition
+ts-category-medical = Medicine
+ts-category-supplies = Gear and provisions
+ts-category-resources = Materials
+ts-category-technical = Technology
+ts-category-valuables = Valuables
+ts-rarity-0 = Common
+ts-rarity-1 = Uncommon
+ts-rarity-2 = Rare
+ts-rarity-3 = Exceptional
+ts-rarity-4 = Unique
+ts-item-ammo = Ammo { $count }/{ $max }
+ts-loot-crate-0 = provisions cache
+ts-loot-crate-1 = service cache
+ts-loot-crate-2 = guarded facility cache
+ts-category-all = All
+ent-TarkovStationWornCircuit = industrial controller
+    .desc = An intact replacement controller.
+ent-TarkovStationEncryptedDrive = encrypted archive drive
+    .desc = A sealed archive of facility records.
+ent-TarkovStationMilitaryModule = military control module
+    .desc = A hardened module with its original serial seal.
+ent-TarkovStationSignalRecorder = cycle signal recorder
+    .desc = A rare final transmission from a previous cycle.
+ent-TarkovStationRaidGuard = armed scavenger
+    .desc = Protects the valuable cache and will not share.
+ent-TarkovStationRaidGuardPatrol = scavenger patrolman
+    .desc = An armored inhabitant carrying an SMG and spare magazines.
+ent-TarkovStationRaidGuardVeteran = veteran scavenger
+    .desc = An experienced inhabitant in armor and a helmet. His rifle has served this cycle for a long time.

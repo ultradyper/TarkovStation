@@ -1,0 +1,100 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: HeadOfPersonnel
+  name: job-name-hop
+  description: job-description-hop
+  playTimeTracker: JobHeadOfPersonnel
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 4h # Goobstation
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 4h # Goobstation
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 4h # Goobstation
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 4h # Goobstation
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 4h # Goobstation
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
+  guides: # goobstation
+  - Command
+  - Succession
+  - StandardProceduresSOP
+  - HeadOfPersonnelSOP
+  - Writing
+  goobcoins: 40 #Goob content
+  weight: 20
+  startingGear: HoPGear
+  icon: "JobIconHeadOfPersonnel"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  access:
+  - Command
+  - HeadOfPersonnel
+  - Bar
+  - Service
+  - Maintenance
+  - Janitor
+  - Theatre
+  - Kitchen
+  - Chapel
+  - Hydroponics
+  - External
+  - Cryogenics
+  # I mean they'll give themselves the rest of the access levels *anyways*.
+  # As of 15/03/23 they can't do that so here's MOST of the rest of the access levels.
+  # Head level access that isn't their own was deliberately left out, get AA from the captain instead.
+  - Chemistry
+  - Engineering
+  - Research
+  - Detective
+  - Salvage
+  - Security
+  - Brig
+  - Lawyer
+  - Cargo
+  - Atmospherics
+  - Medical
+  - Journalism # Goob
+  - Robotics # Goob
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: HoPGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    id: HoPPDA
+    #gloves: ClothingHandsGlovesHop
+    ears: ClothingHeadsetAltCommand
+    eyes: ClothingEyesGlassesCommand # Reserve-CommandHUD
+    belt: BoxFolderClipboardThreePapers
+    # eyes: ClothingEyesHudCommand  # Reserve-CommandHUD
+  storage:
+    back:
+    - Flash
+    - TelescopicBaton # Goobstation
+
+- type: chameleonOutfit
+  id: HeadOfPersonnelChameleonOutfit
+  job: HeadOfPersonnel
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatHopcap
+    eyes: ClothingEyesHudCommand
+    mask: ClothingMaskNeckGaiterRed
+    neck: ClothingNeckCloakHop
+    outerClothing: ClothingOuterWinterHoP

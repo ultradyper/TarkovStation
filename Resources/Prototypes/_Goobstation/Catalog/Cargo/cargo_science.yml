@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: cargoProduct
+  id: ScienceModsuitCores
+  icon:
+    sprite: _Goobstation/Objects/Specific/Robotics/modsuit_parts.rsi
+    state: mod-core-standard
+  product: CrateScienceModsuitCoresFilled
+  cost: 3000
+  category: cargoproduct-category-name-science
+  group: market
+
+- type: cargoProduct
+  id: ScienceResearchServer
+  icon:
+    sprite: Structures/Machines/server.rsi
+    state: server
+  product: CrateScienceResearchServerFilled
+  cost: 10000
+  category: cargoproduct-category-name-science
+  group: market

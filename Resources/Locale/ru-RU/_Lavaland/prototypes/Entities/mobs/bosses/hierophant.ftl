@@ -1,0 +1,15 @@
+ent-LavalandBossHierophant = иерофант
+    .desc = Массивный металлический клуб, который висит в воздухе, словно в ожидании. Он заставит вас танцевать под его ритм.
+ent-LavalandHierophantSquare = квадрат иерофанта
+    .suffix = НЕ МАППИТЬ
+    .desc = { "" }
+ent-LavalandHierophantSquareSafe = { ent-LavalandHierophantSquare }
+    .suffix = { ent-LavalandHierophantSquare.suffix }, Безопасный
+    .desc = { ent-LavalandHierophantSquare.desc }
+ent-LavalandHierophantDamageField = { "" }
+    .desc = { "" }
+ent-LavalandHierophantChaser = охотник иерофанта
+    .suffix = НЕ МАППИТЬ
+    .desc = { "" }
+ent-MobHierophant = иерофант
+    .desc = Огромный металлический клуб, словно повисший в воздухе в ожидании. Он заставит вас танцевать в такт его ритму.

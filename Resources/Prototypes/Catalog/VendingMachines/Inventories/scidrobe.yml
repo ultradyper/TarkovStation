@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: SciDrobeInventory
+  startingInventory:
+    ClothingBackpackScience: 3
+    ClothingBackpackSatchelScience: 3
+    ClothingBackpackDuffelScience: 3
+    ClothingBackpackMessengerScience: 3 # Frontier
+    ClothingUniformJumpsuitScientist: 3
+    ClothingUniformJumpskirtScientist: 3
+    ClothingUniformJumpsuitScientistFormal: 3
+    ClothingOuterCoatRnd: 3
+    ClothingShoesColorWhite: 3
+    ClothingNeckTieSci: 3
+    ClothingHeadsetScience: 3
+    ClothingMaskGas: 3
+    ClothingOuterWinterSci: 2
+    ClothingNeckScarfStripedPurple: 3
+    ClothingShoesBootsWinterSci: 2
+  contrabandInventory:
+    ToyFigurineResearchDirector: 1

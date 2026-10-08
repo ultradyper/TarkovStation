@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+## Static
+- type: latheRecipePack
+  id: HumanoidCubesStatic
+  recipes:
+  - HumanCube
+  - DionaCube
+  - GingerbreadCube
+  - MothCube
+  - DwarfCube
+  - HarpyCube
+  - RodentiaCube
+  - ReptilianCube
+  - VulpkaninCube
+  - SlimePersonCube
+  - TajaranCube
+  - VoxCube
+  - YowieCube
+  - ShadowkinCube
+  - ChitinidCube
+  - FeroxiCube
+
+- type: latheRecipePack
+  id: EmagCubesStatic
+  recipes:
+  - FelinidCube

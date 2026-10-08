@@ -1,0 +1,67 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Botanist
+  name: job-name-botanist
+  description: job-description-botanist
+  playTimeTracker: JobBotanist
+  startingGear: BotanistGear
+  icon: "JobIconBotanist"
+  supervisors: job-supervisors-hop
+  guides: [ Botany ] # goobstation
+  goobcoins: 15 #Goob content
+  weight: 7  # Reserve edit: Fix Service Department job order
+  access:
+  - Service
+  - Maintenance
+  - Hydroponics
+  extendedAccess:
+  - Kitchen
+  - Bar
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FourTwenty
+    prototype: CannabisSeeds
+  alternateTitles: # Reserve - alternate titles
+  - BotanistHydroponicsSpecialist
+  - BotanistHerbologist
+  - BotanistGardener
+  - BotanistAgronomist
+
+- type: startingGear
+  id: BotanistGear
+  equipment:
+    shoes: ClothingShoesColorBrown
+    id: BotanistPDA
+    ears: ClothingHeadsetService
+    belt: ClothingBeltPlantFilled
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: BotanistChameleonOutfit
+  job: Botanist
+  equipment:
+    head: ClothingHeadBandBotany
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedGreen
+    outerClothing: ClothingOuterApronBotanist
+    gloves: ClothingHandsGlovesLeather
+
+- type: jobAlternateTitle
+  id: BotanistHydroponicsSpecialist
+  name: job-name-alt-botanist-1
+
+- type: jobAlternateTitle
+  id: BotanistHerbologist
+  name: job-name-alt-botanist-2
+
+- type: jobAlternateTitle
+  id: BotanistGardener
+  name: job-name-alt-botanist-3
+
+- type: jobAlternateTitle
+  id: BotanistAgronomist
+  name: job-name-alt-botanist-4

@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: guideEntry
+  id: TarkovStationRules
+  name: ts-rules-title
+  ruleEntry: true
+  text: /ServerInfo/_TarkovStation/Rules.xml

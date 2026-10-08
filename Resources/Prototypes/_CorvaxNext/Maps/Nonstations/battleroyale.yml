@@ -1,0 +1,21 @@
+- type: gameMap
+  id: BattleRoyale
+  mapName: 'Battle Royale'
+  mapPath: /Maps/_CorvaxNext/battleroyale.yml
+  maxRandomOffset: 0
+  randomRotation: false
+  #isGrid: true
+  minPlayers: 0
+  stations:
+    Battleroyale:
+      stationProto: StandardStationArena #Reserve edit
+      components:
+        #- type: StationBiome
+        #  biome: JustWater
+        - type: StationNameSetup
+          mapNameTemplate: "Королевская Битва"
+        - type: StationJobs
+          availableJobs:
+            Passenger: [ -1, -1 ]
+        - type: BattleRoyaleMap
+          clearImplicitRoofComponent: true

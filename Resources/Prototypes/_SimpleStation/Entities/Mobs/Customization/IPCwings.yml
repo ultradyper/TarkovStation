@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: marking
+  id: WingsRobotic
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _SimpleStation/Mobs/Customization/wings96x34.rsi
+      state: robotic_base # Goobstation: Split coloring options on ipc wings
+    - sprite: _SimpleStation/Mobs/Customization/wings96x34.rsi # Goobstation: Split coloring options on ipc wings
+      state: robotic_light # Goobstation: Split coloring options on ipc wings

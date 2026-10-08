@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SeedBase
+  name: packet of strange berry seeds
+  id: StrangeBerrySeeds
+  components:
+    - type: Seed
+      seedId: strangeBerries
+    - type: Sprite
+      sprite: _Goobstation/Objects/Specific/Hydroponics/strange_berries.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of blue tomato seeds
+  id: BluespaceTomatoSeeds
+  components:
+  - type: Seed
+    seedId: bluespaceTomato
+  - type: Sprite
+    sprite: _Goobstation/Objects/Specific/Hydroponics/bluespace_tomato.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of spaceshroom spores
+  id: SpaceshroomSeeds
+  components:
+    - type: Seed
+      seedId: spaceshroom
+    - type: Sprite
+      sprite: _Goobstation/Objects/Specific/Hydroponics/spaceshroom.rsi

@@ -1,0 +1,5 @@
+<!--
+SPDX-License-Identifier: MIT
+-->
+
+<ui:ShuttleMapControl xmlns:ui="clr-namespace:Content.Client.Shuttles.UI" />

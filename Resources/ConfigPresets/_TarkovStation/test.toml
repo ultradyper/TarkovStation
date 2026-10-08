@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Direct-connect alpha. Dedicated data directory supplied by launch script.
+[net]
+bindto = "0.0.0.0"
+port = 1212
+tickrate = 30
+max_connections = 32
+[status]
+enabled = true
+connectaddress = "udp://94.131.91.40:1212"
+[game]
+desc = "TarkovStation: мирный хаб, торговля, рейды и общий десятичасовой цикл. Игровая альфа."
+hostname = "TarkovStation | Альфа | Перевал / 17"
+defaultpreset = "TarkovStation"
+map = "TarkovStationHub"
+map_rotation = false
+fallbackenabled = false
+lobbyenabled = true
+lobbyduration = 5
+role_timers = false
+role_loadout_timers = false
+round_restart_time = 5.0
+[hub]
+advertise = false
+[auth]
+mode = 1
+allowlocal = true
+[console]
+loginlocal = false
+[vote]
+restart_enabled = false
+preset_enabled = false
+map_enabled = false
+[build]
+fork_id = "tarkovstation-alpha"
+[loc]
+culture_name = "ru-RU"
+[tarkov]
+enabled = true
+cycle_seconds = 36000
+queue_seconds = 30
+raid_seconds = 900
+extraction_seconds = 8
+max_raids = 1
+starting_money = 2500
+database = "tarkov-alpha.db"
+test_bots = true
+
+# Disable station infrastructure/maps that do not belong to the hub-and-raids mode.
+[lavaland]
+enabled = false
+[shuttle]
+arrivals = false
+emergency = false
+grid_fill = false
+preload_grids = false
+[procgen]
+preload = false
+[worldgen]
+enabled = false
+[gateway]
+generator_enabled = false
+[holidays]
+enabled = false
+[ooc]
+enabled = true
+enable_during_round = true
+
+[server]
+id = "TarkovStation"
+lobby_name = "TarkovStation"
+rules_file = "TarkovStationRules"
+
+[infolinks]
+discord = "https://discord.gg/jgUJ9Kwa7K"
+wiki = ""
+forum = ""
+github = ""
+website = ""

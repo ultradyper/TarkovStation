@@ -1,0 +1,81 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: weightedRandom
+  id: GameDirector
+  weights:
+    Traitor: 0.25
+    Changeling: 0.10
+    Nukeops: 0.05
+    Revolutionary: 0.05
+    Zombie: 0.04
+    Heretic: 0.11
+    BlobGameMode: 0.05
+    Wizard: 0.025
+    CosmicCult: 0.05 # make it semi often so we can test it
+    Honkops: 0.01
+    Vampire: 0.05  # Reserve edit: Vampires
+
+
+- type: incompatibleModes
+  id: Nukeops
+  modes:
+  - Nukeops
+  - Honkops
+  - Zombie
+  - Revolutionary
+  - BlobGameMode
+  - CosmicCult
+
+- type: incompatibleModes
+  id: Honkops
+  modes:
+  - Nukeops
+  - Honkops
+  - Zombie
+  - Revolutionary
+  - BlobGameMode
+  - CosmicCult
+
+- type: incompatibleModes
+  id: Wizard
+  modes:
+  - Wizard
+
+- type: incompatibleModes
+  id: Heretic
+  modes:
+  - Heretic
+  - CosmicCult
+
+- type: incompatibleModes
+  id: BlobGameMode
+  modes:
+  - BlobGameMode
+  - Nukeops
+  - CosmicCult
+  - Honkops
+
+- type: incompatibleModes
+  id: Zombie
+  modes:
+  - Nukeops
+  - CosmicCult
+  - Honkops
+
+- type: incompatibleModes
+  id: Revolutionary
+  modes:
+  - Nukeops
+  - CosmicCult
+  - Honkops
+
+- type: incompatibleModes
+  id: CosmicCult
+  modes:
+  - Nukeops
+  - Honkops
+  - Zombie
+  - Revolutionary
+  - BlobGameMode
+  - CosmicCult
+  - Heretic

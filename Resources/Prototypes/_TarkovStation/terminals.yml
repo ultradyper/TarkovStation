@@ -1,0 +1,83 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseStructure
+  id: TarkovStationStashTerminal
+  name: terminal
+  description: A terminal at the Pereval transit hub.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - state: computer
+    - state: generic_keyboard
+    - state: id
+      shader: unshaded
+  - type: TarkovTerminal
+    page: stash
+  - type: Godmode
+- type: entity
+  parent: BaseStructure
+  id: TarkovStationRaidConsole
+  name: terminal
+  description: A terminal at the Pereval transit hub.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - state: computer
+    - state: generic_keyboard
+    - state: shuttle
+      shader: unshaded
+  - type: TarkovTerminal
+    page: raids
+  - type: Godmode
+- type: entity
+  parent: BaseStructure
+  id: TarkovStationContractBoard
+  name: terminal
+  description: A terminal at the Pereval transit hub.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - state: computer
+    - state: generic_keyboard
+    - state: id
+      shader: unshaded
+  - type: TarkovTerminal
+    page: contracts
+  - type: Godmode
+- type: entity
+  parent: BaseStructure
+  id: TarkovStationExtractionBeacon
+  name: extraction beacon
+  description: Activate it and stay close to leave the raid alive.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - state: computer
+    - state: generic_keyboard
+    - state: generic
+      shader: unshaded
+  - type: TarkovExit
+  - type: PointLight
+    color: '#80FF96'
+    radius: 6
+    energy: 2.5
+    castShadows: false
+  - type: Godmode
+
+- type: entity
+  parent: TarkovStationContractBoard
+  id: TarkovStationResultsTerminal
+  components:
+  - type: TarkovTerminal
+    page: leaderboard
+- type: entity
+  parent: TarkovStationStashTerminal
+  id: TarkovStationTradeTerminal
+  components:
+  - type: TarkovTerminal
+    page: trade

@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Robust.Shared.Audio;
+
+namespace Content.Shared.Damage.Components;
+
+/// <summary>
+/// Applies stamina damage when colliding with an entity.
+/// </summary>
+[RegisterComponent]
+public sealed partial class StaminaDamageOnCollideComponent : Component
+{
+    [ViewVariables(VVAccess.ReadWrite), DataField("damage")]
+    public float Damage = 55f;
+
+    // goob edit
+    [DataField]
+    public float Overtime = 0f;
+
+    [DataField("sound")]
+    public SoundSpecifier? Sound;
+}

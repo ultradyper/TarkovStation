@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: stealTargetGroup
+  id: SupermatterSliver
+  name: steal-target-groups-cargo-supermatter-sliver
+  sprite:
+    sprite: _Goobstation/Supermatter/supermatter_sliver.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: WeaponEnergyGunLawbringer
+  name: steal-target-groups-weapon-lawbringer
+  sprite:
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/lawbringer.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: WeaponSecHeadSword
+  name: steal-target-groups-weapon-justice
+  sprite:
+    sprite: _Goobstation/Objects/Weapons/Melee/justice.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: RapidSyringeGun
+  name: steal-target-groups-rapid-syringe-gun
+  sprite:
+    sprite: _Goobstation/Objects/Weapons/Guns/Cannons/rapid_syringe_gun.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: ExecutiveBriefcase
+  name: steal-target-groups-executive-briefcase
+  sprite:
+    sprite: _Goobstation/Objects/Tools/executive_briefcase.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: ClothingBeltGeminiHoloProjector
+  name: steal-target-groups-gemini-projector
+  sprite:
+    sprite: _Goobstation/Clothing/Belt/geminiprojector.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: WeaponEnergyGunMultiphase
+  name: steal-target-groups-gemini-projector
+  sprite:
+    sprite: _DV/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: WeaponEnergyShotgun
+  name: steal-target-groups-weapon-energy-shot-gun
+  sprite:
+    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+    state: base

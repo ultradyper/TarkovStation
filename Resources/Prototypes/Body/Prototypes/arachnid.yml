@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: body
+  id: Arachnid
+  name: "arachnid"
+  root: chest
+  slots:
+    head:
+      part: HeadArachnid
+      connections:
+      - chest
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganArachnidEyes
+    chest:
+      part: ChestArachnid
+      organs:
+        heart: OrganArachnidHeart
+        lungs: OrganArachnidLungs
+        stomach: OrganArachnidStomach
+        liver: OrganArachnidLiver
+        kidneys: OrganArachnidKidneys
+      connections:
+      - right arm
+      - left arm
+      - head # Shitmed
+      - groin
+    groin:
+      part: GroinArachnid
+      connections:
+      - right leg
+      - left leg
+      organs:
+        stomach: OrganArachnidStomach
+        liver: OrganArachnidLiver
+        kidneys: OrganArachnidKidneys
+    right arm:
+      part: RightArmArachnid
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmArachnid
+      connections:
+      - left hand
+    right hand:
+      part: RightHandArachnid
+    left hand:
+      part: LeftHandArachnid
+    right leg:
+      part: RightLegArachnid
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegArachnid
+      connections:
+      - left foot
+    right foot:
+      part: RightFootArachnid
+    left foot:
+      part: LeftFootArachnid

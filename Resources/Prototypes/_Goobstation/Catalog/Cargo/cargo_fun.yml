@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: cargoProduct
+  id: FunATV
+  icon:
+    sprite: Objects/Vehicles/atv.rsi
+    state: vehicle
+  product: CrateFunATV
+  cost: 3000
+  group: market
+
+- type: cargoProduct
+  id: FunClowncar
+  icon:
+    sprite: _Goobstation/Objects/Vehicles/clowncar.rsi
+    state: clowncar
+  product: CrateFunClownCarCargo
+  cost: 6000
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunBlackCaviar
+  icon:
+    sprite: _Goobstation/Objects/Consumable/Food/black_caviar.rsi
+    state: icon
+  product: CrateFunBlackCaviar
+  cost: 10000
+  group: market
+
+- type: cargoProduct
+  id: FunRedCaviar
+  icon:
+    sprite: _Goobstation/Objects/Consumable/Food/red_caviar.rsi
+    state: icon
+  product: CrateFunRedCaviar
+  cost: 1000
+  group: market
+
+
+- type: cargoProduct
+  id: FunBalloonPack
+  icon:
+    sprite: _Goobstation/Objects/Fun/balloons.rsi
+    state: red
+  product: CrateBalloonPackage
+  cost: 1500
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunPremiumBalloonPack
+  icon:
+    sprite: _Goobstation/Objects/Fun/balloons.rsi
+    state: carp
+  product: PremiumCrateBalloonPackage
+  cost: 7500
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunDiscoBeachBall
+  icon:
+    sprite: Objects/Fun/Balls/beach_ball.rsi
+    state: icon
+  product: CrateFunDiscoBeachBall
+  cost: 1000
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunDartMonkey
+  icon:
+    sprite: _Goobstation/Objects/Fun/Monkey_Turrets/dartmonkey.rsi
+    state: icon
+  product: CrateDartMonkey
+  cost: 1500
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunTennisDuffel
+  icon:
+    sprite: _Goobstation/Objects/Fun/tennis_racket.rsi
+    state: tennis_racket
+  product: ClothingBackpackDuffelTennisGame
+  cost: 1000
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunAlmanacBlade
+  icon:
+    sprite: Objects/Weapons/Melee/katana.rsi
+    state: icon
+  product: WeaponAlmanacBlade
+  cost: 6666
+  category: cargoproduct-category-name-fun
+  group: market

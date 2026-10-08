@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  name: blue flippo
+  parent: [FlippoLighter, BaseCentcommContraband]
+  id: FlippoLighterBlueshield
+  description: "A specialized blue lighter given only to specific officers. Great for a smoke after a long day."
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Tools/lighters.rsi
+    layers:
+    - state: icon
+      map: ["base"]
+    - state: zippo_top
+      map: ["top"]
+      visible: false
+    - state: icon_open
+      map: ["open"]
+      visible: false
+    - state: lighter_flame
+      map: ["flame"]
+      visible: false
+      shader: unshaded
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 20
+        maxVol: 20
+  - type: PointLight
+    enabled: false
+    netsync: false
+    radius: 3 # Bigger since blue makes it hard to see. Worth it for the drip.
+    color: blue

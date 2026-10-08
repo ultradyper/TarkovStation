@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: CrateNPCGondola
+  parent: CrateLivestock
+  name: gondola crate
+  description: A crate containing a gondola.
+  components:
+    - type: StorageFill
+      contents:
+        - id: MobGondola
+
+- type: entity
+  id: CrateNPCLootbug
+  parent: CrateLivestock
+  name: crate of lootbugs
+  description: A crate containing three lootbugs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MobLootbug
+        amount: 3

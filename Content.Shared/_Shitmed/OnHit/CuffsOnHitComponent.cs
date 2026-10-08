@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.DoAfter;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
+
+namespace Content.Shared._Shitmed.OnHit;
+
+[RegisterComponent]
+public sealed partial class CuffsOnHitComponent : Component
+{
+    [DataField("proto")]
+    public EntProtoId? HandcuffPrototype;
+
+    [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(1);
+
+    [DataField("sound")]
+    public SoundSpecifier? Sound;
+}
+
+[ByRefEvent]
+public record struct CuffsOnHitAttemptEvent(bool Cancelled);
+
+[Serializable, NetSerializable]
+public sealed partial class CuffsOnHitDoAfter : SimpleDoAfterEvent { }

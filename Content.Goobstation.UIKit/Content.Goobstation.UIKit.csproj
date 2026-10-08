@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <RootNamespace>Content.Goobstation.UIKit</RootNamespace>
+    </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Content.ModuleManager\Content.ModuleManager.csproj" />
+    <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
+  </ItemGroup>
+  <Import Project="../MSBuild/Content.props" />
+
+  <Import Project="..\RobustToolbox\Imports\Client.props" />
+  <Import Project="..\RobustToolbox\Imports\Shared.props" />
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" PrivateAssets="all"/>
+  </ItemGroup>
+
+  <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
+  <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />
+</Project>

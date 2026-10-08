@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: HandPlaceholder
+  name: unknown tool
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+    size: Ginormous # no storage insertion visuals
+  - type: HandPlaceholder
+  - type: HandPlaceholderVisuals

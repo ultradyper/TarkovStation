@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ UnsensoredClothingUniformBase, BaseMajorContraband ]
+  id: ClothingUniformJumpsuitAbductor
+  name: abductor uniform
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Clothing/Uniforms/Jumpsuit/abductor.rsi
+  - type: Clothing
+    sprite: _Shitmed/Clothing/Uniforms/Jumpsuit/abductor.rsi

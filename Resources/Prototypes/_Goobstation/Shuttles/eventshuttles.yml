@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Deathsquad
+- type: preloadedGrid
+  id: ConsulShuttle
+  path: /Maps/_Goobstation/Shuttles/consul.yml
+  copies: 1
+
+# ERT
+- type: preloadedGrid
+  id: RetortShuttleAssault
+  path: /Maps/_Goobstation/Shuttles/retort_assault.yml
+  copies: 1
+
+- type: preloadedGrid
+  id: RetortShuttleMedical
+  path: /Maps/_Goobstation/Shuttles/retort_medical.yml
+  copies: 1
+
+- type: preloadedGrid
+  id: RetortShuttleEngineering
+  path: /Maps/_Goobstation/Shuttles/retort_engineering.yml
+  copies: 1
+
+- type: preloadedGrid
+  id: RetortShuttleChaplain
+  path: /Maps/_Goobstation/Shuttles/retort_chaplain.yml
+  copies: 1
+
+- type: preloadedGrid
+  id: RetortShuttleJanitorial
+  path: /Maps/_Goobstation/Shuttles/retort_janitorial.yml
+  copies: 1
+
+# CBURN
+
+- type: preloadedGrid
+  id: RetortShuttleCBURN
+  path: /Maps/_Goobstation/Shuttles/retort_cburn.yml
+  copies: 1
+
+# HECU
+
+- type: preloadedGrid
+  id: RetortShuttleHECU
+  path: /Maps/_Goobstation/Shuttles/retort_hecu.yml
+  copies: 1

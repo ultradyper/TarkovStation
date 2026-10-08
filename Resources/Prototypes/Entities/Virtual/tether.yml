@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: TetherEntity
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    sleepingAllowed: false
+  - type: Fixtures
+    fixtures:
+      tether:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35

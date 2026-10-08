@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: latheRecipePack
+  id: ServiceTools
+  recipes:
+  - PlantBagOfHolding
+  # Reserve edit start: Orchid's Barmania - Service Heaven
+  - BluespaceBucket
+  - TrashBagOfHolding
+  - WateringCan
+  - WateringCanExperimental
+  - BluespaceWateringCanExperimental
+  - ClothingOuterApronBotanistAdvanced
+  - ClothingHandsGlovesBotanistAdvanced
+  - ClothingMaskBreathBotanistAdvanced
+  - ClothingEyesGogglesBotanistAdvanced
+  - ClothingHandsGlovesMitts
+  - ClothingHeadHatChefBluespace
+  - DrinkShakerAdvanced
+  - BluespaceDrinkShakerAdvanced
+  - DrinkKettleAdvanced
+  - BluespaceDrinkKettleAdvanced
+  # Reserve edit end: Orchid's Barmania - Service Heaven

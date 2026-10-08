@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: TechnicalAssistant
+  name: job-name-technical-assistant
+  description: job-description-technical-assistant
+  playTimeTracker: JobTechnicalAssistant
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 2h # Goobstation
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 10h # Goobstation
+      inverted: true # stop playing intern if you're good at engineering!
+  startingGear: TechnicalAssistantGear
+  icon: "JobIconTechnicalAssistant"
+  supervisors: job-supervisors-engineering
+  guides: # goobstation
+  - Construction
+  - Power
+  - Networking
+  goobcoins: 20 #Goob content
+  weight: 6  # Reserve edit: Fix Assistant job order
+  access:
+  - Maintenance
+  - Engineering
+  - External
+  special: # Goobstation
+  - !type:AddComponentSpecial
+    components:
+    - type: EngineeringStaff
+
+- type: startingGear
+  id: TechnicalAssistantGear
+  equipment:
+    shoes: ClothingShoesBootsWork
+    id: TechnicalAssistantPDA
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetEngineering
+    pocket2: BookEngineersHandbook
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: TechnicalAssistantChameleonOutfit
+  job: TechnicalAssistant
+  equipment:
+    head: ClothingHeadHatHardhatOrange
+    eyes: ClothingEyesGlassesMeson
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedOrange
+    outerClothing: ClothingOuterVestHazard
+    gloves: ClothingHandsGlovesColorYellow

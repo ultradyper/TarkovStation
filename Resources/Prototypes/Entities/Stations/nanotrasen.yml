@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  abstract: true
+  id: BaseStationNanotrasen
+  components:
+    - type: NpcFactionMember
+      factions:
+        - NanoTrasen
+
+- type: entity
+  id: StandardNanotrasenStation
+  parent:
+    - BaseStation
+    - BaseStationNews
+    - BaseStationCargo
+    - BaseStationJobsSpawning
+    - BaseStationRecords
+    - BaseStationNtrTasks
+    - BaseStationArrivals
+    - BaseStationGateway
+    - BaseStationShuttles
+    - BaseStationCentcomm
+    - BaseStationEvacuation
+    - BaseStationAlertLevels
+    - BaseStationMagnet
+    - BaseStationExpeditions
+    - BaseStationSalvageJobs
+    - BaseStationSiliconLawCrewsimov
+    - BaseStationAllEventsEligible
+    - BaseStationNanotrasen
+    - BaseStationDeliveries
+    - BaseStationWizardTarget # Goobstation
+    - BaseStationServiceJobs  # Reserve edit: Service Job Board
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform
+
+- type: entity
+  id: NanotrasenCentralCommand
+  parent:
+    - BaseStation
+    - BaseStationAlertLevels
+    - BaseStationNanotrasen
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform
+
+- type: entity
+  id: StandardStationArena
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationNanotrasen
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform

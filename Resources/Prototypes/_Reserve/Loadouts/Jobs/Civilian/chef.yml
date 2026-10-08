@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Effects
+
+- type: loadoutEffectGroup
+  id: AdvancedChef
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 36000  # 10 hours
+
+- type: loadoutEffectGroup
+  id: SeniorChef
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 108000  # 30 hours
+
+- type: loadoutEffectGroup
+  id: LeadChef
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 180000  # 50 hours
+
+# endregion
+
+# region Groups
+
+- type: loadoutGroup
+  id: ChefGloves
+  name: loadout-group-chef-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ChefGlovesEnviroWhite
+  - ChefGlovesMitts
+
+# endregion
+
+# region Gloves
+
+- type: loadout
+  id: ChefGlovesEnviroWhite
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChef
+  equipment:
+    gloves: ClothingHandsGlovesEnviroglovesWhite
+
+- type: loadout
+  id: ChefGlovesMitts
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LeadChef
+  equipment:
+    gloves: ClothingHandsGlovesMitts
+
+# endregion

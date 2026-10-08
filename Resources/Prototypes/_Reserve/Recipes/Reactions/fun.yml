@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# - type: reaction
+#   id: Carpozine
+#   reactants:
+#     Inaprovaline:
+#       amount: 1
+#     Barozine:
+#       amount: 1
+#     UnstableMutagen:
+#       amount: 1
+#   products:
+#     Carpozine: 3

@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Light your enemies on fire
+- type: entity
+  parent: BaseEnchant
+  id: EnchantFireAspect
+  name: Fire Aspect
+  components:
+  - type: Enchant
+    maxLevel: 2
+    whitelist:
+      components:
+      - MeleeWeapon
+    blacklist:
+      components:
+      - MobState # No fire mice
+  - type: FireAspectEnchant
+  - type: IgniteOnMeleeHit
+    fireStacks: 0

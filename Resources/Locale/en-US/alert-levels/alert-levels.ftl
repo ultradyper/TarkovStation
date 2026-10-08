@@ -1,0 +1,79 @@
+# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2022 Morbo <14136326+Morb0@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 Daniil Sikinami <60344369+VigersRay@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
+# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+alert-level-announcement = Attention! Station alert level is now {$name}! {$announcement}
+
+alert-level-unknown = Unknown.
+alert-level-unknown-instructions = Unknown.
+
+alert-level-green = Green
+alert-level-green-announcement = It is now safe to return to your workplaces.
+alert-level-green-instructions = Do your job.
+
+alert-level-blue = Blue
+alert-level-blue-announcement = There is a confirmed threat to the station. Security should perform random checks. Crewmembers are advised to be vigilant and report suspicious activity to security.
+alert-level-blue-instructions = Crewmembers are advised to be vigilant and report suspicious activity to security.
+
+alert-level-red = Red
+alert-level-red-announcement = There is an immediate threat to the station. Security should prepare to use lethal force if necessary. Crewmembers should find a safe place to shelter in, and are advised to follow any present authorities.
+alert-level-red-instructions = Crewmembers should find a safe place to shelter in, and are advised to follow any present authorities.
+
+alert-level-violet = Violet
+alert-level-violet-announcement = There is a viral threat on the station. Medical staff are advised to isolate crewmembers with any symptoms. Crewmembers are advised to distance themselves from others and perform safety measures to prevent further spread.
+alert-level-violet-instructions = Crewmembers are advised to distance themselves from others and perform safety measures to prevent further spread.
+
+alert-level-yellow = Yellow
+alert-level-yellow-announcement = There is a structural or atmospheric threat within the station. Engineering staff are advised to immediately respond and perform safety measures. Crewmembers are advised to stay away from the threat, and stay in their workplaces if necessary.
+alert-level-yellow-instructions = Crewmembers are advised to stay away from the threat, and stay in their workplaces if necessary.
+
+alert-level-gamma = Gamma
+alert-level-gamma-announcement = Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location.
+alert-level-gamma-instructions = All civilians are to immediately seek their nearest head for transportation to a secure location.
+
+alert-level-delta = Delta
+alert-level-delta-announcement = The station is currently under threat of imminent destruction. Crewmembers are advised to listen to heads of staff for more information.
+alert-level-delta-instructions = Crewmembers are advised to listen to heads of staff for more information.
+
+alert-level-epsilon = Epsilon
+alert-level-epsilon-announcement = Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated.
+alert-level-epsilon-instructions = Consider all contracts terminated.
+
+alert-level-omicron = Omicron
+alert-level-omicron-announcement = Station override activated. Await further orders from Central Command staff, stay in your departments.
+alert-level-omicron-instructions = Await further orders.
+
+## DeltaV - Cosmic Cult
+alert-level-octarine = Octarine
+alert-level-octarine-announcement = A cataclysmic noospheric event threatens to envelop realspace. Station crew are to contain the event if possible, or else evacuate.
+alert-level-octarine-instructions = Crewmembers are advised to listen to heads of staff for more information.
+
+## GoobStation
+alert-level-honk = Honk
+alert-level-honk-announcement = A devious clown is on the loose and will cause cataclysmic damage if not executed! All crewmembers must collaborate in executing the clown if possible, or else evacuate.
+alert-level-honk-instructions = Crewmembers are advised to execute the clown.
+
+alert-level-amber = Amber
+alert-level-amber-announcement = There is an immediate station ending threat. All crewmembers are to be armed by any means and all non-essential personnel must assist Security and the Heads of Staff in the defence of the station.
+alert-level-amber-instructions = Crewmembers are to be armed to fight a station ending threat.
+alert-level-amber-locked = Amber alert is locked. It must be unlocked by command authorization or a station-ending threat before it can be activated.
+alert-level-amber-unlocked = Amber alert unlocked. It can now be activated from any communications console.
+alert-level-amber-no-id = No ID card detected. Hold or wear an ID to swipe.
+alert-level-amber-needs-command = Unlocking amber alert must be initiated with a Captain or Head of Security ID.
+alert-level-amber-first-swipe = First ID accepted. Swipe a second, different command ID to unlock the amber alert.
+alert-level-amber-same-id = That ID was already swiped. A second, different command ID is required.
+alert-level-amber-needs-second-command = The second ID must have command access.
+alert-level-amber-verb-text = Unlock Amber Alert
+alert-level-amber-verb-message = Swipe your ID to unlock amber alert so it can be activated. Requires a Captain or Head of Security ID plus a second, different command ID.
+alert-level-amber-authorized-initiated-announcement = Amber alert unlock initiated by {$name}.
+alert-level-amber-authorized-announcement = Amber alert has been unlocked by {$name}.
+alert-level-amber-unknown-name = Unknown
+alert-level-amber-unlocked-announcement = Amber alert has been unlocked and can now be activated from any communications console.

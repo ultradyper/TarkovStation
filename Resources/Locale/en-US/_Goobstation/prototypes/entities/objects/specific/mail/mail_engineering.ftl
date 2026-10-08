@@ -1,0 +1,15 @@
+ent-MailPowerTool = { ent-PackageDelivery }
+    .suffix = электроинструмент
+    .desc = { ent-PackageDelivery.desc }
+ent-MailCircuitboardService = { ent-PackageDelivery }
+    .suffix = Сервисная печатная плата
+    .desc = { ent-PackageDelivery.desc }
+ent-MailCircuitboardIndustrial = { ent-PackageDelivery }
+    .suffix = Промышленная печатная плата
+    .desc = { ent-PackageDelivery.desc }
+ent-MailEngineeringCables = { ent-PackageDelivery }
+    .suffix = кабели
+    .desc = { ent-PackageDelivery.desc }
+ent-MailEngineeringMaterials = { ent-PackageDelivery }
+    .suffix = листовое стекло
+    .desc = { ent-PackageDelivery.desc }

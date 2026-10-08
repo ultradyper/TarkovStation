@@ -1,0 +1,9 @@
+ent-BaseMobAbductor = Урист МакЭлиен
+    .desc = { ent-MobBloodstream.desc }
+    .suffix = Абдуктор
+ent-MobAbductorDummy = манекен { ent-BaseMobAbductor }
+    .desc = { ent-BaseSpeciesDummy.desc }
+    .suffix = Абдуктор
+ent-MobAbductor = { ent-BaseMobAbductor }
+    .desc = { ent-BaseMobAbductor.desc }
+    .suffix = Абдуктор

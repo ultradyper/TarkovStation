@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: soundCollection
+  id: ExpeditionEnd
+  files:
+  - /Audio/Expedition/tension_session.ogg
+  - /Audio/Expedition/deadline.ogg

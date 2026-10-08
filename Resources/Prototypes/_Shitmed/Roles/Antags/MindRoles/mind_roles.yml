@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleLoneAbductor
+  name: Lone Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: LoneAbductorAntag
+    roleType: SoloAntagonist
+    subtype: role-subtype-abductor
+  - type: Abductor
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleAbductorAgent
+  name: Lone Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: AbductorAgentAntag
+    roleType: TeamAntagonist
+    subtype: role-subtype-abductor
+  - type: Abductor
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleAbductorScientist
+  name: Lone Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: AbductorScientistAntag
+    roleType: TeamAntagonist
+    subtype: role-subtype-abductor
+  - type: Abductor
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleAbductorVictim
+  name: Abductee Role
+  components:
+  - type: MindRole
+    roleType: AbductorVictimRole
+    antagPrototype: AbductorVictimAntag
+    subtype: role-subtype-abductor-victim
+  - type: AbductorVictim

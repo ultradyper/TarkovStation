@@ -1,0 +1,218 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entityTable
+  id: AllMusicToysTable
+  table: !type:GroupSelector
+    children:
+    - id: HelicopterInstrument
+    - id: BirdToyInstrument
+
+- type: entityTable
+  id: AllMusicDiscsTable
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: RandomVinylSleeve
+      weight: 2.0
+    - !type:NestedSelector
+      tableId: RandomCDDisk
+      weight: 1.0
+    - id: DiskCaseFilled
+      weight: 1.0
+
+- type: entityTable
+  id: AllSportsToysTable
+  table: !type:GroupSelector
+    children:
+    - !type:AllSelector
+      children:
+      - id: BoxDarts
+      - id: TargetDarts
+    - id: ClothingBackpackDuffelTennisGame
+    - !type:GroupSelector
+      rolls: 2
+      children:
+      - id: ClothingHandsGlovesBoxingRed
+      - id: ClothingHandsGlovesBoxingBlue
+      - id: ClothingHandsGlovesBoxingYellow
+      - id: ClothingHandsGlovesBoxingGreen
+
+- type: entityTable
+  id: MoreBoardGamesTable
+  table: !type:GroupSelector
+    children:
+    - id: ChessBoard
+    - id: BackgammonBoard
+    - id: ParchisBoard
+    - id: CheckerBoard
+    - id: BoxPlaysetEvacPod
+      weight: 1.2
+    - id: CardBoxBase
+      weight: 0.7
+    - id: CardBoxBlack
+      weight: 0.7
+    - id: CardBoxNanotrasen
+      weight: 0.7
+
+- type: entity
+  id: RandomPersonalAI
+  name: random personal AI spawner
+  suffix: Normal
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Fun/pai.rsi
+        state: pai-base
+  - type: RandomSpawner
+    prototypes:
+      - PersonalAI
+    chance: 0.75
+    offset: 0.0
+    rarePrototypes:
+      - GoldenPersonalAI
+    rareChance: 0.02
+
+- type: entity
+  id: RandomBoardGame
+  name: random board game
+  suffix: Board
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Fun/Tabletop/chessboard.rsi
+        state: chessboard
+  - type: RandomSpawner
+    prototypes:
+      - ChessBoard
+      - BackgammonBoard
+      - ParchisBoard
+      - CheckerBoard
+    chance: 0.8
+    offset: 0.0
+
+- type: entity
+  id: RandomBattlemap
+  name: random board game
+  suffix: Battlemap
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Fun/Tabletop/chessboard.rsi
+        state: chessboard
+  - type: RandomSpawner
+    prototypes:
+      - ShipBattlemap
+      - SnowBattlemap
+      - SandBattlemap
+      - GrassBattlemap
+      - MoonBattlemap
+    chance: 0.8
+    offset: 0.0
+
+- type: entity
+  id: RandomCardGame
+  name: random board game
+  suffix: Card Game
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: EstacaoPirata/Objects/Misc/cards.rsi
+        state: black_box
+  - type: RandomSpawner
+    prototypes:
+      - BoxPlaysetEvacPod
+      - CardBoxBase
+      - CardBoxBlack
+      - CardBoxNanotrasen
+    chance: 0.8
+    offset: 0.0
+
+- type: entity
+  id: RandomTableTopGame
+  name: random board game
+  suffix: Cards, Boards
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: EstacaoPirata/Objects/Misc/cards.rsi
+        state: nanotrasen_box
+  - type: RandomSpawner
+    prototypes:
+      - ChessBoard
+      - BackgammonBoard
+      - ParchisBoard
+      - CheckerBoard
+      - BoxPlaysetEvacPod
+      - CardBoxBase
+      - CardBoxBlack
+      - CardBoxNanotrasen
+    chance: 0.8
+    offset: 0.0
+
+# Objects
+
+- type: entity
+  id: CrateFunToyBoxRandom
+  parent: CrateToyBox
+  suffix: Filled, Random
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: AllToysTable
+        rolls: !type:RangeNumberSelector
+          range: 16, 18
+
+- type: entity
+  id: RandomArcadeAny
+  name: random arcade spawner
+  suffix: Any
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Goobstation/Structures/Machines/slotmachines/claw_machine.rsi
+        state: clawmachine
+  - type: RandomSpawner
+    prototypes:
+      - BlockGameArcade
+      - SpaceVillainArcadeFilled
+      - BlockGameArcade
+      - SpaceVillainArcadeFilled
+      - BlockGameArcade
+      - SpaceVillainArcadeFilled
+      - BlockGameArcade
+      - SpaceVillainArcadeFilled
+      - ClawMachine
+    chance: 1

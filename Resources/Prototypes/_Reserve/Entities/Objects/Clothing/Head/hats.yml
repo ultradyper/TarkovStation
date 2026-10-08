@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ClothingHeadHatChef, BaseCivilianContraband]
+  id: ClothingHeadHatChefBluespace
+  name: bluespace chef's hat
+  description: This hat is bigger on the inside! A comfortable piloting cabin for a small rat crew.
+  components:
+  - type: Sprite
+    sprite: &chefs_hat_sprite _Reserve/Clothing/Head/Hats/chefhat.rsi
+  - type: Clothing
+    sprite: *chefs_hat_sprite
+  - type: Storage
+    grid:
+    - 0,0,1,2
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 50
+      BSCrystal: 5

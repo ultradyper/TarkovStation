@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Jumpsuit
+- type: loadout
+  id: RedJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorRed
+
+
+- type: loadout
+  id: RedJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtColorRed
+

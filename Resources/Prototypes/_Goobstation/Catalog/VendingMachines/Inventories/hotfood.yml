@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: HotfoodInventory
+  startingInventory:
+    FoodSnackAncientBurger: 1
+    FoodSnackAncientPizza: 1
+    FoodSnackAncientFries: 1
+    FoodSnackAncientHotdog: 1
+    FoodSnackAncientTaco: 1

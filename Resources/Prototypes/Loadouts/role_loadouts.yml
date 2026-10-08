@@ -1,0 +1,903 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Command
+- type: roleLoadout
+  id: JobCaptain
+  groups:
+  - CaptainHead
+  - CaptainNeck
+  - CaptainJumpsuit
+  - CaptainMask # Goobstation - Lollypops!
+  - CaptainBackpack
+  - CaptainOuterClothing
+  - CaptainShoes # Goobstation
+  - Survival
+  - Trinkets
+  - CaptainJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - CaptainEnvirohelm
+  - CaptainEnvirosuit
+  - CaptainEnvirogloves
+  - CaptainGloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobHeadOfPersonnel
+  groups:
+  - GroupTankHarness
+  - HoPHead
+  - HoPNeck
+  - HoPJumpsuit
+  - HoPBackpack
+  - HoPOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - HoPJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - HoPEnvirohelm
+  - HoPEnvirosuit
+  - HoPEnvirogloves
+  - HoPGloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+# Silicons
+- type: roleLoadout
+  id: JobBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: JobStationAi
+  nameDataset: NamesAI
+  canCustomizeName: true
+
+# Civilian
+- type: roleLoadout
+  id: JobPassenger
+  groups:
+  - GroupTankHarness
+  - PassengerJumpsuit
+  - CommonBackpack
+  - PassengerNeck
+  - PassengerFace
+  - PassengerGloves
+  - PassengerOuterClothing
+  - PassengerShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - PassengerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - AssistantEnvirohelm
+  - AssistantEnvirosuit
+  - AssistantEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobBartender
+  groups:
+  - GroupTankHarness
+  - BartenderHead
+  - BartenderJumpsuit
+  - CommonBackpack
+  - BartenderOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - BartenderJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - BartenderEnvirohelm
+  - BartenderEnvirosuit
+  - BartenderEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobServiceWorker
+  groups:
+  - GroupTankHarness
+  - BartenderJumpsuit
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - ServiceWorkerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ServiceWorkerEnvirohelm
+  - ServiceWorkerEnvirosuit
+  - ServiceWorkerEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobChef
+  groups:
+  - GroupTankHarness
+  - ChefHead
+  - ChefMask
+  - ChefJumpsuit
+  - CommonBackpack
+  - ChefOuterClothing
+  - ChefGloves  # Reserve edit: Orchid's Barmania - Service Heaven
+  - Glasses
+  - Survival
+  - Trinkets
+  - ChefJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ChefEnvirohelm
+  - ChefEnvirosuit
+  - ChefEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobLibrarian
+  groups:
+  - GroupTankHarness
+  - LibrarianJumpsuit
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - LibrarianJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - LibrarianEnvirohelm
+  - LibrarianEnvirosuit
+  - LibrarianEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobLawyer
+  groups:
+  - GroupTankHarness
+  - LawyerNeck
+  - LawyerJumpsuit
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - LawyerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - LawyerEnvirohelm
+  - LawyerEnvirosuit
+  - LawyerEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobChaplain
+  canCustomizeName: true
+  groups:
+  - GroupTankHarness
+  - ChaplainHead
+  - ChaplainMask
+  - ChaplainNeck
+  - ChaplainJumpsuit
+  - CommonBackpack
+  - ChaplainOuterClothing
+  # - ChaplainBible ## Goobstation chaplain gets a bible through ChaplainUndeterminedBible
+  - Glasses
+  - Survival
+  - Trinkets
+  - ChaplainJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ChaplainEnvirohelm
+  - ChaplainEnvirosuit
+  - ChaplainEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobJanitor
+  groups:
+  - GroupTankHarness
+  - JanitorHead
+  - JanitorJumpsuit
+  - JanitorGloves
+  - CommonBackpack
+  - JanitorOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - JanitorJobTrinkets
+  - Animals # Goobstation?
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - JanitorEnvirohelm
+  - JanitorEnvirosuit
+  - JanitorEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobBotanist
+  groups:
+  - GroupTankHarness
+  - BotanistHead
+  - BotanistGoggles  # Reserve edit: Orchid's Barmania - Service Heaven
+  - BotanistMasks  # Reserve edit: Orchid's Barmania - Service Heaven
+  - BotanistJumpsuit
+  - BotanistBackpack
+  - BotanistOuterClothing
+  - BotanistGloves  # Reserve edit: Orchid's Barmania - Service Heaven
+  - Survival
+  - Trinkets
+  - BotanistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - BotanistEnvirohelm
+  - BotanistEnvirosuit
+  - BotanistEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobClown
+  canCustomizeName: true
+  groups:
+  - GroupTankHarness
+  - ClownHead
+  - ClownJumpsuit
+  - ClownBackpack
+  - ClownOuterClothing
+  - ClownShoes
+  - Glasses
+  - SurvivalClown
+  - Trinkets
+  - ClownJobTrinkets
+  - Animals # Goobstation
+  # Goobstation - EE Plasmeme Change.
+  - ClownEnvirohelm
+  - ClownEnvirosuit
+  - ClownEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobMime
+  canCustomizeName: true
+  groups:
+  - GroupTankHarness
+  - MimeHead
+  - MimeMask
+  - MimeJumpsuit
+  - MimeBackpack
+  - MimeOuterClothing
+  - MimeGloves # Goobstation
+  - MimeShoes # Goobstation
+  - MimeBelt
+  - Glasses
+  - SurvivalMime
+  - Trinkets
+  - MimeJobTrinkets
+  - Animals # Goobstation
+  # Goobstation - EE Plasmeme Change.
+  - MimeEnvirohelm
+  - MimeEnvirosuit
+  - MimeEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+
+- type: roleLoadout
+  id: JobMusician
+  canCustomizeName: true
+  groups:
+  - GroupTankHarness
+  - MusicianJumpsuit
+  - CommonBackpack
+  - MusicianOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - MusicianJobTrinkets
+  - Instruments
+  - Animals
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - MusicianEnvirohelm
+  - MusicianEnvirosuit
+  - MusicianEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+# Cargo
+- type: roleLoadout
+  id: JobQuartermaster
+  groups:
+  - GroupTankHarness
+  - QuartermasterHead
+  - QuartermasterNeck
+  - QuartermasterJumpsuit
+  - CargoTechnicianBackpack
+  - QuartermasterOuterClothing
+  - QuartermasterShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - QuartermasterJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - QuartermasterEnvirohelm
+  - QuartermasterEnvirosuit
+  - QuartermasterEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobCargoTechnician
+  groups:
+  - GroupTankHarness
+  - CargoTechnicianHead
+  - CargoTechnicianJumpsuit
+  - CargoTechnicianBackpack
+  - CargoTechnicianOuterClothing
+  - CargoTechnicianShoes
+  - CargoTechnicianID
+  - Glasses
+  - Survival
+  - Trinkets
+  - CargoTechnicianJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - CargoTechnicianEnvirohelm
+  - CargoTechnicianEnvirosuit
+  - CargoTechnicianEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobSalvageSpecialist
+  groups:
+  - GroupTankHarness
+  - SalvageSpecialistNeck # Goobstation
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistJumpsuit # Goobstation
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - SalvageSpecialistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - SalvageEnvirohelm
+  - SalvageEnvirosuit
+  - SalvageEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+# Engineering
+- type: roleLoadout
+  id: JobChiefEngineer
+  groups:
+  - GroupTankHarness
+  - ChiefEngineerHead
+  - ChiefEngineerJumpsuit
+  - StationEngineerBackpack
+  - ChiefEngineerNeck
+  - ChiefEngineerOuterClothing
+  - ChiefEngineerShoes
+  - SurvivalExtended
+  - Trinkets
+  - ChiefEngineerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ChiefEngineerEnvirohelm
+  - ChiefEngineerEnvirosuit
+  - ChiefEngineerEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobTechnicalAssistant
+  groups:
+  - GroupTankHarness
+  - TechnicalAssistantJumpsuit
+  - StationEngineerBackpack
+  - SurvivalExtended
+  - Trinkets
+  - TechnicalAssistantJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - TechnicalAssistantEnvirohelm
+  - TechnicalAssistantEnvirosuit
+  - TechnicalAssistantEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobStationEngineer
+  groups:
+  - GroupTankHarness
+  - StationEngineerHead
+  - StationEngineerJumpsuit
+  - StationEngineerBackpack
+  - StationEngineerOuterClothing
+  - StationEngineerShoes
+  - StationEngineerID
+  - SurvivalExtended
+  - Trinkets
+  - StationEngineerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - StationEngineerEnvirohelm
+  - StationEngineerEnvirosuit
+  - StationEngineerEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobAtmosphericTechnician
+  groups:
+  - GroupTankHarness
+  - AtmosphericTechnicianHead # Goobstation
+  - AtmosphericTechnicianJumpsuit
+  - AtmosphericTechnicianBackpack
+  - AtmosphericTechnicianOuterClothing
+  - AtmosphericTechnicianBelt # Goobstation
+  - AtmosphericTechnicianShoes
+  - SurvivalExtended
+  - Trinkets
+  - AtmosphericTechnicianJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - AtmosEnvirohelm
+  - AtmosEnvirosuit
+  - AtmosEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+# Science
+- type: roleLoadout
+  id: JobResearchDirector
+  groups:
+  - GroupTankHarness
+  - ResearchDirectorHead
+  - ResearchDirectorNeck
+  - ResearchDirectorJumpsuit
+  - ScientistBackpack
+  - ResearchDirectorOuterClothing
+  - ScientistGloves
+  - ResearchDirectorShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - ResearchDirectorJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ResearchDirectorEnvirosuit
+  - ResearchDirectorEnvirohelm
+  - ResearchDirectorEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobScientist
+  groups:
+  - GroupTankHarness
+  - ScientistHead
+  - ScientistNeck
+  - ScientistJumpsuit
+  - ScientistBackpack
+  - ScientistOuterClothing
+  - ScientistGloves
+  - ScientistShoes
+  - ScientistPDA
+  - Glasses
+  - Survival
+  - Trinkets
+  - ScientistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ScientistEnvirohelm
+  - ScientistEnvirosuit
+  - ScientistEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobResearchAssistant
+  groups:
+  - GroupTankHarness
+  - ResearchAssistantJumpsuit
+  - ScientistBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - ResearchAssistantJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ResearchAssistantEnvirohelm
+  - ResearchAssistantEnvirosuit
+  - ResearchAssistantEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+# Security
+- type: roleLoadout
+  id: JobHeadOfSecurity
+  groups:
+  - HeadofSecurityHead
+  - HeadofSecurityNeck
+  - HeadofSecurityJumpsuit
+  - SecurityBackpack
+  - SecurityMelee # Goobstation
+  - SecurityBelt
+  - HeadofSecurityOuterClothing
+  - HeadofSecurityShoes # Goobstation edit
+  - SecurityGloves #goob
+  - SurvivalSecurity
+  - Trinkets
+  - HeadofSecurityJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - HeadofSecurityEnvirohelm
+  - HeadofSecurityEnvirosuit
+  - HeadofSecurityEnvirogloves
+  - HeadofSecurityGloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobWarden
+  groups:
+  - WardenHead
+  - WardenJumpsuit
+  - SecurityBackpack
+  - SecurityMelee # Goobstation
+  - SecurityNeck
+  - SecurityBelt
+  - WardenOuterClothing
+  - SecurityShoes
+  - SecurityGloves #goob
+  - SurvivalSecurity
+  - Trinkets
+  - WardenJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - WardenEnvirohelm
+  - WardenEnvirosuit
+  - WardenEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobSecurityOfficer
+  groups:
+  - SecurityHead
+  - SecurityJumpsuit
+  - SecurityBackpack
+  - SecurityMelee # Goobstation
+  - SecurityOuterClothing
+  - SecurityShoes
+  - SecurityGloves #goob
+  - SecurityNeck
+  - SecurityPDA
+  - SecurityBelt
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - SecurityOfficerEnvirohelm
+  - SecurityOfficerEnvirosuit
+  - SecurityOfficerEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobDetective
+  groups:
+  - DetectiveHead
+  - DetectiveNeck
+  - DetectiveJumpsuit
+  - SecurityBackpack
+  - DetectiveOuterClothing
+  - SecurityShoes
+  - SurvivalSecurity
+  - Trinkets
+  - DetectiveJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - DetectiveEnvirohelm
+  - DetectiveEnvirosuit
+  - DetectiveEnvirogloves
+  - DetectiveGloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobSecurityCadet
+  groups:
+  - SecurityCadetJumpsuit
+  - SecurityBackpack
+  - SecurityMelee # Goobstation
+  - SurvivalSecurity
+  - SecurityNeck
+  - SecurityOuterClothing # Goobstation - Why not.
+  - Trinkets
+  - SecurityCadetJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - SecurityCadetEnvirohelm
+  - SecurityCadetEnvirosuit
+  - SecurityCadetEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+# Medical
+- type: roleLoadout
+  id: JobChiefMedicalOfficer
+  groups:
+  - GroupTankHarness
+  - ChiefMedicalOfficerHead
+  - MedicalMask
+  - ChiefMedicalOfficerJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - ChiefMedicalOfficerOuterClothing
+  - ChiefMedicalOfficerNeck
+  - ChiefMedicalOfficerShoes
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - ChiefMedicalOfficerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - ChiefMedicalOfficerEnvirohelm
+  - ChiefMedicalOfficerEnvirosuit
+  - ChiefMedicalOfficerEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobMedicalDoctor
+  groups:
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
+  - MedicalDoctorPDA
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - MedicalDoctorJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - MedicalDoctorEnvirohelm
+  - MedicalDoctorEnvirosuit
+  - MedicalDoctorEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobMedicalIntern
+  groups:
+  - GroupTankHarness
+  - MedicalInternJumpsuit
+  - MedicalBackpack
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - MedicalInternJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - MedicalInternEnvirohelm
+  - MedicalInternEnvirosuit
+  - MedicalInternEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobChemist
+  groups:
+  - GroupTankHarness
+  - ChemistHead # Goobstation
+  - ChemistGoggles  # Reserve edit: Orchid's Barmania - Service Heaven
+  - ChemistMasks  # Reserve edit: Orchid's Barmania - Service Heaven
+  - ChemistJumpsuit
+  - ChemistGloves  # Reserve edit: Orchid's Barmania - Service Heaven
+  - ChemistBackpack
+  - ChemistOuterClothing
+  - MedicalShoes
+  - SurvivalMedical
+  - Trinkets
+  - ChemistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - ChemistEnvirohelm
+  - ChemistEnvirosuit
+  - ChemistEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobParamedic
+  groups:
+  - GroupTankHarness
+  - ParamedicHead
+  - MedicalMask
+  - ParamedicJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - ParamedicOuterClothing
+  - ParamedicShoes
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - ParamedicJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - ParamedicEnvirohelm
+  - ParamedicEnvirosuit
+  - ParamedicEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+# Wildcards
+- type: roleLoadout
+  id: JobZookeeper
+  groups:
+  - ZookeeperHead
+  - ZookeeperJumpsuit
+  - GroupTankHarness
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Animals
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ZookeeperEnvirohelm
+  - ZookeeperEnvirosuit
+  - ZookeeperEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobReporter
+  groups:
+  - GroupTankHarness
+  - ReporterJumpsuit
+  - ReporterOuterClothing # Goobstation - Bodycams
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - ReporterJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ReporterEnvirohelm
+  - ReporterEnvirosuit
+  - ReporterEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobPsychologist
+  groups:
+  - GroupTankHarness
+  - PsychologistJumpsuit
+  - MedicalBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - PsychologistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - PsychologistEnvirohelm
+  - PsychologistEnvirosuit
+  - PsychologistEnvirogloves
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+- type: roleLoadout
+  id: JobBoxer
+  groups:
+  - GroupTankHarness
+  - BoxerJumpsuit
+  - BoxerGloves
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Animals
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - BoxerEnvirohelm
+  - BoxerEnvirosuit
+  - UniqueReserveItems  # Reserve edit: Ckey loadout items
+
+# These loadouts are used for non-crew spawns, like off-station antags and event mobs
+# They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
+
+# gives vox a harness and breathing mask
+# nitrogen tank not included
+- type: roleLoadout
+  id: RoleSurvivalVoxSupport
+  groups:
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+# gives vox a nitrogen breathing tank
+# other species get nothing
+- type: roleLoadout
+  id: RoleSurvivalVoxTank
+  groups:
+  - GroupEVATankVox
+
+- type: roleLoadout
+  id: RoleSurvivalStandard
+  groups:
+  - Survival
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalClown
+  groups:
+  - SurvivalClown
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalExtended
+  groups:
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalMedical
+  groups:
+  - SurvivalMedical
+  - GroupSpeciesBreathToolMedical
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalSecurity
+  groups:
+  - SurvivalSecurity
+  - GroupSpeciesBreathToolSecurity
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalSyndicate
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalMilitaryDouble
+  groups:
+  - SurvivalMilitaryDouble
+
+- type: roleLoadout
+  id: RoleSurvivalNukie
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: RoleSurvivalEVA
+  groups:
+  - GroupEVATank
+  - SurvivalExtended
+
+- type: roleLoadout
+  id: RoleSurvivalSpaceNinja
+  groups:
+  - GroupEVATank

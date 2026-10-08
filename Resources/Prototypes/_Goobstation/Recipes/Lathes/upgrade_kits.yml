@@ -1,0 +1,8 @@
+- type: latheRecipe
+  parent: BaseUpgradeKit
+  id: AutodocUpgradeKitBluespace
+  result: AutodocUpgradeKitBluespace
+  materials:
+    Glass: 500
+    Steel: 200
+    BSCrystal: 100

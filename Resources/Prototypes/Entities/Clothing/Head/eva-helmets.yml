@@ -1,0 +1,141 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+#EVA Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetEVA
+  name: EVA helmet
+  description: An old-but-gold helmet designed for extravehicular activites. Infamous for making security officers paranoid.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/eva.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/eva.rsi
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon
+    - CorgiWearable
+
+#Large EVA Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetEVALarge
+  name: EVA helmet
+  description: An old-but-gold helmet designed for extravehicular activites.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/eva_large.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/eva_large.rsi
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon
+    - CorgiWearable
+
+#Syndicate EVA Helmet
+- type: entity
+  parent: [ ClothingHeadEVAHelmetBase, BaseSyndicateContraband ]
+  id: ClothingHeadHelmetSyndicate
+  name: syndicate EVA helmet
+  description: A simple, stylish EVA helmet. Designed for maximum humble space-badassery.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/eva_syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/eva_syndicate.rsi
+  - type: Armor # Goob
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Radiation: 0.5
+  - type: StaticPrice
+    price: 500 # Suit is 1000
+
+#Cosmonaut Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetCosmonaut
+  name: cosmonaut helmet
+  description: Ancient design, but advanced manufacturing. #Description here originally started with " A deceptively well armored space helmet." Potentially had armor values in SS13 that weren't brought over?
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/cosmonaut.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/cosmonaut.rsi
+
+#Paramedic Void Helmet
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase # goobstation - why didnt this have a light
+  id: ClothingHeadHelmetVoidParamed
+  name: paramedic void helmet
+  description: A void helmet made for paramedics.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Head/Hardsuits/goobparamed.rsi # goobstation - wizden sprites SUCK ASS!!!
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Head/Hardsuits/goobparamed.rsi # goobstation - wizden sprites SUCK ASS!!!
+#  - type: HandheldLight #Goob
+#    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+#    clothingVisuals: # Goobstaion
+#      head:
+#      - state: equipped-head-light
+#      head-vox:
+#      - state: equipped-head-light-vox
+#      head-dog:
+#      - state: equipped-head-light-dog
+#  - type: Clothing
+#    clothingVisuals:
+#      head:
+#      - state: equipped-head
+#      head-vox:
+#      - state: equipped-head-vox
+#      head-dog:
+#      - state: equipped-head-dog
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    # Goob Start
+    coverage:
+    - Head
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0.14
+      BoneDamage: 0.14
+      VeinsDamage: 0
+      NerveDamage: 0
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Radiation: 0.75
+        Caustic: 0.5
+    # Goob end
+  - type: PointLight
+    radius: 5
+    energy: 2
+    color: "#3385cc" # goobstation
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - HelmetEVA
+    - WhitelistChameleon
+
+
+#Ancient Void Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetAncient
+  name: NTSRA void helmet
+  description: An ancient space helmet, designed by the NTSRA branch of CentComm.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/ancientvoidsuit.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/ancientvoidsuit.rsi

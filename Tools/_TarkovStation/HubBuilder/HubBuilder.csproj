@@ -1,0 +1,19 @@
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <OutputPath>../../../bin/TarkovHubBuilder/</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <IsTestingPlatformApplication>false</IsTestingPlatformApplication>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <Import Project="../../../MSBuild/Content.props" />
+  <ItemGroup>
+    <ProjectReference Include="../../../Content.IntegrationTests/Content.IntegrationTests.csproj" />
+  </ItemGroup>
+  <Import Project="../../../RobustToolbox/MSBuild/Robust.Properties.targets" />
+  <Import Project="../../../RobustToolbox/Imports/Client.props" />
+  <Import Project="../../../RobustToolbox/Imports/Server.props" />
+  <Import Project="../../../RobustToolbox/Imports/Shared.props" />
+  <Import Project="../../../RobustToolbox/Imports/Testing.props" />
+</Project>

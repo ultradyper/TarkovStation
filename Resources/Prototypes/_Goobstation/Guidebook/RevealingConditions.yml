@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: guideEntry
+  id: Conditions
+  name: guide-entry-antag-revealing-conditions # Reserve
+  priority: 60
+  text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/MetaReveal.xml"
+  localizedText:
+    ru-RU: "/ServerInfo/_Reserve/Guidebook/Antagonist/MetaReveal.xml"

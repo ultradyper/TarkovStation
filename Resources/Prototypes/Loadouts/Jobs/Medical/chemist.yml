@@ -1,0 +1,55 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Jumpsuit
+- type: loadout
+  id: ChemistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChemistry
+
+
+- type: loadout
+  id: ChemistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChemistry
+
+
+- type: loadout # goob
+  id: ChemistMJ
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: MasterChemist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMilitaryChemistry
+
+
+# Back
+- type: loadout
+  id: ChemistBackpack
+  equipment:
+    back: ClothingBackpackChemistry
+
+- type: loadout
+  id: ChemistSatchel
+  equipment:
+    back: ClothingBackpackSatchelChemistry
+
+- type: loadout
+  id: ChemistDuffel
+  equipment:
+    back: ClothingBackpackDuffelChemistry
+
+# Outer clothing
+- type: loadout
+  id: ChemistLabCoat
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: AdvancedChemist
+  equipment:
+    outerClothing: ClothingOuterCoatLabChem
+
+- type: loadout
+  id: ChemistWintercoat
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: AdvancedChemist
+  equipment:
+    outerClothing: ClothingOuterWinterChem

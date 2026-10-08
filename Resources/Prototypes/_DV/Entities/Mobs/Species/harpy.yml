@@ -1,0 +1,252 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  save: false
+  name: Urist McHarpy
+  parent: BaseMobHuman
+  id: MobHarpyBase
+  abstract: true
+  components:
+  - type: HarpySinger
+    ShutUpDamageThreshold: 5 # Punch does 5 damage
+  - type: Instrument
+    allowPercussion: false
+    program: 52
+  - type: SwappableInstrument
+    instrumentList:
+      "Voice": {52: 0}
+      "Trumpet": {56: 0}
+      "Electric": {27: 0}
+      "Bass": {33: 0}
+      "Rock": {29: 0}
+      "Acoustic": {24: 0}
+      "Flute": {73: 0}
+      "Sax": {66: 0}
+      "Piano": {1: 0}
+      "Church Organ": {19: 0}
+      "Violin": {41: 0}
+  - type: UserInterface
+    interfaces:
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+        requireInputValidation: false
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      # Goobstation - changelings
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.WizardTeleportUiKey.Key: # Goobstation - wizard
+        type: WizardTeleportBoundUserInterface
+        requireInputValidation: false
+      enum.RadarConsoleUiKey.Key: #goob - contractor
+        type: RadarConsoleBoundUserInterface
+  - type: Sprite
+    # scale: 0.9, 0.9 # Goobstation: port EE height/width sliders
+    layers:
+      - map: [ "enum.HumanoidVisualLayers.Groin" ]
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      - map: [ "underpants" ]
+      - map: [ "undershirt" ]
+      - map: [ "socks" ]
+      - map: [ "jumpsuit" ]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "id" ]
+      - map: [ "gloves" ]
+      - map: [ "ears" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.Face" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "Effects/creampie.rsi"
+        state: "creampie_human"
+        visible: false
+# Yes, RArm has to be down here
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "maskalt" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "mask" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "head" ]
+      - map: [ "singingLayer" ]
+        sprite: _DV/Effects/harpysinger.rsi
+        state: singing_music_notes
+        visible: false
+  - type: HumanoidAppearance
+    species: Harpy
+    #undergarmentTop:
+    #undergarmentBottom: todo marty bottom needs adjusting
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 120
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Body
+    prototype: Harpy
+  - type: Damageable
+    damageModifierSet: Harpy
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 5
+  - type: Speech
+    # speechSounds: Harpy Reserve edit
+    speechVerb: Harpy
+    allowedEmotes: ['Chirp', 'Trill', 'Warble', 'Wurble', 'Mars', 'Squeak', 'Bagawk', 'Click', 'Flap', 'Gnash', 'Honk', 'Beep', 'Buzz', 'Squish', 'Bubble', 'Pop', 'Chitter'] # Goob - more harpy emotes  # Reserve edit: Disable intentional belching
+  - type: Vocal
+    sounds:
+      Male: SoundsHarpyMale
+      Female: SoundsHarpyFemale
+      Unsexed: SoundsHarpyFemale
+  - type: LanguageKnowledge # Einstein Engines - Language
+    speaks:
+    - TauCetiBasic
+    - ValyrianStandard
+    understands:
+    - TauCetiBasic
+    - ValyrianStandard
+  - type: GenericVisualizer
+    visuals:
+      enum.HarpyVisualLayers.Singing:
+        singingLayer:
+          False:  {visible: false}
+          True:  {visible: true}
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 2.5
+    weightlessModifier: 1.12
+  - type: Inventory
+    speciesId: harpy
+    templateId: digitigrade # Einstein Engines
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+  - type: HarpyVisuals
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - HarpyEmotes
+    - AnomalyHost
+  - type: StepTriggerImmune
+    whitelist:
+      types:
+      - Shard
+      - Landmine
+      - Mousetrap
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: MobHumanDummy
+  id: MobHarpyDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy Harpy meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Harpy
+  - type: Inventory
+    speciesId: harpy
+    templateId: digitigrade # Einstein Engines
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+  - type: Sprite
+    # scale: 0.9, 0.9 # Goobstation: port EE height/width sliders
+    layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Groin" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ] # goobstation
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ] # goobstation
+      - map: [ "socks" ]
+      - map: [ "jumpsuit" ]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "id" ]
+      - map: [ "gloves" ]
+      - map: [ "ears" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.Face" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "Effects/creampie.rsi"
+        state: "creampie_human"
+        visible: false
+# Yes, RArm has to be down here
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "maskalt" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]

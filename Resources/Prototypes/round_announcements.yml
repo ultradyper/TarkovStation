@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: MIT
+
+- type: roundAnnouncement
+  id: Welcome
+  sound: /Audio/Announcements/welcome.ogg

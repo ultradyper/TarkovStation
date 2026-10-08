@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseMajorContraband ]
+  id: ClothingHeadsetAltAbductor
+  name: abductor over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _Shitmed/Clothing/Ears/Headsets/abductor.rsi
+  - type: Clothing
+    sprite: _Shitmed/Clothing/Ears/Headsets/abductor.rsi

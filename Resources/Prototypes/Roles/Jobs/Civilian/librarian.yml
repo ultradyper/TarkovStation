@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Librarian
+  name: job-name-librarian
+  description: job-description-librarian
+  playTimeTracker: JobLibrarian
+  startingGear: LibrarianGear
+  icon: "JobIconLibrarian"
+  supervisors: job-supervisors-hop
+  goobcoins: 10 #Goob content
+  weight: 3  # Reserve edit: Fix Service Department job order
+  access:
+  - Service
+  - Maintenance
+  special: # Goobstation start - Librarian should speak most languages.
+  - !type:AddImplantSpecial
+    implants: [ LibrarianTranslatorImplant ] # Goobstation end
+  alternateTitles: # Reserve - alternate titles
+  - LibrarianClerk
+  - LibrarianWriter
+  - LibrarianProfessor
+  - LibrarianCurator
+
+- type: startingGear
+  id: LibrarianGear
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+    id: LibrarianPDA
+    ears: ClothingHeadsetService
+    pocket1: d20Dice
+    pocket2: HandLabeler # for making named bestsellers
+  storage:
+    back:
+    - BookRandom
+
+- type: chameleonOutfit
+  id: LibrarianChameleonOutfit
+  job: Librarian
+  equipment:
+    head: ClothingHeadHatCanadaBeanie
+    eyes: ClothingEyesGlassesJamjar
+    mask: ClothingMaskGas
+    neck: ClothingNeckScarfStripedGreen
+    outerClothing: ClothingOuterWinterColorGreen
+    gloves: ClothingHandsGlovesColorBlack
+
+- type: jobAlternateTitle
+  id: LibrarianClerk
+  name: job-name-alt-librarian-1
+
+- type: jobAlternateTitle
+  id: LibrarianWriter
+  name: job-name-alt-librarian-2
+
+- type: jobAlternateTitle
+  id: LibrarianProfessor
+  name: job-name-alt-librarian-3
+
+- type: jobAlternateTitle
+  id: LibrarianCurator
+  name: job-name-alt-librarian-4

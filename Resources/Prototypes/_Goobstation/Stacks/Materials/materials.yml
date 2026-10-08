@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: stack
+  id: BSCrystal
+  name: stack-bscrystal
+  icon: { sprite: /Textures/_Goobstation/Objects/Materials/materials.rsi, state: bluespace_crystal }
+  spawn: MaterialBSCrystal1
+  maxCount: 30
+
+- type: stack
+  id: BSCrystalUnprocessed
+  name: stack-bscrystal-unprocessed
+  icon: { sprite: /Textures/_Goobstation/Objects/Materials/materials.rsi, state: bluespace_crystal }
+  spawn: MaterialBSCrystal1Unprocessed
+  maxCount: 30

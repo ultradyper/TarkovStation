@@ -1,0 +1,71 @@
+# Spoken by Vulpknanin.
+# TODO: Replace this with a much better language.
+- type: language
+  id: Canilunzt
+  isVisibleLanguage: true
+  speech:
+    color: "#d69b3dcc"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    # reserve edit start
+    - рур
+    - я
+    - кен
+    - равр
+    - бар
+    - кук
+    - тек
+    - кват
+    - ук
+    - ву
+    - вух
+    - тах
+    - тч
+    - шз
+    - ауч
+    - ист
+    - ейн
+    - енч
+    - звич
+    - тут
+    - мир
+    - вр
+    - бис
+    - ес
+    - вор
+    - нич
+    - гро
+    - енем
+    - зандт
+    - тзч
+    - ноч
+    - хел
+    - исчт
+    - фар
+    - ва
+    - барам
+    - иеренг
+    - тех
+    - лач
+    - сам
+    - мак
+    - лич
+    - ген
+    - ор
+    - аг
+    - ечк
+    - гек
+    - стад
+    - онн
+    - бин
+    - кет
+    - жарл
+    - вульф
+    - эйнех
+    - крестхз
+    - азунейн
+    - жзх
+    # reserve edit end

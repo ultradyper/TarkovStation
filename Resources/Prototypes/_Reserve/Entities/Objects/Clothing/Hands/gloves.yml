@@ -1,0 +1,125 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ClothingHandsGlovesEnviroglovesLeather, BaseCivilianContraband]
+  id: ClothingHandsGlovesBotanistAdvanced
+  name: advanced botanical gloves
+  description: These advanced gloves protect your boney hands against thorns, barbs, prickles, and spikes.
+  suffix: ""
+  components:
+  - type: Sprite
+    sprite: &botanical_gloves_sprite Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: &botanical_color "#ffb431"
+  - type: Item
+    sprite: *botanical_gloves_sprite
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: *botanical_color
+      right:
+      - state: inhand-right
+        color: *botanical_color
+  - type: Clothing
+    sprite: *botanical_gloves_sprite
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: *botanical_color
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+    fiberColor: fibers-orange
+  - type: FingerprintMask
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10
+        Caustic: 5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.95
+        Slash: 0.8
+        Piercing: 0.85
+
+- type: entity
+  parent: ClothingHandsGlovesEnviroglovesLeather
+  id: ClothingHandsGlovesChemistAdvanced
+  name: advanced chemical gloves
+  description: These advanced insulated gloves protect your boney hands against chemical and thermal burns.
+  suffix: ""
+  components:
+  - type: Sprite
+    sprite: &chemist_gloves_sprite Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: &chemist_color "#ff7124"
+  - type: Item
+    sprite: *chemist_gloves_sprite
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: *chemist_color
+      right:
+      - state: inhand-right
+        color: *chemist_color
+  - type: Clothing
+    sprite: *chemist_gloves_sprite
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: *chemist_color
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+    fiberColor: fibers-orange
+  - type: FingerprintMask
+  - type: Insulated
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Caustic: 10
+        Heat: 5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.8
+        Caustic: 0.7
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesMitts
+  name: mitts
+  description: Cooking mitts for handling hot items.
+  components:
+  - type: Sprite
+    sprite: &mitts_sprite _Reserve/Clothing/Hands/Gloves/mitts.rsi
+  - type: Clothing
+    sprite: *mitts_sprite
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-black
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.5
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Caustic: 3
+        Heat: 10
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.6
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsGlovesMitts
+  id: ClothingHandsGlovesMittsChemist
+  name: chemical mitts
+  description: Chemistry mitts for handling hot items.
+  components:
+  - type: Sprite
+    sprite: &chemist_mitts_sprite _Reserve/Clothing/Hands/Gloves/mitts_chemical.rsi
+  - type: Clothing
+    sprite: *chemist_mitts_sprite

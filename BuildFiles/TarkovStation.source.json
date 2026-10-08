@@ -1,0 +1,17 @@
+{
+  "project": "TarkovStation",
+  "snapshot": "2026-10-08",
+  "upstream_revisions": {
+    ".": "2db0901b46dffb826218328bb6b5f8563d9f3376",
+    "RobustToolbox": "d99c25cacef38d1a964784e43bfd345c8f7a50b8",
+    "RobustToolbox/Lidgren.Network/Lidgren.Network": "f5bcebb7584cc9a9bb547128867af9c9c59c611e",
+    "RobustToolbox/NetSerializer": "c32b75671acd1c52be7fe2674de0c5a3b1ddeff0",
+    "RobustToolbox/Robust.LoaderApi": "2b6a7db8d85166b345302e446a8492a213fc92aa",
+    "RobustToolbox/XamlX": "8d9b5a8c670cf410308f85e3914373d848ccf698",
+    "RobustToolbox/cefglue": "f8f5135dbcb6d1c1638043966d7a7c620676b5f8"
+  },
+  "engine_layout": "vendored",
+  "engine_local_changes": [
+    "Robust.Server/ServerStatus/StatusHost.cs"
+  ]
+}

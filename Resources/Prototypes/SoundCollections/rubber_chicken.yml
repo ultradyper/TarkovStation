@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: soundCollection
+  id: RubberChicken
+  files:
+  - /Audio/Items/Toys/rubber_chicken_1.ogg
+  - /Audio/Items/Toys/rubber_chicken_2.ogg
+  - /Audio/Items/Toys/rubber_chicken_3.ogg

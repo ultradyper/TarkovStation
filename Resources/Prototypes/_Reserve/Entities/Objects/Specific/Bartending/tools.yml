@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Shakers
+
+- type: entity
+  parent: DrinkShaker
+  id: DrinkShakerAdvanced
+  name: advanced shaker
+  description: This transparent measured shaker has a cool physics-based stir inside, so you can shake and stir the drink at the same time. And it's a bit bigger than the regular one.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 120  # Exactly 4 drinks
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+  - type: ReactionMixer
+    mixerType: None
+    reactionTypes:
+    - Shake
+    - Stir
+  - type: ExaminableSolution
+    heldOnly: false
+    examinableWhileClosed: true
+    exactVolume: true
+  - type: Sprite
+    sprite: _Reserve/Objects/Consumable/Drinks/shaker.rsi
+    layers:
+      - state: icon
+        map: [ "enum.SolutionContainerLayers.Base" ]
+      - state: fill-1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill-
+
+- type: entity
+  parent: [DrinkShakerAdvanced, BaseCivilianContraband]
+  id: BluespaceDrinkShakerAdvanced
+  name: bluespace advanced shaker
+  description: This advanced shaker uses bluespace technology to hold more liquid.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 500
+  - type: Sprite
+    layers:
+      - state: icon_bluespace
+        map: [ "enum.SolutionContainerLayers.Base" ]
+      - state: fill-1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+
+# endregion

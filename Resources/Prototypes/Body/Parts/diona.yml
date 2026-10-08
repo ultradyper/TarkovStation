@@ -1,0 +1,120 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: PartDiona
+  parent: [BaseItem, BasePart]
+  name: "diona body part"
+  abstract: true
+  components:
+  - type: WoundableVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: _Shitmed/Mobs/Effects/brute_damage.rsi
+        color: "#cd7314"
+      Burn:
+        sprite: _Shitmed/Mobs/Effects/burn_damage.rsi
+  - type: Sprite
+    sprite: Mobs/Species/Diona/parts.rsi
+  - type: Icon # Shitmed Change
+    sprite: Mobs/Species/Diona/parts.rsi
+  - type: BodyPart # Shitmed Change
+    species: Diona
+  - type: Damageable # Shitmed
+    damageModifierSet: Diona
+
+- type: entity
+  id: ChestDiona
+  name: "diona chest"
+  parent: [PartDiona, BaseChest]
+  components:
+  - type: Sprite
+    state: "chest_m"
+
+- type: entity
+  id: GroinDiona
+  name: "diona groin"
+  parent: [PartDiona, BaseGroin]
+  components:
+  - type: Sprite
+    state: "groin_m"
+
+- type: entity
+  id: HeadDiona
+  name: "diona head"
+  parent: [PartDiona, BaseHead]
+  components:
+  - type: Sprite
+    state: "head_m"
+
+- type: entity
+  id: LeftArmDiona
+  name: "left diona arm"
+  parent: [PartDiona, BaseLeftArm]
+  components:
+  - type: Sprite
+    state: "l_arm"
+
+- type: entity
+  id: RightArmDiona
+  name: "right diona arm"
+  parent: [PartDiona, BaseRightArm]
+  components:
+  - type: Sprite
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandDiona
+  name: "left diona hand"
+  parent: [PartDiona, BaseLeftHand]
+  components:
+  - type: Sprite
+    state: "l_hand"
+
+- type: entity
+  id: RightHandDiona
+  name: "right diona hand"
+  parent: [PartDiona, BaseRightHand]
+  components:
+  - type: Sprite
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegDiona
+  name: "left diona leg"
+  parent: [PartDiona, BaseLeftLeg]
+  components:
+  - type: Sprite
+    state: "l_leg"
+
+- type: entity
+  id: RightLegDiona
+  name: "right diona leg"
+  parent: [PartDiona, BaseRightLeg]
+  components:
+  - type: Sprite
+    state: "r_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right
+
+- type: entity
+  id: LeftFootDiona
+  name: "left diona foot"
+  parent: [PartDiona, BaseLeftFoot]
+  components:
+  - type: Sprite
+    state: "l_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Left
+
+- type: entity
+  id: RightFootDiona
+  name: "right diona foot"
+  parent: [PartDiona, BaseRightFoot]
+  components:
+  - type: Sprite
+    state: "r_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Right

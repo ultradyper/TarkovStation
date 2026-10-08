@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Spoken by slime race and slimes.
+# Derived from Basque Language - Goob
+- type: language
+  id: Bubblish
+  isVisibleLanguage: true
+  speech:
+    color: "#24d1b9" # Goob Edit - Original "#00a3e2dd"
+    # Reserve edit start: Fix languages in chat
+    fontId: ShantellSans
+    boldFontId: ShantellSansBold
+    # Reserve edit end: Fix languages in chat
+    fontSize: 13 # Goob Edit - Increased by 1 to account for slight font size difference.
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 5 # Goob Edit - Make it more chaotic.
+    replacement:
+    # reserve edit start
+    - блоб
+    - плоп
+    - плип
+    - пип
+    - поп
+    - боп
+    - буп
+    - гургл
+    - глоп
+    - глип
+    - глуп
+    - гвуп
+    - гвип
+    - глорп
+    # Basque
+    - ез
+    - ткса
+    - зун
+    - гор
+    - итз
+    - джар
+    - еус
+    - бак
+    - бер
+    - лур
+    - кр
+    - ур
+    - ха
+    - аиз
+    - зоа
+    - етксеа
+    - джарраи
+    - киде
+    - гунеа
+    - херриа
+    - лана
+    - зарра
+    - буру
+    - алдиа
+    - леку
+    - ондо
+    - еги
+    - заин
+    - кета
+    - итз
+    - тксу
+    - рру
+    - ска
+    - зоа
+    - заи
+    - ну
+    - лку
+    - ксар
+    - нка
+    - дои
+    - зку
+    - еко
+    - оа
+    # reserve edit end

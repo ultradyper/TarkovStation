@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+
+- type: guideEntry
+  id: CorporateAgents
+  name: guide-entry-corporate-agents # Reserve edit: localization-fix
+  text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/CorporateAgent.xml"
+  localizedText:
+    ru-RU: "/ServerInfo/_Reserve/Guidebook/Antagonist/CorporateAgent.xml"

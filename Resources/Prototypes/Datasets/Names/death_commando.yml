@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MIT
+
+- type: localizedDataset
+  id: NamesDeathCommando
+  values:
+    prefix: names-death-commando-dataset-
+    count: 158

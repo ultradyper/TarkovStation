@@ -1,0 +1,72 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Janitor
+  name: job-name-janitor
+  description: job-description-janitor
+  playTimeTracker: JobJanitor
+  startingGear: JanitorGear
+  icon: "JobIconJanitor"
+  supervisors: job-supervisors-hop
+  guides: [ Janitorial ] # goobstation
+  goobcoins: 20 # Goobstation
+  weight: 4  # Reserve edit: Fix Service Department job order
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: GarbageDay
+    prototype: WeaponRevolverInspector
+  alternateTitles: # Reserve - alternate titles
+  - JanitorMaid
+  - JanitorMaintenanceWorker
+  - JanitorCustodialTechnician
+
+- type: startingGear
+  id: JanitorGear
+  equipment:
+    shoes: ClothingShoesGaloshes
+    id: JanitorPDA
+    ears: ClothingHeadsetService
+    belt: ClothingBeltJanitorFilled
+    pocket1: KeyRingJanitor # Goobstation
+  storage:
+    back:
+    - DrinkBrepsiCan # Reserve edit
+
+- type: startingGear
+  id: JanitorMaidGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaid
+    id: JanitorPDA
+    gloves: ClothingHandsGlovesJanitor
+    head: ClothingHeadHatCatEars
+    ears: ClothingHeadsetService
+    belt: ClothingBeltJanitorFilled
+    pocket1: KeyRingJanitor # Goobstation
+
+
+- type: chameleonOutfit
+  id: JanitorChameleonOutfit
+  job: Janitor
+  equipment:
+    head: ClothingHeadHatPurplesoft
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckScarfStripedPurple
+    outerClothing: ClothingOuterWinterJani
+    gloves: ClothingHandsGlovesJanitor
+
+- type: jobAlternateTitle
+  id: JanitorMaid
+  name: job-name-alt-janitor-1
+
+- type: jobAlternateTitle
+  id: JanitorMaintenanceWorker
+  name: job-name-alt-janitor-2
+
+- type: jobAlternateTitle
+  id: JanitorCustodialTechnician
+  name: job-name-alt-janitor-3

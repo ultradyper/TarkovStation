@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: soundCollection
+  id: SlimeMaleLaughs
+  files:
+    - /Audio/Voice/Slime/slime_laugh_m1.ogg
+    - /Audio/Voice/Slime/slime_laugh_m2.ogg
+
+- type: soundCollection
+  id: SlimeFemaleLaughs
+  files:
+    - /Audio/Voice/Slime/slime_laugh_f1.ogg
+
+- type: soundCollection
+  id: SlimeUnisexLaughs
+  files:
+    - /Audio/Voice/Slime/slime_laugh_m1.ogg
+    - /Audio/Voice/Slime/slime_laugh_m2.ogg
+    - /Audio/Voice/Slime/slime_laugh_f1.ogg
+
+- type: soundCollection
+  id: SlimeMaleScreams
+  files:
+    - /Audio/Voice/Slime/slime_scream_m1.ogg
+    - /Audio/Voice/Slime/slime_scream_m2.ogg
+
+- type: soundCollection
+  id: SlimeFemaleScreams
+  files:
+    - /Audio/Voice/Slime/slime_scream_f1.ogg
+    - /Audio/Voice/Slime/slime_scream_f2.ogg
+
+- type: soundCollection
+  id: SlimeUnisexScreams
+  files:
+    - /Audio/Voice/Slime/slime_scream_m1.ogg
+    - /Audio/Voice/Slime/slime_scream_m2.ogg
+    - /Audio/Voice/Slime/slime_scream_f1.ogg
+    - /Audio/Voice/Slime/slime_scream_f2.ogg
+    - /Audio/_EinsteinEngines/Voice/Slime/slime_scream_f1.ogg
+    - /Audio/_EinsteinEngines/Voice/Slime/slime_scream_f2.ogg
+
+- type: soundCollection
+  id: PlasmamanUnisexScreams
+  files:
+    - /Audio/Voice/Plasmaman/plasmaman_scream_1.ogg
+    - /Audio/Voice/Plasmaman/plasmaman_scream_2.ogg
+    - /Audio/Voice/Plasmaman/plasmaman_scream_3.ogg

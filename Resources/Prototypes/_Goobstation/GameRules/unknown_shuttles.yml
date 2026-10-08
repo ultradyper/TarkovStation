@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleFrontierProspector
+  components:
+  - type: StationEvent
+    weight: 2
+  - type: LoadMapRule
+    preloadedGrid: FrontierProspector
+
+- type: entity
+  id: UnknownShuttleAlienTourist
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 4
+    chaos:
+      Friend: -20
+    eventType: FriendlySpawn
+  - type: GameRule
+    chaosScore: -80
+  - type: LoadMapRule
+    preloadedGrid: AlienTourist

@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: ActionStationAiInfo
+  parent: BaseAction # reserve edit
+  name: View Information
+  description: View the information of your chassis and station.
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: manifest
+  - type: InstantAction
+    event: !type:StationAiInfoActionEvent
+
+- type: entity
+  id: ActionStationAiRadar
+  name: Mass Scanner Interface
+  parent: BaseAction # reserve edit
+  description: View a Mass Scanner Interface.
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: mass_scanner
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
+
+- type: entity
+  id: ActionStationAiCrewMonitoring
+  name: Crew Monitoring Interface
+  parent: BaseAction # reserve edit
+  description: View a Crew Monitoring Interface.
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: crew_monitor
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
+
+- type: entity
+  id: ActionStationAiStationRecords
+  name: Station Records Interface
+  parent: BaseAction # reserve edit
+  description: View a Station Records Interface.
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: station_records
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }
+
+- type: entity
+  id: ActionStationAiCommunications
+  name: Communications Interface
+  parent: BaseAction # reserve edit
+  description: View a Communications Interface.
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: comms_console
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.CommunicationsConsoleUiKey.Key }
+
+- type: entity
+  id: ActionStationAiAtmosphericAlerts
+  name: Atmospheric Alerts
+  parent: BaseAction # reserve edit
+  description: View a Atmospheric Alerts Interface.
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/Machines/computers.rsi
+      state: alert-2
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.AtmosAlertsComputerUiKey.Key }

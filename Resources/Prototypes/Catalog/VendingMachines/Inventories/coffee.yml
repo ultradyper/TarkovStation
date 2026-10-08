@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: HotDrinksMachineInventory
+  startingInventory:
+    # Reserve: Orchid's Barmania - Vendichaos start
+    DrinkHotCoffee: 3
+    DrinkCafeLatte: 3
+    DrinkTeacup: 3
+    DrinkGreenTea: 3
+    DrinkHotCoco: 3
+    DrinkHotSoyLatte: 3
+    DrinkMilkChoco: 3
+    DrinkCreamCoffee: 3
+    DrinkCreamOfCoconut: 2
+    DrinkPumpkinSpiceLatte: 2
+    # Reserve: Orchid's Barmania - Vendichaos end
+  contrabandInventory:
+    DrinkTeapot: 2
+    DrinkNothing: 2
+    # Reserve: Orchid's Barmania - Vendichaos start
+    DrinkHotCream: 3
+    # Reserve: Orchid's Barmania - Vendichaos end

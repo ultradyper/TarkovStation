@@ -1,0 +1,81 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Chef
+  name: job-name-chef
+  description: job-description-chef
+  playTimeTracker: JobChef
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 0.5h
+  startingGear: ChefGear
+  icon: "JobIconChef"
+  supervisors: job-supervisors-hop
+  guides: # goobstation
+  - Chef
+  - FoodRecipes
+  - CQC
+  goobcoins: 15 #Goob content
+  weight: 8  # Reserve edit: Fix Service Department job order
+  access:
+  - Service
+  - Maintenance
+  - Kitchen
+  extendedAccess:
+  - Hydroponics
+  - Bar
+  special: # Goobstation - Martial Arts
+  - !type:AddComponentSpecial
+    components:
+      - type: GrantCqc
+        startingStage: Hard
+        isBlocked: true
+  - !type:AddImplantSpecial # Chefs speak space italian
+    implants: [ SpaceItalianTranslatorImplant ]
+  alternateTitles: # Reserve - alternate titles
+  - ChefSousChef
+  - ChefLineCook
+  - ChefNutritionist
+  - ChefBromatologist
+
+- type: startingGear
+  id: ChefGear
+  equipment:
+    shoes: ClothingShoesChef
+    id: ChefPDA
+    ears: ClothingHeadsetService
+    belt: ClothingBeltChefFilled
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: ChefChameleonOutfit
+  job: Chef
+  equipment:
+    head: ClothingHeadHatChef
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskItalianMoustache
+    neck: ClothingNeckScarfStripedBrown
+    outerClothing: ClothingOuterJacketChef
+    gloves: ClothingHandsGlovesColorWhite
+    shoes: ClothingShoesChef
+
+- type: jobAlternateTitle
+  id: ChefSousChef
+  name: job-name-alt-chef-1
+
+- type: jobAlternateTitle
+  id: ChefLineCook
+  name: job-name-alt-chef-2
+
+- type: jobAlternateTitle
+  id: ChefNutritionist
+  name: job-name-alt-chef-3
+  femaleName: job-name-alt-chef-3-f
+  maleName: job-name-alt-chef-3-m
+
+- type: jobAlternateTitle
+  id: ChefBromatologist
+  name: job-name-alt-chef-4

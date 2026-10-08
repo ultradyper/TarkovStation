@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+    subtype: role-subtype-traitor
+  - type: VampireRole

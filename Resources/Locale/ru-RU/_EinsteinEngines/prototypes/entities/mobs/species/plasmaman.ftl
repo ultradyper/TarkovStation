@@ -1,0 +1,9 @@
+ent-BaseMobPlasmaman = Урист МакПлазма
+    .desc = { ent-BaseMobSpeciesOrganic.desc }
+    .suffix = { species-name-plasmaman }
+ent-MobPlasmamanDummy = манекен { ent-BaseMobPlasmaman }
+    .desc = { ent-BaseSpeciesDummy.desc }
+    .suffix = { species-name-plasmaman }
+ent-MobPlasmaman = { ent-BaseMobPlasmaman }
+    .desc = { ent-BaseMobPlasmaman.desc }
+    .suffix = { species-name-plasmaman }

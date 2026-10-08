@@ -1,0 +1,36 @@
+ent-BaseMobShadowlingAscendant = возвышенный тенеморф
+    .desc = Возвышенный тенеморф. Если ты это видишь, ты скорее всего мёртв.
+
+ent-BaseMobShadowlingAscendantAdminSpawn = { ent-BaseMobShadowlingAscendant }
+    .desc = { ent-BaseMobShadowlingAscendant.desc }
+
+ent-ShadowlingGlareEffect = блик тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingShadowWalkInEffect = вход тени тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingShadowWalkOutEffect = выход тени тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingCollectiveMindEffect = коллективный разум тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingRapidRehatchEffect = быстрое перевылупление тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingIcyVeinsEffect = ледяные вены тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingNullChargeEffect = пустотный заряд тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingSonicScreechEffect = звуковой писк тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingBlackRecuperationEffect = чёрное восстановление тенеморфа
+    .desc = { "" }
+    .suffix = Эффект
+ent-ShadowlingAscendingEffect = возвышение тенеморфа
+    .desc = { "" }
+    .suffix = Эффект

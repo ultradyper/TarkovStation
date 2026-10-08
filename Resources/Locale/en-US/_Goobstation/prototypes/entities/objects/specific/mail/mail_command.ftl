@@ -1,0 +1,12 @@
+ent-MailCommandPipebombIntern = { ent-PackageDelivery }
+    .suffix = Приказываю курить и пить
+    .desc = { ent-PackageDelivery.desc }
+ent-MailHoPSupplement = { ent-PackageDelivery }
+    .suffix = Припасы, Глава персонала
+    .desc = { ent-PackageDelivery.desc }
+ent-MailMedkit = { ent-PackageDelivery }
+    .suffix = Аптечка
+    .desc = { ent-PackageDelivery.desc }
+ent-MailResearchDisk = { ent-LetterDelivery }
+    .suffix = Исследовательский диск
+    .desc = { ent-LetterDelivery.desc }

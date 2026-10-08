@@ -1,0 +1,512 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: BaseMeleeWeaponEnergy # more generic naming in case someone makes like, idk, an energy axe
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: EnergySword
+  - type: ItemToggle
+    # Goobstation start
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.250
+    # Goobstation end
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 0.6
+    - type: Execution
+      doAfterDuration: 4.0
+    - type: Scalpel # Shitmed
+      speed: 0.75
+    - type: Cautery # Shitmed: you have to be very, very careful to cauterize with it
+      speed: 0.2
+    - type: SurgeryTool # Shitmed
+      startSound:
+        path: /Audio/Weapons/ebladehum.ogg
+      endSound:
+        path: /Audio/Weapons/eblade1.ogg
+        params:
+          variation: 0.250
+  - type: ItemToggleHot
+  - type: ItemToggleSize
+    activatedSize: Huge
+  - type: ItemTogglePointLight
+    toggleableVisualsColorModulatesLights: true
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 15
+        Heat: 15
+        Structural: 20
+      woundSeverityMultipliers: # Goobstation
+        Slash: 2
+        Heat: 2
+  - type: MeleeWeapon
+    animationRotation: -45 # WWDP
+    heavyStaminaCost: 2.5 # goob edit
+    wideAnimationRotation: -135
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 4.5
+  - type: Item
+    size: Small
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: white
+    netsync: false
+  - type: Appearance
+  - type: ToggleableVisuals # Add support for multiple layers
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-blade
+        shader: unshaded
+      right:
+      - state: inhand-right-blade
+        shader: unshaded
+  - type: Reflect # Goob edit
+    reflectProb: .5
+    reflects:
+      - Energy
+  - type: IgnitionSource
+    temperature: 700
+  - type: Tool
+    qualities:
+    - Ignition
+  - type: UserInterface # Goobstation-EsColorPicker
+    interfaces:
+      enum.EsColorPickerMenu.Key:
+        type: EsColorPickerBUI
+
+- type: entity
+  name: energy sword
+  parent: [BaseMeleeWeaponEnergy, BaseSyndicateContraband]
+  id: EnergySword
+  description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Cuts through unarmored targets like butter.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword.rsi
+    layers:
+    - state: e_sword
+    - state: e_sword_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
+  - type: Construction # WD EDIT
+    deconstructionTarget: null
+    graph: EnergyDoubleSwordGraph
+    node: esword
+  - type: Tag # WD EDIT
+    tags:
+    - EnergySword
+  - type: ThrowableBlocker # Goobstation
+    blockSound:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+        volume: -2
+  - type: StaticPrice
+    price: 2500
+
+- type: entity
+  name: energy dagger
+  parent: [BaseMeleeWeaponEnergy, BaseSyndicateContraband]
+  id: EnergyDaggerLoud
+  description: A not as loud and dangerous dagger with a beam made of pure, concentrated plasma. This one is completely undisguised.
+  components:
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+      params:
+        volume: -3
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+      params:
+        volume: -3
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: -3
+        variation: 0.250
+    activatedDamage:
+        types:
+            Slash: 10
+            Heat: 10
+        woundSeverityMultipliers:
+          Slash: 1
+    deactivatedSecret: true
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+      params:
+        volume: -3
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 0.4
+    - type: Execution
+      doAfterDuration: 4.0
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_dagger_loud.rsi
+    layers:
+      - state: e_sword
+      - state: e_sword_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: MeleeWeapon
+    animationRotation: 135 # WWDP
+    heavyStaminaCost: 1 # goob edit
+    wideAnimationRotation: 145
+    attackRate: 1
+    hidden: true
+    damage:
+      types:
+        Blunt: 1
+  - type: Item
+    size: Tiny
+    sprite: Objects/Weapons/Melee/e_dagger_loud.rsi
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    energy: 2.7
+    color: white
+    netsync: false
+  - type: Reflect # Goob edit
+    reflectProb: .25
+
+- type: entity
+  name: pen
+  parent: [BaseMeleeWeaponEnergy, SelectableLock]
+  id: EnergyDagger
+  suffix: E-Dagger
+  description: 'A dark ink pen.'
+  components:
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+      params:
+        volume: -12
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+      params:
+        volume: -12
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+      params:
+        volume: -12
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: -12
+        variation: 0.250
+    activatedDamage:
+      types:
+        Slash: 10
+        Heat: 10
+      woundSeverityMultipliers:
+        Slash: 1
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 0.4
+    - type: Execution
+      doAfterDuration: 4.0
+    - type: Contraband
+      severity: Syndicate
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    layers:
+      - state: e_sword
+      - state: e_sword_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    size: Tiny
+    sprite: Objects/Weapons/Melee/e_dagger.rsi
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    energy: 2.7
+    color: white
+    netsync: false
+  - type: MeleeWeapon
+    heavyStaminaCost: 1 # goob edit
+    wideAnimationRotation: 145
+    attackRate: 1
+    hidden: true
+    damage:
+      types:
+        Blunt: 1
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/pen_click.ogg
+      params:
+        volume: -4
+        maxDistance: 2
+  - type: UseDelay
+    delay: 1.5
+  - type: ItemToggleRequiresLock #  TODO: FIX THIS VERB IS COOKED
+    lockedPopup: null
+  - type: Tag
+    tags:
+    - Write
+  - type: Reflect
+    reflectProb: 0.25 #Goob rebalace
+    reflects: #Goob rebalance
+      - Energy
+    spread: 30
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: EnergyDaggerBox
+  name: e-dagger box
+  suffix: E-Dagger
+  description: A small box containing an e-dagger. Packaging disintegrates when opened, leaving no evidence behind.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Storage/penbox.rsi
+    state: e_dagger
+  - type: SpawnItemsOnUse
+    items:
+    - id: EnergyDagger
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: energy cutlass
+  parent: [BaseMeleeWeaponEnergy, BaseMajorContraband]
+  id: EnergyCutlass
+  description: An exotic energy weapon.
+  components:
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+        types:
+            Slash: 10
+            Heat: 12
+    deactivatedSecret: true
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_cutlass.rsi
+    layers:
+      - state: e_cutlass
+      - state: e_cutlass_blade
+        color: "#e95151"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    sprite: Objects/Weapons/Melee/e_cutlass.rsi
+  - type: ThrowableBlocker # Goobstation
+    blockSound:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+        volume: -2
+
+- type: entity
+  name: double-bladed energy sword
+  parent: [BaseMeleeWeaponEnergy, BaseSyndicateContraband]
+  id: EnergySwordDoubleBase # Goob edit
+  abstract: true # Goob edit
+  description: Syndicate Command Interns thought that having one blade on the energy sword was not enough. This can be stored in pockets.
+  components:
+  - type: ItemToggle
+    predictable: false # Goobstation - wielded weapons sound prediction is broken
+    onUse: false # wielding events control it instead
+    onActivate: false # prevents the weapon from being able to be turned on when it is on the ground
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+      params:
+        volume: 3
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: 3
+        variation: 0.250
+    activatedDamage:
+        types:
+          Slash: 15   #Goob Station rebalance, was originally 12
+          Heat: 15    #Goob Station rebalance, was originally 12
+          Structural: 40 # Goob edit
+        woundSeverityMultipliers: #Goob, Should be at least some reason to use this over eshield/base esword
+          Slash: 7
+          Heat: 7
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+      params:
+        volume: 3
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 1 # Goobstation value
+    - type: Execution
+      doAfterDuration: 4.0
+  - type: Wieldable
+    wieldSound: null # esword light sound instead
+  - type: MeleeWeapon
+    heavyStaminaCost: 0 # goob edit
+    wideAnimationRotation: -135
+    attackRate: 1 #Goob Station rebalance, was originally 1.5
+    angle: 100
+    damage:
+      types:
+        Blunt: 4.5
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword_double.rsi
+    layers:
+      - state: e_sword_double
+      - state: e_sword_double_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    size: Small
+    sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
+  - type: Reflect # Goob edit
+    reflectProb: .8
+    spread: 75
+  - type: FlipOnHit # WD EDIT
+  - type: ThrowableBlocker # Goobstation
+    blockSound:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+        volume: -2
+
+- type: entity # Goobstation
+  parent: EnergySwordDoubleBase
+  id: EnergySwordDouble
+  components:
+  - type: Construction # WD EDIT
+    deconstructionTarget: null
+    graph: EnergyDoubleSwordGraph
+    node: desword
+
+# Item will look weird in handslot. Will need to adjust handstorage visuals in a future PR
+#- type: entity
+#  parent: EnergySwordDouble
+#  id: HyperEutacticBlade
+#  name: hypereutactic-blade
+#  description: A supermassive weapon envisioned to cleave the very fabric of space and time itself in twain, the hypereutactic blade dynamically flash-forges a hypereutactic crystaline nanostructure capable of passing through most known forms of matter like a hot knife through butter.
+#  components:
+#  - type: MeleeWeapon
+#    wideAnimationRotation: 180
+#    attackRate: 0.8 #0.7 and below is too slow
+#    angle: 100
+#    range: 2.0
+#    damage:
+#      types:
+#        Blunt: 4.5
+#  - type: ItemToggleMeleeWeapon
+#    activatedSoundOnSwing:
+#      path: /Audio/Weapons/eblademiss.ogg
+#      params:
+#        volume: -3
+#        variation: 0.250
+#    activatedDamage:
+#      types:
+#        Slash: 20
+#        Heat: 20
+#        Structural: 20
+#  - type: MeleeRequiresWield
+#  - type: HeldSpeedModifier #slowdown is what balances this compared to a dsword
+#    walkModifier: 0.6
+#    sprintModifier: 0.6
+#  - type: UseDelay
+#    delay: 1.5
+#  - type: Sprite
+#    sprite: Objects/Weapons/Melee/hypereutactic_blade.rsi
+#    layers:
+#    - state: hypereutactic
+#    - state: hypereutactic_blade
+#      color: "#FFFFFF"
+#      visible: false
+#      shader: unshaded
+#      map: [ "blade" ]
+#    - state: hypereutactic_gem
+#      color: "#FFFFFF"
+#      visible: false
+#      shader: unshaded
+#     map: [ "gem" ]
+# - type: Item
+#   size: Small
+#    sprite: Objects/Weapons/Melee/hypereutactic_blade_inhands.rsi
+#  - type: Reflect
+#    reflectProb: 1
+#    spread: 75
+
+# Borgs
+
+- type: entity
+  parent: EnergySword
+  id: CyborgEnergySword
+  suffix: For Borgs
+  description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Specially designed for syndicate cyborgs.
+
+- type: entity
+  parent: EnergySwordDouble
+  id: CyborgEnergySwordDouble # why is this invalid if ID is BorgEnergySwordDouble
+  suffix: One-Handed, For Borgs
+  description: Syndicate Command Interns thought that having one blade on the energy sword was not enough. Specially designed for syndicate cyborgs.
+  components: # could add energy-draining like the L6C
+  - type: Wieldable
+    freeHandsRequired: 0 # because borg has no off-hand to wield with.  Without this, it will be unable to activate the esword
+
+- type: entity
+  parent: [ EnergyDaggerLoud, BaseXenoborgContraband ]
+  id: EnergyDaggerLoudBlue
+  suffix: blue
+  components:
+  - type: EnergySword
+    colorOptions:
+    - "#2288ff" # can only be blue

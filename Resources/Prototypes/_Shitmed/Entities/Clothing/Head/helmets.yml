@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ ClothingHeadHelmetBase, BaseMajorContraband ]
+  id: ClothingHeadHelmetAbductor
+  name: alien helmet
+  description: Zeep Glorp!
+  components:
+  - type: Armor
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Slash: 0.35
+        Piercing: 0.35
+        Heat: 0.35
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: Sprite
+    sprite: _Shitmed/Clothing/Head/Helmets/abductor.rsi
+  - type: Clothing
+    sprite: _Shitmed/Clothing/Head/Helmets/abductor.rsi
+  - type: EyeProtection
+  - type: HideLayerClothing
+    layers:
+      HeadTop : HEAD
+      HeadSide : HEAD

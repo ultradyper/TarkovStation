@@ -1,0 +1,250 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: gamePreset
+  id: Changeling
+  alias:
+    - ling
+    - lings
+    - changeling
+  name: changeling-gamemode-title
+  description: changeling-gamemode-description
+  showInVote: false
+  rules:
+    - Changeling
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Traitorling
+  alias:
+    - lingtraitor
+    - traitorling
+  name: traitorling-title
+  description: traitorling-description
+  showInVote: false
+  rules:
+    - CalmLing
+    - CalmTraitor
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: NukeTraitor
+  alias:
+    - nuketot
+    - optraitor
+    - optot
+  name: nukeops-title
+  description: nukeops-description
+  showInVote: false
+  rules:
+    - Calmops
+    - CalmTraitor
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: NukeLing
+  alias:
+    - nukeling
+    - opling
+  name: nukeops-title
+  description: nukeops-description
+  showInVote: false
+  rules:
+    - Calmops
+    - CalmLing
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: RevTraitor
+  alias:
+    - revtraitor
+    - revtot
+    - totrevs
+  name: revtraitor-title
+  description: revtraitor-description
+  showInVote: false
+  rules:
+    - CalmRevs
+    - CalmTraitor
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: RevLing
+  alias:
+    - revling
+    - lingrevs
+  name: revling-title
+  description: revling-description
+  showInVote: false
+  rules:
+    - CalmRevs
+    - CalmLing
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Blob
+  alias:
+  - blab
+  name: blob-title
+  description: blob-description
+  showInVote: false
+  rules:
+  - BlobGameMode
+  - BasicStationEventScheduler
+  - AntagStationEventScheduler
+  - BasicRoundstartVariation
+  - SubGamemodesRule
+
+- type: gamePreset
+  id: Honkops
+  alias:
+    - honkops
+  name: honkops-title
+  description: honkops-description
+  showInVote: false
+  rules:
+    - Honkops
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: TheGhost
+  alias:
+    - calm
+    - calmdynamic
+  name: sleeper-title
+  description: sleeper-description
+  showInVote: true
+  minPlayers: 5
+  rules:
+    - CalmDynamic
+    - SubGamemodesRule
+    - RareIonStormScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+
+- type: gamePreset
+  id: TheGuide
+  alias:
+    - combat
+    - combatdynamic
+  name: guide-title
+  description: guide-description
+  showInVote: true
+  minPlayers: 25
+  rules:
+    - CombatDynamic
+    - SubGamemodesRule
+    - IonStormScheduler
+    - SpaceTrafficControlEventScheduler
+
+- type: gamePreset
+  id: SecretPlusLow
+  alias:
+    - secretpluslow
+    - secretpluscalm
+    - turbulence
+  name: secretplus-low-title
+  description: secretplus-low-description
+  showInVote: true
+  rules:
+    - SecretPlusLow
+    - MeteorSwarmMildScheduler
+
+- type: gamePreset
+  id: SecretPlusMid
+  alias:
+    - secretplusmid
+    - secretplus
+    - entropy
+  name: secretplus-mid-title
+  description: secretplus-mid-description
+  showInVote: true
+  rules:
+    - SecretPlusMid
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: SecretPlusAdmeme
+  alias:
+    - secretplusadmeme
+    - secretplusevil
+    - secretplushigh
+    - chaos
+  name: secretplus-admeme-title
+  description: secretplus-admeme-description
+  showInVote: false # 1984
+  rules:
+    - SecretPlusAdmeme
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: SurvivalPlusMid
+  alias:
+    - survivalplus
+    - newsurvival
+    - survivalnew
+  name: survivalplus-title
+  description: survivalplus-description
+  showInVote: true
+  rules:
+    - SecretPlusRampingMid
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: Xenomorphs
+  alias:
+  - ayyliens
+  name: xenomorph-title
+  description: xenomorph-description
+  showInVote: false
+  minPlayers: 1
+  rules:
+  - XenomorphsInfestationRoundstart
+  - SubGamemodesRule
+  - SecretPlusRampingMid
+
+- type: gamePreset
+  id: OopsAllThieves
+  alias:
+    - oopsallthieves
+    - allthieves
+    - thieves
+  name: oops-all-thieves-title
+  description: oops-all-thieves-description
+  showInVote: false
+  rules:
+  - OopsAllThieves
+  - TraitorSubGamemodesRule
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: SecretPlusLowpop
+  alias:
+    - Lowpop
+    - Lowpopulation
+    - Bare
+  name: secretplus-lowpop-title
+  description: secretplus-lowpop-description
+  showInVote: true
+  maxPlayers: 40
+  rules:
+    - SecretPlusLowpop
+    - MeteorSwarmMildScheduler

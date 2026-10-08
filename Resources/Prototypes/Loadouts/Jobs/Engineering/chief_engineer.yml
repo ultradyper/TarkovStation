@@ -1,0 +1,122 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# For mantles
+- type: loadoutEffectGroup
+  id: MasterCE
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 20h
+
+# Goobstation - For Ensembles
+- type: loadoutEffectGroup
+  id: GrandMasterCE
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 360000 # 100 hrs
+
+# Jumpsuit
+- type: loadout
+  id: ChiefEngineerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineer
+
+
+- type: loadout
+  id: ChiefEngineerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChiefEngineer
+
+
+- type: loadout
+  id: ChiefEngineerTurtleneck
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineerTurtle
+
+
+- type: loadout
+  id: ChiefEngineerTurtleneckSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChiefEngineerTurtle
+
+
+- type: loadout # goob
+  id: ChiefEngineerMJ
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMilitaryEngineeringChief
+
+# Head
+- type: loadout
+  id: ChiefEngineerHead
+  equipment:
+    head: ClothingHeadHatHardhatWhite
+
+
+- type: loadout
+  id: ChiefEngineerBeret
+  startingGear: EngineeringBeret
+
+
+# Neck
+- type: loadout
+  id: ClothingNeckCloakWhiteCe # Goobstation?
+  equipment:
+    neck: ClothingNeckCloakWhiteCe # Goobstation
+  groupBy: "cecloak"
+
+- type: loadout
+  id: ClothingNeckCloakGreenCe # Goobstation
+  equipment:
+    neck: ClothingNeckCloakGreenCe # Goobstation
+  groupBy: "cecloak"
+
+- type: loadout
+  id: ClothingNeckMantleWhiteCE # Goobstation
+  equipment:
+    neck: ClothingNeckMantleWhiteCE # Goob edit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterCE
+  groupBy: "cemantle"
+
+- type: loadout
+  id: ClothingNeckMantleOrangeCE # Goobstation
+  equipment:
+    neck: ClothingNeckMantleOrangeCE # Goob edit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterCE
+  groupBy: "cemantle"
+
+- type: loadout # Goobstation - Ensembles
+  id: ClothingNeckEnsembleChiefEngineerWhite
+  equipment:
+    neck: ClothingNeckEnsembleChiefEngineerWhite
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: GrandMasterCE
+  groupBy: "ce_ensemble"
+
+- type: loadout # Goobstation - Ensembles
+  id: ClothingNeckEnsembleChiefEngineerGreen
+  equipment:
+    neck: ClothingNeckEnsembleChiefEngineerGreen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: GrandMasterCE
+  groupBy: "ce_ensemble"
+# OuterClothing
+- type: loadout
+  id: ChiefEngineerWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterCE
+
+# Shoes
+- type: loadout
+  id: BrownShoes
+  equipment:
+    shoes: ClothingShoesColorBrown

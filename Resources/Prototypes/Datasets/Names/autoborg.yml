@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MIT
+
+- type: localizedDataset
+  id: NamesAutoborg
+  values:
+    prefix: names-autoborg-dataset-
+    count: 50

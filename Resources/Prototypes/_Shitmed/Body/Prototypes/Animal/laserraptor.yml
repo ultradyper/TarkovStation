@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: body
+  id: LaserRaptor
+  name: "laser raptor"
+  root: chest
+  slots:
+    head:
+      part: HeadAnimal
+      connections:
+      - chest
+      organs:
+        eyes: OrganLaserEyes
+    chest:
+      part: ChestAnimal
+      connections:
+      - groin
+      - head
+      organs:
+        lungs: OrganAnimalLungs
+        heart: OrganAnimalHeart
+    groin:
+      part: GroinAnimal
+      connections:
+      - legs
+      organs:
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal

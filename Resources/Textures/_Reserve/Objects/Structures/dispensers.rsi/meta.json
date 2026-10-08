@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Made by Ceterai on GitHub.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "alcohol"
+    },
+    {
+      "name": "alcohol-off"
+    },
+    {
+      "name": "drinks"
+    },
+    {
+      "name": "drinks-off"
+    },
+    {
+      "name": "sauce"
+    },
+    {
+      "name": "sauce-off"
+    },
+    {
+      "name": "soda"
+    },
+    {
+      "name": "soda-off"
+    },
+    {
+      "name": "panel"
+    }
+  ]
+}

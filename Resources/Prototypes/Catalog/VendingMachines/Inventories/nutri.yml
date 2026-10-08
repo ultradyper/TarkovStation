@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: NutriMaxInventory
+  startingInventory:
+    HydroponicsToolSpade: 4
+    HydroponicsToolMiniHoe: 4
+    HydroponicsToolClippers: 4
+    PlantAnalyzer: 4 # Reserve-Add
+    HydroponicsToolScythe: 4
+    HydroponicsToolHatchet: 4
+    WateringCan: 1  # Reserve edit: Orchid's Barmania - Service Heaven
+    Dropper: 4
+    PlantBag: 3
+    PlantBGoneSpray: 20
+    WeedSpray: 20
+    PestSpray: 20
+    Syringe: 5
+    ChemistryBottleRobustHarvest: 3
+    ChemistryBottleEZNutrient: 3
+    Bucket: 2  # Reserve edit: Orchid's Barmania - Service Heaven - made one less because of watering can
+    BoxMouthSwab: 1
+    BoxAgrichem: 1
+    MortarAndPestle: 1
+    HandheldJuicer: 1
+  contrabandInventory:
+    ChemistryBottleUnstableMutagen: 1
+    Chainsaw: 1 #Goob
+    Joint: 1
+    ChemistryBottleLeft4Zed: 1
+    SeedEmUpSpray: 1  # Reserve edit: Orchid's Barmania - Service Heaven
+  emaggedInventory:
+    DrinkDoctorMomCan: 1  # Reserve: Orchid's Barmania - Vendichaos

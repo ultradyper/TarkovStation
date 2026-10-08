@@ -1,0 +1,98 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: emote
+  id: Flip
+  name: chat-emote-name-flip
+  icon: _Goobstation/Interface/Emotes/flip.png
+  chatMessages: ["chat-emote-msg-flip"]
+  chatTriggers:
+  - flip
+  - flips
+  - flips.
+  - flips!
+  - does a flip
+  - does a flip.
+  - does a flip!
+  # Reserve-Localization-Start
+  - переворачивается
+  - делает сальто
+  # Reserve-Localization-End
+  event: !type:AnimationFlipEmoteEvent
+
+- type: emote
+  id: Tweak
+  name: chat-emote-name-tweak
+  chatMessages: ["chat-emote-msg-tweak"]
+  whitelist:
+    tags:
+    - Mouse
+  chatTriggers:
+  - tweak
+  - tweaks
+  - tweaks.
+  - tweaks!
+  # Reserve-Localization-Start
+  - приплясывает
+  # Reserve-Localization-End
+  event: !type:AnimationTweakEmoteEvent
+
+- type: emote
+  id: Flex
+  name: chat-emote-name-flex
+  chatMessages: ["chat-emote-msg-flex"]
+  whitelist:
+    tags:
+    - Blobbernaut
+  chatTriggers:
+  - flex
+  - flexes
+  - flexes muscles
+  - flexes its muscles
+  - shows off
+  - shows off muscles
+  - shows off its muscles
+  - intimidates
+  # Reserve-Localization-Start
+  - хвастается мускулами
+  - хвастается мышцами
+  - играет мускулами
+  - играет мышцами
+  - напрягает мускулы
+  - напрягает мышцы
+  - выпендривается
+  - запугивает
+  # Reserve-Localization-End
+  event: !type:AnimationFlexEmoteEvent
+
+- type: emote
+  id: Spin
+  name: chat-emote-name-spin
+  category: Invalid # Don't show in the emote wheel
+  chatMessages: ["chat-emote-msg-spin"]
+  chatTriggers:
+  - spin
+  - spins
+  - spins.
+  - spins!
+  # Reserve-Localization-Start
+  - крутится
+  - вертится
+  # Reserve-Localization-End
+  event: !type:AnimationSpinEmoteEvent
+
+- type: emote
+  id: Jump
+  name: chat-emote-name-jump
+  icon: _Goobstation/Interface/Emotes/jump.png
+  chatMessages: ["chat-emote-msg-jump"]
+  chatTriggers:
+  - jump
+  - jumps
+  - jumps.
+  - jumps!
+  # Reserve-Localization-Start
+  - прыгает
+  - скачет
+  - подпрыгивает
+  # Reserve-Localization-End
+  event: !type:AnimationJumpEmoteEvent

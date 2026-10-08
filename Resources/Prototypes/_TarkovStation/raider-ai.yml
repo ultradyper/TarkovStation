@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: htnCompound
+  id: TarkovStationInhabitantCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:TarkovMaintainWeaponOperator
+  - preconditions:
+    - !type:ActiveHandComponentPrecondition
+      components:
+      - type: Gun
+    tasks:
+    - !type:HTNCompoundTask
+      task: RangedCombatCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: MeleeCombatCompound
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:TarkovFindLootOperator
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        targetKey: TarkovLootCoordinates
+        rangeKey: TarkovLootRange
+        pathfindInPlanning: true
+    - !type:HTNPrimitiveTask
+      operator: !type:TarkovCollectLootOperator
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound

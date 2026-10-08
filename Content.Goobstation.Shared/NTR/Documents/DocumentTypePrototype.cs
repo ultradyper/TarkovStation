@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Robust.Shared.Prototypes;
+
+namespace Content.Goobstation.Shared.NTR.Documents
+{
+    [Prototype("documentType")]
+    public sealed partial class DocumentTypePrototype : IPrototype
+    {
+        [IdDataField]
+        public string ID { get; private set; } = default!;
+
+        [DataField]
+        public string StartingText { get; private set; } = string.Empty;
+
+        [DataField]
+        public string Template { get; private set; } = string.Empty;
+
+        [DataField]
+        public string[] TextKeys { get; private set; } = Array.Empty<string>();
+
+        [DataField]
+        public int[] TextCounts { get; private set; } = Array.Empty<int>();
+    }
+}

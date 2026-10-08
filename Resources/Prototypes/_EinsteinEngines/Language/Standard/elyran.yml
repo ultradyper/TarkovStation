@@ -1,0 +1,92 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Spoken by the Republic of Elyra.
+- type: language
+  id: Elyran
+  isVisibleLanguage: true
+  speech:
+    color: "#c480e8aa" # Goob Edit - Separation from Sol Common, make more unique.
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    # reserve edit start
+    - аф
+    - иф
+    - ба
+    - та
+    - тха
+    - ид
+    - жем
+    - ха
+    - кха
+    - дал
+    - дхл
+    - ра
+    - зай
+    - сен
+    - ум
+    - шн
+    - сид
+    - ад
+    - та
+    - за
+    - айн
+    - гха
+    - зир
+    - ун
+    - фа
+    - каф
+    - иам
+    - мим
+    - ал
+    - жа
+    - нон
+    - ха
+    - вав
+    - йа
+    - хем
+    - зах
+    - хмл
+    - кс
+    - ини
+    - да
+    - кс
+    - ига
+    - их
+    - ла
+    - ул
+    - хе
+    - аув
+    - сит
+    - ах
+    - аарах
+    - жалаа
+    - сирт
+    - курт
+    - турхк
+    - уст
+    - ирк
+    - кир
+    - мир
+    - ачх
+    - оглу
+    - болу
+    - шек
+    - ши
+    - гхоз
+    - мийа
+    - еждах
+    - хааз
+    - кук
+    - тааб
+    - шанха
+    - ан
+    - саа
+    - сех
+    - ан'
+    - е'
+    - а'
+    - ем'
+    # reserve edit end

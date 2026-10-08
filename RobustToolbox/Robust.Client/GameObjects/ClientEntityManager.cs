@@ -1,0 +1,359 @@
+using System;
+using System.Collections.Generic;
+using Prometheus;
+using Robust.Client.GameStates;
+using Robust.Client.Player;
+using Robust.Client.Timing;
+using Robust.Shared.GameObjects;
+using Robust.Shared.IoC;
+using Robust.Shared.Network;
+using Robust.Shared.Network.Messages;
+using Robust.Shared.Player;
+using Robust.Shared.Replays;
+using Robust.Shared.Utility;
+
+namespace Robust.Client.GameObjects
+{
+    /// <summary>
+    /// Manager for entities -- controls things like template loading and instantiation
+    /// </summary>
+    public sealed partial class ClientEntityManager : EntityManager, IClientEntityManagerInternal
+    {
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IClientNetManager _networkManager = default!;
+        [Dependency] private IClientGameTiming _gameTiming = default!;
+        [Dependency] private IClientGameStateManager _stateMan = default!;
+        [Dependency] private IBaseClient _client = default!;
+        [Dependency] private IReplayRecordingManager _replayRecording = default!;
+
+        internal event Action? AfterStartup;
+        internal event Action? AfterShutdown;
+
+        private readonly HashSet<EntityUid> _predictedDetachedEntities = new();
+        private Histogram? _tickUpdateHistogram;
+        private Histogram.Child? _entityNetHistogram;
+
+        public override void Initialize()
+        {
+            SetupNetworking();
+            ReceivedSystemMessage += (_, systemMsg) => EventBus.RaiseEvent(EventSource.Network, systemMsg);
+
+            base.Initialize();
+        }
+
+        public override void Startup()
+        {
+            base.Startup();
+
+            AfterStartup?.Invoke();
+        }
+
+        public override void Shutdown()
+        {
+            base.Shutdown();
+
+            AfterShutdown?.Invoke();
+        }
+
+        public override void FlushEntities()
+        {
+            // Server doesn't network deletions on client shutdown so we need to
+            // manually clear these out or risk stale data getting used.
+            PendingNetEntityStates.Clear();
+            _predictedDetachedEntities.Clear();
+            using var _ = _gameTiming.StartStateApplicationArea();
+            base.FlushEntities();
+        }
+
+        EntityUid IClientEntityManagerInternal.CreateEntity(string? prototypeName, out MetaDataComponent metadata)
+        {
+            return base.CreateEntity(prototypeName, out metadata);
+        }
+
+        /// <inheritdoc />
+        public override void DirtyEntity(EntityUid uid, MetaDataComponent? meta = null)
+        {
+            //  Client only dirties during prediction
+            if (_gameTiming.InPrediction)
+                base.DirtyEntity(uid, meta);
+        }
+
+        public override void QueueDeleteEntity(EntityUid? uid)
+        {
+            if (uid == null || uid == EntityUid.Invalid)
+                return;
+
+            // Some UIs get disposed after entity manager has shut down and already deleted all entities.
+            if (!Started || ShuttingDown)
+                return;
+
+            // Already detached to nullspace by a predicted deletion, nothing left to queue.
+            if (_predictedDetachedEntities.Contains(uid.Value))
+                return;
+
+            // Networked entities are handled by DeleteEntity when the queue gets processed, which predicts the
+            // deletion by detaching them.
+            base.QueueDeleteEntity(uid);
+
+            // Rollback must also cancel predicted deletions before the queue is processed.
+            if (MetaQuery.TryGetComponent(uid.Value, out var meta) && !meta.NetEntity.IsClientSide())
+                DirtyEntity(uid.Value, meta);
+        }
+
+        /// <inheritdoc />
+        public override void DeleteEntity(EntityUid uid, MetaDataComponent meta, TransformComponent xform)
+        {
+            // There's 3 scenarios:
+            // 1. We're applying server state, so the deletion is authoritative and actually happens.
+            // 2. Client-side entity, which we can just delete.
+            // 3. Networked entity, which we predict by detaching to nullspace and letting state handling restore it.
+            if (!_gameTiming.ApplyingState && !meta.NetEntity.IsClientSide())
+            {
+                if (meta.EntityLifeStage < EntityLifeStage.Terminating)
+                    PredictedDetachNetworkedEntity(uid, xform, meta);
+
+                return;
+            }
+
+            ClearPredictedDeletion(uid);
+            base.DeleteEntity(uid, meta, xform);
+        }
+
+        /// <inheritdoc />
+        public override void Dirty(EntityUid uid, IComponent component, MetaDataComponent? meta = null)
+        {
+            Dirty(new Entity<IComponent>(uid, component), meta);
+        }
+
+        /// <inheritdoc />
+        public override void Dirty<T>(Entity<T> ent, MetaDataComponent? meta = null)
+        {
+            // Client only dirties during prediction
+            if (_gameTiming.InPrediction)
+                base.Dirty(ent, meta);
+        }
+
+        public override void DirtyField<T>(EntityUid uid, T comp, string fieldName, MetaDataComponent? metadata = null)
+        {
+            // TODO Prediction
+            // does the client actually need to dirty the field?
+            // I.e., can't it just dirty the whole component to trigger a reset?
+
+            // Client only dirties during prediction
+            if (_gameTiming.InPrediction)
+                base.DirtyField(uid, comp, fieldName, metadata);
+        }
+
+        public override void DirtyFields<T>(EntityUid uid, T comp, MetaDataComponent? meta, params string[] fields)
+        {
+            // TODO Prediction
+            // does the client actually need to dirty the field?
+            // I.e., can't it just dirty the whole component to trigger a reset?
+
+            // Client only dirties during prediction
+            if (_gameTiming.InPrediction)
+                base.DirtyFields(uid, comp, meta, fields);
+        }
+
+        /// <inheritdoc />
+        public override void Dirty<T1, T2>(Entity<T1, T2> ent, MetaDataComponent? meta = null)
+        {
+            if (_gameTiming.InPrediction)
+                base.Dirty(ent, meta);
+        }
+
+        /// <inheritdoc />
+        public override void Dirty<T1, T2, T3>(Entity<T1, T2, T3> ent, MetaDataComponent? meta = null)
+        {
+            if (_gameTiming.InPrediction)
+                base.Dirty(ent, meta);
+        }
+
+        /// <inheritdoc />
+        public override void Dirty<T1, T2, T3, T4>(Entity<T1, T2, T3, T4> ent, MetaDataComponent? meta = null)
+        {
+            if (_gameTiming.InPrediction)
+                base.Dirty(ent, meta);
+        }
+
+        public override void RaisePredictiveEvent<T>(T msg)
+        {
+            var session = _playerManager.LocalSession;
+            DebugTools.AssertNotNull(session);
+
+            var sequence = _stateMan.SystemMessageDispatched(msg);
+            EntityNetManager?.SendSystemNetworkMessage(msg, sequence);
+
+            if (!_stateMan.IsPredictionEnabled && _client.RunLevel != ClientRunLevel.SinglePlayerGame)
+                return;
+
+            DebugTools.Assert(_gameTiming.InPrediction && _gameTiming.IsFirstTimePredicted || _client.RunLevel == ClientRunLevel.SinglePlayerGame);
+
+            var eventArgs = new EntitySessionEventArgs(session!);
+            EventBus.RaiseEvent(EventSource.Local, msg);
+            EventBus.RaiseEvent(EventSource.Local, new EntitySessionMessage<T>(eventArgs, msg));
+        }
+
+        /// <inheritdoc />
+        public override void RaiseSharedEvent<T>(T message, EntityUid? user = null)
+        {
+            if (user == null || user != _playerManager.LocalEntity || !_gameTiming.IsFirstTimePredicted)
+                return;
+
+            EventBus.RaiseEvent(EventSource.Local, ref message);
+        }
+
+        /// <inheritdoc />
+        public override void RaiseSharedEvent<T>(T message, ICommonSession? user = null)
+        {
+            if (user == null || user != _playerManager.LocalSession || !_gameTiming.IsFirstTimePredicted)
+                return;
+
+            EventBus.RaiseEvent(EventSource.Local, ref message);
+        }
+
+        #region IEntityNetworkManager impl
+
+        public override IEntityNetworkManager EntityNetManager => this;
+
+        /// <inheritdoc />
+        public event EventHandler<object>? ReceivedSystemMessage;
+
+        private readonly PriorityQueue<(uint seq, MsgEntity msg)> _queue = new(new MessageTickComparer());
+        private uint _incomingMsgSequence = 0;
+
+        /// <inheritdoc />
+        public void SetupNetworking()
+        {
+            _networkManager.RegisterNetMessage<MsgEntity>(HandleEntityNetworkMessage);
+        }
+
+        public override void TickUpdate(float frameTime, bool noPredictions, Histogram? histogram)
+        {
+            UpdateTickHistogram(histogram);
+
+            using (_entityNetHistogram?.NewTimer())
+            {
+                while (_queue.Count != 0 && _queue.Peek().msg.SourceTick <= _gameTiming.LastRealTick)
+                {
+                    var (_, msg) = _queue.Take();
+                    // Logger.DebugS("net.ent", "Dispatching: {0}: {1}", seq, msg);
+                    DispatchReceivedNetworkMsg(msg);
+                }
+            }
+
+            base.TickUpdate(frameTime, noPredictions, histogram);
+        }
+
+        private void UpdateTickHistogram(Histogram? histogram)
+        {
+            if (ReferenceEquals(_tickUpdateHistogram, histogram))
+                return;
+
+            _tickUpdateHistogram = histogram;
+            _entityNetHistogram = histogram?.WithLabels("EntityNet");
+        }
+
+        /// <inheritdoc />
+        public void SendSystemNetworkMessage(EntityEventArgs message, bool recordReplay = true)
+        {
+            SendSystemNetworkMessage(message, default(uint));
+        }
+
+        public void SendSystemNetworkMessage(EntityEventArgs message, uint sequence)
+        {
+            var msg = new MsgEntity();
+            msg.Type = EntityMessageType.SystemMessage;
+            msg.SystemMessage = message;
+            msg.SourceTick = _gameTiming.CurTick;
+            msg.Sequence = sequence;
+
+            _networkManager.ClientSendMessage(msg);
+        }
+
+        /// <inheritdoc />
+        public void SendSystemNetworkMessage(EntityEventArgs message, INetChannel? channel)
+        {
+            throw new NotSupportedException();
+        }
+
+        private void HandleEntityNetworkMessage(MsgEntity message)
+        {
+            if (message.SourceTick <= _gameTiming.LastRealTick)
+            {
+                DispatchReceivedNetworkMsg(message);
+                return;
+            }
+
+            // MsgEntity is sent with ReliableOrdered so Lidgren guarantees ordering of incoming messages.
+            // We still need to store a sequence input number to ensure ordering remains consistent in
+            // the priority queue.
+            _queue.Add((++_incomingMsgSequence, message));
+        }
+
+        private void DispatchReceivedNetworkMsg(MsgEntity message)
+        {
+            switch (message.Type)
+            {
+                case EntityMessageType.SystemMessage:
+
+                    // TODO REPLAYS handle late messages.
+                    // If a message was received late, it will be recorded late here.
+                    // Maybe process the replay to prevent late messages when playing back?
+                    _replayRecording.RecordReplayMessage(message.SystemMessage);
+
+                    DispatchReceivedNetworkMsg(message.SystemMessage);
+                    return;
+            }
+        }
+
+        public void DispatchReceivedNetworkMsg(EntityEventArgs msg)
+        {
+            var sessionType = typeof(EntitySessionMessage<>).MakeGenericType(msg.GetType());
+            var sessionMsg = Activator.CreateInstance(sessionType, new EntitySessionEventArgs(_playerManager.LocalSession!), msg)!;
+            ReceivedSystemMessage?.Invoke(this, msg);
+            ReceivedSystemMessage?.Invoke(this, sessionMsg);
+        }
+
+        private sealed class MessageTickComparer : IComparer<(uint seq, MsgEntity msg)>
+        {
+            public int Compare((uint seq, MsgEntity msg) x, (uint seq, MsgEntity msg) y)
+            {
+                var cmp = y.msg.SourceTick.CompareTo(x.msg.SourceTick);
+                if (cmp != 0)
+                {
+                    return cmp;
+                }
+
+                return y.seq.CompareTo(x.seq);
+            }
+        }
+        #endregion
+
+        internal bool IsPredictedDetached(EntityUid uid)
+        {
+            return _predictedDetachedEntities.Contains(uid);
+        }
+
+        internal void ClearPredictedDeletion(EntityUid uid)
+        {
+            _predictedDetachedEntities.Remove(uid);
+            QueuedDeletionsSet.Remove(uid);
+        }
+
+        private void PredictedDetachNetworkedEntity(EntityUid uid, TransformComponent xform, MetaDataComponent meta)
+        {
+            if (!_predictedDetachedEntities.Add(uid))
+                return;
+
+            // base call bypasses IGameTiming.InPrediction check. Predicted queue deletes are processed after prediction,
+            // but reset still needs to see the detached entity as dirty and restore it from the last server state.
+            base.Dirty(uid, xform, meta);
+            _xforms.DetachEntity(uid, xform, meta, null);
+            meta.Flags |= MetaDataFlags.Detached;
+        }
+
+        public override bool IsQueuedForDeletion(EntityUid uid)
+            => QueuedDeletionsSet.Contains(uid) || _predictedDetachedEntities.Contains(uid);
+    }
+}

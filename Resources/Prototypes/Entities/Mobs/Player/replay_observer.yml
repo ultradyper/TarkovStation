@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: MobObserverBase
+  id: ReplayObserver
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 24
+    baseWalkSpeed: 16
+  - type: LanguageSpeaker # Einstein Engines - Languages
+  - type: UniversalLanguageSpeaker # Einstein Engines - Languages

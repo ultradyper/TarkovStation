@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: FoodBreadBaguette
+  id: WeaponBaguette
+  suffix: Weapon
+  components:
+  - type: MeleeWeapon
+    attackRate: 1.4
+    wideAnimationRotation: -120
+    damage:
+      types:
+        Slash: 16
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.05
+    spread: 90
+  - type: GibThisGuy #Goobstation
+    ocNames: []
+  - type: Item # Goobedit
+    shape:
+    - 0,0,0,2

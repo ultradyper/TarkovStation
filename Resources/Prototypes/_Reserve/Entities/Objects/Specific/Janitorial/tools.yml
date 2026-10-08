@@ -1,0 +1,183 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Buckets
+
+- type: entity
+  parent: [Bucket, BaseCivilianContraband]
+  id: BluespaceBucket
+  name: bluespace bucket
+  description: A bucket infused with bluespace technology, allowing it to hold much more liquid.
+  components:
+  - type: Sprite
+    sprite: &bluespace_bucket_sprite _Reserve/Objects/Specific/Janitorial/bluespace_bucket.rsi
+  - type: Clothing
+    sprite: *bluespace_bucket_sprite
+  - type: SolutionContainerManager
+    solutions:
+      bucket:
+        maxVol: 1500
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+      Plastic: 125
+      Plasma: 37
+      BSCrystal: 12
+  - type: ReverseEngineering
+    difficulty: 4
+    recipes:
+      - BluespaceBucket
+  - type: StaticPrice  # Upstream 2706 fix
+    price: 100
+
+# endregion
+
+# region Trash Bags
+
+- type: entity
+  parent: [TrashBag, BaseCivilianContraband]
+  id: TrashBagOfHolding
+  name: trash bag of holding
+  components:
+  - type: Sprite
+    sprite: &bluespace_trashbag_sprite _Reserve/Objects/Specific/Janitorial/bluespace_trashbag.rsi
+  - type: Clothing
+    sprite: *bluespace_trashbag_sprite
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,14,9
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25
+      Plasma: 25
+      BSCrystal: 10
+
+# endregion
+
+# region Soap
+
+- type: entity
+  parent: Soap
+  id: EdibleSoap
+  name: soap
+  description: A bar of soap that's safe to eat.
+  suffix: Edible
+  components:
+  - type: Tag
+    tags:
+    - Soap
+    - FoodSnack
+  - type: Sprite
+    sprite: &soap_sprite _Reserve/Objects/Specific/Janitorial/soap.rsi
+    layers:
+    - state: soap-4
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    fillBaseName: soap-
+  - type: Item
+    sprite: *soap_sprite
+  - type: SolutionContainerManager
+    solutions:
+      soap: &soap_solution
+        maxVol: 50
+        reagents:
+        - ReagentId: SoapReagent
+          Quantity: 50
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+  - type: Edible
+    solution: food
+  - type: DrainableSolution
+    solution: food
+  - type: Residue
+    residueAdjective: residue-slippery
+    residueColor: residue-green
+
+- type: entity
+  parent: EdibleSoap
+  id: EdibleSoapCherry
+  name: cherry soap
+  description: A bar of cherry-scented and cherry-flavored soap that's safe to eat.
+  suffix: Edible
+  components:
+  - type: Sprite
+    layers:
+    - state: cherry-4
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    fillBaseName: cherry-
+  - type: Item
+    heldPrefix: cherry
+  - type: SolutionContainerManager
+    solutions:
+      soap: *soap_solution
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: JuiceCherry
+          Quantity: 20
+  - type: Residue
+    residueColor: residue-red
+
+- type: entity
+  parent: EdibleSoap
+  id: EdibleSoapBrepsi
+  name: brepsi soap
+  description: A bar of brepsi-scented and brepsi-flavored soap that's safe to eat.
+  suffix: Edible
+  components:
+  - type: Sprite
+    layers:
+    - state: brepsi-4
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    fillBaseName: brepsi-
+  - type: Item
+    heldPrefix: brepsi
+  - type: SolutionContainerManager
+    solutions:
+      soap:
+        maxVol: 50
+        reagents:
+        - ReagentId: SoapReagent
+          Quantity: 40
+        - ReagentId: Brepsi
+          Quantity: 10
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Brepsi
+          Quantity: 20
+  - type: Residue
+    residueColor: residue-brown
+
+- type: entity
+  parent: EdibleSoap
+  id: EdibleSoapLaughter
+  name: laughter soap
+  description: A bar of laughter-scented and laughter-flavored soap that's safe to eat.
+  suffix: Edible
+  components:
+  - type: Sprite
+    layers:
+    - state: laughter-4
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    fillBaseName: laughter-
+  - type: Item
+    heldPrefix: laughter
+  - type: SolutionContainerManager
+    solutions:
+      soap: *soap_solution
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Laughter
+          Quantity: 20
+  - type: Residue
+    residueColor: residue-blue
+
+# endregion

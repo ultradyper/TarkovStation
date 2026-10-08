@@ -1,0 +1,17 @@
+// SPDX-FileCopyrightText: 2026 Space Station 14 Contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.Roles.Components;
+
+namespace Content.Server._Harmony.Roles;
+
+/// <summary>
+/// Added to mind role entities to tag that they are a blood brother.
+/// </summary>
+[RegisterComponent]
+public sealed partial class BloodBrotherRoleComponent : BaseMindRoleComponent
+{
+    [DataField]
+    public EntityUid? Brother;
+}

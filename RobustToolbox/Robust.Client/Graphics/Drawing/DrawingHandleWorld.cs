@@ -1,0 +1,194 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+using Robust.Client.GameObjects;
+using Robust.Shared.Graphics;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Maths;
+
+namespace Robust.Client.Graphics
+{
+    public abstract class DrawingHandleWorld : DrawingHandleBase
+    {
+        protected DrawingHandleWorld(Texture white) : base(white)
+        {
+        }
+
+        private const int Ppm = EyeManager.PixelsPerMeter;
+
+        /// <summary>
+        /// Draws an untextured colored rectangle to the world.The coordinate system is right handed.
+        /// Make sure to set <see cref="DrawingHandleBase.SetTransform"/>
+        /// to set the model matrix if needed.
+        /// </summary>
+        /// <param name="rect">The four vertices of the quad in object space (or world if the transform is identity.).</param>
+        /// <param name="color">Color of the rectangle.</param>
+        /// <param name="filled">Is it filled with color, or just the border lines?</param>
+        public abstract void DrawRect(Box2 rect, Color color, bool filled = true);
+
+        /// <summary>
+        /// Draws multiple filled, untextured colored rectangles to the world. All rectangles use the current transform.
+        /// </summary>
+        /// <remarks>
+        /// This is the batched equivalent of repeated filled <see cref="DrawRect(Box2, Color, bool)"/> calls.
+        /// </remarks>
+        public abstract void DrawRects(ReadOnlySpan<WorldRect> rects);
+
+        /// <summary>
+        /// Draws multiple filled, untextured colored rectangles without multiplying by the handle modulation color.
+        /// </summary>
+        public abstract void DrawRectsUnmodulated(ReadOnlySpan<WorldRect> rects);
+
+        /// <summary>
+        /// Draws an untextured colored rectangle to the world.The coordinate system is right handed.
+        /// Make sure to set <see cref="DrawingHandleBase.SetTransform"/>
+        /// to set the model matrix if needed.
+        /// </summary>
+        /// <param name="rect">The four vertices of the quad in object space (or world if the transform is identity.).
+        /// The rotation of the rectangle is applied before the transform matrix.</param>
+        /// <param name="color">Color of the rectangle.</param>
+        /// <param name="filled">Is it filled with color, or just the border lines?</param>
+        public abstract void DrawRect(in Box2Rotated rect, Color color, bool filled = true);
+
+        /// <summary>
+        /// Draws a sprite to the world. The coordinate system is right handed.
+        /// Make sure to set <see cref="DrawingHandleBase.SetTransform"/>
+        /// to set the model matrix if needed.
+        /// </summary>
+        /// <param name="texture">Texture to draw.</param>
+        /// <param name="quad">The four vertices of the quad in object space (or world if the transform is identity.).</param>
+        /// <param name="modulate">A color to multiply the texture by when shading.</param>
+        /// <param name="subRegion">The four corners of the texture sub region in px.</param>
+        public abstract void DrawTextureRectRegion(Texture texture, Box2 quad,
+            Color? modulate = null, UIBox2? subRegion = null);
+
+        /// <summary>
+        /// Draws a sprite to the world. The coordinate system is right handed.
+        /// Make sure to set <see cref="DrawingHandleBase.SetTransform"/>
+        /// to set the model matrix if needed.
+        /// </summary>
+        /// <param name="texture">Texture to draw.</param>
+        /// <param name="quad">The four vertices of the quad in object space (or world if the transform is identity.).
+        /// The rotation of the rectangle is applied before the transform matrix.</param>
+        /// <param name="modulate">A color to multiply the texture by when shading.</param>
+        /// <param name="subRegion">The four corners of the texture sub region in px.</param>
+        public abstract void DrawTextureRectRegion(Texture texture, in Box2Rotated quad,
+            Color? modulate = null, UIBox2? subRegion = null);
+
+        /// <summary>
+        /// Draws multiple rotated rectangles for the same texture.
+        /// </summary>
+        public abstract void DrawTextureRects(Texture texture, ReadOnlySpan<WorldTextureRect> rects);
+
+        /// <summary>
+        /// Draws multiple rotated rectangles for the same texture without multiplying by the handle modulation color.
+        /// </summary>
+        public abstract void DrawTextureRectsUnmodulated(Texture texture, ReadOnlySpan<WorldTextureRect> rects);
+
+        /// <summary>
+        /// Renders a sprite through the supplied post-shader passes.
+        /// </summary>
+        public abstract void RenderSpritePostShaders(
+            Entity<SpriteComponent> sprite,
+            IReadOnlyList<SpriteComponent.PostShaderEntry> postShaders,
+            Angle eyeRotation,
+            Angle worldRotation,
+            Vector2 worldPosition,
+            Direction? overrideDirection);
+
+        private Box2 GetQuad(Texture texture, Vector2 position)
+        {
+            return Box2.FromDimensions(position, texture.Size / (float)Ppm);
+        }
+
+        /// <summary>
+        /// Draws a full texture sprite to the world. The coordinate system is right handed.
+        /// Make sure to set <see cref="DrawingHandleBase.SetTransform"/>
+        /// to set the model matrix if needed.
+        /// </summary>
+        /// <param name="texture">Texture to draw.</param>
+        /// <param name="position">The coordinates of the quad in object space (or world if the transform is identity.).</param>
+        /// <param name="modulate">A color to multiply the texture by when shading.</param>
+        /// <remarks>
+        /// The sprite will have it's local dimensions calculated so that it has <see cref="EyeManager.PixelsPerMeter"/> texels per meter in the world.
+        /// </remarks>
+        public override void DrawTexture(Texture texture, Vector2 position, Color? modulate = null)
+        {
+            CheckDisposed();
+
+            DrawTextureRect(texture, GetQuad(texture, position), modulate);
+        }
+
+        /// <summary>
+        /// Draws a full texture sprite to the world. The coordinate system is right handed.
+        /// Make sure to set <see cref="DrawingHandleBase.SetTransform"/>
+        /// to set the model matrix if needed.
+        /// </summary>
+        /// <param name="texture">Texture to draw.</param>
+        /// <param name="position">The coordinates of the quad in object space (or world if the transform is identity.).</param>
+        /// <param name="angle">The angle of the quad in object space.</param>
+        /// <param name="modulate">A color to multiply the texture by when shading.</param>
+        /// <remarks>
+        /// The sprite will have it's local dimensions calculated so that it has <see cref="EyeManager.PixelsPerMeter"/> texels per meter in the world.
+        /// </remarks>
+        public void DrawTexture(Texture texture, Vector2 position, Angle angle, Color? modulate = null)
+        {
+            CheckDisposed();
+
+            var quad = GetQuad(texture, position);
+
+            DrawTextureRect(texture, new Box2Rotated(quad, angle, quad.Center), modulate);
+        }
+
+        /// <summary>
+        /// Draws a full texture sprite to the world. The coordinate system is right handed.
+        /// Make sure to set <see cref="DrawingHandleBase.SetTransform"/>
+        /// to set the model matrix if needed.
+        /// </summary>
+        /// <param name="texture">Texture to draw.</param>
+        /// <param name="quad">The four vertices of the quad in object space (or world if the transform is identity.).</param>
+        /// <param name="modulate">A color to multiply the texture by when shading.</param>
+        public void DrawTextureRect(Texture texture, Box2 quad, Color? modulate = null)
+        {
+            CheckDisposed();
+
+            DrawTextureRectRegion(texture, quad, modulate);
+        }
+
+        /// <summary>
+        ///     Draws an atlas texture without an additional subregion.
+        /// </summary>
+        public virtual void DrawTextureRect(AtlasTexture texture, Box2 quad, Color? modulate = null)
+        {
+            CheckDisposed();
+
+            DrawTextureRectRegion(texture, quad, modulate);
+        }
+
+        /// <summary>
+        /// Draws a full texture sprite to the world. The coordinate system is right handed.
+        /// Make sure to set <see cref="DrawingHandleBase.SetTransform"/>
+        /// to set the model matrix if needed.
+        /// </summary>
+        /// <param name="texture">Texture to draw.</param>
+        /// <param name="quad">The four vertices of the quad in object space (or world if the transform is identity.).
+        /// The rotation of the rectangle is applied before the transform matrix.</param>
+        /// <param name="modulate">A color to multiply the texture by when shading.</param>
+        public void DrawTextureRect(Texture texture, in Box2Rotated quad, Color? modulate = null)
+        {
+            CheckDisposed();
+
+            DrawTextureRectRegion(texture, in quad, modulate);
+        }
+    }
+
+    /// <summary>
+    /// A rotated rectangle for batched world texture drawing.
+    /// </summary>
+    public readonly record struct WorldTextureRect(Box2Rotated Quad, Color? Modulate = null);
+
+    /// <summary>
+    /// An axis-aligned rectangle for batched world rectangle drawing.
+    /// </summary>
+    public readonly record struct WorldRect(Box2 Rect, Color Color);
+}

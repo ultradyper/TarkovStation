@@ -1,0 +1,91 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: damageContainer
+  id: Biological
+  supportedGroups:
+    - Brute
+    - Burn
+    - Toxin
+    - Airloss
+    - Genetic
+  supportedTypes: # Goobstation
+    - Holy
+
+- type: damageContainer
+  id: Inorganic
+  supportedGroups:
+    - Brute
+  supportedTypes:
+    - Heat
+    - Shock
+
+- type: damageContainer
+  id: StructuralInorganic
+  supportedGroups:
+  - Brute
+  supportedTypes:
+  - Heat
+  - Shock
+  - Structural
+  - Caustic # WD EDIT
+
+- type: damageContainer
+  id: Silicon
+  supportedGroups:
+    - Brute
+    - Electronic # DeltaV
+  supportedTypes:
+    - Heat
+    - Shock
+
+- type: damageContainer
+  id: Shield
+  supportedGroups:
+    - Brute
+  supportedTypes:
+    - Heat
+
+- type: damageContainer
+  id: Box
+  supportedGroups:
+    - Brute
+    - Burn
+    - Toxin
+  supportedTypes:
+    - Shock
+
+- type: damageContainer
+  id: ShadowHaze
+  supportedTypes:
+    - Heat
+
+- type: damageContainer
+  id: ManifestedSpirit
+  supportedGroups:
+    - Metaphysical
+    - Brute
+  supportedTypes:
+    - Heat
+    - Shock
+    - Caustic
+
+- type: damageContainer
+  id: BiologicalMetaphysical
+  supportedGroups:
+  - Brute
+  - Burn
+  - Toxin
+  - Airloss
+  - Genetic
+  supportedTypes: # Goobstation
+  - Holy
+
+- type: damageContainer # DeltaV edits begin
+  id: InorganicMetaphysical
+  supportedGroups:
+  - Brute
+  - Burn
+  - Metaphysical # DeltaV edits end
+  supportedTypes: # Goobstation
+  - Holy
+  - Shock

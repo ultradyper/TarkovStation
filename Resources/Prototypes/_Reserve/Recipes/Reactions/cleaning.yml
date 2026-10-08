@@ -1,0 +1,135 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: reaction
+  id: SoapReagent
+  reactants:
+    Fat:
+      amount: 1
+    SodiumHydroxide:
+      amount: 1
+  products:
+    SoapReagent: 2
+
+- type: reaction
+  id: Brepsi
+  reactants:
+    UncookedAnimalProteins:
+      amount: 1
+    SodaWater:
+      amount: 1
+    Ipecac:
+      amount: 1
+  products:
+    Brepsi: 3
+
+- type: reaction
+  id: CreateSoapFromReagent
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    SoapReagent:
+      amount: 35
+  effects:
+    - !type:SpawnEntity
+      entity: Soap
+
+- type: reaction
+  id: CreateEdibleSoap
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    SoapReagent:
+      amount: 25
+    Nutriment:
+      amount: 15
+  effects:
+    - !type:SpawnEntity
+      entity: EdibleSoap
+
+- type: reaction
+  id: CreateEdibleSoapCherry
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    SoapReagent:
+      amount: 25
+    JuiceCherry:
+      amount: 15
+  effects:
+    - !type:SpawnEntity
+      entity: EdibleSoapCherry
+
+- type: reaction
+  id: CreateEdibleSoapBrepsi
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    SoapReagent:
+      amount: 25
+    Brepsi:
+      amount: 15
+  effects:
+    - !type:SpawnEntity
+      entity: EdibleSoapBrepsi
+
+- type: reaction
+  id: CreateEdibleSoapLaughter
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    SoapReagent:
+      amount: 25
+    Laughter:
+      amount: 15
+  effects:
+    - !type:SpawnEntity
+      entity: EdibleSoapLaughter
+
+- type: reaction
+  id: CreateSoapOmegaAlt
+  impact: Medium
+  quantized: true
+  conserveEnergy: false
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    Amatoxin:
+      amount: 1
+    Bananadine:
+      amount: 2
+    Fat:
+      amount: 5
+    Honk:
+      amount: 10
+    Potash:
+      amount: 10
+    Butter:
+      amount: 5
+    Omnizine:
+      amount: 2
+    SpaceDrugs:
+      amount: 3
+    SpaceLube:
+      amount: 5
+    THC:
+      amount: 2
+    TableSalt:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: SoapOmega

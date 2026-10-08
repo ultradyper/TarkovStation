@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: dataset
+  id: TraitorFlavor
+  values:
+  - "arc" # animal rights consortium
+  - "blf" # bee liberation front
+  - "cybersun"
+  - "corporateclimber"
+  - "donkco"
+  - "gorlex"
+  - "legaltrouble"
+  - "mi13"
+  - "tiger" # tiger cooperative
+  - "waffleco"
+  - "waffleco-terrorist"
+  - "nvf" # Neulithiv Visionary Federation
+  - "postal"
+  - "evilchampion"

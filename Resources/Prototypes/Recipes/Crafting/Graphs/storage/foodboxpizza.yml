@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: FoodBoxPizza
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: foodboxpizza
+          steps:
+            - material: Cardboard
+              amount: 1
+              doAfter: 4
+
+
+    - node: foodboxpizza
+      entity: FoodBoxPizza

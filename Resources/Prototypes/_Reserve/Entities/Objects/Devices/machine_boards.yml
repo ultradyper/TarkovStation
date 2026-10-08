@@ -1,0 +1,56 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: SauceDispenserMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: sauce dispenser machine board
+  description: A machine printed circuit board for a sauce dispenser.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: SauceDispenserEmpty
+      stackRequirements:
+        Steel: 5
+      tagRequirements:
+          GlassBeaker:
+            amount: 1
+            defaultPrototype: Beaker
+
+- type: entity
+  id: EnergyDrinkDispenserMachineCircuitboard
+  parent: EnergyChemDispenserMachineCircuitboard
+  name: energy drink dispenser machine board
+  description: A machine printed circuit board for an energy drink dispenser.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: EnergyDrinkDispenser
+
+- type: entity
+  id: EnergySodaDispenserMachineCircuitboard
+  parent: EnergyDrinkDispenserMachineCircuitboard
+  name: energy soda dispenser machine board
+  description: A machine printed circuit board for an energy soda dispenser.
+  components:
+    - type: MachineBoard
+      prototype: EnergySodaDispenser
+
+- type: entity
+  id: EnergyBoozeDispenserMachineCircuitboard
+  parent: EnergyDrinkDispenserMachineCircuitboard
+  name: energy booze dispenser machine board
+  description: A machine printed circuit board for an energy booze dispenser.
+  components:
+    - type: MachineBoard
+      prototype: EnergyBoozeDispenser
+
+- type: entity
+  id: EnergySauceDispenserMachineCircuitboard
+  parent: EnergyDrinkDispenserMachineCircuitboard
+  name: energy sauce dispenser machine board
+  description: A machine printed circuit board for an energy sauce dispenser.
+  components:
+    - type: MachineBoard
+      prototype: EnergySauceDispenser

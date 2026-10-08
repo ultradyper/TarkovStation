@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: ResearchDirector
+  name: job-name-rd
+  description: job-description-rd
+  playTimeTracker: JobResearchDirector
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobScientist
+    time: 6h # Goobstation
+  - !type:DepartmentTimeRequirement
+    department: Science
+    time: 10h
+  - !type:SpeciesRequirement # Goob - None Felinid
+    inverted: true
+    species:
+    - Felinid
+  weight: 10
+  startingGear: ResearchDirectorGear
+  icon: "JobIconResearchDirector"
+  supervisors: job-supervisors-captain
+  #canBeAntag: false
+  antagAdvantage: 75 # Goobstation
+  guides: # goobstation
+  - Science
+  - Command
+  - ResearchDirectorSOP
+  - ScienceSOP
+  goobcoins: 40 #Goob content
+  access:
+  - Research
+  - Command
+  - Maintenance
+  - ResearchDirector
+  - Brig
+  - Cryogenics
+  - External # Goobstation
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: ResearchDirectorGear
+  equipment:
+    id: RnDPDA
+    eyes: ClothingEyesGlassesDiagnosticCommand # Reserve-CommandHUD
+    ears: ClothingHeadsetAltScience # Goobstation
+  storage:
+    back:
+    - Flash
+    - CosmicCenser # DeltaV - Cosmic Cult
+    - TelescopicBaton # Goobstation
+
+- type: chameleonOutfit
+  id: ResearchDirectorChameleonOutfit
+  job: ResearchDirector
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretRND
+    eyes: ClothingEyesGlasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckCloakRd
+    outerClothing: ClothingOuterCoatRD
+    gloves: ClothingHandsGlovesColorPurple

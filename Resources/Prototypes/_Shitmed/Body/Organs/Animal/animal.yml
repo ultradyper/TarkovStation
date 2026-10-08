@@ -1,0 +1,87 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: OrganAnimalBrain
+  parent: BaseAnimalOrganUnGibbable
+  name: animal brain
+  description: "Not so intelligence, not so honk."
+  components:
+  - type: Sprite
+    state: brain
+  - type: Organ
+    slotId: brain
+    intCap: 140
+    integrity: 140
+    integrityThresholds:
+      Normal: 140
+      Damaged: 80
+      Destroyed: 0
+  - type: Input
+    context: "ghost"
+  - type: Brain
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: BadFood
+  - type: Tag
+    tags:
+      - Meat
+      - Organ
+      - Brain
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: GreyMatter #goob edit
+          Quantity: 5 #goob edit
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GreyMatter
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: FoodSequenceElement
+    entries:
+      Burger: Brain
+      Taco: Brain
+  - type: Item
+    size: Small
+    heldPrefix: brain
+  - type: NerveSystem # backmen: wounding
+  - type: ConsciousnessRequired
+    identifier: "nerveSystem"
+    causesDeath: true
+
+- type: entity
+  id: OrganAnimalEyes
+  parent: BaseAnimalOrgan
+  name: animal eyes
+  description: "I see you!"
+  components:
+  # start-backmen: surgery
+  - type: Organ
+    slotId: eyes
+    intCap: 60
+    integrity: 60
+    integrityThresholds:
+      Normal: 60
+      Damaged: 30
+      Destroyed: 0
+  - type: Eyes
+  # end-backmen: surgery
+  - type: Sprite
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
+  - type: Tag
+    tags:
+      - Meat
+      - Organ
+      - Eyes

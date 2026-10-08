@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Kettles
+
+- type: entity
+  parent: Pitcher
+  id: DrinkKettleAdvanced
+  name: advanced kettle
+  description: This transparent measured kettle has a an auto-heater inside, so you can heat the drink on the go up to 400 degrees. And it's a bit bigger than regular pitchers.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 120  # Exactly 4 drinks
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+  - type: SolutionHeaterAuto
+    heatPerSecond: 80
+    maxHeat: 350
+    solution: drink
+  - type: ExaminableSolution
+    heldOnly: false
+    examinableWhileClosed: true
+    exactVolume: true
+  - type: Sprite
+    sprite: _Reserve/Objects/Consumable/Drinks/kettle.rsi
+    layers:
+      - state: icon
+        map: [ "enum.SolutionContainerLayers.Base" ]
+      - state: fill-1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill-
+    inHandsMaxFillLevels: 0
+
+- type: entity
+  parent: [DrinkKettleAdvanced, BaseCivilianContraband]
+  id: BluespaceDrinkKettleAdvanced
+  name: bluespace advanced kettle
+  description: This advanced kettle uses bluespace technology to hold more liquid.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 500
+  - type: Sprite
+    layers:
+      - state: icon_bluespace
+        map: [ "enum.SolutionContainerLayers.Base" ]
+      - state: fill-1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+
+# endregion

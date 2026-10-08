@@ -1,0 +1,139 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseItem
+  id: TarkovStationWornCircuit
+  name: worn industrial controller
+  description: An intact industrial controller. Lom buys these for replacement parts.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/stock_parts.rsi
+    state: micro_mani
+    color: '#C5B68A'
+  - type: Item
+    size: Small
+- type: entity
+  parent: BaseItem
+  id: TarkovStationEncryptedDrive
+  name: encrypted archive drive
+  description: A sealed archive of facility records. Valuable to people looking for
+    a way out.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Research/researchdisk.rsi
+    state: icon
+    color: '#9BAFD7'
+  - type: Item
+    size: Small
+- type: entity
+  parent: BaseItem
+  id: TarkovStationMilitaryModule
+  name: military control module
+  description: A compact hardened control module with its original serial seal.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/stock_parts.rsi
+    state: micro_mani
+    color: '#D4A667'
+  - type: Item
+    size: Small
+- type: entity
+  parent: BaseItem
+  id: TarkovStationSignalRecorder
+  name: cycle signal recorder
+  description: A rare recorder containing the final transmission of a previous cycle.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Research/researchdisk.rsi
+    state: icon
+    color: '#D5BD67'
+  - type: Item
+    size: Small
+- type: entity
+  id: TarkovStationRaidGuard
+  parent: MobSalvager
+  name: armed scavenger
+  components:
+  - type: TarkovRaider
+  - type: HTN
+    rootTask:
+      task: TarkovStationInhabitantCompound
+    planCooldown: 0.3
+    blackboard:
+      IdleRange: !type:Single 18
+      MinimumIdleTime: !type:Single 0.5
+      MaximumIdleTime: !type:Single 2
+      VisionRadius: !type:Single 12
+      AggroVisionRadius: !type:Single 14
+      TarkovLootRange: !type:Single 1.4
+  - type: Loadout
+    prototypes:
+    - TarkovStationRaiderGear
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+- type: entity
+  id: TarkovStationRaidGuardPatrol
+  parent: TarkovStationRaidGuard
+  name: scavenger patrolman
+  components:
+  - type: Loadout
+    prototypes:
+    - TarkovStationPatrolGear
+- type: entity
+  id: TarkovStationRaidGuardVeteran
+  parent: TarkovStationRaidGuard
+  name: veteran scavenger
+  components:
+  - type: TarkovRaider
+    reloadSeconds: 2
+  - type: Loadout
+    prototypes:
+    - TarkovStationVeteranGear
+- type: startingGear
+  id: TarkovStationRaiderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpackSatchel
+  inhand:
+  - WeaponPistolMk58
+  storage:
+    back:
+    - MagazinePistol
+    - MagazinePistol
+    - CombatKnife
+    - FlashlightLantern
+    - Gauze
+- type: startingGear
+  id: TarkovStationPatrolGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpack
+    outerClothing: ClothingOuterArmorBasic
+  inhand:
+  - WeaponSubMachineGunDrozd
+  storage:
+    back:
+    - MagazinePistolSubMachineGun
+    - MagazinePistolSubMachineGun
+    - CombatKnife
+    - FlashlightLantern
+    - Gauze
+- type: startingGear
+  id: TarkovStationVeteranGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpack
+    outerClothing: ClothingOuterArmorBasic
+    head: ClothingHeadHelmetBasic
+  inhand:
+  - WeaponRifleAk
+  storage:
+    back:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - CombatKnife
+    - FlashlightLantern
+    - Gauze

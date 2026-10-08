@@ -1,0 +1,66 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<!-- Reserve edit start: Fix recipe categories -->
+<Document>
+
+# Microwave Recipes
+
+This is the latest published version of NanoTrasen Central Command Kitchen de Cuisine's recipe collection for chefs upon NanoTrasen vessels to prepare.
+
+## Ingredients
+<GuideFoodIngredientGroupEmbed Group="Ingredients"/>
+
+## Pizza Pies
+<GuideFoodIngredientGroupEmbed Group="Pizza"/>
+
+## Burgers
+<GuideFoodIngredientGroupEmbed Group="Burger"/>
+
+## Fastfood
+<GuideFoodIngredientGroupEmbed Group="Fastfood"/>
+
+## Savory Cooking
+<GuideFoodIngredientGroupEmbed Group="Savory"/>
+
+## Breads
+<GuideFoodIngredientGroupEmbed Group="Breads"/>
+
+## Breakfast Foods
+<GuideFoodIngredientGroupEmbed Group="Breakfast"/>
+
+## Moth Foods
+<GuideFoodIngredientGroupEmbed Group="Moth"/>
+
+## Pastas & Noodles
+<GuideFoodIngredientGroupEmbed Group="Pasta"/>
+
+## Pastries & Desserts
+<GuideFoodIngredientGroupEmbed Group="Dessert"/>
+
+## Soups & Stews
+<GuideFoodIngredientGroupEmbed Group="Soup"/>
+
+## Pies & Tarts
+<GuideFoodIngredientGroupEmbed Group="Pie"/>
+
+## Bars & Cookies
+<GuideFoodIngredientGroupEmbed Group="BarsAndCookies"/>
+
+## Cakes
+<GuideFoodIngredientGroupEmbed Group="Cake"/>
+
+## Salads
+<GuideFoodIngredientGroupEmbed Group="Salad"/>
+
+## Medicinal
+<GuideFoodIngredientGroupEmbed Group="Medicinal"/>
+
+## Other
+<GuideFoodIngredientGroupEmbed Group="Other"/>
+
+## Secret
+<GuideFoodIngredientGroupEmbed Group="Secret"/>
+
+</Document>
+<!-- Reserve edit end: Fix recipe categories -->

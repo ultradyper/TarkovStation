@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: RandomVendingDrinks
+  name: random vending machine spawner
+  suffix: Drinks
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Machines/VendingMachines/random.rsi
+        state: drink
+  - type: RandomSpawner
+    prototypes:
+      - VendingMachineCoffee
+      - VendingMachineCola #Robust Sofdrinks
+      - VendingMachineColaBlack #Robust Sofdrinks [Black]
+      - VendingMachineColaRed #Space Cola
+      - VendingMachineDrGibb
+      - VendingMachinePwrGame
+      - VendingMachineShamblersJuice
+      - VendingMachineSmite
+      - VendingMachineSoda #Robust Sofdrinks [Soda]
+      - VendingMachineSovietSoda #Boda
+      - VendingMachineSpaceUp
+      - VendingMachineStarkist
+      # Reserve: Orchid's Barmania - Vendichaos start
+      - VendingMachineSoups  # Reserve
+      - VendingMachineEnergyDrinks  # Reserve
+      - VendingMachineBottles  # Reserve
+      - VendingMachineIcedDrinks  # Reserve
+      - VendingMachineCartons  # Reserve
+      # Reserve: Orchid's Barmania - Vendichaos end
+    chance: 1

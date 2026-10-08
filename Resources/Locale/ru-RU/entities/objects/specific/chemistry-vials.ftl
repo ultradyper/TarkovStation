@@ -1,0 +1,17 @@
+ent-BaseChemistryEmptyVial = пробирка
+    .desc = Маленькая пробирка.
+ent-VestineChemistryVial = { ent-BaseChemistryEmptyVial }
+    .suffix = Вестин
+    .desc = { ent-BaseChemistryEmptyVial.desc }
+ent-RadiumChemistryVial = { ent-BaseChemistryEmptyVial }
+    .suffix = Радий
+    .desc = { ent-BaseChemistryEmptyVial.desc }
+ent-ChlorineChemistryVial = { ent-BaseChemistryEmptyVial }
+    .suffix = Хлор
+    .desc = { ent-BaseChemistryEmptyVial.desc }
+ent-PlasmaChemistryVial = { ent-BaseChemistryEmptyVial }
+    .suffix = Плазма
+    .desc = { ent-BaseChemistryEmptyVial.desc }
+ent-BorgVial = внутренняя { ent-BaseChemistryEmptyVial }
+    .desc = Внутренняя ёмкость, установленная в борга. Может содержать до 30 ед. жидкости.
+    .suffix = Борг

@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: MagazineLightRifleBox # It goes in a saw, its funny.
+  id: MagazineFoamBox
+  name: "L6 SAW magazine box (foam dart)"
+  description: Box containing a 100-round belt of linked... foam darts?
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - BulletFoam
+    proto: BulletFoam
+    capacity: 100

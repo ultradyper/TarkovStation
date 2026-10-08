@@ -1,0 +1,9 @@
+ent-MobDebugCounter = дебаг: счётчик
+    .desc = He can count
+    .suffix = ИИ, DEBUG
+ent-MobDebugRandomCounter = дебаг: случайный счётчик
+    .desc = He can randomize
+    .suffix = ИИ, DEBUG
+ent-MobDebugRandomLess = дебаг: случайный счётчик вниз
+    .desc = He can lessing
+    .suffix = ИИ, DEBUG

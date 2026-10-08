@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+  # Flight shaders
+
+- type: shader
+  id: Flap
+  kind: source
+  path: "/Textures/_EinsteinEngines/Shaders/flap.swsl"
+
+- type: shader
+  id: EnthrallEffect
+  kind: source
+  path: "/Textures/_EinsteinEngines/Shaders/enthrall_effect.swsl"

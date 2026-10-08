@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job # goob edit
+  id: Passenger
+  name: job-name-passenger
+  description: job-description-passenger
+  playTimeTracker: JobPassenger
+  startingGear: PassengerGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-everyone
+  goobcoins: 20 #Goob content
+  weight: 1  # Reserve edit: Fix Service Department job order
+  access:
+  - Maintenance
+  special: # Goobstation
+  - !type:AddComponentSpecial
+    components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+      - Assistant
+  - !type:PlaytimeDegrade # MisandryBox - tider main syndrome
+    since: 600
+    until: 24600
+    disarmMalus: true
+  alternateTitles: # Reserve - alternate titles
+  - AssistantPassenger
+  - AssistantVisitor
+  - AssistantEntrepreneur
+  - AssistantOffDuty
+
+- type: startingGear
+  id: PassengerGear
+  equipment:
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: PassengerChameleonOutfit
+  job: Passenger
+  equipment:
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckMantle
+    outerClothing: ClothingOuterWinterCoat
+    gloves: ClothingHandsGlovesColorYellowBudget
+
+- type: jobAlternateTitle
+  id: AssistantPassenger
+  name: job-name-alt-assistant-1
+
+- type: jobAlternateTitle
+  id: AssistantVisitor
+  name: job-name-alt-assistant-2
+
+- type: jobAlternateTitle
+  id: AssistantEntrepreneur
+  name: job-name-alt-assistant-3
+
+- type: jobAlternateTitle
+  id: AssistantOffDuty
+  name: job-name-alt-assistant-4

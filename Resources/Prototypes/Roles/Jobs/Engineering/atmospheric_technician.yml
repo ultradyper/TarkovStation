@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: AtmosphericTechnician
+  name: job-name-atmostech
+  description: job-description-atmostech
+  playTimeTracker: JobAtmosphericTechnician
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 2.5h
+  startingGear: AtmosphericTechnicianGear
+  icon: "JobIconAtmosphericTechnician"
+  supervisors: job-supervisors-ce
+  guides: # goobstation
+  - Atmospherics
+  goobcoins: 20 #Goob content
+  weight: 9  # Reserve edit: Fix Assistant job order
+  access:
+  - Maintenance
+  - Engineering
+  - External
+  - Atmospherics
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FirefighterDay
+    prototype: FireAxe
+  - !type:AddComponentSpecial # Goobstation
+    components:
+    - type: EngineeringStaff
+  alternateTitles: # Reserve - alternate titles
+  - AtmosphericTechnicianFirefighter
+  - AtmosphericTechnicianGasSpecialist
+
+- type: startingGear
+  id: AtmosphericTechnicianGear
+  equipment:
+    eyes: ClothingEyesGlassesMeson
+    id: AtmosPDA
+#    belt: ClothingBeltUtilityEngineering # Goobstation - Belt Change
+    ears: ClothingHeadsetEngineering
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: AtmosphericTechnicianChameleonOutfit
+  job: AtmosphericTechnician
+  equipment:
+    head: ClothingHeadHelmetAtmosFire
+    mask: ClothingMaskGasAtmos
+    neck: ClothingNeckScarfStripedLightBlue
+    outerClothing: ClothingOuterSuitAtmosFire
+    gloves: ClothingHandsGlovesColorYellow
+
+- type: jobAlternateTitle
+  id: AtmosphericTechnicianFirefighter
+  name: job-name-alt-atmos-1
+
+- type: jobAlternateTitle
+  id: AtmosphericTechnicianGasSpecialist
+  name: job-name-alt-atmos-2

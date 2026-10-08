@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: LibrarianTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  suffix: Librarian
+  components:
+  - type: Implanter
+    implant: LibrarianTranslatorImplant
+
+- type: entity
+  id: ChevalTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  suffix: Cheval
+  components:
+  - type: Implanter
+    implant: ChevalTranslatorImplant
+
+# Gives the ability to understand SpaceItalian
+- type: entity
+  id: BasicSpaceItalianTranslatorImplanter
+  parent: BaseTranslatorImplanter
+  suffix: Basic Space Italian
+  components:
+  - type: Implanter
+    implant: BasicSpaceItalianTranslatorImplant
+
+# Gives both ability to speak and understand SpaceItalian.
+- type: entity
+  id: AdvancedSpaceItalianTranslatorImplanter
+  parent: BaseTranslatorImplanter
+  suffix: Advanced Space Italian
+  components:
+  - type: Implanter
+    implant: SpaceItalianTranslatorImplant
+
+- type: entity
+  id: YowKriolTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  suffix: Yow Kriol
+  components:
+  - type: Implanter
+    implant: YowKriolTranslatorImplant
+
+- type: entity
+  id: SignTranslatorImplanter
+  parent: BaseTranslatorImplanter
+  suffix: Sign
+  components:
+  - type: Implanter
+    implant: SignTranslatorImplant

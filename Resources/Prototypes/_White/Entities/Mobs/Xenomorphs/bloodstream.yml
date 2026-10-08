@@ -1,0 +1,16 @@
+- type: entity
+  id: XenomorphBloodstream
+  categories: [ HideSpawnMenu ] #Goobstation - clean up spawn menu
+  parent: MobBloodstream
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 300
+    bleedReductionAmount: 5
+    maxBleedAmount: 0
+    bloodlossDamage:
+      types: {}
+    bloodlossHealDamage:
+      types: {}

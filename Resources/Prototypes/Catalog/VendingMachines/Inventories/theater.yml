@@ -1,0 +1,93 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: AutoDrobeInventory
+  startingInventory:
+    ClothingHeadHatJester: 1
+    ClothingUniformJumpsuitJester: 1
+    ClothingHeadHatJesterAlt: 1
+    ClothingUniformJumpsuitJesterAlt: 1
+    ClothingShoesJester: 2
+    ClothingOuterWinterClown: 1
+    ClothingOuterWinterMime: 1
+    ClothingOuterWinterMusician: 1
+    ClothingMaskJoy: 2
+    ClothingHeadHatCardborg: 2
+    ClothingOuterCardborg: 2
+    ClothingHeadHatSombrero: 2
+    ClothingOuterPonchoClassic: 2
+    ClothingHeadHatPwig: 2
+    ClothingOuterRobesJudge: 2
+    ClothingOuterPoncho: 2
+    ClothingHeadHatSantahat: 2
+    ClothingOuterSanta: 2
+    ClothingHeadHatSkub: 2
+    ClothingOuterSkub: 2
+    ClothingHeadHatBeretFrench: 2
+    ClothingOuterSuitChicken: 2
+    ClothingHeadHatChickenhead: 2
+    ClothingOuterSuitMonkey: 2
+    ClothingHeadHatPumpkin: 2
+    ClothingHeadHatShrineMaidenWig: 2
+    ClothingOuterSuitShrineMaiden: 2
+    Gohei: 2
+    ClothingOuterSuitWitchRobes: 2
+    ClothingHeadHatWitch1: 2
+    Broomstick: 2 # Goobstation
+    ClothingHeadHatRedRacoon: 2
+    ClothingOuterRedRacoon: 2
+    ClothingHeadPaperSack: 2
+    ClothingHeadPaperSackSmile: 2
+    ClothingEyesBlindfold: 1
+    ClothingHeadRastaHat: 2
+    ClothingUniformJumpsuitDameDane: 2
+    ClothingShoesDameDane: 2
+    ClothingOuterDameDane: 2
+    ClothingOuterClownPriest: 1
+    ClothingMaskSadMime: 1
+    ClothingMaskScaredMime: 1
+    ClothingUniformJumpsuitKimono: 1
+    ClothingHeadHatCasa: 1
+    FoodPoppy: 1
+    ClothingHeadHatGladiator: 1
+    ClothingUniformJumpsuitGladiator: 1
+    ClothingHeadHatCowboyBrown: 1
+    ClothingHeadHatCowboyBlack: 1
+    ClothingHeadHatCowboyWhite: 1
+    ClothingHeadHatCowboyGrey: 1
+    ClothingShoesBootsCowboyBrown: 1
+    ClothingShoesBootsCowboyBlack: 1
+    ClothingShoesBootsCowboyWhite: 1
+    ClothingCostumeAbductorHead: 1
+    ClothingCostumeAbductor: 1
+    ClothingHeadSanabi: 1 # Goobstation
+    ClothingNeckCloakSanabi: 1 # Goobstation
+    ClothingCostumeGingerbreadHead: 1 #goob
+    ClothingOuterSuitHotDog: 1 # Goob
+    ClothingOuterSuitPickle: 1
+    ClothingOuterSuitTutu: 2 # Goob
+    ClothingHeadHatTinfoilHat: 2 # Goobstation
+  contrabandInventory:
+    ClothingHeadHatRichard: 1
+    ClothingShoesBling: 1
+    ClothingShoesBootsCowboyFancy: 1
+    ClothingOuterDogi: 1
+    ClothingOuterSuitCarp: 1
+    #ClothingMaskBlushingClown: 1 # Goob
+    #ClothingMaskBlushingMime: 1 # Goob
+    ClothingMaskSexyClown: 1 # Goobstation
+    ClothingMaskSexyMime: 1 # Goobstation
+    ClothingHeadHatCowboyBountyHunter: 1
+    ToyFigurineBoxer: 1
+    ToyFigurineMusician: 1
+    WeaponLauncherTaiwanPond: 1 # Goobstation
+    GrenadeToy: 5 # Goobstation
+    ClothingShoesClownMoffers: 1 # DeltaV
+    ClothingShoesResonant: 1 # Goobstation
+    ClothingNeckCloakResonant: 1 # Goobstation
+    ClothingUniformJumpsuitResonant: 1 # Goobstation
+    ClothingOuterArmorHereticCostume: 1 # Goobstation
+    ToyBladeEldritch: 1 # Goobstation
+  emaggedInventory: # goob
+    ClothingOuterPonchoClassicRobust: 1
+    ClothingHeadHatCowboyBrownRobust: 1

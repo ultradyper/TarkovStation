@@ -1,0 +1,87 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Reserve edit start: Random maints
+- type: entityTable
+  id: RandomVendingTable
+  table: !type:GroupSelector
+    children:
+    - id: VendingMachineChang
+    - id: VendingMachineCigs
+      weight: 2.0
+    - id: VendingMachineCoffee
+    - id: VendingMachineCola #Robust Sofdrinks
+    - id: VendingMachineColaBlack #Robust Sofdrinks [Black]
+    - id: VendingMachineColaRed #Space Cola
+    - id: VendingMachineDiscount
+    - id: VendingMachineDonut
+    - id: VendingMachineDrGibb
+    - id: VendingMachinePwrGame
+    - id: VendingMachineShamblersJuice
+    - id: VendingMachineSmite
+    - id: VendingMachineSnack
+    - id: VendingMachineSnackBlue
+    - id: VendingMachineSnackGreen
+    - id: VendingMachineSnackOrange
+    - id: VendingMachineSnackTeal
+    - id: VendingMachineSoda #Robust Sofdrinks [Soda]
+    - id: VendingMachineSovietSoda #Boda
+    - id: VendingMachineSpaceUp
+    - id: VendingMachineStarkist
+    - id: VendingMachineSweetToof # Goobstation
+    # Reserve: Orchid's Barmania - Vendichaos start
+    - id: VendingMachineFitness
+    - id: VendingMachineHotfood
+    - id: VendingMachineSolsnack
+    - id: VendingMachineWeeb
+    - id: VendingMachineSoups  # Reserve
+    - id: VendingMachineEnergyDrinks  # Reserve
+    - id: VendingMachineBottles  # Reserve
+    - id: VendingMachineIcedDrinks  # Reserve
+    - id: VendingMachineCartons  # Reserve
+    - id: VendingMachineIceCream  # Reserve
+    - id: VendingMachineJellyDonuts  # Reserve
+    # Reserve: Orchid's Barmania - Vendichaos end
+# Reserve edit end: Random maints
+
+- type: entity
+  id: RandomVending
+  name: random vending machine spawner
+  suffix: Food, Drinks, Cigs
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Machines/VendingMachines/random.rsi
+      state: any
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: RandomVendingTable  # Reserve edit: Random maints
+
+- type: entityTable
+  id: ClothingVendorTable
+  table: !type:GroupSelector
+    children:
+    - id: VendingMachineClothing
+      weight: 40
+    - id: VendingMachineWinter
+      weight: 40
+    - id: VendingMachinePride
+      weight: 10
+    - id: VendingMachineTheater
+      weight: 10
+
+- type: entity
+  id: RandomVendingClothing
+  name: random vending machine spawner
+  suffix: Clothing
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Machines/VendingMachines/random.rsi
+      state: clothing
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: ClothingVendorTable

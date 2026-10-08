@@ -1,0 +1,25 @@
+- type: loadout
+  id: ScientistEnvirosuit
+  equipment:
+    jumpsuit: ClothingUniformEnvirosuitScientist
+  effects:
+  - !type:SpeciesLoadoutEffect # Goobstation - EE Plasmeme Change.
+    species:
+    - Plasmaman
+
+- type: loadout
+  id: ScientistEnvirohelm
+  equipment:
+    head: ClothingHeadEnvirohelmScientist
+  effects:
+  - !type:SpeciesLoadoutEffect # Goobstation - EE Plasmeme Change.
+    species:
+    - Plasmaman
+
+- type: loadout
+  id: SeniorResearcherMJ
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorResearcher
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMilitarySeniorResearcher

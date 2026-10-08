@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared._Shitmed.Medical.Surgery;
+
+namespace Content.Client._Shitmed.Medical.Surgery;
+
+public sealed class SurgerySystem : SharedSurgerySystem
+{
+    public override void Initialize()
+    {
+        base.Initialize();
+    }
+}

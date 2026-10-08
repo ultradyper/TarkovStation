@@ -1,0 +1,138 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Adapted from Procedural/dungeon_configs.yml; keep compact footprints inside the raid boundary.
+
+- type: dungeonPreset
+  id: TarkovStationCompact
+  roomPacks:
+  - -18,-18,-1,-1
+  - 2,-18,19,-1
+  - -18,2,-1,19
+  - 2,2,19,19
+
+- type: dungeonConfig
+  id: TarkovStationExperiment
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SalvageExperiment
+    presets:
+    - TarkovStationCompact
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: BaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: BaseWindow
+
+  - !type:WallMountDunGen
+    contents: ScienceLabsWalls
+    tile: FloorSteel
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+
+- type: dungeonConfig
+  id: TarkovStationSnowyLabs
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SnowyLabs
+    presets:
+    - TarkovStationCompact
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: BaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: BaseWindow
+
+  - !type:WallMountDunGen
+    contents: SnowyLabsWalls
+    tile: FloorSteel
+
+  - !type:BoundaryWallDunGen
+    wall: WallSilver
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+# Spawn groups
+# Basic

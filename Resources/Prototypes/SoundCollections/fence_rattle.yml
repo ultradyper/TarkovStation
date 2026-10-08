@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: MIT
+
+- type: soundCollection
+  id: FenceRattle
+  files:
+  - /Audio/Effects/fence_rattle1.ogg
+  - /Audio/Effects/fence_rattle2.ogg
+  - /Audio/Effects/fence_rattle3.ogg

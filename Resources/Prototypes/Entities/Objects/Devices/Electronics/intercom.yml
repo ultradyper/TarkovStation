@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: IntercomElectronics
+  parent: BaseElectronics
+  name: intercom electronics
+  description: An electronics board used in intercoms.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: id_mod
+  - type: Tag
+    tags:
+      - DroneUsable # Goobstation
+      - IntercomElectronics
+  - type: ReverseEngineering # reserve: nyano port
+    recipes:
+      - IntercomElectronics
+  - type: StaticPrice
+    price: 55

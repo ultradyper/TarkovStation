@@ -1,0 +1,15 @@
+- type: antag
+  id: Conspirator
+  name: roles-antag-conspirator-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-conspirator-objective
+  guides: [ Conspirators ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 # 1h
+  # Reserve - antag UI
+  category: Team
+  icon:
+    sprite: _Harmony/Interface/Misc/job_icons.rsi
+    state: Conspirator

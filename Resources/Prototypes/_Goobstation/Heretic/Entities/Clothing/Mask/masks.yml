@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ ClothingMaskBase, BaseMagicalContraband ]
+  id: ClothingMaskMadHeretic
+  name: abyssal mask
+  description: A mask created from suffering. When you look into its eyes, it looks back.
+  components:
+  - type: UnholyItem
+  - type: MadnessMask
+  - type: Sprite
+    sprite: _Goobstation/Heretic/mad_mask.rsi
+  - type: Clothing
+    sprite: _Goobstation/Heretic/mad_mask.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+  - type: Armor
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Holy: 1.25
+  - type: Tag
+    tags:
+    - Mask
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Snout

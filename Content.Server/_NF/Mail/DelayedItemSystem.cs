@@ -1,0 +1,68 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.Damage.Systems;
+using Content.Shared.Hands;
+using Robust.Shared.Containers;
+
+namespace Content.Server.Mail
+{
+    /// <summary>
+    /// A placeholder for another entity, spawned when taken out of a container, with the placeholder deleted shortly after.
+    /// Useful for storing instant effect entities, e.g. smoke, in the mail.
+    /// </summary>
+    public sealed class DelayedItemSystem : EntitySystem
+    {
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            SubscribeLocalEvent<DelayedItemComponent, DropAttemptEvent>(OnDropAttempt);
+            SubscribeLocalEvent<DelayedItemComponent, GotEquippedHandEvent>(OnHandEquipped);
+            SubscribeLocalEvent<DelayedItemComponent, DamageChangedEvent>(OnDamageChanged);
+            SubscribeLocalEvent<DelayedItemComponent, EntGotRemovedFromContainerMessage>(OnRemovedFromContainer);
+        }
+
+        // Reserve edit start: mail-fix #328
+        /// <summary>
+        /// EntGotRemovedFromContainerMessage handler - spawn the intended entity after removed from a container.
+        /// </summary>
+        private void OnRemovedFromContainer(EntityUid uid, DelayedItemComponent component, EntGotRemovedFromContainerMessage args)
+        {
+            if (TerminatingOrDeleted(uid))
+                return;
+
+            Spawn(component.Item, Transform(uid).Coordinates);
+        }
+        // Reserve edit end: mail-fix #328
+
+        /// <summary>
+        /// GotEquippedHandEvent handler - destroy the placeholder.
+        /// </summary>
+        private void OnHandEquipped(EntityUid uid, DelayedItemComponent component, EquippedHandEvent args)
+        {
+            EntityManager.DeleteEntity(uid);
+        }
+
+        /// <summary>
+        /// OnDropAttempt handler - destroy the placeholder.
+        /// </summary>
+        private void OnDropAttempt(EntityUid uid, DelayedItemComponent component, DropAttemptEvent args)
+        {
+            EntityManager.DeleteEntity(uid);
+        }
+
+        // Reserve edit start: mail-fix #328
+        /// <summary>
+        /// OnDamageChanged handler - item has taken damage (e.g. inside the envelope), spawn the intended entity outside of any container and delete the placeholder.
+        /// </summary>
+        private void OnDamageChanged(EntityUid uid, DelayedItemComponent component, DamageChangedEvent args)
+        {
+            if (TerminatingOrDeleted(uid))
+                return;
+
+            Spawn(component.Item, Transform(uid).Coordinates);
+            EntityManager.DeleteEntity(uid);
+        }
+        // Reserve edit end: mail-fix #328
+    }
+}

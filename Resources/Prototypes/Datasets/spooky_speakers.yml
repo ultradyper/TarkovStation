@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: localizedDataset
+  id: SpookySpeakerMessagesGeneric
+  values:
+    prefix: spooky-speaker-generic-
+    count: 14
+
+- type: localizedDataset
+  id: SpookySpeakerMessagesRecycler
+  values:
+    prefix: spooky-speaker-recycler-
+    count: 3

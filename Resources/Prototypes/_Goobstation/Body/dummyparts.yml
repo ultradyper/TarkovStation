@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: Butt
+  name: "butt"
+  parent: [BaseItem]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Mobs/butt.rsi
+    state: "butt"

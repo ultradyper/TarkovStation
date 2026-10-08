@@ -1,0 +1,7 @@
+<!--
+SPDX-License-Identifier: MIT
+-->
+
+<Control xmlns="https://spacestation14.io">
+    <Label StyleClasses="ItemStatus" Text="{Loc 'hands-system-blocked-by'}" />
+</Control>

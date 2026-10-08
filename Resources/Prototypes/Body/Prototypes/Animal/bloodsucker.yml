@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: MIT
+
+- type: body
+  id: Bloodsucker
+  name: "bloodsucker"
+  root: chest
+  slots:
+    chest:
+      part: ChestAnimal
+      connections:
+      - groin
+      organs:
+        lungs: OrganAnimalLungs
+        heart: OrganBloodsuckerHeart
+    groin:
+      part: GroinAnimal
+      connections:
+      - legs
+      organs:
+        stomach: OrganBloodsuckerStomach
+        liver: OrganBloodsuckerLiver
+        kidneys: OrganAnimalKidneys
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal

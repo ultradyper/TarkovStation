@@ -1,0 +1,100 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: NanotrasenRepresentative
+  name: job-name-ntr
+  description: job-description-ntr
+  playTimeTracker: JobNanotrasenRepresentative
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 180000  #50 hours
+    - !type:AgeRequirement
+      requiredAge: 21
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
+  weight: 20
+  startingGear: NanotrasenRepresentativeGear
+  icon: "JobIconNanotrasenRepresentative"
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  guides:
+  - NanotrasenRepSOP
+  - SOP
+  - SpaceLawReserve # Reserve guidebook
+  - Writing
+  goobcoins: 40
+  access:
+  - Security
+  - Brig
+  - Security
+  - External
+  - Cryogenics
+  - Maintenance
+  - Engineering
+  - Atmospherics
+  - Medical
+  - Chemistry
+  - Research
+  - Cargo
+  - Salvage
+  - Command
+  - CentralCommand
+  - Service
+  - Hydroponics
+  - Kitchen
+  - Cargo
+  - Theatre
+  - NanotrasenRepresentative
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+      - type: Condemned
+        soulOwnedNotDevil: true
+  alternateTitles: # Reserve - alternate titles
+  - NanotrasenRepresentativeAgent
+  - NanotrasenRepresentativeOfficial
+
+- type: startingGear
+  id: NanotrasenRepresentativeGear
+  equipment:
+    id: NanotrasenRepresentativePDA
+    eyes: ClothingEyesGlassesCommand
+    ears: ClothingHeadsetAltCentCom
+    pocket1: UniqueNanorepLockerTeleporter
+  storage:
+    back:
+    - Flash
+    - TelescopicBaton
+  # inhand:
+  #   - ExecutiveBriefcaseEmpty # TODO: Maybe change this to not-empty, so that ntr wouldn't be poor at the start of every shift but whatever
+
+- type: chameleonOutfit
+  id: NanotrasenRepresentativeChameleonOutfit
+  job: NanotrasenRepresentative
+  equipment:
+    eyes: ClothingEyesGlassesCommand
+    mask: ClothingMaskBreath
+    ears: ClothingHeadsetAltCentCom
+    gloves: ClothingHandsGlovesHeavyGoldenTrim
+    jumpsuit: ClothingUniformJumpsuitNanotrasenRepresentative
+    id: NanotrasenRepresentativePDA
+    back: ClothingBackpackCentcomm
+    shoes: ClothingShoesBootsLaceup
+    head: ClothingHeadHatTophat
+    neck: ClothingNeckScarfStripedCentcom
+
+- type: jobAlternateTitle
+  id: NanotrasenRepresentativeAgent
+  name: job-name-alt-ntr-1
+
+- type: jobAlternateTitle
+  id: NanotrasenRepresentativeOfficial
+  name: job-name-alt-ntr-2

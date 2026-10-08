@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: localizedDataset
+  id: TradeStationNames
+  values:
+    prefix: trade-station-names-dataset-
+    count: 1

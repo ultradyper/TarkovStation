@@ -1,0 +1,65 @@
+﻿// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared._DV.CosmicCult.Components;
+using Robust.Shared.Timing;
+using Content.Shared.Damage;
+using Robust.Shared.Random;
+using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Damage.Systems;
+
+namespace Content.Server._DV.CosmicCult.EntitySystems;
+
+/// <summary>
+/// Makes the person with this component take damage over time.
+/// Used for status effect.
+/// </summary>
+public sealed partial class CosmicEntropyDegenSystem : EntitySystem
+{
+    [Dependency] private readonly IGameTiming _timing = default!;
+    // [Dependency] private readonly IRobustRandom _random = default!; // Reserve edit: Fix warnings
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<CosmicEntropyDebuffComponent, ComponentStartup>(OnInit);
+        SubscribeLocalEvent<CosmicEntropyNonCultistComponent, ComponentStartup>(OnInitNonCultist); // Goobstation change. For non-cultist equipment debuff
+    }
+
+    private void OnInit(EntityUid uid, CosmicEntropyDebuffComponent comp, ref ComponentStartup args)
+    {
+        comp.CheckTimer = _timing.CurTime + comp.CheckWait;
+    }
+
+    // Goobstation change. For non-cultist equipment debuff
+    private void OnInitNonCultist(EntityUid uid, CosmicEntropyNonCultistComponent comp, ref ComponentStartup args)
+    {
+        comp.CheckTimer = _timing.CurTime + comp.CheckWait;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<CosmicEntropyDebuffComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            if (_timing.CurTime < component.CheckTimer)
+                continue;
+
+            component.CheckTimer = _timing.CurTime + component.CheckWait;
+            _damageable.TryChangeDamage(uid, component.Degen, true, false, targetPart: TargetBodyPart.All);
+        }
+
+        // Goobstation change. For non-cultist equipment Debuff
+        var nonCultistQuery = EntityQueryEnumerator<CosmicEntropyNonCultistComponent>();
+        while (nonCultistQuery.MoveNext(out var uid, out var component))
+        {
+            if (_timing.CurTime < component.CheckTimer)
+                continue;
+
+            component.CheckTimer = _timing.CurTime + component.CheckWait;
+            _damageable.TryChangeDamage(uid, component.Degen, true, false, targetPart: TargetBodyPart.All);
+        }
+
+    }
+}

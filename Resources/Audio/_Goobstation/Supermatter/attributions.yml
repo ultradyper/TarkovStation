@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- files: ["calm.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Unknown"
+  source: "https://forums.goobstation.com"
+
+- files: ["delamming.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Unknown"
+  source: "https://forums.goobstation.com"
+
+- files: ["dust.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Unknown"
+  source: "https://forums.goobstation.com"

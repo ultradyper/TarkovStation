@@ -1,0 +1,142 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: PartReptilian
+  parent: [BaseItem, BasePart]
+  name: "reptilian body part"
+  abstract: true
+  components:
+  - type: Icon # Shitmed Change
+    sprite: Mobs/Species/Reptilian/parts.rsi
+  - type: BodyPart # Shitmed Change
+    species: Reptilian
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+  - type: Damageable # Shitmed
+    damageModifierSet: Scale
+
+- type: entity
+  id: ChestReptilian
+  name: "reptilian chest"
+  parent: [PartReptilian, BaseChest]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "chest_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: GroinReptilian
+  name: "reptilian groin"
+  parent: [PartReptilian, BaseGroin]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "groin_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: HeadReptilian
+  name: "reptilian head"
+  parent: [PartReptilian, BaseHead]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmReptilian
+  name: "left reptilian arm"
+  parent: [PartReptilian, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmReptilian
+  name: "right reptilian arm"
+  parent: [PartReptilian, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandReptilian
+  name: "left reptilian hand"
+  parent: [PartReptilian, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandReptilian
+  name: "right reptilian hand"
+  parent: [PartReptilian, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegReptilian
+  name: "left reptilian leg"
+  parent: [PartReptilian, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegReptilian
+  name: "right reptilian leg"
+  parent: [PartReptilian, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootReptilian
+  name: "left reptilian foot"
+  parent: [PartReptilian, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootReptilian
+  name: "right reptilian foot"
+  parent: [PartReptilian, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "r_foot"

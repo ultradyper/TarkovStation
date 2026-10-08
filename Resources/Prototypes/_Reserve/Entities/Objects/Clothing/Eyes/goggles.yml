@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCivilianContraband]
+  id: ClothingEyesGogglesBotanistAdvanced
+  name: advanced botanical goggles
+  description: Advanced goggles that protect your eyes from thorns, barbs, prickles, and spikes.
+  suffix: ""
+  components:
+  - type: Sprite
+    sprite: &botanical_goggles_sprite _Reserve/Clothing/Eyes/Goggles/botanical.rsi
+  - type: Clothing
+    sprite: *botanical_goggles_sprite
+    equipSound:
+      path: /Audio/_Goobstation/Items/handling/generic_equip2.ogg
+      params:
+        volume: -4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.85
+        Slash: 0.95
+        Caustic: 0.95

@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: localizedDataset
+  id: NamesSkeletonFirst
+  values:
+    prefix: names-skeleton-first-dataset-
+    count: 27

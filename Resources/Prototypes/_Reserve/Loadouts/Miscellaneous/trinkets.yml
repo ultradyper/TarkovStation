@@ -1,0 +1,1695 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Audio
+
+- type: loadout
+  id: VinylSleeve
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobRadioHost
+      time: 18000 # 5hr
+  storage:
+    back:
+    - VinylSleeveBlack
+  groupBy: "audio"
+
+- type: entity
+  parent: VinylSleeveWhite
+  id: VinylSleeveGold
+  name: golden vinyl sleeve
+  description: A gleaming pure gold case. It looks like there's already something inside...
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    color: "#ffc833"
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 50
+
+- type: loadout
+  id: VinylSleeveGold
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobRadioHost
+      time: 360000 # 100hr
+  storage:
+    back:
+    - VinylSleeveGold
+  groupBy: "audio"
+
+- type: loadout
+  id: DiskCaseFilled
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 18000 # 5hr
+  storage:
+    back:
+    - DiskCaseFilled
+  groupBy: "audio"
+
+- type: entity
+  parent: DiskCase
+  id: DiskCaseGold
+  name: golden disk case
+  description: A gleaming pure gold case capable of holding as many as three discs. It looks like there's already something inside...
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    color: "#ffc833"
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CdDiskCargonia
+        - id: CargoDocument
+  - type: Storage
+    grid:
+    - 0,0,0,2
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 50
+
+- type: loadout
+  id: DiskCaseGold
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 360000 # 100hr
+  storage:
+    back:
+    - DiskCaseGold
+  groupBy: "audio"
+
+- type: entity
+  parent: OcarinaInstrument
+  id: OcarinaInstrumentBlue
+  name: special ocarina
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    color: "#3378ff"
+
+- type: loadout
+  id: OcarinaBlue
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 1440000 # 400hr
+  storage:
+    back:
+    - OcarinaInstrumentBlue
+  groupBy: "audio"
+
+- type: entity
+  parent: MicrophoneInstrument
+  id: MicrophoneInstrumentMicro
+  name: micromicrophone
+  components:
+  - type: Sprite
+    color: "#aaddff"
+    scale: 0.7, 0.7
+  - type: Item
+    size: Tiny
+
+- type: loadout
+  id: MicrophoneMicro
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 144000 # 40hr
+  storage:
+    back:
+    - MicrophoneInstrumentMicro
+  groupBy: "audio"
+
+# endregion
+
+# region Rings
+
+- type: entity
+  parent: SilverRing
+  id: MetalRing
+  name: metal ring
+  description: A light decorative ring made from several different metals.
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#687888"
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Silver: 50
+
+- type: loadout
+  id: MetalRing
+  storage:
+    back:
+    - MetalRing
+  groupBy: "ring"
+
+- type: entity
+  parent: SilverRing
+  id: PlasticRing
+  name: plastic ring
+  description: A light decorative ring made from plastic.
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#ff7888"
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 100
+
+- type: loadout
+  id: PlasticRing
+  storage:
+    back:
+    - PlasticRing
+  groupBy: "ring"
+
+- type: entity
+  parent: PlasticRing
+  id: FakeDiamondRing
+  name: fake diamond ring
+  description: A simple ring with a fake, yet beautiful gem in it.
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+      - state: gem
+        color: "#c1ffff"
+
+- type: loadout
+  id: FakeDiamondRing
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobShaftMiner
+      time: 288000 # 80hr
+  storage:
+    back:
+    - FakeDiamondRing
+  groupBy: "ring"
+
+- type: entity
+  parent: FakeDiamondRing
+  id: FakeRubyRing
+  name: fake ruby ring
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#687888"
+      - state: gem
+        color: "#aa3333"
+
+- type: loadout
+  id: FakeRubyRing
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobRoboticist
+      time: 288000 # 80hr
+  storage:
+    back:
+    - FakeRubyRing
+  groupBy: "ring"
+
+- type: entity
+  parent: PlasticRing
+  id: MimeRing
+  name: silent ring
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#ffffff"
+      - state: gem
+        color: "#000000"
+
+- type: loadout
+  id: MimeRing
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMime
+      time: 288000 # 80hr
+  storage:
+    back:
+    - MimeRing
+  groupBy: "ring"
+
+- type: entity
+  parent: PlasticRing
+  id: TomatoRing
+  name: tomato ring
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#dd4433"
+      - state: gem
+        color: "#44aa22"
+
+- type: loadout
+  id: TomatoRing
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 288000 # 80hr
+  storage:
+    back:
+    - TomatoRing
+  groupBy: "ring"
+
+- type: entity
+  parent: PlasticRing
+  id: LoveRing
+  name: love ring
+  components:
+  - type: Sprite
+    layers:
+      - state: ring
+        color: "#fcb0e0"
+      - state: gem
+        color: "#aa2244"
+
+- type: loadout
+  id: LoveRing
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChaplain
+      time: 288000 # 80hr
+  storage:
+    back:
+    - LoveRing
+  groupBy: "ring"
+
+- type: entity
+  parent: PlasticRing
+  id: RainbowRing
+  name: rainbow ring
+  components:
+  - type: Sprite
+    state: ring
+  - type: PointLight
+    radius: 1.2
+    energy: 1.5
+  - type: RgbLightController
+    layers: [ 0 ]
+
+- type: loadout
+  id: RainbowRing
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPartyMaker
+      time: 288000 # 80hr
+  storage:
+    back:
+    - RainbowRing
+  groupBy: "ring"
+
+# endregion
+
+# region Games
+
+- type: loadout
+  id: PokerChips50
+  storage:
+    back:
+    - PokerChips50
+  groupBy: "cards"
+
+- type: entity
+  parent: CardScAceOfSpadesBlack
+  id: CardScAceOfSpadesBlackFlippedDummy
+  categories: [ HideSpawnMenu ]
+  name: ace of spades
+  components:
+  - type: Card
+    flipped: false
+
+- type: loadout
+  id: AceOfSpades
+  dummyEntity: CardScAceOfSpadesBlackFlippedDummy
+  storage:
+    back:
+    - CardScAceOfSpadesBlack
+  groupBy: "cards"
+
+- type: loadout
+  id: MysteryFigureBox
+  storage:
+    back:
+    - MysteryFigureBox
+  groupBy: "cards"
+
+- type: loadout
+  id: TennisBall
+  storage:
+    back:
+    - TennisBall
+  groupBy: "cards"
+
+- type: entity
+  parent: BaseTennisRacket
+  id: BaseTennisRacketTwoDummy
+  categories: [ HideSpawnMenu ]
+  name: two tennis rackets
+
+- type: loadout
+  id: TennisRacket
+  dummyEntity: BaseTennisRacketTwoDummy
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBoxer
+      time: 180000 # 50hr
+  storage:
+    back:
+    - BaseTennisRacket
+    - BaseTennisRacket
+  groupBy: "cards"
+
+- type: loadout
+  id: BalloonNT
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobNanotrasenRepresentative
+      time: 180000 # 50hr
+  storage:
+    back:
+    - BalloonNT
+  groupBy: "cards"
+
+- type: loadout
+  id: BalloonCorgi
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfPersonnel
+      time: 180000 # 50hr
+  storage:
+    back:
+    - BalloonCorgi
+  groupBy: "cards"
+
+- type: loadout
+  id: SpellCardFun
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobLibrarian
+      time: 720000 # 200hr
+  storage:
+    back:
+    - SpellCardFun
+  groupBy: "cards"
+
+- type: entity
+  parent: d6Dice
+  id: d6DiceGold
+  name: golden d6
+  description: A small marvel, earned through honest labor. Made of pure gold. Don't believe it? ...There's always the recycler...
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    color: "#ffc833"
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 50
+
+- type: loadout
+  id: d6DiceGold
+  dummyEntity: d6DiceGold
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 432000 # 120hr
+  storage:
+    back:
+    - d6DiceGold
+    - d6DiceGold
+  groupBy: "cards"
+
+- type: entity
+  parent: d6Dice
+  id: d6DiceRainbow
+  name: rainbow d6
+  description: A small marvel, earned through immense effort. It slowly shimmers with all the colors of the rainbow.
+  suffix: Loadout, Trinkets
+  components:
+  - type: PointLight
+    radius: 1.2
+    energy: 1.5
+  - type: RgbLightController
+    layers: [ 0 ]
+  - type: PhysicalComposition
+    materialComposition:
+      Plasma: 50
+
+- type: loadout
+  id: d6DiceRainbow
+  dummyEntity: d6DiceRainbow
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 864000 # 240hr
+  storage:
+    back:
+    - d6DiceRainbow
+    - d6DiceRainbow
+  groupBy: "cards"
+
+# endregion
+
+# region Plushies
+
+- type: loadout
+  id: PlushieSlime
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 18000 # 5hr
+  storage:
+    back:
+    - PlushieSlime
+  groupBy: "plushies"
+
+- type: loadout
+  id: PlushieDiona
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 54000 # 15hr
+  storage:
+    back:
+    - PlushieDiona
+  groupBy: "plushies"
+
+- type: loadout
+  id: PlushieVox
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 54000 # 15hr
+  storage:
+    back:
+    - PlushieVox
+  groupBy: "plushies"
+
+- type: loadout
+  id: PlushieHuman
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 54000 # 15hr
+  storage:
+    back:
+    - PlushieHuman
+  groupBy: "plushies"
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieBread
+  name: bread plushie
+  description: Very squishy, but not very edible.
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/bread.rsi
+    state: plain
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: BunTopBurger
+
+- type: loadout
+  id: PlushieBread
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 360000 # 100hr
+  storage:
+    back:
+    - PlushieBread
+  groupBy: "plushies"
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePiano
+  name: piano plushie
+  description: Very squishy, but not very melodic.
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Instruments/structureinstruments.rsi
+    state: piano
+    scale: 0.65, 0.65
+
+- type: loadout
+  id: PlushiePiano
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 360000 # 100hr
+  storage:
+    back:
+    - PlushiePiano
+  groupBy: "plushies"
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieBehonkerEye
+  name: eye of a behonker plushie
+  description: The eye of a behonker, doesn't fire a laser when squeezed.
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/behonker_eye.rsi
+    state: base
+
+- type: loadout
+  id: PlushieBehonkerEye
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityClown
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieBehonkerEye
+  groupBy: "plushies"
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieChest
+  name: chest plushie
+  description: Me soft bootie!
+  suffix: Loadout, Trinkets, Pirate, Miner
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/goldencat.rsi
+    state: icon
+
+- type: loadout
+  id: PlushieChest
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobShaftMiner
+      time: 432000 # 120hr
+  storage:
+    back:
+    - PlushieChest
+  groupBy: "plushies"
+
+- type: loadout
+  id: PlushieAI
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobRoboticist
+      time: 144000 # 40hr
+  storage:
+    back:
+    - ToyAi
+  groupBy: "plushies"
+
+- type: loadout
+  id: PlushieSharkBlue
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 180000 # 50hr
+  storage:
+    back:
+    - PlushieSharkBlue
+  groupBy: "plushies"
+
+- type: loadout
+  id: PlushieSharkGrey
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 180000 # 50hr
+  storage:
+    back:
+    - PlushieSharkGrey
+  groupBy: "plushies"
+
+- type: loadout
+  id: PlushieSharkPink
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 180000 # 50hr
+  storage:
+    back:
+    - PlushieSharkPink
+  groupBy: "plushies"
+
+- type: entity
+  parent: PlushieSharkGrey
+  id: PlushieSharkRainbow
+  name: rainbow shark soft toy
+  description: A soft, lovely marvel, earned through immense effort. It slowly shimmers with all the colors of the rainbow.
+  suffix: Loadout, Trinkets
+  components:
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+  - type: RgbLightController
+    layers: [ 0 ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: grey-inhand-left
+        shader: unshaded
+      right:
+      - state: grey-inhand-right
+        shader: unshaded
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+      Plasma: 100
+  - type: StaticPrice
+    price: 50
+
+- type: loadout
+  id: PlushieSharkRainbow
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 2160000 # 600hr
+  storage:
+    back:
+    - PlushieSharkRainbow
+  groupBy: "plushies"
+
+- type: entity
+  parent: PlushieGhost
+  id: PlushieGhostRainbow
+  name: rainbow ghost soft toy
+  suffix: Loadout, Trinkets
+  components:
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+  - type: RgbLightController
+    layers: [ 0 ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+      Plasma: 100
+  - type: StaticPrice
+    price: 50
+
+- type: loadout
+  id: PlushieGhostRainbow
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 3240000 # 900hr
+  storage:
+    back:
+    - PlushieGhostRainbow
+  groupBy: "plushies"
+
+# endregion
+
+# region Drinks
+
+- type: loadout
+  id: ReserveCan
+  storage:
+    back:
+    - DrinkEnergyReserveCan
+  groupBy: "drinks"
+
+- type: loadout
+  id: OrchitoCan
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 252000 # 70hr
+  storage:
+    back:
+    - DrinkOrchitoCan
+  groupBy: "drinks"
+
+- type: loadout
+  id: ReserveRobustCan
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 2700000 # 750hr
+  storage:
+    back:
+    - DrinkBrepsiCan
+  groupBy: "drinks"
+
+# endregion
+
+# region Other
+
+- type: loadout
+  id: Rag
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBartender
+      time: 360000 # 100hr
+  storage:
+    back:
+    - RagItem
+  groupBy: "misc"
+
+- type: entity
+  parent: RagItem
+  id: RagItemGold
+  name: golden rag
+  description: A small marvel, earned through honest labor. Made of pure gold. Don't believe it? ...There's always the recycler...
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    layers:
+    - state: rag
+      color: "#ffc833"
+    - map: ["enum.SolutionContainerLayers.Fill"]
+      state: fill-3
+      visible: false
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 100
+
+- type: loadout
+  id: RagGold
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBartender
+      time: 720000 # 200hr
+  storage:
+    back:
+    - RagItemGold
+  groupBy: "misc"
+
+- type: entity
+  parent: ForkPlastic
+  id: ForkGold
+  name: golden fork
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    color: "#ffc833"
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 50
+
+- type: entity
+  parent: SpoonPlastic
+  id: SpoonGold
+  name: golden spoon
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    color: "#ffc833"
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 50
+
+- type: entity
+  parent: KnifePlastic
+  id: KnifeGold
+  name: golden knife
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    color: "#ffc833"
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 50
+
+- type: entity
+  parent: KnifeGold
+  id: KnifeGoldDummy
+  categories: [ HideSpawnMenu ]
+  name: golden utensil set
+  components:
+  - type: Sprite
+    layers:
+    - state: plastic_spoon
+      offset: 0, -0.25
+    - state: plastic_fork
+      offset: -0.25, 0
+    - state: plastic_knife
+      offset: 0.25, 0
+
+- type: loadout
+  id: UtensilSetGold
+  dummyEntity: KnifeGoldDummy
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 720000 # 200hr
+  storage:
+    back:
+    - ForkGold
+    - SpoonGold
+    - KnifeGold
+  groupBy: "misc"
+
+- type: loadout
+  id: Skub
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 720000 # 200hr
+  storage:
+    back:
+    - Skub
+  groupBy: "misc"
+
+- type: loadout
+  id: ClothingHeadHatPartyWaterCup
+  dummyEntity: ClothingHeadHatPartyWaterCup
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPartyMaker
+      time: 144000 # 40hr
+  storage:
+    back:
+    - ClothingHeadHatPartyWaterCup
+    - ClothingHeadHatPartyWaterCup
+  groupBy: "misc"
+
+- type: loadout
+  id: MaterialCotton
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Moth
+  storage:
+    back:
+    - MaterialCotton
+  groupBy: "species"
+
+- type: entity
+  id: TowelColorBorgNT
+  name: wire towel
+  parent: BaseTowel
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#666666"
+    - state: iconstripe
+      color: "#EAE8E8"
+    - state: NTmono
+      color: "#EAE8E8"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#666666"
+      right:
+      - state: inhand-right
+        color: "#666666"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#666666"
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#666666"
+      belt:
+      - state: equipped-BELT
+        color: "#666666"
+  - type: Fiber
+    fiberColor: fibers-white
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+  - type: StaticPrice
+    price: 20
+
+- type: loadout
+  id: TowelColorBorgNT
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Silicon
+      time: 720000 # 200hr
+  storage:
+    back:
+    - TowelColorBorgNT
+  groupBy: "towels"
+
+- type: entity
+  id: TowelColorRoboticist
+  name: roboticist towel
+  parent: BaseTowel
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#940000"
+    - state: iconstripe
+      color: "#333333"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#940000"
+      right:
+      - state: inhand-right
+        color: "#940000"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#940000"
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#940000"
+      belt:
+      - state: equipped-BELT
+        color: "#940000"
+  - type: Fiber
+    fiberColor: fibers-red
+
+- type: loadout
+  id: TowelColorRoboticist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobRoboticist
+      time: 720000 # 200hr
+  storage:
+    back:
+    - TowelColorRoboticist
+  groupBy: "towels"
+
+- type: entity
+  id: TowelColorCaptain
+  name: captain's towel
+  parent: BaseTowel
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#004787"
+    - state: NTmono
+      color: "#F7C430"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#004787"
+      right:
+      - state: inhand-right
+        color: "#004787"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#004787"
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#004787"
+      belt:
+      - state: equipped-BELT
+        color: "#004787"
+  - type: Fiber
+    fiberColor: fibers-regal-blue
+
+- type: loadout
+  id: TowelColorCaptain
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 1800000 # 500hr
+  storage:
+    back:
+    - TowelColorCaptain
+  groupBy: "towels"
+
+- type: entity
+  id: TowelColorOuterCommand
+  name: outer command towel
+  parent: BaseTowel
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#7B0DC1"
+    - state: iconstripe
+      color: "#F7C430"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#7B0DC1"
+      right:
+      - state: inhand-right
+        color: "#7B0DC1"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#7B0DC1"
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#7B0DC1"
+      belt:
+      - state: equipped-BELT
+        color: "#7B0DC1"
+  - type: Fiber
+    fiberColor: fibers-purple
+
+- type: loadout
+  id: TowelColorOuterCommand
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobOuterCommander
+      time: 14400 # 4hr
+  storage:
+    back:
+    - TowelColorOuterCommand
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorNT
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Command
+      time: 1440000 # 400hr
+  storage:
+    back:
+    - TowelColorNT
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorCentcom
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: CentralCommand
+      time: 1440000 # 400hr
+  storage:
+    back:
+    - TowelColorCentcom
+  groupBy: "towels"
+
+# endregion
+
+# region Candy
+
+- type: entity
+  parent: FoodSnackLollypopDylovene
+  id: FoodSnackLollypopBrepsi
+  name: brepsi lollypop
+  description: An brepsi filled lollypop. It's not as good for cleaning.
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    layers:
+    - state: lollypop
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: color
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#6c2828"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 5
+        - ReagentId: Brepsi
+          Quantity: 15
+
+- type: entity
+  parent: FoodSnackLollypopDylovene
+  id: FoodSnackLollypopBacchusBlessing
+  name: bacchus blessing lollypop
+  description: An bacchus blessing filled lollypop. Oof.
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    layers:
+    - state: lollypop
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: color
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#331303"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 5
+        - ReagentId: BacchusBlessing
+          Quantity: 10
+
+- type: entity
+  parent: FoodSnackLollypopOrchito
+  id: FoodSnackLollypopReserveDummy
+  categories: [ HideSpawnMenu ]
+  name: three Reserve lollypops
+  components:
+  - type: Sprite
+    layers:
+    - state: lollypop
+      map: [ "enum.AmmoVisualLayers.Base" ]
+      offset: 0, -0.25
+    - state: color
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#a0f080"
+      offset: 0, -0.25
+    - state: lollypop
+      offset: -0.1, 0.1
+    - state: color
+      color: "#6c2828"
+      offset: -0.1, 0.1
+    - state: lollypop
+      offset: 0.25, 0
+    - state: color
+      color: "#331303"
+      offset: 0.25, 0
+
+- type: loadout
+  id: FoodSnackLollypopOrchito
+  dummyEntity: FoodSnackLollypopOrchito
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 126000 # 35hr
+  storage:
+    back:
+    - FoodSnackLollypopOrchito
+    - FoodSnackLollypopOrchito
+  groupBy: "candy"
+
+- type: loadout
+  id: FoodSnackLollypopBrepsi
+  dummyEntity: FoodSnackLollypopBrepsi
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 126000 # 35hr
+  storage:
+    back:
+    - FoodSnackLollypopBrepsi
+    - FoodSnackLollypopBrepsi
+  groupBy: "candy"
+
+- type: loadout
+  id: FoodSnackLollypopBacchusBlessing
+  dummyEntity: FoodSnackLollypopBacchusBlessing
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBartender
+      time: 126000 # 35hr
+  storage:
+    back:
+    - FoodSnackLollypopBacchusBlessing
+    - FoodSnackLollypopBacchusBlessing
+  groupBy: "candy"
+
+- type: loadout
+  id: FoodSnackLollypopReserve
+  dummyEntity: FoodSnackLollypopReserveDummy
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 1080000 # 300hr
+  storage:
+    back:
+    - FoodSnackLollypopOrchito
+    - FoodSnackLollypopBrepsi
+    - FoodSnackLollypopBacchusBlessing
+  groupBy: "candy"
+
+- type: entity
+  parent: FoodSnackLollypopOrchito
+  id: FoodSnackLollypopMedicalDummy
+  categories: [ HideSpawnMenu ]
+  name: three medical lollypops
+  components:
+  - type: Sprite
+    layers:
+    - state: lollypop
+      map: [ "enum.AmmoVisualLayers.Base" ]
+      offset: 0, -0.25
+    - state: color
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#4da0bd"
+      offset: 0, -0.25
+    - state: lollypop
+      offset: -0.1, 0.1
+    - state: color
+      color: "#40ffec"
+      offset: -0.1, 0.1
+    - state: lollypop
+      offset: 0.25, 0
+    - state: color
+      color: "#3a1d8a"
+      offset: 0.25, 0
+
+- type: loadout
+  id: FoodSnackLollypopMedical
+  dummyEntity: FoodSnackLollypopMedicalDummy
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobVirologist
+      time: 288000 # 80hr
+  storage:
+    back:
+    - FoodSnackLollypopAntihol
+    - FoodSnackLollypopDexalinPlus
+    - FoodSnackLollypopDylovene
+  groupBy: "candy"
+
+- type: loadoutEffectGroup
+  id: OrchiDeaTrinkets
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 15h
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBartender
+      time: 15h
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMime
+      time: 15h
+
+- type: entity
+  parent: FoodSnackLollypopOrchito
+  id: FoodSnackLollypopOrchiDeaDummy
+  categories: [ HideSpawnMenu ]
+  name: four Orchid lollypops
+  components:
+  - type: Sprite
+    layers:
+    - state: lollypop
+      map: [ "enum.AmmoVisualLayers.Base" ]
+      offset: -0.15, -0.25
+    - state: color
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#a0f080"
+      offset: -0.15, -0.25
+    - state: lollypop
+      offset: -0.15, 0.15
+    - state: color
+      color: "#02667f"
+      offset: -0.15, 0.15
+    - state: lollypop
+      offset: 0.25, 0.15
+    - state: color
+      color: "#5000c0"
+      offset: 0.25, 0.15
+    - state: lollypop
+      offset: 0.25, -0.25
+    - state: color
+      color: "#ffa8e8"
+      offset: 0.25, -0.25
+
+- type: loadout
+  id: FoodSnackLollypopOrchiDea
+  dummyEntity: FoodSnackLollypopOrchiDeaDummy
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OrchiDeaTrinkets
+  storage:
+    back:
+    - FoodSnackLollypopOrchito
+    - FoodSnackLollypopStardust
+    - FoodSnackLollypopStardustOrchito
+    - FoodSnackLollypopStardustGoddess
+  groupBy: "candy"
+
+- type: entity
+  parent: FoodSnackLollypopDylovene
+  id: FoodSnackLollypopIce
+  name: ice lollypop
+  description: Now your tongue is stuck on this lollypop!
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    layers:
+    - state: lollypop
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: color
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#bed8e6"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 5
+        - ReagentId: Ice
+          Quantity: 10
+
+- type: loadout
+  id: FoodSnackLollypopIce
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPsychologist
+      time: 36000 # 10hr
+  storage:
+    back:
+    - FoodSnackLollypopIce
+  groupBy: "candy"
+
+- type: entity
+  parent: FoodSnackLollypopDylovene
+  id: FoodSnackLollypopProtein
+  name: protein lollypop
+  description: IT HAS ADDED SUGAR?!?!
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    layers:
+    - state: lollypop
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: color
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#FFFFE5"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 10
+
+- type: loadout
+  id: FoodSnackLollypopProtein
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBoxer
+      time: 360000 # 100hr
+  storage:
+    back:
+    - FoodSnackLollypopProtein
+  groupBy: "candy"
+
+- type: loadout
+  id: FoodSnackSwirlLollipop
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 1260000 # 350hr
+  storage:
+    back:
+    - FoodSnackSwirlLollipop
+  groupBy: "candy"
+
+# endregion
+
+# region Smokeables
+
+- type: loadout
+  id: CigarGoldCase
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Command
+      time: 360000 # 100hr
+  storage:
+    back:
+    - CigarGoldCase
+  groupBy: "smokeables"
+
+- type: loadout
+  id: Vape
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 432000 # 120hr
+  storage:
+    back:
+    - Vape
+  groupBy: "smokeables"
+
+- type: loadout
+  id: SmokingPipe
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 72000 # 20hr
+  storage:
+    back:
+    - SmokingPipeFilledTobacco
+  groupBy: "smokeables"
+
+- type: entity
+  parent: Lighter
+  id: LighterGold
+  name: golden lighter
+  description: A small marvel, earned through honest labor. Made of pure gold. Don't believe it? ...There's always the recycler...
+  suffix: Loadout, Trinkets
+  components:
+  - type: Sprite
+    layers:
+    - state: icon_map
+    - state: cheap_icon_base
+      color: "#ffc833"
+    - state: basic_icon_top
+    - state: lighter_flame
+      visible: false
+      shader: unshaded
+      map: [ "flame" ]
+  - type: RandomSprite
+    available: []
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 100
+
+- type: loadout
+  id: LighterGold
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 432000 # 120hr
+  storage:
+    back:
+    - LighterGold
+  groupBy: "smokeables"
+
+# endregion
+
+# region Mobs
+
+- type: loadout
+  id: Butterfly
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 90000 # 25hr
+  storage:
+    back:
+    - MobButterfly
+
+- type: loadout
+  id: SnailMoth
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobZookeeper
+      time: 36000 # 10hr
+  storage:
+    back:
+    - MobSnailMoth
+
+- type: loadout
+  id: Bee
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 54000 # 15hr
+  storage:
+    back:
+    - MobBee
+
+- type: loadout
+  id: Snail
+  storage:
+    back:
+    - MobSnail
+
+- type: loadout
+  id: Hamster
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobZookeeper
+      time: 72000 # 20hr
+  storage:
+    back:
+    - MobHamster
+
+- type: entity
+  parent: MobMouse
+  id: MobMousePink
+  suffix: Loadout, Trinkets, Pink
+  components:
+  - type: Sprite
+    color: "#ff88ff"
+
+- type: loadout
+  id: MousePink
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobZookeeper
+      time: 180000 # 50hr
+  storage:
+    back:
+    - MobMousePink
+
+- type: loadout
+  id: CockroachBig
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 720000 # 200hr
+  storage:
+    back:
+    - MobCockroachBig
+
+- type: loadout
+  id: MothroachCecropia
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobScientist
+      time: 720000 # 200hr
+  storage:
+    back:
+    - MobMothroachCecropia
+
+# endregion

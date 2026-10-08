@@ -1,0 +1,91 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: RandomAnomalySpawner
+  name: random anomaly spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Specific/anomaly.rsi
+      state: anom1
+  - type: EntityTableSpawner # Goobstation: adding individual anomaly weights
+    #chance: 1
+    table: !type:NestedSelector
+      tableId: RandomAnomalyTable
+    offset: 0.15 # not to put it higher. The anomaly sychnronizer looks for anomalies within this radius, and if the radius is higher, the anomaly can be attracted from a neighboring tile.
+
+- type: entityTable
+  id: RandomAnomalyTable
+  table: !type:GroupSelector
+    children:
+    - id: AnomalyPyroclastic
+    - id: AnomalyGravity
+    - id: AnomalyElectricity
+    - id: AnomalyFlesh
+    - id: AnomalyBluespace
+    - id: AnomalyIce
+    - id: RandomRockAnomalySpawner
+    - id: AnomalyLiquid
+    - id: AnomalyFlora
+    - id: AnomalyShadow # Goobstation - Make shadow anom rarer
+      weight: .2
+    - id: AnomalyTech
+    - id: AnomalySanta
+      weight: .4 #  Make more common in december
+    - id: RandomAnomalyInjectorSpawner # formerly rareChance 0.3, 30% chance of spawning. keep similar
+      weight: 3.97 # (1/12*3.97)-(0.4/13) is very close to 30%
+
+- type: entity
+  id: RandomRockAnomalySpawner
+  name: random rock anomaly spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Specific/anomaly.rsi
+      state: anom6
+  - type: RandomSpawner
+    prototypes:
+    - AnomalyRockIron
+    - AnomalyRockCoal
+    - AnomalyRockSilver
+    - AnomalyRockGold
+    - AnomalyRockQuartz
+    - AnomalyRockUranium
+    - AnomalyRockBananium
+    chance: 1
+    offset: 0.15
+
+- type: entity
+  id: RandomAnomalyInjectorSpawner
+  name: random anomaly injector spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Specific/Anomalies/tech_anom.rsi
+      state: pulse
+  - type: EntityTableSpawner # Goobstation: adding individual anomaly weights
+    table: !type:NestedSelector
+      tableId: RandomAnomalyInjectorTable
+
+- type: entityTable
+  id: RandomAnomalyInjectorTable
+  table: !type:GroupSelector
+    children:
+    - id: AnomalyTrapPyroclastic
+    - id: AnomalyTrapElectricity
+    - id: AnomalyTrapShadow
+    - id: AnomalyTrapIce
+    - id: AnomalyTrapFlora
+    - id: AnomalyTrapBluespace
+    - id: AnomalyTrapFlesh
+    - id: AnomalyTrapGravity
+    - id: AnomalyTrapTech
+    - id: AnomalyTrapRock
+    - id: AnomalyTrapSanta # Make more common in December
+      weight: .4

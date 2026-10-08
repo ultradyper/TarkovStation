@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: antag
+  id: Mindcontrolled
+  name: mindcontrolled
+  antagonist: true
+  setPreference: false
+  objective: "Help your Master"

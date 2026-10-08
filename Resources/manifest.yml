@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# TarkovStation-Edit: project title and generated identity for splash and operating-system windows.
+defaultWindowTitle: TarkovStation
+windowIconSet: /Textures/_TarkovStation/Brand/icon
+splashLogo: /Textures/_TarkovStation/Brand/logo.png
+
+# PJB PLEASE

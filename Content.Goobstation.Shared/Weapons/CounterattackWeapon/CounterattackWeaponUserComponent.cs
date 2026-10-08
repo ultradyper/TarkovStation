@@ -1,0 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+namespace Content.Goobstation.Shared.Weapons.CounterattackWeapon;
+
+[RegisterComponent]
+public sealed partial class CounterattackWeaponUserComponent : Component
+{
+    [ViewVariables(VVAccess.ReadOnly)]
+    public List<EntityUid> Weapons = [];
+}

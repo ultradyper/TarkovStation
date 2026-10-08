@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.Storage;
+using Content.Shared.Storage.Components;
+using Robust.Shared.Prototypes;
+
+namespace Content.Shared.Containers;
+
+/// <summary>
+///     Component for spawning entity prototypes into containers on map init.
+/// </summary>
+/// <remarks>
+///     Unlike <see cref="StorageFillComponent"/> this is deterministic and supports arbitrary containers. While this
+///     could maybe be merged with that component, it would require significant changes to <see
+///     cref="EntitySpawnCollection.GetSpawns"/>, which is also used by several other systems.
+/// </remarks>
+[RegisterComponent]
+public sealed partial class ContainerFillComponent : Component
+{
+    [DataField("containers")]
+    public Dictionary<string, List<EntProtoId>> Containers = new();
+
+    /// <summary>
+    ///     If true, entities spawned via the construction system will not have entities spawned into containers managed
+    ///     by the construction system.
+    /// </summary>
+    [DataField("ignoreConstructionSpawn")]
+    public bool IgnoreConstructionSpawn = true;
+}

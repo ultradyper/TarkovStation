@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: GoodCleanFunInventory
+  startingInventory:
+    DiceBag: 6
+    Paper: 8
+    d6Dice: 8
+    ChessBoard: 1
+    BackgammonBoard: 1
+    ParchisBoard: 1
+    CheckerBoard: 1
+    ShipBattlemap: 1
+    SnowBattlemap: 1
+    SandBattlemap: 1
+    MoonBattlemap: 1
+    GrassBattlemap: 1
+    PaperCNCSheet: 6
+    MysteryFigureBox: 2
+    BooksBag: 3
+    CardBoxBlack: 3 # GoobStation
+    BoxPlaysetEvacPod: 1 # WD EDIT
+    PokerChips100: 6 # GoobStation
+  contrabandInventory:
+    Basketball: 1
+    FoodSnackBoritos: 3
+    DrinkPwrGameCan: 3  # Reserve: Orchid's Barmania - Vendichaos
+  emaggedInventory: #Goob
+    CardBoxSyndicate: 1
+    ToyFigurineNukieElite: 1  # Reserve: Orchid's Barmania - Vendichaos

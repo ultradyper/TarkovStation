@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: reagent
+  id: Carpozine
+  name: reagent-name-carpozine
+  group: Special
+  desc: reagent-desc-carpozine
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: bitter
+  color: "#483d8b"
+  metabolisms:
+    Poison:
+      metabolismRate: 1
+      effects:
+      - !type:Polymorph
+        prototype: ForcedCarpSentient
+        conditions:
+        - !type:ReagentThresholdCondition
+          min: 50
+      - !type:SpaceAdaptation
+        conditions:
+        - !type:ReagentThresholdCondition
+          min: 20
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThresholdCondition
+          min: 15
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThresholdCondition
+          min: 15
+      - !type:Drunk
+        boozePower: 2
+        conditions:
+        - !type:ReagentThresholdCondition
+          min: 15
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 5
+      - !type:SatiateHunger
+        factor: -6
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        conditions:
+        - !type:ReagentThresholdCondition
+          reagent: Carpozine
+          min: 15
+      - !type:ModifyParalysis
+        conditions:
+        - !type:ReagentThresholdCondition
+          min: 15
+        probability: 0.5
+        time: 4
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThresholdCondition
+          reagent: Carpozine
+          min: 50
+        reagent: Carpozine
+        amount: -20
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThresholdCondition
+          reagent: Carpozine
+          min: 15
+        reagent: UnstableMutagen
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThresholdCondition
+          reagent: Carpozine
+          min: 15
+        reagent: Pendetide
+        amount: 0.5

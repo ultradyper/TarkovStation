@@ -1,0 +1,69 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: StationEngineer
+  name: job-name-engineer
+  description: job-description-engineer
+  playTimeTracker: JobStationEngineer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 2.5h
+  startingGear: StationEngineerGear
+  icon: "JobIconStationEngineer"
+  supervisors: job-supervisors-ce
+  guides: [ Engineering ] # goobstation
+  goobcoins: 20 #Goob content
+  weight: 9  # Reserve edit: Fix Assistant job order
+  access:
+  - Maintenance
+  - Engineering
+  - External
+  extendedAccess:
+  - Atmospherics
+  special: # Goobstation
+  - !type:AddComponentSpecial
+    components:
+    - type: EngineeringStaff
+  alternateTitles: # Reserve - alternate titles
+  - StationEngineerMaintenanceTechnician
+  - StationEngineerMechanic
+  - StationEngineerElectrician
+  - StationEngineerEngineOperator
+
+- type: startingGear
+  id: StationEngineerGear
+  equipment:
+    eyes: ClothingEyesGlassesMeson
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetEngineering
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: StationEngineerChameleonOutfit
+  job: StationEngineer
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedOrange
+    outerClothing: ClothingOuterWinterEngi
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesBootsMag
+
+- type: jobAlternateTitle
+  id: StationEngineerMaintenanceTechnician
+  name: job-name-alt-engineer-1
+
+- type: jobAlternateTitle
+  id: StationEngineerMechanic
+  name: job-name-alt-engineer-2
+
+- type: jobAlternateTitle
+  id: StationEngineerElectrician
+  name: job-name-alt-engineer-3
+
+- type: jobAlternateTitle
+  id: StationEngineerEngineOperator
+  name: job-name-alt-engineer-4

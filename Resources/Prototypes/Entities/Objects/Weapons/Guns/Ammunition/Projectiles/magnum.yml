@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseBullet
+  id: BulletMagnum
+  categories: [ HideSpawnMenu ]
+  name: bullet (.45 magnum)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 35
+
+- type: entity
+  parent: BaseBulletPractice
+  id: BulletMagnumPractice
+  categories: [ HideSpawnMenu ]
+  name: bullet (.45 magnum practice)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+
+- type: entity
+  parent: BaseBulletIncendiary
+  id: BulletMagnumIncendiary
+  categories: [ HideSpawnMenu ]
+  name: bullet (.45 magnum incendiary)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 7 # Goobstation
+        Heat: 7 # Goobstation
+
+- type: entity
+  parent: BaseBullet # Goobstation edit
+  id: BulletMagnumAP
+  categories: [ HideSpawnMenu ]
+  name: bullet (.45 magnum armor-piercing)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 28 # Goobstation edit
+      armorPenetration: 0.75 # Goobstation
+
+- type: entity
+  parent: BaseBulletUranium
+  id: BulletMagnumUranium
+  categories: [ HideSpawnMenu ]
+  name: bullet (.45 magnum uranium)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 15
+        Piercing: 20

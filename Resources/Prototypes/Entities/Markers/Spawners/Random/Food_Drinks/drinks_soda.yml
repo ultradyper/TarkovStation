@@ -1,0 +1,143 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: RandomDrinkSoda
+  name: random drink spawner  # Reserve: Orchid's Barmania - Vendichaos
+  suffix: Vending
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree  # Reserve: Orchid's Barmania - Vendichaos
+  components:
+  - type: Transform  # Reserve: Orchid's Barmania - Vendichaos
+    anchored: false
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Consumable/Drinks/dr_gibb.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+      - DrinkColaBottleFull
+      - DrinkSpaceMountainWindBottleFull
+      - DrinkSpaceUpBottleFull
+      - DrinkWaterBottleFull
+      - DrinkColaCan
+      - DrinkIcedTeaCan
+      - DrinkLemonLimeCan
+      - DrinkLemonLimeCranberryCan
+      - DrinkGrapeCan
+      - DrinkRootBeerCan
+      - DrinkSodaWaterCan
+      - DrinkSpaceMountainWindCan
+      - DrinkSpaceUpCan
+      - DrinkStarkistCan
+      - DrinkTonicWaterCan
+      - DrinkFourteenLokoCan
+      - DrinkChangelingStingCan
+      - DrinkDrGibbCan
+      - DrinkEnergyDrinkCan
+      - DrinkShamblersJuiceCan
+      - DrinkSolDryCan
+      - DrinkPwrGameCan
+      - DrinkHotCoco
+      - DrinkHotCoffee
+      - DrinkCafeLatte
+      - DrinkTeacup
+      - DrinkGreenTea
+      - DrinkWaterCup
+      - DrinkBeerCan
+      - DrinkWineCan
+      # Reserve: Orchid's Barmania - Vendichaos start
+      # - Cans
+      - DrinkEggCookedCan
+      - DrinkHotRamenCan
+      - DrinkSpritexCan
+      - DrinkFantaxCan
+      - DrinkBlueSpaceUpCan
+      - DrinkCherryBoomCan
+      - DrinkBerryBoomCan
+      - DrinkMangoBoomCan
+      - DrinkPumpkinBoomCan
+      - DrinkBlueBoomCan
+      - DrinkBungoBoomCan
+      - DrinkLemonLimeStillCan
+      - DrinkMojitoCan
+      - DrinkJuiceMultifruitCan
+      - DrinkTeaFakeCan
+      - DrinkTonicMutagenCan
+      - DrinkWaterFakeCan
+      - DrinkRespawnCan
+      - DrinkTonicFakeCan
+      - DrinkClassicColaCan
+      - DrinkBerryColaCan
+      - DrinkSodaAccelerateCan
+      - DrinkAltColaCan
+      - DrinkLemonadeCan
+      - DrinkLemonadeSodaCan
+      - DrinkIcedMilkCan
+      - DrinkIcedGreenTeaCan
+      - DrinkIcedCoffeeCan
+      - DrinkOrchitoCan
+      - DrinkEnergySugarCan
+      - DrinkEnergyReserveCan
+      # - Cups
+      - DrinkEggCooked
+      - DrinkHotRamen
+      - DrinkMisoSoup
+      - DrinkTomYamSoup
+      - DrinkPumpkinSoup
+      - DrinkGarlicSoup
+      - DrinkPumpkinSpiceLatte
+      - DrinkHotSoyLatte
+      - DrinkHotCream
+      - DrinkCreamOfCoconut
+      - DrinkMilkChoco
+      - DrinkCreamCoffee
+      # - Bottles
+      - DrinkJuiceBluePumpkinBottleFull
+      - DrinkJuiceMultifruitBottleFull
+      - DrinkBlueBoomBottleFull
+      - DrinkMangoBoomBottleFull
+      - DrinkLemonLimeStillBottleFull
+      - DrinkSupermaxBottleFull
+      # - Cartons
+      - DrinkJuiceBluePumpkinCarton
+      - DrinkJuiceMangoCarton
+      - DrinkJuiceMultifruitCarton
+      - DrinkJuiceTropicalCarton
+      - DrinkJuiceBungoCarton
+      - DrinkOatMilkCartonMini
+      - DrinkSoyMilkCartonMini
+      - DrinkMilkCartonMini
+      - DrinkMilkCartonMiniChocolate
+      # Reserve: Orchid's Barmania - Vendichaos end
+    chance: 0.8
+    offset: 0.0
+    rarePrototypes:
+      - DrinkNukieCan
+      - DrinkLean
+      # Reserve: Orchid's Barmania - Vendichaos start
+      # - Cans
+      - DrinkEggCan
+      - DrinkNothingCan
+      - DrinkPotatoBoomCan
+      - DrinkPoisonBoomCan
+      - DrinkAnomalyBoomCan
+      - DrinkDoctorMomCan
+      - DrinkDoctorNutCan
+      - DrinkDoctorPwrCan
+      - DrinkBloodCan
+      - DrinkPilkCan
+      - DrinkJuiceVeggieCan
+      - DrinkEnergyMaxCan
+      - DrinkEnergyReserveRobustCan
+      # - Cups
+      - DrinkBluePumpkinSoup
+      - DrinkNettleSoup
+      # - Bottles
+      - DrinkPoisonBoomBottleFull
+      - DrinkJuicePumpkinBottleFull
+      # - Cartons
+      - DrinkWineCarton
+      # Reserve: Orchid's Barmania - Vendichaos end
+    rareChance: 0.01

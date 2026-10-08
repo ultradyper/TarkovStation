@@ -1,0 +1,55 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+## Static
+- type: latheRecipePack
+  id: SecurityBoardsStaticGoob
+  recipes:
+  - ContrabandDetectorCircuitboard
+  - CriminalRecordsComputerCircuitboard
+  - WeaponEnergyTurretSecurityMachineCircuitboard
+
+- type: latheRecipePack
+  id: MedicalBoardsStaticGoob
+  recipes:
+  - OperatingTableCircuitboard
+
+- type: latheRecipePack
+  id: ServiceBoardsStaticGoob
+  recipes:
+  - StationRadioCircuitboard
+
+- type: latheRecipePack
+  id: CargoBoardsStaticGoob
+  recipes:
+  - CargoBountyComputerCircuitboard
+  - SalvageJobBoardComputerCircuitboard
+
+## Dynamic
+
+- type: latheRecipePack
+  id: MedicalBoardsGoob
+  recipes:
+  - AutodocCircuitboard
+  - CrewMonitoringComputerCircuitboard
+
+- type: latheRecipePack
+  id: EngineeringBoardsGoob
+  recipes:
+  - RoboticArmCircuitboard
+  - ConstructorCircuitboard
+  - StorageBinCircuitboard
+  - InteractorCircuitboard
+  - PlumbingPumpCircuitboard
+  - TelecomTransmitterCircuitboard
+  - PowerComputerCircuitboard
+  - AlertsComputerCircuitboard
+  - AtmosMonitoringComputerCircuitboard
+  - SupermatterComputerCircuitboard
+
+- type: latheRecipePack
+  id: ServiceBoardsGoob
+  recipes:
+  - VinylPlayerCircuitboard
+  - TapeDeckCircuitboard
+  - StationRadioServerCircuitboard
+  - StationRadioRigCircuitboard
+  - ServiceEnergyChemMachineCircuitboard

@@ -1,0 +1,13 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+
+# Pastries & Desserts
+
+A special sweet treat can go a long way to boosting the crew's morale.
+
+<GuideFoodIngredientGroupEmbed Group="Dessert"/>  <!--Reserve edit: Fix recipe categories-->
+
+</Document>

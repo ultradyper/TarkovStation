@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: guideEntry
+  id: Jobs
+  name: guide-entry-jobs
+  text: "/ServerInfo/Guidebook/Jobs.xml"
+  localizedText:
+    ru-RU: "/ServerInfo/_Reserve/Guidebook/Jobs.xml"
+  children:
+  - Cargo
+  - Command
+  - Engineering
+  - Medical
+  - Science
+  - Security
+  - Service

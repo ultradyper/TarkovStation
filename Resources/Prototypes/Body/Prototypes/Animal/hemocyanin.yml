@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: MIT
+
+- type: body
+  id: AnimalHemocyanin
+  name: "hemocyanin"
+  root: chest
+  slots:
+    chest:
+      part: ChestAnimal
+      connections:
+      - groin
+      organs:
+        lungs: OrganAnimalLungs
+        heart: OrganArachnidHeart
+    groin:
+      part: GroinAnimal
+      connections:
+      - legs
+      organs:
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal

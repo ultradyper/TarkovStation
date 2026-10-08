@@ -1,0 +1,278 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.Administration;
+using Content.Shared.CCVar;
+using Content.Shared.Database;
+using Content.Shared.GameTicking;
+using Content.Shared.GameWindow;
+using Content.Shared.Players;
+using Content.Shared.Preferences;
+using JetBrains.Annotations;
+using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Enums;
+using Robust.Shared.Player;
+using Robust.Shared.Utility;
+using Content.Server.Discord;
+using Content.Server.Discord.DiscordLink;  // Reserve edit: Maecenas System
+using Content.Server.ADT.Administration;
+
+namespace Content.Server.GameTicking
+{
+    [UsedImplicitly]
+    public sealed partial class GameTicker
+    {
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly DiscordLink _discordLink = default!;  // Reserve edit: Maecenas System
+
+        private void InitializePlayer()
+        {
+            _playerManager.PlayerStatusChanged += PlayerStatusChanged;
+        }
+
+        private async void PlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+        {
+            var session = args.Session;
+
+            if (_mind.TryGetMind(session.UserId, out var mindId, out var mind))
+            {
+                if (args.NewStatus != SessionStatus.Disconnected)
+                {
+                    _pvsOverride.AddSessionOverride(mindId.Value, session);
+                }
+            }
+
+            DebugTools.Assert(session.GetMind() == mindId);
+
+            switch (args.NewStatus)
+            {
+                case SessionStatus.Connected:
+                {
+                    _userDb.ClientConnected(session); // Surely moving this here won't break anything? :clueless:
+                    AddPlayerToDb(args.Session.UserId.UserId);
+
+                    // Always make sure the client has player data.
+                    if (session.Data.ContentDataUncast == null)
+                    {
+                        var data = new ContentPlayerData(session.UserId, args.Session.Name);
+                        data.Mind = mindId;
+                        session.Data.ContentDataUncast = data;
+                    }
+
+                    var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
+                    var firstConnection = record != null &&
+                                          Math.Abs((record.FirstSeenTime - record.LastSeenTime).TotalMinutes) < 120; //Reserve edit - until 2hr played total
+
+                    var firstSeenTime = record?.FirstSeenTime.ToString("dd.MM.yyyy") ?? "unknown"; // Reserve edit- first connection date
+
+                    //ADT tweak begin
+                    var creationDate = "Не удалось получить дату создания аккаунта";
+                    if (firstConnection) // The date is only used in first-join messages
+                    {
+                        try
+                        {
+                            // Получаем дату создания аккаунта через API визардов
+                            creationDate = await AuthApiHelper.GetCreationDate(args.Session.UserId.ToString());
+                        }
+                        catch (Exception ex)
+                        {
+                            // Warning: this can fail on shutdown (e.g. disposed logger in tests) and must not fail them.
+                            Log.Warning($"Ошибка при получении даты создания аккаунта: {ex.Message}");
+                        }
+                    }
+                    //ADT tweak end
+                        _chatManager.SendAdminAnnouncement(firstConnection
+                        ? Loc.GetString("player-first-join-message", ("name", args.Session.Name)) + " " +
+                          Loc.GetString("player-first-join-date", ("firstSeenTime", firstSeenTime)) + "\n" +//Reserve edit
+                          Loc.GetString("player-first-join-account-date", ("creationDate", creationDate)) //Reserve edit
+                        : Loc.GetString("player-join-message", ("name", args.Session.Name)));
+
+                        // Reserve edit start: Better webhook send
+                        if (!string.IsNullOrEmpty(_cfg.GetCVar(CCVars.DiscordAdminchatWebhook)) && firstConnection)
+                        {
+                            var message = Loc.GetString("player-first-join-message-webhook", ("name", args.Session.Name)) + "\n" +
+                                Loc.GetString("player-first-join-account-date", ("creationDate", creationDate)) + "\n" +
+                                $"userid: {args.Session.UserId.ToString()}";
+                            await _discord.SendWebhookMessage(message, _cfg.GetCVar(CCVars.DiscordAdminchatWebhook));
+                        }
+                        // Reserve edit end: Better webhook send
+                        await _discordLink.AssignPatronTierAsync(args.Session.UserId);  // Reserve edit: Maecenas System
+                    if (session.Channel.IsConnected)  // Reserve edit: Flaky test fixes
+                        RaiseNetworkEvent(GetConnectionStatusMsg(), session.Channel);
+
+                    if (firstConnection && _cfg.GetCVar(CCVars.AdminNewPlayerJoinSound))
+                        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Effects/newplayerping.ogg"),
+                            Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), false,
+                            audioParams: new AudioParams { Volume = -5f });
+
+                    if (LobbyEnabled && _roundStartCountdownHasNotStartedYetDueToNoPlayers)
+                    {
+                        _roundStartCountdownHasNotStartedYetDueToNoPlayers = false;
+                        _roundStartTime = _gameTiming.CurTime + LobbyDuration;
+                    }
+
+                    break;
+                }
+
+                case SessionStatus.InGame:
+                {
+                    if (mind == null)
+                    {
+                        if (LobbyEnabled)
+                            PlayerJoinLobby(session);
+                        else
+                            SpawnWaitDb();
+
+                        _adminLogger.Add(LogType.Connection, LogImpact.Low, $"User {args.Session:Player} attached to {(args.Session.AttachedEntity != null ? ToPrettyString(args.Session.AttachedEntity) : "nothing"):entity} connected to the game.");
+                        break;
+                    }
+
+                    if (mind.CurrentEntity == null || Deleted(mind.CurrentEntity))
+                    {
+                        DebugTools.Assert(mind.CurrentEntity == null, "a mind's current entity was deleted without updating the mind");
+
+                        // This player is joining the game with an existing mind, but the mind has no entity.
+                        // Their entity was probably deleted sometime while they were disconnected, or they were an observer.
+                        // Instead of allowing them to spawn in, we will dump and their existing mind in an observer ghost.
+                        SpawnObserverWaitDb();
+                    }
+                    else
+                    {
+                        if (_playerManager.SetAttachedEntity(session, mind.CurrentEntity))
+                        {
+                            PlayerJoinGame(session);
+                        }
+                        else
+                        {
+                            Log.Error(
+                                $"Failed to attach player {session} with mind {ToPrettyString(mindId)} to its current entity {ToPrettyString(mind.CurrentEntity)}");
+                            SpawnObserverWaitDb();
+                        }
+                    }
+
+                    _adminLogger.Add(LogType.Connection, LogImpact.Low, $"User {args.Session:Player} attached to {(args.Session.AttachedEntity != null ? ToPrettyString(args.Session.AttachedEntity) : "nothing"):entity} connected to the game.");
+
+                    break;
+                }
+
+                case SessionStatus.Disconnected:
+                {
+                    // Moffstation - Start - Ready Manifest
+                    if (_playerGameStatuses.TryGetValue(session.UserId, out var status) &&
+                        status == PlayerGameStatus.ReadyToPlay)
+                        ToggleReady(session, false);
+                    // Moffstation - End
+                    _chatManager.SendAdminAnnouncement(Loc.GetString("player-leave-message", ("name", args.Session.Name)));
+                    if (mindId != null)
+                    {
+                        _pvsOverride.RemoveSessionOverride(mindId.Value, session);
+                    }
+
+                    _userDb.ClientDisconnected(session);
+
+                    _adminLogger.Add(LogType.Connection, LogImpact.Low, $"User {args.Session:Player} attached to {(args.Session.AttachedEntity != null ? ToPrettyString(args.Session.AttachedEntity) : "nothing"):entity} disconnected from the game.");
+                    break;
+                }
+            }
+            //When the status of a player changes, update the server info text
+            UpdateInfoText();
+
+            async void SpawnWaitDb()
+            {
+                try
+                {
+                    await _userDb.WaitLoadComplete(session);
+                }
+                catch (OperationCanceledException)
+                {
+                    // Bail, user must've disconnected or something.
+                    Log.Debug($"Database load cancelled while waiting to spawn {session}");
+                    return;
+                }
+
+                SpawnPlayer(session, EntityUid.Invalid);
+            }
+
+            async void SpawnObserverWaitDb()
+            {
+                try
+                {
+                    await _userDb.WaitLoadComplete(session);
+                }
+                catch (OperationCanceledException)
+                {
+                    // Bail, user must've disconnected or something.
+                    Log.Debug($"Database load cancelled while waiting to spawn {session}");
+                    return;
+                }
+
+                JoinAsObserver(session);
+            }
+
+            async void AddPlayerToDb(Guid id)
+            {
+                if (RoundId != 0 && _runLevel != GameRunLevel.PreRoundLobby)
+                {
+                    await _db.AddRoundPlayers(RoundId, id);
+                }
+            }
+        }
+
+        public HumanoidCharacterProfile GetPlayerProfile(ICommonSession p)
+        {
+            return (HumanoidCharacterProfile) _prefsManager.GetPreferences(p.UserId).SelectedCharacter;
+        }
+
+        public void PlayerJoinGame(ICommonSession session, bool silent = false)
+        {
+            // TarkovStation-Edit: the cycle's onboarding provides its own short rules, including on reconnect.
+            if (!silent && !_cfg.GetCVar(Content.Shared._TarkovStation.TarkovCVars.Enabled))
+                _chatManager.DispatchServerMessage(session, Loc.GetString("game-ticker-player-join-game-message"));
+
+            _playerGameStatuses[session.UserId] = PlayerGameStatus.JoinedGame;
+            _db.AddRoundPlayers(RoundId, session.UserId);
+
+            if (_adminManager.HasAdminFlag(session, AdminFlags.Admin))
+            {
+                if (_allPreviousGameRules.Count > 0)
+                {
+                    var rulesMessage = GetGameRulesListMessage(true);
+                    _chatManager.SendAdminAnnouncementMessage(session, Loc.GetString("starting-rule-selected-preset", ("preset", rulesMessage)));
+                }
+            }
+
+            if (session.Channel.IsConnected)  // Reserve edit: Flaky test fixes
+                RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);
+        }
+
+        private void PlayerJoinLobby(ICommonSession session)
+        {
+            _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
+            _db.AddRoundPlayers(RoundId, session.UserId);
+
+            var client = session.Channel;
+            if (client.IsConnected)  // Reserve edit: Flaky test fixes
+            {
+                RaiseNetworkEvent(new TickerJoinLobbyEvent(), client);
+                RaiseNetworkEvent(GetStatusMsg(session), client);
+                RaiseNetworkEvent(GetInfoMsg(), client);
+            }
+            RaiseLocalEvent(new PlayerJoinedLobbyEvent(session));
+        }
+
+        private void ReqWindowAttentionAll()
+        {
+            RaiseNetworkEvent(new RequestWindowAttentionEvent());
+        }
+    }
+
+    public sealed class PlayerJoinedLobbyEvent : EntityEventArgs
+    {
+        public readonly ICommonSession PlayerSession;
+
+        public PlayerJoinedLobbyEvent(ICommonSession playerSession)
+        {
+            PlayerSession = playerSession;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: loadout
+  id: GoldRing
+  storage:
+    back:
+    - GoldRing
+  groupBy: "ring" # GoobStation
+
+- type: loadout
+  id: SilverRing
+  storage:
+    back:
+    - SilverRing
+  groupBy: "ring"  # GoobStation
+
+- type: loadout
+  id: WhiteCane
+  storage:
+    back:
+    - WhiteCane
+  groupBy: "canes"  # Reserve edit: Better trinket loadout
+
+- type: loadout
+  id: TapeRecorder
+  storage:
+    back:
+    - TapeRecorderFilled
+  groupBy: "audio"  # Reserve edit: Better trinket loadout
+
+- type: loadout
+  id: DrinkOniGourd
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Oni
+  storage:
+    back:
+    - DrinkOniGourd
+  groupBy: "species"  # Reserve edit: Better trinket loadout

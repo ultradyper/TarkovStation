@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: ServiceWorker
+  name: job-name-serviceworker
+  description: job-description-serviceworker
+  playTimeTracker: JobServiceWorker
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Civilian
+    time: 7.5h # - Goobstation - shitter nerf
+  startingGear: ServiceWorkerGear
+  icon: "JobIconServiceWorker"
+  supervisors: job-supervisors-service
+  guides: [ Service ] # goobstation
+  goobcoins: 10 #Goob content
+  weight: 6  # Reserve edit: Fix Service Department job order
+  access:
+  - Service
+  - Maintenance
+  - Bar
+  - Kitchen
+  extendedAccess:
+  - Hydroponics
+  special: # goob
+  - !type:AddImplantSpecial # Service workers can understand a chef's communications.
+    implants: [ BasicSpaceItalianTranslatorImplant ]
+  alternateTitles: # Reserve - alternate titles
+  - ServiceWorkerWaiter
+  - ServiceWorkerJuniorCook
+  - ServiceWorkerBartenderApprentice
+  - ServiceWorkerCroupier
+  - ServiceWorkerSteward
+
+- type: startingGear
+  id: ServiceWorkerGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: ServiceWorkerPDA
+    ears: ClothingHeadsetService
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: ServiceWorkerChameleonOutfit
+  job: ServiceWorker
+  equipment:
+    head: ClothingHeadHatBowlerHat
+    eyes: ClothingEyesGlassesSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckScarfStripedBrown
+    outerClothing: ClothingOuterVest
+    gloves: ClothingHandsGlovesColorBlack
+
+- type: jobAlternateTitle
+  id: ServiceWorkerWaiter
+  name: job-name-alt-serviceworker-1
+
+- type: jobAlternateTitle
+  id: ServiceWorkerJuniorCook
+  name: job-name-alt-serviceworker-2
+
+- type: jobAlternateTitle
+  id: ServiceWorkerBartenderApprentice
+  name: job-name-alt-serviceworker-3
+
+- type: jobAlternateTitle
+  id: ServiceWorkerCroupier
+  name: job-name-alt-serviceworker-4
+
+- type: jobAlternateTitle
+  id: ServiceWorkerSteward
+  name: job-name-alt-serviceworker-5

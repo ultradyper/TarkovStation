@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: startingGear
+  id: TarkovStationCivilianGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpackSatchel
+- type: startingGear
+  id: TarkovStationTraderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBrown
+    shoes: ClothingShoesBootsWork
+    outerClothing: ClothingOuterCoatTrench
+- type: startingGear
+  id: TarkovStationMedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpackSatchel
+  inhand:
+  - WeaponShotgunSawn
+  storage:
+    back:
+    - FlashlightLantern
+    - MedkitFilled
+    - BoxLethalshot
+    - Gauze
+- type: startingGear
+  id: TarkovStationAssaultGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpackSatchel
+  inhand:
+  - WeaponRifleLecter
+  storage:
+    back:
+    - FlashlightLantern
+    - MagazineRifle
+    - MagazineRifle
+    - Gauze
+- type: startingGear
+  id: TarkovStationEngineerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpackSatchel
+  inhand:
+  - WeaponPistolMk58
+  storage:
+    back:
+    - FlashlightLantern
+    - SheetSteel10
+    - MagazinePistol
+    - Wrench
+- type: startingGear
+  id: TarkovStationEmergencyGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpackSatchel
+  inhand:
+  - WeaponPistolMk58
+  storage:
+    back:
+    - FlashlightLantern
+- type: tarkovKit
+  id: Medic
+  name: tarkov-kit-medic
+  description: tarkov-kit-medic-desc
+  gear: TarkovStationMedicGear
+  price: 2400
+  icon: WeaponShotgunSawn
+  emergency: false
+- type: tarkovKit
+  id: Assault
+  name: tarkov-kit-assault
+  description: tarkov-kit-assault-desc
+  gear: TarkovStationAssaultGear
+  price: 3000
+  icon: WeaponRifleLecter
+  emergency: false
+- type: tarkovKit
+  id: Engineer
+  name: tarkov-kit-engineer
+  description: tarkov-kit-engineer-desc
+  gear: TarkovStationEngineerGear
+  price: 1700
+  icon: WeaponPistolMk58
+  emergency: false
+- type: tarkovKit
+  id: Emergency
+  name: tarkov-kit-emergency
+  description: tarkov-kit-emergency-desc
+  gear: TarkovStationEmergencyGear
+  price: 0
+  icon: WeaponPistolMk58
+  emergency: true

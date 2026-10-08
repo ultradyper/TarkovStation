@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseGameRule
+  id: SpacePirates
+  components:
+  - type: StationEvent
+    weight: 3
+    duration: null
+    earliestStart: 20
+    reoccurrenceDelay: 60
+    minimumPlayers: 30
+    chaos:
+      Hostile: 60
+      Medical: 50
+      Death: 25
+    eventType: HostilesSpawn
+  - type: GameRule
+    chaosScore: 650
+  - type: PendingPirateRule
+    ransomPrototype: BikeHornRansom
+  - type: Tag
+    tags:
+    - MidroundAntag
+
+- type: entity
+  parent: BaseGameRule
+  id: PiratesSpawn
+  components:
+  - type: ActivePirateRule
+  - type: RuleGrids
+  - type: LoadMapRule
+    mapPath: /Maps/_Goobstation/Shuttles/pirates_irs.yml
+  - type: AntagLoadProfileRule
+    speciesOverride: Human
+    alwaysUseSpeciesOverride: true
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointPirateCaptain
+      pickPlayer: false
+      min: 1
+      max: 1
+      mindRoles:
+      - MindRolePirate
+      startingGear: PirateCaptainGear
+      roleLoadout:
+      - AntagTraitor
+      components:
+      - type: RandomMetadata
+        nameSegments:
+        - NamesDeathCommando
+    - spawnerPrototype: SpawnPointPirates  # Reserve edit: Admin Antag Verbs Enhanced
+      pickPlayer: false
+      min: 5
+      max: 5
+      mindRoles:
+      - MindRolePirate
+      startingGear: PirateGear
+      roleLoadout:
+      - AntagTraitor
+      components:
+      - type: RandomMetadata
+        nameSegments:
+        - NamesDeathCommando
+  - type: Tag
+    tags:
+    - MidroundAntag
+
+- type: entity
+  parent: BikeHorn
+  id: BikeHornRansom
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Ransom

@@ -1,0 +1,61 @@
+<Document>
+
+# Рецепты приготовления в микроволновке
+
+Это последняя опубликованная версия сборника рецептов "NanoTrasen Central Command Kitchen de Cuisine's", предназначенного для шеф-поваров, готовящих блюда на судах NanoTrasen.
+
+## Ингредиенты
+<GuideFoodIngredientGroupEmbed Group="Ingredients"/>
+
+## Пицца
+<GuideFoodIngredientGroupEmbed Group="Pizza"/>
+
+## Бургеры
+<GuideFoodIngredientGroupEmbed Group="Burger"/>
+
+## Фастфуд
+<GuideFoodIngredientGroupEmbed Group="Fastfood"/>
+
+## Солёно-пряные
+<GuideFoodIngredientGroupEmbed Group="Savory"/>
+
+## Хлебобулочные
+<GuideFoodIngredientGroupEmbed Group="Breads"/>
+
+## Завтраки
+<GuideFoodIngredientGroupEmbed Group="Breakfast"/>
+
+## Еда для нианов
+<GuideFoodIngredientGroupEmbed Group="Moth"/>
+
+## Паста & Лапша
+<GuideFoodIngredientGroupEmbed Group="Pasta"/>
+
+## Выпечка & Десерты
+<GuideFoodIngredientGroupEmbed Group="Dessert"/>
+
+## Супы & Рагу
+<GuideFoodIngredientGroupEmbed Group="Soup"/>
+
+## Пироги & Тарты
+<GuideFoodIngredientGroupEmbed Group="Pie"/>
+
+## Батончики & Печенье
+<GuideFoodIngredientGroupEmbed Group="BarsAndCookies"/>
+
+## Торты
+<GuideFoodIngredientGroupEmbed Group="Cake"/>
+
+## Салаты
+<GuideFoodIngredientGroupEmbed Group="Salad"/>
+
+## Лечебные
+<GuideFoodIngredientGroupEmbed Group="Medicinal"/>
+
+## Другие
+<GuideFoodIngredientGroupEmbed Group="Other"/>
+
+## Секретные
+<GuideFoodIngredientGroupEmbed Group="Secret"/>
+
+</Document>

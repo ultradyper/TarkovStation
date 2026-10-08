@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ DrinkBaseMaterialStrongPlastic, DrinkBase, DrinkVisualsFill ]
+  id: Bucket
+  name: bucket
+  description: It's a boring old bucket.
+  components:
+  - type: Edible
+    utensil: Spoon
+  - type: Sprite
+    sprite: Objects/Tools/bucket.rsi
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Objects/Tools/bucket.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 250
+  - type: SolutionTransfer
+    transferAmount: 100
+    maxTransferAmount: 100
+    minTransferAmount: 10
+  - type: SpillWhenWorn
+    solution: drink
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    inHandsFillBaseName: null
+  - type: Tag
+    tags:
+      - Bucket
+  - type: DnaSubstanceTrace
+  - type: Armor #Goobstation
+    coverage:
+    - Head
+    traumaDeductions:
+      Dismemberment: 0
+      OrganDamage: 0
+      BoneDamage: 0.05
+      VeinsDamage: 0
+      NerveDamage: 0
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+  - type: StaticPrice # Goobstation
+    price: 20
+
+- type: entity
+  parent: Bucket
+  id: BorgBucket
+  name: internal tank
+  description: The internal reservoir of a custodial cyborg, capable of holding a entire mop bucket worth of water.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 500

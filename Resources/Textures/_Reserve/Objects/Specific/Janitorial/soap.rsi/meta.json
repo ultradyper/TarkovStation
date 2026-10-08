@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Made by Ceterai on GitHub based on vanilla soap.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    { "name": "soap-1" },
+    { "name": "soap-2" },
+    { "name": "soap-3" },
+    { "name": "soap-4" },
+    { "name": "cherry-1" },
+    { "name": "cherry-2" },
+    { "name": "cherry-3" },
+    { "name": "cherry-4" },
+    { "name": "brepsi-1" },
+    { "name": "brepsi-2" },
+    { "name": "brepsi-3" },
+    { "name": "brepsi-4" },
+    { "name": "laughter-1" },
+    { "name": "laughter-2" },
+    { "name": "laughter-3" },
+    { "name": "laughter-4" },
+    { "name": "inhand-left" },
+    { "name": "inhand-right" },
+    { "name": "cherry-inhand-left" },
+    { "name": "cherry-inhand-right" },
+    { "name": "brepsi-inhand-left" },
+    { "name": "brepsi-inhand-right" },
+    { "name": "laughter-inhand-left" },
+    { "name": "laughter-inhand-right" }
+  ]
+}

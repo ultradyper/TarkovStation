@@ -1,0 +1,247 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: RandomDrinkGlass
+  name: random drink spawner
+  suffix: Glass
+  parent: MarkerBase
+  placement:
+    mode: PlaceFree  # Reserve: Orchid's Barmania - Vendichaos
+  components:
+  - type: Transform  # Reserve: Orchid's Barmania - Vendichaos
+    anchored: false
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Consumable/Drinks/beerglass.rsi
+        state: icon
+  - type: RandomSpawner
+  #small item
+    prototypes:
+      - DrinkAbsintheGlass
+      - DrinkAleGlass
+      - DrinkAlienBrainHemorrhage
+      - DrinkAloe
+      - DrinkAndalusia
+      - DrinkAntifreeze
+      - DrinkArnoldPalmer
+      - DrinkB52Glass
+      - DrinkBahamaMama
+      - DrinkBananaHonkGlass
+      - DrinkBarefootGlass
+      - DrinkBeerglass
+      - DrinkBerryJuice
+      - DrinkBlackRussianGlass
+      - DrinkBlueCuracaoGlass
+      - DrinkBlueHawaiianGlass
+      - DrinkBloodyMaryGlass
+      - DrinkBooger
+      - DrinkBraveBullGlass
+      - DrinkBronxGlass
+      - BudgetInsulsDrinkGlass
+      - DrinkCarrotJuice
+      - DrinkCoconutRum
+      - DrinkChocolateGlass
+      - DrinkCognacGlass
+      - DrinkCosmopolitan
+      - DrinkCrushDepthGlass
+      - DrinkCubaLibreGlass
+      - DrinkDarkandStormyGlass
+      - DrinkDeadRumGlass
+      - DrinkDevilsKiss
+      - DrinkDriestMartiniGlass
+      - DrinkDrGibbGlass
+      - DrinkElectricSharkGlass
+      - DrinkErikaSurprise
+      - DrinkFourteenLokoGlass
+      - DrinkGargleBlasterGlass
+      - DrinkGinFizzGlass
+      - DrinkGinGlass
+      - DrinkGinTonicglass
+      - DrinkGildlagerGlass
+      - DrinkGrapeJuice
+      - DrinkGreenTeaGlass
+      - DrinkGrogGlass
+      - DrinkHippiesDelightGlass
+      - DrinkIcedCoffeeGlass
+      - DrinkIcedGreenTeaGlass
+      - DrinkIcedBeerGlass
+      - DrinkIceCreamGlass
+      - IrishBoolGlass
+      - DrinkIrishCarBomb
+      - DrinkIrishCoffeeGlass
+      - DrinkLemonadeGlass
+      - DrinkJackRoseGlass
+      - DrinkJungleBirdGlass
+      - DrinkKalimotxoGlass
+      - DrinkOrangeLimeSodaGlass
+      - DrinkLongIslandIcedTeaGlass
+      - DrinkManhattanGlass
+      - DrinkManlyDorfGlass
+      - DrinkMargaritaGlass
+      - DrinkMartiniGlass
+      - DrinkMeadGlass
+      - DrinkMilkshake
+      - DrinkMojito
+      - DrinkMonkeyBusinessGlass
+      - DrinkNTCahors
+      - DrinkPainkillerGlass
+      - DrinkPatronGlass
+      - DrinkPinaColadaGlass
+      - DrinkPoscaGlass
+      - DrinkRadlerGlass
+      - DrinkRedMeadGlass
+      - DrinkRewriter
+      - DrinkRoyRogersGlass
+      - DrinkRootBeerFloatGlass
+      - RubberneckGlass
+      - DrinkRumGlass
+      - DrinkSakeGlass
+      - DrinkSbitenGlass
+      - DrinkScrewdriverCocktailGlass
+      - DrinkShirleyTempleGlass
+      - DrinkSuiDreamGlass
+      - DrinkSingulo
+      - DrinkSoyLatte
+      - DrinkSyndicatebomb
+      - DrinkTequilaSunriseGlass
+      - DrinkThreeMileIslandGlass
+      - DrinkTortugaGlass
+      - DrinkToxinsSpecialGlass
+      - DrinkVampiroGlass
+      - DrinkVodkaMartiniGlass
+      - DrinkVodkaRedBool
+      - DrinkVodkaTonicGlass
+      - DrinkWatermelonJuice
+      - DrinkWatermelonWakeup
+      - DrinkWhiskeyColaGlass
+      - DrinkWhiskeySodaGlass
+      - DrinkWhiteRussianGlass
+      - DrinkWineGlass
+      - XenoBasherGlass
+      - DrinkShakeBlue
+      - DrinkShakeWhite
+      - DrinkTheMartinez
+      - DrinkMoonshineGlass
+      # Reserve: Orchid's Barmania - Visual Fixes start
+      # - Missing non-reserve juices
+      - DrinkAppleJuice
+      - DrinkBananaJuice
+      - DrinkBluePumpkinJuice
+      - DrinkBungoJuice
+      - DrinkCherryJuice
+      - DrinkPineappleJuice
+      # - Missing non-reserve sodas
+      - DrinkColaGlass
+      - DrinkEnergyDrinkGlass
+      - DrinkLemonLimeCranberryGlass
+      - DrinkLemonLime
+      - DrinkMangoJuice
+      - DrinkSodaGlass
+      - DrinkStarkistGlass
+      # - Missing non-reserve drinks
+      - DrinkCreamOfCoconutGlass
+      - DrinkMilkGoatGlass
+      - DrinkMilkOatGlass
+      - DrinkMilkSoyGlass
+      - DrinkDryRamenGlass
+      - DrinkHotRamenGlass
+      # - Missing non-reserve ingredients
+      - DrinkEggCookedGlass
+      - DrinkOilOliveGlass
+      - DrinkPumpkinFleshGlass
+      - DrinkCornoilGlass
+      - DrinkSoysauceGlass
+      - DrinkSyrupGlass
+      # - Unused non-reserve juices
+      - DrinkLimeJuice
+      - DrinkLemonJuice
+      - DrinkOrangeJuice
+      # - Unused non-reserve drinks
+      - DrinkCoconutWaterGlass
+      - DrinkCoffee
+      - DrinkCream
+      - DrinkEggnog
+      - DrinkGrapeSodaGlass
+      - DrinkGrenadineGlass
+      - DrinkIcedTeaGlass
+      - DrinkIrishCreamGlass
+      - DrinkCoffeeLiqueurGlass
+      - DrinkRootBeerGlass
+      - DrinkCogChampBase
+      - DrinkEmeraldGlass
+      - DrinkGlassWhite
+      - DrinkSolDryGlass
+      - DrinkSnowWhite
+      - DrinkSpaceUpGlass
+      - DrinkSpaceMountainWindGlass
+      - DrinkTeaGlass
+      - DrinkTequilaGlass
+      - DrinkTomatoJuice
+      - DrinkVermouthGlass
+      - DrinkVodkaGlass
+      - DrinkWhiskeyGlass
+      - DrinkCaipirinha
+      - DrinkDaiquiri
+      - DrinkDeathInTheAfternoon
+      - DrinkEmpress75
+      - DrinkEspressoMartini
+      - DrinkMimosa
+      - DrinkMoscowMule
+      - DrinkTheSunAlsoRises
+      # - Reserve drinks
+      - DrinkBrepsiGlass
+      - DrinkOrchitoGlass  # Reserve edit: Orchito 2.0
+      # Reserve: Orchid's Barmania - Visual Fixes end
+    chance: 0.8
+    offset: 0.0
+    #rare
+    rarePrototypes:
+      - DrinkAcidSpitGlass
+      - DrinkAlliesCocktail
+      - DrinkAmasecGlass
+      - DrinkAtomicBombGlass
+      - DrinkDemonsBlood
+      - DrinkDoctorsDelightGlass
+      - DrinkNeurotoxinGlass
+      - DrinkNuclearColaGlass
+      - DrinkSilencerGlass
+      - DrinkShakeMeat
+      - DrinkShakeRobo
+      - DrinkHoochGlass
+      - DrinkBeepskySmashGlass
+      - DrinkBacchusBlessing
+      # Reserve: Orchid's Barmania - Visual Fixes start
+      # - Missing non-reserve drinks
+      - DrinkPotatoJuice
+      - DrinkChangelingStingGlass
+      - DrinkShamblersJuice
+      - DrinkMilkSpoiledGlass
+      - DrinkMopwataGlass
+      - DrinkPilkGlass
+      # - Missing non-reserve ingredients
+      - DrinkEnzymeGlass
+      - DrinkEggGlass
+      - DrinkVinegarGlass
+      - DrinkOilGlass
+      - DrinkCapsaicinOilGlass
+      - DrinkFrostOilGlass
+      - DrinkVitaminGlass
+      - DrinkLaughinSyrupGlass
+      # - Unused non-reserve drinks
+      - DrinkBloodGlass
+      - DrinkIceGlass
+      - DrinkManhattanProjectGlass
+      - DrinkMayojito
+      - DrinkMimeosa
+      - DrinkNothing
+      - DrinkPoisonBerryJuice
+      - DrinkPoisonWineGlass
+      - DrinkTeapot
+      - DrinkWhiskeySour
+      # - Reserve drinks
+      - DrinkStardustGlass  # Reserve edit: Orchito 2.0
+      - DrinkStardustGoddessGlass  # Reserve edit: Orchito 2.0
+      - DrinkStardustOrchitoGlass  # Reserve edit: Orchito 2.0
+      # Reserve: Orchid's Barmania - Visual Fixes end
+    rareChance: 0.05

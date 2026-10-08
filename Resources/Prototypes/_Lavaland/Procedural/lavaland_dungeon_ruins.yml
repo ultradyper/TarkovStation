@@ -1,0 +1,5 @@
+- type: lavalandDungeonRuin
+  id: Experiment
+  config: Experiment
+  priority: 0
+  spawnAttempts: 50

@@ -1,0 +1,243 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: BaseAnimalOrganUnGibbable
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Organ
+    intCap: 65
+    integrity: 65
+    integrityThresholds:
+      Normal: 65
+      Damaged: 30
+      Destroyed: 0
+  - type: Edible
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+  - type: StaticPrice
+    price: 50
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - chicken # everything kinda tastes like chicken
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+
+- type: entity
+  id: BaseAnimalOrgan
+  parent: BaseAnimalOrganUnGibbable
+  abstract: true
+  components:
+  - type: Gibbable
+  - type: PhysicalComposition #Goobstation - Recycle update
+    materialComposition:
+      Biomass: 3
+
+- type: entity
+  id: OrganAnimalLungs
+  parent: BaseAnimalOrgan
+  name: animal lungs
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: lung-l
+    - state: lung-r
+  - type: Organ
+    slotId: lungs # Shitmed
+    intCap: 85 # animal lungs are less tuff than human's one
+    integrity: 85
+    integrityThresholds:
+      Normal: 85
+      Damaged: 40
+      Destroyed: 0
+  - type: Lung
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Animal ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      Lung:
+        maxVol: 100.0
+        canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Lungs
+  - type: Item
+    size: Small
+    heldPrefix: lungs
+
+- type: entity
+  id: OrganAnimalStomach
+  parent: BaseAnimalOrgan
+  name: animal stomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: stomach
+  - type: Organ
+    slotId: stomach # Shitmed
+    intCap: 140
+    integrity: 140
+    integrityThresholds:
+      Normal: 140
+      Damaged: 80
+      Destroyed: 0
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 40
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+  - type: Metabolizer
+    maxPoisonsProcessable: 3
+    metabolizerTypes: [ Animal ]
+    groups:
+    - id: Food
+    - id: Drink
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+
+- type: entity
+  id: OrganMouseStomach
+  parent: OrganAnimalStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 30
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+
+- type: entity
+  id: OrganAnimalLiver
+  parent: BaseAnimalOrgan
+  name: animal liver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: liver
+  - type: Organ
+    slotId: liver # Shitmed
+    intCap: 85
+    integrity: 85
+    integrityThresholds:
+      Normal: 85
+      Damaged: 40
+      Destroyed: 0
+  - type: Metabolizer
+    maxPoisonsProcessable: 1
+    metabolizerTypes: [ Animal ]
+    groups:
+    - id: Alcohol
+  - type: Liver # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Liver
+  - type: Item
+    size: Small
+    heldPrefix: liver
+
+- type: entity
+  id: OrganAnimalHeart
+  parent: BaseAnimalOrgan
+  name: animal heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Organ
+    slotId: heart # Shitmed
+    intCap: 70
+    integrity: 70
+    integrityThresholds:
+      Normal: 70
+      Damaged: 30
+      Destroyed: 0
+  - type: Metabolizer
+    maxPoisonsProcessable: 2
+    metabolizerTypes: [ Animal ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Heart # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Heart
+  - type: Item
+    size: Small
+    heldPrefix: heart
+
+- type: entity
+  id: OrganAnimalKidneys
+  parent: BaseAnimalOrgan
+  name: animal kidneys
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: kidney-l
+    - state: kidney-r
+  - type: Organ
+    slotId: kidneys # Shitmed
+    intCap: 85
+    integrity: 85
+    integrityThresholds:
+      Normal: 85
+      Damaged: 40
+      Destroyed: 0
+  - type: Metabolizer
+    maxPoisonsProcessable: 5
+    metabolizerTypes: [ Animal ]
+    removeEmpty: true
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Kidneys
+  - type: Item
+    size: Small
+    heldPrefix: kidneys

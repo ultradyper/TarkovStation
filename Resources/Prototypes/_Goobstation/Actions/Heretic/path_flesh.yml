@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticFleshSurgery
+  name: Knit Flesh
+  description: A touch spell that allows you to either perform quick surgery or restore flesh of target.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Goobstation/Heretic/abilities_heretic.rsi
+      state: flesh_surgery
+    checkCanInteract: true
+  - type: InstantAction
+    event: !type:EventHereticFleshSurgery
+  - type: HereticAction

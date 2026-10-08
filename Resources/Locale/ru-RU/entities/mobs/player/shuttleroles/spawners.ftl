@@ -1,0 +1,215 @@
+# Спавнеры как есть. Спавнеры гост ролей тут: roles.ftl
+
+# Посетители
+
+ent-CommandVisitorSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Командование
+ent-VisitorCaptainSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Капитан
+ent-VisitorCESpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Старший инженер
+ent-VisitorCMOSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Главный врач
+ent-VisitorHOPSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Глава персонала
+ent-VisitorHOSSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Глава службы безопасности
+ent-VisitorRDSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Научный руководитель
+ent-VisitorQMSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Квартирмейстер
+ent-SecurityVisitorSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Случайный член службы безопасности
+ent-VisitorSecurityCadetSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Кадет СБ
+ent-VisitorSecurityOfficerSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Офицер СБ
+ent-VisitorDetective = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Детектив
+ent-VisitorWarden = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Смотритель
+ent-VisitingCargonianSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Карго
+ent-VisitorCargoTechnicianSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Грузчик
+ent-VisitorSalvageSpecialistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Утилизатор
+ent-EngineeringVisitorSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Инженерный
+ent-VisitorAtmosTechSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Атмосферный техник
+ent-VisitorTechnicalAssistantSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Технический ассистент
+ent-VisitorEngineerSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Инженер
+ent-VisitingMedicalSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Медицинский
+ent-VisitorChemistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Химик
+ent-VisitorMedicalInternSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Интерн
+ent-VisitorMedicalDoctorSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Врач
+ent-VisitorParamedicSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Парамедик
+ent-VisitorVirologistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Вирусолог
+ent-VisitorGeneticistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Генетик
+ent-VisitorPsychologistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Психолог
+ent-VisitorDentistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Стоматолог
+ent-VisitingScientistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Научный
+ent-VisitorScientistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Учёный
+ent-VisitorResearchAssistantSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Научный ассистент
+ent-VisitingCivilianSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Цивильный
+ent-VisitorBartenderSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Бармен
+ent-VisitorBotanistSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Ботаник
+ent-VisitorBoxerSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Боксёр
+ent-VisitorChaplainSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Священник
+ent-VisitorChefSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Шеф
+ent-VisitorClownSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Клоун
+ent-VisitorJanitorSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Уборщик
+ent-VisitorLawyerSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Адвокат
+ent-VisitorLawyerCentcomSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Адвокат ЦентКом
+ent-VisitorLibrarianSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Библиотекарь
+ent-VisitorMusicianSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Музыкант
+ent-VisitorMusicianFancySpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Модный музыкант
+ent-VisitorMusicianRelaxedSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Расслабленый музыкант
+ent-VisitorMimeSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Мим
+ent-VisitorReporterSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Репортёр
+ent-VisitorServiceWorkerSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Сервисный работник
+ent-VisitorZookeeperSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Зоотехник
+
+# Посетители NanoTrasen (члены экипажа) любой профессии, в том числе скелет
+
+ent-NTVisitorSpawner = спавнер - роль призрака - посетитель
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Случайный член экипажа
+ent-NTVisitorSpawner50 = { ent-NTVisitorSpawner }
+    .desc = { ent-NTVisitorSpawner.desc }
+    .suffix = Случайный член экипажа, Шанс 50%
+ent-NTVisitorSpawner33 = { ent-NTVisitorSpawner }
+    .desc = { ent-NTVisitorSpawner.desc }
+    .suffix = Случайный член экипажа, Шанс 33%
+ent-NTVisitorSpawner25 = { ent-NTVisitorSpawner }
+    .desc = { ent-NTVisitorSpawner.desc }
+    .suffix = Случайный член экипажа, Шанс 25%
+ent-NTVisitorSpawner20 = { ent-NTVisitorSpawner }
+    .desc = { ent-NTVisitorSpawner.desc }
+    .suffix = Случайный член экипажа, Шанс 20%
+ent-NTVisitorSpawner10 = { ent-NTVisitorSpawner }
+    .desc = { ent-NTVisitorSpawner.desc }
+    .suffix = Случайный член экипажа, Шанс 10%
+
+# Синдикат
+
+ent-SyndieSoldierTeamLeaderSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Руководитель Синдиката
+ent-SyndieSoldierSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Солдат Синдиката
+ent-SyndieVisitorSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Жертва катастрофы Синдиката
+
+# Пираты
+
+ent-PirateScoonerSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Пират, Шхуна
+ent-PirateCaptainScoonerSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Пират, Капитан пиратов, Шхуна
+
+# Адмемы
+
+ent-VisitorBlackmarketeerSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Торговец чёрного рынка
+
+ent-CossackSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Казак
+
+# Для события Испытание
+
+ent-ChallengeVictimSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Испытание, Адмем, Жертва катастрофы
+ent-ChallengeCargoTechnicianSpawner = спавнер - роль призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Испытание, Адмем, Грузчик

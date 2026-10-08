@@ -1,0 +1,156 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Group
+
+- type: loadoutGroup
+  id: UniqueReserveItems
+  name: loadout-group-unique-reserve-items
+  minLimit: 1000  # So any new items are auto-applied.
+  maxLimit: 1000
+  hidden: true
+  loadouts:
+  - Orchito
+  - Stardust
+  - ALittleStar
+  - PlushieCeteraiOrchiDea
+  - PlushieArtizziKasya
+  - PlushieAwareFoxy
+  - PlushieDotusaruTaipan
+  - PlushieFloppaGeoffroyKrisp
+  - PlushieMrSamuelGoose
+  - PlushieNazrinNyaCap
+  - PlushieSvarshikEva
+
+# endregion
+
+# region Ceterai
+
+- type: loadout
+  id: Orchito
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ Ceterai ]
+  storage:
+    back:
+    - DrinkOrchitoGlass
+
+- type: loadout
+  id: Stardust
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ Ceterai ]
+  storage:
+    back:
+    - PillCanisterStardust
+
+- type: loadout
+  id: ALittleStar
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ Ceterai ]
+  storage:
+    back:
+    - DiskCaseALittleStar
+    - VinylSleeveALittleStar
+
+- type: loadout
+  id: PlushieCeteraiOrchiDea
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ Ceterai ]
+  storage:
+    back:
+    - PlushieCeteraiOrchiDea
+
+# endregion Ceterai
+
+# region Artizzi
+
+- type: loadout
+  id: PlushieArtizziKasya
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ Artizzi ]
+  storage:
+    back:
+    - PlushieArtizziKasya
+
+# endregion Artizzi
+
+# region AwareFoxy
+
+- type: loadout
+  id: PlushieAwareFoxy
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ AwareFoxy ]
+  storage:
+    back:
+    - PlushieAwareFoxy
+
+# endregion AwareFoxy
+
+# region Dotusaru
+
+- type: loadout
+  id: PlushieDotusaruTaipan
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ DOTUSARU ]
+  storage:
+    back:
+    - PlushieDotusaruTaipan
+
+# endregion Dotusaru
+
+# region Floppa
+
+- type: loadout
+  id: PlushieFloppaGeoffroyKrisp
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ Floppa ]
+  storage:
+    back:
+    - PlushieFloppaGeoffroyKrisp
+
+# endregion Floppa
+
+# region MrSamuel
+
+- type: loadout
+  id: PlushieMrSamuelGoose
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ Mr_Samuel ]
+  storage:
+    back:
+    - PlushieMrSamuelGoose
+
+# endregion MrSamuel
+
+# region NazrinNya
+
+- type: loadout
+  id: PlushieNazrinNyaCap
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ NazrinNya ]
+  storage:
+    back:
+    - PlushieNazrinNyaCap
+
+# endregion NazrinNya
+
+# region Svarshik
+
+- type: loadout
+  id: PlushieSvarshikEva
+  effects:
+  - !type:CkeyRequirementLoadoutEffect
+    ckey: [ Svarshik ]
+  storage:
+    back:
+    - PlushieSvarshikEva
+
+# endregion Svarshik

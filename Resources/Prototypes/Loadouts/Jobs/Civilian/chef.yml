@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Head
+- type: loadout
+  id: ChefHead
+  equipment:
+    head: ClothingHeadHatChef
+
+
+# Mask
+- type: loadout
+  id: ChefMask
+  equipment:
+    mask: ClothingMaskItalianMoustache
+
+# Jumpsuit
+- type: loadout
+  id: ChefJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef
+
+
+- type: loadout
+  id: ChefJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChef
+
+
+# Outer clothing
+- type: loadout
+  id: ChefApron
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: AdvancedChef
+  equipment:
+    outerClothing: ClothingOuterApronChef
+
+- type: loadout
+  id: ChefJacket
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: SeniorChef
+  equipment:
+    outerClothing: ClothingOuterJacketChef
+
+- type: loadout
+  id: ChefWintercoat
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: AdvancedChef
+  equipment:
+    outerClothing: ClothingOuterWinterChef

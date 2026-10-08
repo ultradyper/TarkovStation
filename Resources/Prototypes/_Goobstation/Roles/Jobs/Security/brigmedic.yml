@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Brigmedic
+  name: job-name-brigmedic
+  description: job-description-brigmedic
+  playTimeTracker: JobBrigmedic
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 18000 # 5 hrs
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 18000 # 5 hrs
+  startingGear: BrigmedicGear
+  icon: "JobIconBrigmedic"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  guides:
+  - MedicalDoctor
+  - BrigmedicSOP
+  - Medicine
+  goobcoins: 35
+  weight: 8  # Reserve edit: Fix Assistant job order
+  access: # EE parity, make corpsman able function.
+  - Security
+  - Brig
+  - Medical
+  - Maintenance
+  - Service
+  - External
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: SecurityStaff
+  - !type:AddComponentSpecial
+    components:
+    - type: SurgerySpeedModifier
+      speedModifier: 1.5
+  alternateTitles: # Reserve - alternate titles
+  - BrigmedicBattleMedic
+
+- type: chameleonOutfit
+  id: BrigmedicChameleonOutfit
+  job: Brigmedic
+  equipment:
+    eyes: ClothingEyesGlassesMedSec
+    mask: ClothingMaskBreathMedicalSecurity
+    ears: ClothingHeadsetBrigmedic
+    outerClothing: ClothingOuterCoatAMG
+    gloves: ClothingHandsGlovesColorWhite
+    jumpsuit: ClothingUniformJumpsuitBrigmedic
+    id: BrigmedicPDA
+    back: ClothingBackpackBrigmedic
+    shoes: ClothingShoesBootsJack
+    head: ClothingHeadHatBeretBrigmedic
+
+- type: jobAlternateTitle
+  id: BrigmedicBattleMedic
+  name: job-name-alt-brigmedic-1

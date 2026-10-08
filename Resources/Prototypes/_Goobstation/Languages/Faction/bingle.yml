@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: language
+  id: Bingle
+  speech:
+    # Reserve edit start: Fix languages in chat
+    fontId: ShantellSans
+    boldFontId: ShantellSansBold
+    # Reserve edit end: Fix languages in chat
+    color: "#33528d"
+  obfuscation:
+    !type:PhraseObfuscation
+    proportion: 0.66
+    minPhrases: 1
+    maxPhrases: 6
+    replacement:
+    # reserve edit start
+    - Бингл
+    - Бонгл
+    - БИНГЛ
+    - Бонг
+    - Бинг
+    - БОНГЛ
+    # reserve edit end

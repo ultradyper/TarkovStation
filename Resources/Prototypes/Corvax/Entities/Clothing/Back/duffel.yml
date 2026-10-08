@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelMilitary
+  name: army duffel bag
+  description: A large duffel bag for holding any army goods.
+  components:
+  - type: Sprite
+    sprite: Corvax/Back/Duffels/military.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,8,4

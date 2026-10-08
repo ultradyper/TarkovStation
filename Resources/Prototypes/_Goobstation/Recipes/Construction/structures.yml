@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: construction
+  id: WallDirectional
+  graph: WallDirectional
+  targetNode: wallDirectional
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+
+- type: construction
+  id: SolarPanel
+  graph: SolarPanel
+  targetNode: solarassembly
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+# Barricades
+
+- type: construction
+  id: BarricadeSteel
+  graph: BarricadeSteel
+  targetNode: base
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+
+- type: construction
+  id: BarricadeSteelFolding
+  graph: BarricadeSteel
+  targetNode: folding
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+
+- type: construction
+  id: BarricadePlasteel
+  graph: BarricadePlasteel
+  targetNode: base
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+
+- type: construction
+  id: BarricadePlasteelFolding
+  graph: BarricadePlasteel
+  targetNode: folding
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true

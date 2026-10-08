@@ -1,0 +1,274 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Papers (letters, ad copy)
+# Reserve edit start: localization #325
+- type: entity
+  id: PaperMailNFPowerTool
+  name: Hazard Fraught advertisement
+  categories: [ HideSpawnMenu ]
+  suffix: "power tool ad, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-power-tool
+- type: entity
+  id: PaperMailNFVagueThreat1
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 1, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-1
+- type: entity
+  id: PaperMailNFVagueThreat2
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 2, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-2
+- type: entity
+  id: PaperMailNFVagueThreat3
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 3, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-3
+- type: entity
+  id: PaperMailNFVagueThreat4
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 4, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-4
+- type: entity
+  id: PaperMailNFVagueThreat5
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 5, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-5
+- type: entity
+  id: PaperMailNFVagueThreat6
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 6, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-6
+- type: entity
+  id: PaperMailNFVagueThreat7
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 7, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-7
+- type: entity
+  id: PaperMailNFVagueThreat8
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 8, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-8
+- type: entity
+  id: PaperMailNFVagueThreat9
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 9, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-9
+- type: entity
+  id: PaperMailNFVagueThreat10
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 10, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-10
+- type: entity
+  id: PaperMailNFVagueThreat11
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 11, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-11
+- type: entity
+  id: PaperMailNFVagueThreat12
+  categories: [ HideSpawnMenu ]
+  suffix: "vague mail threat 12, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-vague-threat-12
+- type: entity
+  id: PaperMailNFPwrGameAd
+  name: pwr game advertisement
+  categories: [ HideSpawnMenu ]
+  suffix: "pwr game ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-pwr-game-ad
+- type: entity
+  id: PaperMailNFRedBoolAd
+  name: red bool advertisement
+  categories: [ HideSpawnMenu ]
+  suffix: "red bool ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-red-bool-ad
+- type: entity
+  id: PaperMailNFSpaceColaAd
+  name: space cola advertisement
+  categories: [ HideSpawnMenu ]
+  suffix: "space cola ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-space-cola-ad
+- type: entity
+  id: PaperMailNFSpaceMountainWindAd
+  name: space mountain wind advertisement
+  categories: [ HideSpawnMenu ]
+  suffix: "space mountain wind ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-space-mountain-wind-ad
+- type: entity
+  id: PaperMailNFSpaceUpAd
+  name: space up advertisement
+  categories: [ HideSpawnMenu ]
+  suffix: "space up ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-space-up-ad
+- type: entity
+  id: PaperMailNTSoapAd1
+  categories: [ HideSpawnMenu ]
+  suffix: "soap ad 1"
+  parent: Paper
+  components:
+  - type: Paper
+    stampedBy:
+    - stampedColor: '#333333FF'
+      stampedName: paper-mail-stamp-christopher-cleanman
+#      stampType: Signature #DeltaV - Not compatible with our signatures code stuff apparently
+    content: paper-mail-nt-soap-ad-1
+- type: entity
+  id: PaperMailNTSoapAd2
+  categories: [ HideSpawnMenu ]
+  suffix: "soap ad 2" #DeltaV - Edited to not be addressed to Frontier Citizens, localized
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nt-soap-ad-2
+- type: entity
+  id: PaperMailNTConscript
+  categories: [ HideSpawnMenu ]
+  suffix: "conscript"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nt-conscript
+- type: entity
+  id: PaperMailNTMusket
+  categories: [ HideSpawnMenu ]
+  suffix: "musket"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nt-musket
+- type: entity
+  id: PaperMailNFPaperPusherAd
+  categories: [ HideSpawnMenu ]
+  suffix: "paper pusher"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-paper-pusher-ad
+- type: entity
+  id: PaperMailNFPetBedAssemblyManual
+  name: pet bed assembly manual
+  categories: [ HideSpawnMenu ]
+  suffix: "pet bed assembly manual"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-pet-bed-assembly-manual
+- type: entity
+  id: PaperMailNTBoxer
+  categories: [ HideSpawnMenu ]
+  suffix: "boxer"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nt-boxer
+# Placeholder for an arm-on-use, flashbang fakeout pipebomb
+- type: entity
+  id: PaperMailNFPipebombIntern
+  categories: [ HideSpawnMenu ]
+  suffix: "pipe bomb intern"
+  parent: Paper
+  components:
+  - type: Paper
+    stampedBy:
+    - stampedColor: '#333333FF'
+      stampedName: paper-mail-stamp-craig
+#      stampType: Signature #DeltaV - Not compatible with our signatures code stuff apparently
+    content: paper-mail-nf-pipebomb-intern
+- type: entity
+  id: PaperMailNFAntivirus
+  name: Snortin Antivirus invoice
+  categories: [ HideSpawnMenu ]
+  suffix: "antivirus ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-antivirus
+- type: entity
+  id: PaperMailNFEMPPreparedness
+  categories: [ HideSpawnMenu ]
+  name: EMP preparedness response form
+  suffix: "emp preparedness" #DeltaV - Replaces mention of SR with HoS
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-mail-nf-emp-preparedness
+- type: entity
+  id: PaperMailNFBuildABuddy
+  categories: [ HideSpawnMenu ]
+  name: Build-a-Buddy adoption letter
+  suffix: "build-a-buddy" #DeltaV- Body text changed, because Goblins Aren't Real
+  parent: Paper
+  components:
+  - type: Paper
+    stampState: paper_stamp-generic
+    stampedBy:
+    - stampedColor: '#FF6699FF'
+      stampedName: paper-mail-stamp-chief-friendship-officer
+    - stampedColor: '#333333FF'
+      stampedName: paper-mail-stamp-cuts-with-scalpel
+#      stampType: Signature  #DeltaV - Not compatible with our signatures code stuff apparently.
+    content: paper-mail-nf-build-a-buddy
+- type: entity
+  id: PaperMailNFSpaceLaw
+  categories: [ HideSpawnMenu ]
+  suffix: "space-law" #DeltaV- edited contents to be from the Delta Sector instead of the Frontier
+  parent: Paper
+  components:
+  - type: Paper
+    stampState: paper_stamp-centcom
+    stampedBy:
+    - stampedColor: '#006600FF'
+      stampedName: paper-mail-stamp-delta-sector-admiralty
+    content: paper-mail-nf-space-law
+# Reserve edit end: localization #325

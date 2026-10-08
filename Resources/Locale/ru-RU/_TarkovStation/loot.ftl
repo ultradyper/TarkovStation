@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+ts-category-weapons = Оружие
+ts-category-ammo = Боеприпасы
+ts-category-medical = Медицина
+ts-category-supplies = Снаряжение и припасы
+ts-category-resources = Материалы
+ts-category-technical = Техника
+ts-category-valuables = Трофеи
+ts-rarity-0 = Обычное
+ts-rarity-1 = Необычное
+ts-rarity-2 = Редкое
+ts-rarity-3 = Особое
+ts-rarity-4 = Уникальное
+ts-item-ammo = Патроны { $count }/{ $max }
+ts-loot-crate-0 = запас припасов
+ts-loot-crate-1 = служебный контейнер
+ts-loot-crate-2 = контейнер охраняемого объекта
+ts-category-all = Всё
+ent-TarkovStationWornCircuit = промышленный контроллер
+    .desc = Уцелевшая плата управления. Лом выкупает такие на запчасти.
+ent-TarkovStationEncryptedDrive = зашифрованный накопитель
+    .desc = Закрытый архив объекта. Ценен для тех, кто ищет выход из цикла.
+ent-TarkovStationMilitaryModule = военный модуль управления
+    .desc = Защищённый модуль с уцелевшей серийной пломбой.
+ent-TarkovStationSignalRecorder = регистратор сигнала цикла
+    .desc = Редкая запись последнего сеанса связи предыдущего цикла.
+ent-TarkovStationRaidGuard = вооружённый собиратель
+    .desc = Охраняет найденные ценности и не собирается ими делиться.
+ent-TarkovStationRaidGuardPatrol = патрульный собиратель
+    .desc = Бронированный обитатель с пистолетом-пулемётом и запасными магазинами.
+ent-TarkovStationRaidGuardVeteran = бывалый собиратель
+    .desc = Опытный обитатель в броне и каске. Его винтовка давно служит этому циклу.

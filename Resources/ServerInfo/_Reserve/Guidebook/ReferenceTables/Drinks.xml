@@ -1,0 +1,10 @@
+<Document>
+# Напитки
+Знать, как приготовить желаемый напиток, очень важно. Здесь представлены различные напитки в игре, а также их рецепты:
+
+## Алкогольные напитки
+<GuideReagentGroupEmbed Group="AlcoholicDrinks"/>
+
+## Безалкогольные напитки
+<GuideReagentGroupEmbed Group="NonAlcoholicDrinks"/>
+</Document>

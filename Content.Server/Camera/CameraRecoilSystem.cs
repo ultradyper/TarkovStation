@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using System.Numerics;
+using Content.Shared.Camera;
+
+namespace Content.Server.Camera;
+
+public sealed class CameraRecoilSystem : SharedCameraRecoilSystem
+{
+    public override void KickCamera(EntityUid euid, Vector2 kickback, CameraRecoilComponent? component = null)
+    {
+        if (!Resolve(euid, ref component, false))
+            return;
+
+        RaiseNetworkEvent(new CameraKickEvent(GetNetEntity(euid), kickback), euid);
+    }
+}

@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  name: global positioning system
+  parent: BaseItem
+  id: HandheldGPSBasic
+  description: Helping lost spacemen find their way through the planets since 2016.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/gps.rsi
+    layers:
+    - state: icon
+    - state: active
+  - type: Item
+    sprite: Objects/Devices/gps.rsi
+  - type: GPS # Goob Station - what if gps didnt suck doo doo balls
+  - type: PhysicalComposition #Goobstation - Recycle update
+    materialComposition:
+      Steel: 200
+      Glass: 75
+  - type: Tag
+    tags:
+    - GPS
+  - type: ActivatableUI
+    key: enum.GpsUiKey.Key # Goob Station - what if gps didnt suck doo doo balls
+    inHandsOnly: true
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.GpsUiKey.Key: # Goob Station - what if gps didnt suck doo doo balls
+        type: GpsBoundUserInterface
+
+- type: entity #why does this exist? Well, "global positioning system" is too long to fit in the cyborg's hand slot.
+  name: integrated GPS
+  parent: HandheldGPSBasic
+  id: BorgHandheldGPSBasic
+  description: A miniaturized Global Positioning System for use in cyborg units.

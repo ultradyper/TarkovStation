@@ -1,0 +1,27 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: RobustSoftdrinksInventory
+  startingInventory:
+    DrinkColaCan: 4
+    # Reserve: Orchid's Barmania - Vendichaos start
+    DrinkClassicColaCan: 3
+    DrinkSpritexCan: 2
+    DrinkFantaxCan: 2
+    # Reserve: Orchid's Barmania - Vendichaos end
+    DrinkBrepsiCan: 3
+    DrinkGrapeCan: 2
+    DrinkRootBeerCan: 2
+    DrinkSolDryCan: 2
+    DrinkFourteenLokoCan: 2
+  contrabandInventory:
+    DrinkColaBottleFull: 2
+    # Reserve: Orchid's Barmania - Vendichaos start
+    DrinkPilkCan: 2
+    DrinkAltColaCan: 3
+    # Reserve: Orchid's Barmania - Vendichaos end
+  emaggedInventory:
+    # Reserve: Orchid's Barmania - Vendichaos start
+    DrinkAnomalyBoomCan: 2
+    DrinkEggCan: 1
+    # Reserve: Orchid's Barmania - Vendichaos end

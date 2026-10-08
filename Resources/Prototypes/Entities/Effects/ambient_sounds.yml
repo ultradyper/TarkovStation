@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: AmbientSoundSourceFlies
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 3
+    sound:
+      path: /Audio/Ambience/Temporary/flies.ogg
+  - type: Tag
+    tags:
+    - HideContextMenu

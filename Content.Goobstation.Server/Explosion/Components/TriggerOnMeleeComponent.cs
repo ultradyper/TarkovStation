@@ -1,0 +1,9 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+namespace Content.Goobstation.Server.Explosion.Components;
+
+/// <summary>
+/// Sends a trigger when a melee attack is performed.
+/// </summary>
+[RegisterComponent]
+public sealed partial class TriggerOnMeleeComponent : Component;

@@ -1,0 +1,32 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Dwarves
+
+  <Box>
+    <GuideEntityEmbed Entity="MobDwarf" Caption=""/>
+  </Box>
+
+  Dwarves are similar to humans in most respects, albeit on the shorter side. 
+  
+  ## Unique Abilities
+  
+  ### Honed Instincts
+
+  - Their sharp mining instincts allow them to feel nearby ore in a 3 tile radius.
+
+  ## Diet
+
+  - They are not poisoned by alcohol and instead are even [color=#1e90ff]slightly healed[/color] by it.
+
+  ## Benefits
+
+  - They are slightly smaller than humans, though are also slightly heavier.
+  
+  ## Drawbacks
+  
+  - They [color=#FFA500]suffocate two times faster.[/color]
+
+</Document>

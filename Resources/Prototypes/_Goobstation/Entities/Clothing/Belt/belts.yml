@@ -1,0 +1,500 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCommandContraband ]
+  id: ClothingBeltMilitaryWebbingCMO
+  name: chief medical officer's chest rig
+  description: A medical chest rig with deep pockets, for use by health professionals.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/cmowebbing.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/cmowebbing.rsi
+  - type: Storage
+    grid:
+      - 0,0,6,2
+    whitelist: # I have no idea why is, say, wrench here, but it's just copied from medical belt.
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+        - Tourniquet #Goobstation
+        - MedicalPatch # Goobstation
+        - AutoinjectorCartridge # Goobstation
+        - HandheldCrewMonitor # Goobstation
+        - SyringeCase # Goobstation
+      components:
+        - Injector
+        - Pill
+        - HandLabeler
+        - SurgeryTool # Shitmed Change
+        - Defibrillator # Goobstation
+        - GunApplySolution # Goobstation - Syndicate dart gun
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCentcommContraband ]
+  id: ClothingBeltDeathsquadWebbing
+  suffix: DO NOT MAP
+  name: deathsquad operative chestrig
+  description: A robust and durable chestrig, containing everything you need to keep you in the fight. You probably won't need to use it.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/deathsquadwebbing.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/deathsquadwebbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+
+
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCentcommContraband ]
+  id: ClothingBeltSecurityWebbingMedical
+  name: ert doctor's chest rig
+  description: "A medical chest rig with deep pockets, for use by ERT operatives."
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/securitywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/securitywebbing.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,6,2
+  - type: ExplosionResistance
+    damageCoefficient: 0.05
+
+- type: entity
+  parent: ClothingBeltSecurity
+  id: ClothingBeltCorporateJudo
+  name: Corporate Judo Belt
+  description: Teaches the wearer NT Corporate Judo.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/judobelt.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/judobelt.rsi
+  - type: GrantCorporateJudo
+  - type: Storage
+    grid:
+    - 0,0,5,1 #you're not carrying a batong, if you want pure storage go with secbelt
+    whitelist:
+      tags:
+      - CigPack
+      - Taser
+      - SecBeltEquip
+      - Radio
+      - Sidearm
+      - MagazinePistol
+      - MagazineMagnum
+      - CombatKnife
+      - Truncheon
+      - BolaEnergy
+      - EnergySpeedloader
+      - MilitaryPowerCell
+      - EnergyMagAmmo
+      - HandGrenade
+      components:
+      - FlashOnTrigger
+      - SmokeOnTrigger
+      - Flash
+      - Handcuff
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+      - DoorRemote
+      - Whistle
+      - BalloonPopper
+      - ScatteringGrenade
+  - type: GuideHelp
+    guides:
+    - CorporateJudo
+
+- type: entity
+  parent: [ ChemBag, BaseSyndicateContraband ]
+  id: ClothingBeltChemBagSyndi
+  name: syndicate medical pouch
+  description: A robust pouch for medical supplies worn by Gorlex Marauder operatives. It smells of desoxyephedrine.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/evil_chem_bag.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/evil_chem_bag.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+  - type: Storage
+    whitelist:
+      tags:
+        - PillCanister
+        - Syringe
+        - Dropper
+        - MedicalPatch
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - Cigarette
+      components:
+        - Pill
+        - Injector
+        - SyringeGun
+        - SurgeryTool
+        - Defibrillator
+        - SolutionTransfer
+        - GunApplySolution # Dart gun
+
+
+- type: entity
+  parent: ClothingBeltSheath
+  id: ClothingBeltSheathHeadOfSecurity
+  name: head of security's sheath
+  description: A rugged sheath, designed to hold the Head of Security's custom energy sword.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/hossheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/hossheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - Justice
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - Justice
+  - type: Appearance
+
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSyndicateContraband ]
+  id: ClothingBeltMilitaryRigGrenadier # Rig instead of webbing to distinguish it from the upstream counterpart
+  name: grenadier belt
+  description: A specialised belt rig to hold so many grenades that your arm gets tired from throwing them all. Can also store a sidearm and magazines for it.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/grenaderig.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/grenaderig.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+  - type: Storage
+    grid:
+      - 0,0,7,3
+    whitelist:
+      components:
+      - TimerTrigger # Basically all and only grenades use this
+      tags:
+        - Grenade # China lake ammo
+        - MagazinePistol
+        - MagazinePistolHighCapacity
+        - MagazineMagnum
+        - SpeedLoaderMagnum
+        - MagazinePistolCaselessRifle
+  - type: ContainerContainer
+    containers:
+      item: !type:ContainerSlot
+      storagebase: !type:Container
+        ents: []
+  - type: ItemSlots
+    slots:
+      item:
+        name: Handgun
+        whitelist:
+          tags:
+          - Sidearm
+
+- type: entity
+  parent: ChemBag
+  id: ClothingBeltChemBagXenobiology
+  name: xenobiology pouch
+  description: A slime-resistant pouch intended for use by Xenobiologists. Smells of.. plasma?
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/xenobag.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/xenobag.rsi
+  - type: Storage
+    whitelist:
+      tags:
+      - Syringe
+      - Dropper
+      - MonkeyCube
+      components:
+      - SyringeGun
+      - SurgeryTool
+      - SolutionTransfer
+      - SlimeExtract
+      - XenoVacuum
+
+- type: entity
+  parent: ClothingBeltChemBagXenobiology
+  id: ClothingBeltChemBagXenobiologyHolding
+  name: xenobiology pouch of holding
+  description: A larger slime-resistant pouch intended for use by Xenobiologists. Smells of bluespace extract and monkey hair.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/xenobag_holding.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/xenobag_holding.rsi
+  - type: Storage
+    grid:
+    - 0,0,19,9
+
+# Used for BSO's on-spawn chest rig so that it's not Syndicate contra
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCentcommContraband]
+  id: ClothingBeltMilitaryWebbingBSO
+  name: blueshield chest rig
+  suffix: Empty
+  description: A set of tactical webbing worn by Central Command support units.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/militarywebbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.05
+# I'm not trying to touch the original below so that I don't cause a bunch of merge conflicts for downstream
+
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCentcommContraband]
+  id: ClothingBeltMilitaryWebbingBSOFilled
+  name: blueshield chest rig
+  description: A set of tactical webbing worn by Central Command support units.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/militarywebbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.05
+  - type: StorageFill
+    contents:
+    - id: CombatInjector
+      amount: 1
+    - id: TirimolChemistryVial
+      amount: 1
+    - id: OmnizineChemistryVial
+      amount: 1
+    - id: SyriniverChemistryVial
+      amount: 1
+    - id: ProcenylLazideChemistryVial
+      amount: 1
+    - id: EbifinlLazideChemistryVial
+      amount: 1
+
+- type: entity
+  parent: ClothingBeltUtilityFilled
+  id: ClothingBeltUtilityFilledUnremoveable
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSyndicateContraband ]
+  id: ClothingBeltSecurityWebbingContractor
+  name: contractor's chest rig
+  description: "A chest rig with deep pockets and explosion resistance, often used by contractors and bounty hunters."
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/securitywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/securitywebbing.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,6,2
+  - type: ChameleonClothing
+    slot: [belt]
+    default: ClothingBeltSecurityWebbingContractorFilled
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: ExplosionResistance
+    damageCoefficient: 0.05
+
+- type: entity
+  parent: ClothingBeltSecurityWebbingContractor
+  id: ClothingBeltSecurityWebbingContractorFilled
+  name: contractor's chest rig
+  description: "A chest rig with deep pockets, often used by contractors and bounty hunters."
+  components:
+  - type: StorageFill
+    contents:
+    - id: SyndicateJawsOfLife
+      amount: 1
+    - id: PowerDrill
+      amount: 1
+    - id: WelderExperimental
+      amount: 1
+    - id: Multitool
+      amount: 1
+    - id: MedkitCombatFilled
+      amount: 1
+    - id: ContractorBaton
+      amount: 1
+    - id: Zipties
+      amount: 4
+    - id: SyndicateBusinessCard
+      amount: 1
+
+- type: entity
+  parent: [ClothingBeltBase]
+  id: ClothingBeltWhipping
+  suffix: Admeme
+  name: whipping belt
+  description: Where there's a whip, there's a way
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/whippingbelt.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/whippingbelt.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+    equippedPrefix: buckled
+  - type: Item
+    heldPrefix: buckled
+  - type: ItemSwitch
+    needsPower: false
+    defaultState: buckled
+    state: "buckled"
+    showLabel: true
+    states:
+      buckled: !type:ItemSwitchState
+        verb: buckled
+        energyPerUse: 0
+        sprite:
+          sprite: _Goobstation/Clothing/Belt/whippingbelt.rsi
+          state: icon
+
+      punishment: !type:ItemSwitchState
+        verb: punishment
+        energyPerUse: 0
+        sprite:
+          sprite: _Goobstation/Clothing/Belt/whippingbelt.rsi
+          state: belt-punishment
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 1.5
+          damage:
+            types:
+              Shock: 0
+          angle: 60
+          animation: WeaponArcThrust
+          soundHit:
+            path: /Audio/_Goobstation/Weapons/Effects/whip.ogg
+            params:
+              variation: 0.125
+              volume: -0.5
+        - type: StaminaDamageOnHit
+          damage: 65
+          overtime: 15
+        soundStateActivate:
+          path: /Audio/_Goobstation/Items/card_swipe.ogg
+
+      beating: !type:ItemSwitchState
+        verb: beating
+        energyPerUse: 0
+        sprite:
+          sprite: _Goobstation/Clothing/Belt/whippingbelt.rsi
+          state: belt-beating
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 1.5
+          damage:
+            types:
+              Blunt: 25
+              Structural: 25
+          angle: 60
+          animation: WeaponArcThrust
+          soundHit:
+            path: /Audio/_Goobstation/Weapons/Effects/whip.ogg
+            params:
+              variation: 0.125
+              volume: -0.5
+        soundStateActivate:
+          path: /Audio/_Goobstation/Items/card_swipe.ogg
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltUtilityAtmos
+  name: atmospherics belt
+  description: Holds all the tools needed for a growing (middle-aged) atmosian catgirl.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Belt/atmosbelt.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Belt/atmosbelt.rsi
+  - type: Storage
+    grid:
+    - 0,0,9,1
+    whitelist:
+      tags:
+      - Wirecutter
+      - Crowbar
+      - Screwdriver
+      - Wrench
+      - HolofanProjector
+      components:
+      - NetworkConfigurator
+      - RCD
+      - RCDAmmo
+      - Welder
+      - TrayScanner
+      - GasAnalyzer
+  - type: ItemMapper
+    sprite: &BeltOverlay Clothing/Belt/belt_overlay.rsi
+    mapLayers:
+      cutters_red:
+        whitelist:
+          tags:
+          - Wirecutter
+      crowbar:
+        whitelist:
+          tags:
+          - Crowbar
+      crowbar_red:
+        whitelist:
+          tags:
+          - CrowbarRed
+      screwdriver_nuke:
+        whitelist:
+          tags:
+          - Screwdriver
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+  - type: Appearance
+  - type: Tag
+    tags:
+    - UtilityBelt
+    - WhitelistChameleon

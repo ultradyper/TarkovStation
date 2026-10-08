@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  name: gohei
+  parent: BaseItem
+  id: Gohei
+  description: A wooden stick with white streamers at the end. Originally used by shrine maidens to purify things. Now used by the station's weeaboos.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/gohei.rsi
+    state: gohei
+  - type: MeleeWeapon
+    animationRotation: -60 # WWDP
+    wideAnimationRotation: -150
+    damage:
+      types:
+        Holy: 4
+  - type: Item
+    size: Small
+    sprite: Objects/Weapons/Melee/gohei.rsi

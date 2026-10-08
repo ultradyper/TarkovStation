@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: BaseSetSelector
+  abstract: true
+  components:
+  - type: SetSelector
+  - type: ActivatableUI
+    key: enum.SetSelectorUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SetSelectorUIKey.Key:
+        type: SetSelectorBoundUserInterface

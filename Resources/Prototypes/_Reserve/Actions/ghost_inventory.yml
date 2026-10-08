@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionGhostInventory
+  name: Инвентарь
+  description: Открыть меню инвентаря.
+  components:
+  - type: Action
+    icon: Interface/Actions/shop.png
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:GhostInventoryActionEvent

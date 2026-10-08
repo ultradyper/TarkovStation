@@ -1,0 +1,24 @@
+- type: language
+  id: FloorGoblin
+  speech:
+    color: "#288f43"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    # reserve edit start
+    - ми
+    - мими
+    - мими
+    - йойо
+    - ийо
+    - ме
+    - мемимими
+    - мимими
+    - ми
+    - биби
+    - би
+    - ми
+    - йо
+    # reserve edit end

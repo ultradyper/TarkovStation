@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: DoorElectronics
+  parent: BaseElectronics
+  name: door electronics
+  description: An electronics board used in doors and airlocks.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: door_electronics
+    - type: Tag
+      tags:
+        - DroneUsable # Goobstation
+        - DoorElectronics
+    - type: DoorElectronics
+    - type: AccessReader
+    - type: ActivatableUI
+      key: enum.DoorElectronicsConfigurationUiKey.Key
+      requiredItems:
+        tags:
+        - DoorElectronicsConfigurator
+    - type: UserInterface
+      interfaces:
+        enum.DoorElectronicsConfigurationUiKey.Key:
+          type: DoorElectronicsBoundUserInterface

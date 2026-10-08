@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MIT
+
+- type: localizedDataset
+  id: DescriptionsATV
+  values:
+    prefix: descriptions-atv-dataset-
+    count: 16

@@ -1,0 +1,13 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+
+# Pastas & Noodles
+
+There's nothing like a big bowl of noodles.
+
+<GuideFoodIngredientGroupEmbed Group="Pasta"/>  <!--Reserve edit: Fix recipe categories-->
+
+</Document>

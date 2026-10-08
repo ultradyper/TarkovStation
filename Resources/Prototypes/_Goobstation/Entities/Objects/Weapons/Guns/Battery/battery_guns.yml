@@ -1,0 +1,490 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity # literally BaseWeaponPowerCell cuz we can't get rid of components in children HELL YEA
+  id: BaseWeaponCustomCell
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Huge
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: PowerCellSmall
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+  - type: Cautery # Shitmed
+    speed: 0.9
+  - type: SurgeryTool # Shitmed
+    endSound:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: AlwaysHot # Goobstation V
+  - type: MeleeWeapon
+    damage:
+      types:
+       Blunt: 12
+    angle: 0
+    wideAnimationRotation: 90 # -90 if it takes bayonets (hits with muzzle) 90 if not (hits with butt)
+    soundHit:
+      collection: MetalThud # Goobstation ^
+  - type: RestrictGunshotsByUserTag # Goobstation
+    doesntContain:
+    - Oni
+    messages:
+    - oni-cannot-shoot-guns-1
+    - oni-cannot-shoot-guns-2
+    - oni-cannot-shoot-guns-3
+  - type: BatteryDrinkerSource # Goobstation - Energycrit
+    maxAmount: 180
+  - type: Multishot # Goobstation V
+    missChance: 0.4
+    spreadMultiplier: 3
+    spreadAddition: 50 #very hard to hold two of these steady let alone steady while shooting them
+
+- type: entity
+  id: BaseWeaponCustomCellSmall
+  parent: BaseWeaponCustomCell
+  abstract: true
+  components:
+  - type: Item
+    size: Small
+    shape: # Goobstation
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/taser.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: MeleeWeapon # Goobstation V
+    damage:
+      types:
+       Blunt: 8 # pistol whip
+    angle: 0
+    wideAnimationRotation: 90 # -90 if it takes bayonets (hits with muzzle) 90 if not (hits with butt)
+    soundHit:
+      collection: MetalThud # Goobstation ^
+
+- type: entity
+  name: Miniature Energy Crossbow
+  parent: [ BaseWeaponBatterySmall, BaseSyndicateContraband ]
+  id: MiniatureEnergyCrossbow
+  description: A signature design from Donk Co., this crossbow fires a thin dart loaded with sedatives and depressants designed to pierce even the heaviest of armor.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/miniature_ebow.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    resetOnHandSelected: false
+    soundGunshot:
+      path: /Audio/_Goobstation/Weapons/Guns/Gunshots/heavy_shot_suppressed.ogg
+      params:
+        volume: -5
+  - type: BatteryAmmoProvider
+    proto: BulletMic
+    fireCost: 900
+  - type: BatterySelfRecharger
+    autoRechargeRate: 900
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: true
+  - type: Multishot
+    missChance: 0
+    spreadAddition: 10
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+
+- type: entity
+  name: plasma rifle
+  parent: BaseWeaponBattery
+  id: WeaponPlasmaRifle
+  description: It may or may not explode in your face.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/plasma_rifle.rsi
+  - type: Gun
+    fireRate: 1.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: MaterialEnergy
+    materialWhiteList: [Plasma]
+  - type: BatteryAmmoProvider
+    proto: BulletPlasmaRifle
+    fireCost: 100
+  - type: WeaponRandomExplode
+    explosionChance: 0.05 # 1d20 roll
+    multiplyByCharge: 1.0
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: PhysicalComposition #Goobstation - Recycle update
+    materialComposition:
+      Steel: 100
+      Glass: 25
+      Plastic: 12
+      Plasma: 12
+
+- type: entity
+  parent: WeaponPlasmaRifle
+  id: WeaponPlasmaRifleEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 0
+
+- type: entity
+  name: EG-4 Equalizer
+  parent: [ BaseWeaponCustomCellSmall, BaseCentcommContraband ]
+  id: WeaponEnergyRevolver
+  description: In the face of death, everyone is equal. The right arm of the Blueshield corps, the Equalizer is a modular energy revolver platform designed for lethal and non-lethal target neutralization. Takes energy speedloaders.
+  components:
+  - type: Item
+    heldPrefix: lethal
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/erevolver.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: ItemMapper
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/erevolver.rsi
+    mapLayers:
+      mag-unshaded-4:
+        whitelist:
+          tags:
+          - EnergySpeedloaderLethal
+      mode-disabler:
+        whitelist:
+          tags:
+          - EnergySpeedloaderDisabler
+  - type: Clothing
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/erevolver.rsi
+    slots:
+    - Belt
+    - suitStorage
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    soundEmpty:
+      path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: RestrictGunshotsByUserTag # Goobstation
+    doesntContain:
+    - Oni
+    messages:
+    - oni-cannot-shoot-guns-1
+    - oni-cannot-shoot-guns-2
+    - oni-cannot-shoot-guns-3
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: EnergySpeedloaderLethal
+        insertSound: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+        whitelist:
+          tags:
+            - EnergySpeedloader
+
+- type: entity
+  name: advanced disabler
+  parent: [ WeaponDisablerPractice, BaseCentcommContraband ]
+  id: WeaponDisablerAdvanced
+  description: A self-defense weapon for corporate execs with money to burn. Slim, sturdy, and self-recharging for your convenience.
+  components:
+  - type: Sprite
+    sprite: _EinsteinEngines/Objects/Weapons/Guns/Battery/ccdisabler.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _EinsteinEngines/Objects/Weapons/Guns/Battery/ccdisabler.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: BatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 50
+  - type: PacifismAllowedGun
+  - type: BatterySelfRecharger
+    autoRechargeRate: 40
+
+- type: entity
+  name: syndicate disabler
+  parent: [ WeaponDisablerPractice, BaseSyndicateContraband ]
+  id: WeaponDisablerSyndicate
+  description: A sleek disabler designed from a reverse-engineered NanoTrasen prototype. While it lacks stopping power, it makes up for it with a self-recharging cell.
+  components:
+    - type: Gun
+      fireRate: 3
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    - type: Item
+      size: Small
+      shape:
+      - 0,0,1,0
+      - 1,1,1,1
+    - type: Sprite
+      sprite: _EinsteinEngines/Objects/Weapons/Guns/Battery/syndicate-disabler.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-unshaded-0
+          map: ["enum.GunVisualLayers.MagUnshaded"]
+          shader: unshaded
+    - type: Clothing
+      sprite: _EinsteinEngines/Objects/Weapons/Guns/Battery/syndicate-disabler.rsi
+      quickEquip: false
+      slots:
+        - suitStorage
+        - Belt
+    - type: BatteryAmmoProvider
+      proto: BulletSyndicateDisabler
+      fireCost: 100
+    - type: Multishot
+      spreadMultiplier: 1.25
+      spreadAddition: 10
+    - type: BatterySelfRecharger
+      autoRechargeRate: 50
+
+- type: entity
+  name: advanced pulse carbine
+  parent: WeaponPulseCarbine
+  id: WeaponPulseCarbineAdvanced
+  description: A state-of-the-art laser carbine that fires a rapidly pulsing beam. Expensive, though favoured by the Emergency Response corps due to its ability to self-recharge.
+  components:
+  - type: Tag
+    tags:
+    - Rifle
+  - type: BatterySelfRecharger
+    autoRechargeRate: 80
+
+- type: entity
+  name: CR-2 Hera
+  parent: [ BaseWeaponCustomCell, BaseGunWieldable, BaseSecurityContraband ]
+  id: WeaponEnergyRifle
+  description: A versatile plasma assault rifle, iterated off of the now defunct energy gun. Loads from energy rifle magazines.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/energy_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/energy_rifle.rsi
+    size: Large
+  - type: Clothing
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/energy_rifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    soundEmpty:
+      path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: RestrictGunshotsByUserTag # Goobstation
+    doesntContain:
+    - Oni
+    messages:
+    - oni-cannot-shoot-guns-1
+    - oni-cannot-shoot-guns-2
+    - oni-cannot-shoot-guns-3
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: EnergyMagRifleLethal
+        insertSound: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+        whitelist:
+          tags:
+            - EnergyMagAmmo
+
+- type: entity
+  name: DT-12 Lawbringer
+  parent: [BaseWeaponBatterySmall, BaseGrandTheftContraband]
+  id: WeaponEnergyGunLawbringer
+  description: Sometimes rank is a function of firepower. A versatile energy gun with a myriad of firing modes designed for the Head of Security. Self-recharges after a 40 second delay.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/lawbringer.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - suitStorage
+    - belt
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/lawbringer.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: BatteryAmmoProvider
+    proto: BulletDetain
+    fireCost: 80
+  - type: AmmoSelector
+    prototypes:
+    - BulletEnergyGunClownshot
+    - BulletEnergyGunPulse
+    - BulletEnergyGunDetain
+    - BulletEnergyGunExecute
+    - BulletEnergyGunHotshot
+    - BulletEnergyGunSleepshot
+    - BulletEnergyGunBigshot
+  - type: UserInterface
+    interfaces:
+      enum.AmmoSelectorUiKey.Key:
+        type: AmmoSelectorMenuBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: true
+    key: enum.AmmoSelectorUiKey.Key
+  - type: ItemToggle
+    activated: true
+    onActivate: false
+    onUse: false
+    wieldToggle: false
+  - type: ItemToggleColor
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: Firemode
+    inhandVisuals:
+      left:
+      - state: mode-inhand-left
+        shader: unshaded
+      right:
+      - state: mode-inhand-right
+        shader: unshaded
+  - type: Tag
+    tags:
+    - HighRiskItem
+    - Sidearm
+    - WeaponEnergyGunLawbringer
+  - type: StealTarget
+    stealGroup: WeaponEnergyGunLawbringer
+  - type: RestrictById
+    restrictMelee: true
+    restrictRanged: true
+    isEmaggable: true
+  - type: StaticPrice
+    price: 750
+  - type: TriggerOnVoiceIdLocked
+    keyPhrase: "lawbringer-phrase"
+    listenRange: 1
+    holderOnly: true
+  - type: AccessReader
+    access: [['HeadOfSecurity']]
+  - type: ActiveListener
+  - type: ExplodeOnTrigger
+  - type: DropOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 1
+    totalIntensity: 2
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+    repeatable: true
+  - type: BatterySelfRecharger
+    autoRechargeRate: 50
+    autoRechargePauseTime: 40
+
+- type: entity
+  name: Ion Rifle
+  id: WeaponEnergyIonRifle
+  description: A rifle that fires ion bolts designed to degrade mechanical targets. Ideal against combat mechs and silicons, though useless against pretty much everything else.
+  parent: [BaseWeaponBattery, BaseSecurityContraband]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    size: Large
+  - type: Appearance
+  - type: Clothing
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    soundEmpty:
+      path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: BatteryAmmoProvider
+    proto: RifleBulletEnergyGunIon # yes i just copy cr-2 ion bullet
+    fireCost: 40
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800

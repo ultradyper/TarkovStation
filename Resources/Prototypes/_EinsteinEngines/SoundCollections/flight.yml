@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: soundCollection
+  id: WingFlaps
+  files:
+    - /Audio/_EinsteinEngines/Effects/Flight/wingflap1.ogg
+    - /Audio/_EinsteinEngines/Effects/Flight/wingflap2.ogg
+    - /Audio/_EinsteinEngines/Effects/Flight/wingflap3.ogg

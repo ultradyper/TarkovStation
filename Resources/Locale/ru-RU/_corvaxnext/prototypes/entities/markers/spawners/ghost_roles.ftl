@@ -1,0 +1,9 @@
+ent-SpawnPointVoxRaidersCommander = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }
+    .suffix = Командир Воксов-Рейдеров
+ent-SpawnPointVoxRaidersOperative = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }
+    .suffix = Вокс-Рейдер
+ent-SpawnPointMarkerBattleRoyale = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }
+    .suffix = Баттл Рояль

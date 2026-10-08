@@ -1,0 +1,62 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using System.Linq;
+using Content.Server.Stunnable;
+using Content.Shared._EinsteinEngines.TelescopicBaton;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.StatusEffect;
+using Content.Shared.Stunnable;
+using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
+
+namespace Content.Server._EinsteinEngines.TelescopicBaton;
+
+public sealed class KnockdownOnHitSystem : EntitySystem
+{
+    [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!; // Goobstation
+    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
+
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<KnockdownOnHitComponent, MeleeHitEvent>(OnMeleeHit);
+    }
+
+    private void OnMeleeHit(Entity<KnockdownOnHitComponent> entity, ref MeleeHitEvent args)
+    {
+        if (!args.IsHit || !args.HitEntities.Any()) // Goob edit
+            return;
+
+        if (!entity.Comp.KnockdownOnHeavyAttack && args.Direction != null)
+            return;
+
+        var ev = new KnockdownOnHitAttemptEvent(false, entity.Comp.DropItems); // Goob edit
+        RaiseLocalEvent(entity, ref ev);
+        if (ev.Cancelled)
+            return;
+
+        var dropItems = ev.DropItems;
+
+        List<EntityUid> knockedDown = new(); // Goobstation
+        foreach (var target in
+                 args.HitEntities.Where(e => !HasComp<BorgChassisComponent>(e) && _mobState.IsAlive(e))) // Goob edit
+        {
+            if (_stun.TryKnockdown(target,
+                entity.Comp.Duration,
+                entity.Comp.RefreshDuration,
+                true,
+                dropItems,
+                entity.Comp.Autostand)) // goob edit
+            {
+                knockedDown.Add(target);
+                AdminLogger.Add(LogType.DisarmedKnockdown, LogImpact.High,
+                    $"Player {ToPrettyString(args.User):player} knocked down {ToPrettyString(target):target}");
+            }
+        }
+
+        if (knockedDown.Count > 0) // Goobstation
+            RaiseLocalEvent(entity, new KnockdownOnHitSuccessEvent(knockedDown));
+    }
+}

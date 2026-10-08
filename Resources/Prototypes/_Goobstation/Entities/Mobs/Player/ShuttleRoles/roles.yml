@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: RandomHumanoidVisitorAlien
+  name: visiting alien ghost role
+  components:
+    - type: Sprite
+      sprite: _Shitmed/Mobs/Species/Abductor/parts.rsi
+      state: full
+    - type: RandomHumanoidSpawner
+      settings: VisitorAlien

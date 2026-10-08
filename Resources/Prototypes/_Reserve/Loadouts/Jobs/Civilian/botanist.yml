@@ -1,0 +1,130 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# region Effects
+
+- type: loadoutEffectGroup
+  id: AdvancedBotanist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 36000  # 10 hours
+
+- type: loadoutEffectGroup
+  id: SeniorBotanist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 108000  # 30 hours
+
+- type: loadoutEffectGroup
+  id: LeadBotanist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 180000  # 50 hours
+
+# endregion
+
+# region Groups
+
+- type: loadoutGroup
+  id: BotanistGloves
+  name: loadout-group-botanist-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - BotanistGloves
+  - BotanistGlovesEnviro
+  - BotanistGlovesAdvanced
+
+- type: loadoutGroup
+  id: BotanistGoggles
+  name: loadout-group-botanist-goggles
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - BotanistGogglesAdvanced
+  - Glasses
+  - CheapSunglasses
+  - GlassesJamjar
+  - GlassesJensen
+
+- type: loadoutGroup
+  id: BotanistMasks
+  name: loadout-group-botanist-masks
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - BotanistMaskAdvanced
+
+# endregion
+
+# region Goggles
+
+- type: loadout
+  id: BotanistGogglesAdvanced
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorBotanist
+  equipment:
+    eyes: ClothingEyesGogglesBotanistAdvanced
+
+# endregion
+
+# region Gloves
+
+- type: loadout
+  id: BotanistGloves
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: AdvancedBotanist
+  equipment:
+    gloves: ClothingHandsGlovesLeather
+
+- type: loadout
+  id: BotanistGlovesEnviro
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorBotanist
+  equipment:
+    gloves: ClothingHandsGlovesEnviroglovesLeather
+
+- type: loadout
+  id: BotanistGlovesAdvanced
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LeadBotanist
+  equipment:
+    gloves: ClothingHandsGlovesBotanistAdvanced
+
+# endregion
+
+# region Masks
+
+- type: loadout
+  id: BotanistMaskAdvanced
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorBotanist
+  equipment:
+    mask: ClothingMaskBreathBotanistAdvanced
+
+# endregion
+
+# region Outer Clothing
+
+- type: loadout
+  id: BotanistApronAdvanced
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LeadBotanist
+  equipment:
+    outerClothing: ClothingOuterApronBotanistAdvanced
+
+# endregion

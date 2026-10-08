@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseItem
+  id: AutodocUpgradeKitBluespace
+  name: autodoc bluespace upgrade kit
+  description: An upgrade kit with all the parts needed to upgrade an Autodoc. This one allows it to operate through clothing.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Tools/lathe_upgrade_kit.rsi
+    state: icon
+  - type: UpgradeKit
+    whitelist:
+      components:
+      - Autodoc
+    blacklist:
+      components:
+      - UpgradedMachine
+    components:
+    - type: UpgradedMachine
+      upgrade: upgrade-kit-autodoc-bluespace
+    - type: SurgeryIgnoreClothing
+
+# for entities that come pre-automated
+- type: entity
+  abstract: true
+  id: BaseAutomatedMachine
+  components:
+  - type: AutomationSlots
+  - type: Automated
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: GuideHelp
+    guides:
+    - Automation

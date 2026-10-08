@@ -1,0 +1,13 @@
+ent-GhostBarSpawner = точка появления призрачного бара
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnPointGhostDerelictCyborgSyndicate = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }
+ent-SpawnPointGhostSlaughterDemon = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }
+    .suffix = Демон резни
+ent-SpawnPointGhostLaughterDemon = { ent-SpawnPointGhostSlaughterDemon }
+    .desc = { ent-SpawnPointGhostSlaughterDemon.desc }
+    .suffix = Демон смеха
+ent-SpawnPointGhostWraith = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }
+    .suffix = Фантом

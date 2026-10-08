@@ -1,0 +1,81 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Warden
+  name: job-name-warden
+  description: job-description-warden
+  playTimeTracker: JobWarden
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 5h
+    - !type:RoleTimeRequirement # Goobstation
+      role: JobBrigmedic
+      time: 5h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10h
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
+  weight: 9  # Reserve edit: Fix Assistant job order
+  startingGear: WardenGear
+  icon: "JobIconWarden"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  guides: # goobstation
+  - SpaceLawReserve # Reserve guidebook
+  - LegalSOP
+  - Security
+  - WardenSOP
+  - KravMaga
+  goobcoins: 35 #Goob content
+  access:
+  - Security
+  - Brig
+  - Armory
+  - Maintenance
+  - External
+  - Detective
+  - Cryogenics
+  - GenpopEnter
+  - GenpopLeave
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial # goobstation
+    components:
+      - type: SecurityStaff
+  alternateTitles: # Reserve - alternate titles
+  - WardenDispatch
+
+- type: startingGear
+  id: WardenGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurityContraDetect # Goobstation
+    id: WardenPDA
+    ears: ClothingHeadsetAltWarden # Goobstation
+    pocket1: WeaponPistolMk58
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+
+- type: chameleonOutfit
+  id: WardenChameleonOutfit
+  job: Warden
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatWarden
+    mask: ClothingMaskGasSecurity
+    outerClothing: ClothingOuterCoatWarden
+    jumpsuit: ClothingUniformJumpsuitWarden
+    neck: Dinkystar
+    belt: ClothingBeltSecurity
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
+
+- type: jobAlternateTitle
+  id: WardenDispatch
+  name: job-name-alt-warden-1

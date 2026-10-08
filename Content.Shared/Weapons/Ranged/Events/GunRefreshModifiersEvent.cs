@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Systems;
+using Robust.Shared.Audio;
+
+namespace Content.Shared.Weapons.Ranged.Events;
+
+/// <summary>
+///     Raised directed on the gun entity when <see cref="SharedGunSystem.RefreshModifiers"/>
+///     is called, to update the values of <see cref="GunComponent"/> from other systems.
+/// </summary>
+[ByRefEvent]
+public record struct GunRefreshModifiersEvent(
+    Entity<GunComponent> Gun,
+    SoundSpecifier? SoundGunshot,
+    float CameraRecoilScalar,
+    Angle AngleIncrease,
+    Angle AngleDecay,
+    Angle MaxAngle,
+    Angle MinAngle,
+    int ShotsPerBurst,
+    float FireRate,
+    float ProjectileSpeed,
+    float BurstFireRate, // Goobstation
+    float BurstCooldown, // Goobstation
+    EntityUid? User // GoobStation change - User for NoWieldNeeded
+);

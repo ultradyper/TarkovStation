@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.Random;
+
+namespace Content.Server.Coordinates;
+
+public sealed class SpawnRandomOffsetSystem : EntitySystem
+{
+    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<SpawnRandomOffsetComponent, MapInitEvent>(OnMapInit);
+    }
+
+    private void OnMapInit(EntityUid uid, SpawnRandomOffsetComponent component, MapInitEvent args)
+    {
+        _randomHelper.RandomOffset(uid, component.Offset);
+        EntityManager.RemoveComponentDeferred(uid, component);
+    }
+}

@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: localizedDataset
+  id: NamesMilitaryFirstLeader
+  values:
+    prefix: names-military-leader-first-dataset-
+    count: 5
+
+- type: localizedDataset
+  id: NamesMilitaryFirst
+  values:
+    prefix: names-military-first-dataset-
+    count: 5
+
+- type: localizedDataset
+  id: NamesMilitaryLast
+  values:
+    prefix: names-military-last-dataset-
+    count: 44

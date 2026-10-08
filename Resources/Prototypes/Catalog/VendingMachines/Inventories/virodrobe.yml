@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vendingMachineInventory
+  id: ViroDrobeInventory
+  startingInventory:
+    ClothingUniformJumpsuitVirology: 2
+    ClothingUniformJumpskirtVirology: 2
+    ClothingShoesColorWhite: 2
+    ClothingOuterCoatLabViro: 2
+    ClothingOuterWinterViro: 2
+    ClothingMaskSterile: 2
+    ClothingBackpackVirology: 2
+    ClothingBackpackSatchelVirology: 2
+    ClothingBackpackDuffelVirology: 2
+    ClothingBackpackMessengerVirology: 2 # Frontier

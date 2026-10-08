@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+[Unit]
+Description=TarkovStation alpha test server
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/zombiehorde/Reserve-Station
+Environment=TARKOV_DATA_DIR=/home/ubuntu/zombiehorde/Reserve-Station/.tarkov-alpha
+Environment=DOTNET_ROOT=/home/ubuntu/.dotnet
+Environment=PATH=/home/ubuntu/.dotnet:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/home/ubuntu/zombiehorde/Reserve-Station/Scripts/sh/runTarkovTestServer.sh
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGINT
+TimeoutStopSec=45
+StandardOutput=journal
+StandardError=journal
+[Install]
+WantedBy=multi-user.target

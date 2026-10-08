@@ -1,0 +1,13 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+
+# Pizza Pies
+
+Pizzas are a great way to prepare food for a large crew, as each pizza is 8 servings.
+
+<GuideFoodIngredientGroupEmbed Group="Pizza"/>  <!--Reserve edit: Fix recipe categories-->
+
+</Document>

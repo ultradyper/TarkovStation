@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: latheRecipe
+  id: MaterialBSCrystal
+  result: MaterialBSCrystal1
+  completetime: 2
+  materials:
+    Diamond: 20
+    Plasma: 100

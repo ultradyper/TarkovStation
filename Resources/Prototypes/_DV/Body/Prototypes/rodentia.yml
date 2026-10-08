@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: body
+  name: species-name-rodentia
+  id: Rodentia
+  root: chest
+  slots:
+    head:
+      part: HeadRodentia
+      connections:
+      - chest
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    chest:
+      part: ChestRodentia
+      organs:
+        heart: OrganAnimalHeart
+        lungs: OrganHumanLungs
+      connections:
+      - groin
+      - right arm
+      - left arm
+      - head # Shitmed Change
+    groin:
+      part: GroinRodentia
+      connections:
+      - right leg
+      - left leg
+      organs:
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganHumanKidneys
+    right arm:
+      part: RightArmRodentia
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmRodentia
+      connections:
+      - left hand
+    right hand:
+      part: RightHandRodentia
+    left hand:
+      part: LeftHandRodentia
+    right leg:
+      part: RightLegRodentia
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegRodentia
+      connections:
+      - left foot
+    right foot:
+      part: RightFootRodentia
+    left foot:
+      part: LeftFootRodentia

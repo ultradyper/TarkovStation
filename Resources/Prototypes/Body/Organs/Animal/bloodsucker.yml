@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: OrganBloodsuckerStomach
+  parent: OrganAnimalStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Bloodsucker ]
+
+- type: entity
+  id: OrganBloodsuckerLiver
+  parent: OrganAnimalLiver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Bloodsucker ]
+
+- type: entity
+  id: OrganBloodsuckerHeart
+  parent: OrganAnimalHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Bloodsucker ]

@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: PackageDelivery
+  id: MailRestraints
+  suffix: Restraints
+  components:
+  - type: Mail
+    contents:
+    - id: Handcuffs
+    - id: ClothingMaskMuzzle
+    - id: ClothingEyesBlindfold
+
+- type: entity
+  parent: PackageDelivery
+  id: MailSecurityDonuts
+  suffix: Donuts
+  components:
+  - type: Mail
+    contents:
+    - id: FoodBoxDonut
+
+- type: entity
+  parent: LetterDelivery
+  id: MailSecurityFlashlight
+  suffix: Seclite
+  components:
+  - type: Mail
+    contents:
+    - id: FlashlightSeclite
+
+- type: entity
+  parent: PackageDelivery
+  id: MailSecurityNonlethalsKit
+  suffix: Non lethals
+  components:
+  - type: Mail
+    contents:
+    - id: Flash
+      maxAmount: 2
+    - id: GrenadeFlashBang
+      maxAmount: 2
+    - id: Handcuffs
+      maxAmount: 2
+
+- type: entity
+  parent: PackageDelivery
+  id: MailSecuritySpaceLaw
+  suffix: Spacelaw
+  components:
+  - type: Mail
+    contents:
+    - id: BookSpaceLaw
+    - id: PaperMailNFSpaceLaw
+
+# Warden
+- type: entity
+  parent: LetterDelivery
+  id: MailWardenCrowdControl
+  suffix: Beanbags
+  components:
+  - type: Mail
+    contents:
+    - id: BoxBeanbag
+
+# Detective
+- type: entity
+  parent: LetterDelivery
+  id: MailDetectiveForensicSupplement
+  suffix: Forensic Pads
+  components:
+  - type: Mail
+    contents:
+    - id: BoxForensicPad

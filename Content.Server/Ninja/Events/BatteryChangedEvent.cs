@@ -1,0 +1,9 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+namespace Content.Server.Ninja.Events;
+
+/// <summary>
+/// Raised on the ninja and suit when the suit has its powercell changed.
+/// </summary>
+[ByRefEvent]
+public record struct NinjaBatteryChangedEvent(EntityUid Battery, EntityUid BatteryHolder);

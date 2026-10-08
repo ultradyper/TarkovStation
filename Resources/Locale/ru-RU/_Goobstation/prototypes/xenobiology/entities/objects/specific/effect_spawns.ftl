@@ -1,0 +1,11 @@
+ent-XenoExtractChronofield = сепия-хронополе
+    .desc = { ent-Chronofield.desc }
+    .suffix = Хронолегионер
+ent-XenoGooWall = желатиновый вырост
+    .desc = Это вполне может быть желе из космического LIDL.
+ent-RHostileMobSpawner = спавнер случайные враждебные мобы
+    .desc = { ent-MarkerBase.desc }
+ent-RNeutralMobSpawner = спавнер случайные нейтральные мобы
+    .desc = { ent-MarkerBase.desc }
+ent-RPassiveMobSpawner = спавнер случайные пассивные мобы
+    .desc = { ent-MarkerBase.desc }

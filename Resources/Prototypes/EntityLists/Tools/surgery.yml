@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entityList
+  id: surgerytools
+  entities:
+  - Cautery
+  - Drill
+  - ScalpelLaser
+  - Retractor
+  - Hemostat
+  - SawAdvanced
+  # Shitmed Change
+  - Scalpel
+  - SawElectric
+  - Bonesetter
+  - BoneGel
+  - Saw
+  - MedicalStitches
+# - Drapes

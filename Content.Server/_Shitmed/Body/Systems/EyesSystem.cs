@@ -1,0 +1,100 @@
+﻿// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Server.Body.Systems;
+using Content.Shared.Body.Organ;
+using Content.Shared.Body.Components;
+using Content.Shared._Shitmed.Body.Organ;
+using Content.Shared._Shitmed.Medical.Surgery.Traumas;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Eye.Blinding.Systems;
+using Robust.Shared.Containers;
+
+namespace Content.Server._Shitmed.Body.Systems
+{
+    public sealed class EyesSystem : EntitySystem
+    {
+        // [Dependency] private readonly IEntityManager _entityManager = default!; // Reserve edit: Fix warnings
+        [Dependency] private readonly BlindableSystem _blindableSystem = default!;
+        [Dependency] private readonly BodySystem _bodySystem = default!;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            SubscribeLocalEvent<EyesComponent, OrganIntegrityChangedEvent>(OnOrganIntegrityChanged);
+            SubscribeLocalEvent<EyesComponent, OrganEnabledEvent>(OnOrganEnabled);
+            SubscribeLocalEvent<EyesComponent, OrganDisabledEvent>(OnOrganDisabled);
+            SubscribeLocalEvent<EyesComponent, EntGotRemovedFromContainerMessage>(OnEyesRemoved);
+        }
+
+        private void CheckMissingEyes(EntityUid body, EntityUid eye)
+        {
+            if (TerminatingOrDeleted(body) || TerminatingOrDeleted(eye))
+                return;
+
+            var hasOtherEyes = false;
+
+            if (TryComp<BodyComponent>(body, out var bodyComp))
+                if (_bodySystem.TryGetBodyOrganEntityComps<EyesComponent>((body, bodyComp), out var eyes)
+                    && eyes.Count > 1)
+                    hasOtherEyes = true;
+
+            if (!hasOtherEyes
+                && HasComp<EyesComponent>(eye)
+                && TryComp(body, out BlindableComponent? blindable))
+                _blindableSystem.SetEyeDamage((body, blindable), blindable.MaxDamage);
+        }
+
+        // Too much shit would break if I were to nuke blindablecomponent rn. Guess we shitcoding this one.
+        private void OnOrganIntegrityChanged(EntityUid uid, EyesComponent component, OrganIntegrityChangedEvent args)
+        {
+            if (args.NewIntegrity <= 0
+                || !TryComp(uid, out OrganComponent? organ)
+                || !organ.Body.HasValue
+                || !TryComp(organ.Body.Value, out BlindableComponent? blindable)
+                || organ.OrganIntegrity <= 0
+                || organ.IntegrityCap <= 0)
+                return;
+
+            
+            // Omu: The expected input is scaled as a number between 12 and 3,
+            // such that "blindness" occurs at 25% eye integrity.
+            
+            var blindnessSeverity = (int) ((organ.IntegrityCap - organ.OrganIntegrity) / (organ.IntegrityCap / 12)); // Omu
+            _blindableSystem.SetEyeDamage((organ.Body.Value, blindable), blindnessSeverity); // Omu
+        }
+
+        private void OnOrganEnabled(EntityUid uid, EyesComponent component, OrganEnabledEvent args)
+        {
+            if (TerminatingOrDeleted(uid)
+            || args.Organ.Comp.Body is not { Valid: true } body
+            || !TryComp(body, out BlindableComponent? blindable))
+                return;
+
+            var lost = args.Organ.Comp.IntegrityCap > 0
+                ? 1f - (float) (args.Organ.Comp.OrganIntegrity / args.Organ.Comp.IntegrityCap)
+                : 1f;
+            _blindableSystem.SetEyeDamage((body, blindable), (int) (blindable.MaxDamage * lost));
+        }
+
+        private void OnOrganDisabled(EntityUid uid, EyesComponent component, OrganDisabledEvent args)
+        {
+            if (TerminatingOrDeleted(uid)
+            || args.Organ.Comp.Body is not { Valid: true } body)
+                return;
+
+            CheckMissingEyes(body, uid);
+        }
+
+        private void OnEyesRemoved(EntityUid uid, EyesComponent component, EntGotRemovedFromContainerMessage args)
+        {
+            if (TerminatingOrDeleted(uid)
+                || !TryComp(args.Entity, out OrganComponent? organ)
+                || !organ.Body.HasValue
+                || !TryComp(organ.Body.Value, out BlindableComponent? blindable))
+                return;
+
+            CheckMissingEyes(organ.Body.Value, uid);
+        }
+    }
+}

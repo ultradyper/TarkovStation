@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: tarkovFaction
+  id: Scavengers
+  name: tarkov-faction-scavengers
+  description: tarkov-faction-scavengers-desc
+- type: tarkovFaction
+  id: Keepers
+  name: tarkov-faction-keepers
+  description: tarkov-faction-keepers-desc
+- type: tarkovFaction
+  id: Exiles
+  name: tarkov-faction-exiles
+  description: tarkov-faction-exiles-desc

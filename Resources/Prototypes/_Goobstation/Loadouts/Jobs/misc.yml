@@ -1,0 +1,126 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: loadoutEffectGroup
+  id: PersonalAI
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobResearchDirector
+      time: 36000 # 10 hrs
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBorg
+      time: 36000 # 10 hrs
+
+- type: loadout
+  id: Bodycam
+  equipment:
+    neck: SurveillanceWirelessCameraBodySecurity
+
+- type: loadout
+  id: NoPro
+  equipment:
+    outerClothing: SurveillanceWirelessCameraBodyEntertainment
+
+- type: loadout
+  id: LoadoutHonkopsMask
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    mask: ClothingMaskClownUnremoveable
+
+- type: loadout
+  id: PersonalAI
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PersonalAI
+  storage:
+    back:
+    - PersonalAI
+  groupBy: "pai"  # Reserve edit: Better trinket loadout
+
+- type: loadout
+  id: GoldenPersonalAI
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobStationAi
+      time: 180000 # 50 hrs
+  storage:
+    back:
+    - GoldenPersonalAI
+  groupBy: "pai"  # Reserve edit: Better trinket loadout
+
+# Cheap Sunglasses
+- type: loadout
+  id: CheapSunglasses
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: loadout
+  id: CrewCassette
+  storage:
+    back:
+    - CrewCassette
+  groupBy: "audio"  # Reserve edit: Better trinket loadout
+
+# Animals
+- type: loadout
+  id: Squackroach
+  effects:  # Reserve edit: Better trinket loadout
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobZookeeper
+      time: 18000 # 5hr
+  storage:
+    back:
+    - MobSquackroach
+
+- type: loadout
+  id: Mouse
+  storage:
+    back:
+    - MobMouse
+
+- type: loadout
+  id: Mothroach
+  effects:  # Reserve edit: Better trinket loadout
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobZookeeper
+      time: 3600 # 1hr
+  storage:
+    back:
+    - MobMothroach
+
+- type: loadout
+  id: Goldfish
+  storage:
+    back:
+    - MobCarpGoldfish
+
+#Recruit jumpsuit
+- type: loadoutEffectGroup
+  id: Noob
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 18000 #5 hours
+      inverted: true
+
+#NTR Fancy suit
+- type: loadoutEffectGroup
+  id: RespectedRep
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobNanotrasenRepresentative
+      time: 72000 #20 hours

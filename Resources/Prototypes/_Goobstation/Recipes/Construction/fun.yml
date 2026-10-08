@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: construction
+  id: BananiumSword
+  graph: BananiumSword
+  targetNode: bananiumSword
+  category: construction-category-weapons
+  objectType: Item
+  
+- type: construction
+  id: boomerang
+  graph: boomerangGraph
+  targetNode: boomerangFinish
+  category: construction-category-weapons
+  objectType: Item

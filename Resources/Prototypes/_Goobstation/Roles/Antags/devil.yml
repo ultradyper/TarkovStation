@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: antag
+  id: Devil
+  name: roles-antag-devil-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-devil-description
+  guides: [ Devil ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 30h # 30h
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 5h # 5 hours
+  - !type:RoleTimeRequirement
+    role: JobLawyer
+    time: 1h # 1 Hour
+  - !type:SpeciesRequirement
+    inverted: true
+    species:
+    - Plasmaman
+  # Reserve - antag UI
+  category: Solo
+  icon:
+    sprite: _Goobstation/Actions/devil.rsi
+    state: summon-contract
+
+- type: startingGear
+  id: DevilStartingGear
+  storage:
+    back:
+    - GuidebookCodexUmbra
+    - PenDevil
+    - ClothingEyesGlassesSunglasses

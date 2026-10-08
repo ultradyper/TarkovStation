@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Robust.Shared.Containers;
+using Robust.Shared.Timing;
+using Robust.Shared.Network; //Goobstation
+
+namespace Content.Shared.Chemistry.EntitySystems.Hypospray;
+
+public sealed class SolutionCartridgeSystem : EntitySystem
+{
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly INetManager _net = default!; // Goobstation
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<InjectorComponent, EntInsertedIntoContainerMessage>(OnCartridgeInserted);
+        SubscribeLocalEvent<InjectorComponent, EntRemovedFromContainerMessage>(OnCartridgeRemoved);
+        SubscribeLocalEvent<InjectorComponent, AfterHyposprayInjectsEvent>(OnHyposprayInjected);
+    }
+
+    private void OnCartridgeInserted(Entity<InjectorComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        if (!TryComp<SolutionCartridgeComponent>(args.Entity, out var cartridge)
+        || !TryComp(ent, out SolutionContainerManagerComponent? manager)
+        || !_solution.TryGetSolution((ent, manager), cartridge.TargetSolution, out var solutionEntity))
+            return;
+
+        if (_timing.ApplyingState)
+            return;
+
+        _solution.TryAddSolution(solutionEntity.Value, cartridge.Solution);
+    }
+
+    private void OnCartridgeRemoved(Entity<InjectorComponent> ent, ref EntRemovedFromContainerMessage args)
+    {
+        if (!TryComp<SolutionCartridgeComponent>(args.Entity, out var cartridge)
+        || !TryComp(ent, out SolutionContainerManagerComponent? manager)
+        || !_solution.TryGetSolution((ent, manager), cartridge.TargetSolution, out var solutionEntity))
+            return;
+
+        if (_timing.ApplyingState)
+            return;
+
+        _solution.RemoveAllSolution(solutionEntity.Value);
+    }
+
+    private void OnHyposprayInjected(Entity<InjectorComponent> ent, ref AfterHyposprayInjectsEvent args)
+    {
+        if (!_container.TryGetContainer(ent, "item", out var container))
+            return;
+
+        if (_net.IsClient) // Goobstation - Fix prediction errors
+            return;
+
+        _container.CleanContainer(container);
+    }
+}

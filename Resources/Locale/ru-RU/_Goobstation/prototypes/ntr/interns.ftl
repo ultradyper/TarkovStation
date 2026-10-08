@@ -1,0 +1,15 @@
+ent-RadioLeadIntern = телепортер главы интернов NanoTrasen
+    .desc = Рация, одобренная NT, призывающая главу интернов, используя специальные монеты
+ent-LeadIntern = глава интернов
+    .suffix = { species-name-human }
+    .desc = { ent-MobHuman.desc }
+ent-InternCoin = монета призыва интерна NanoTrasen
+    .desc = Подбрось, чтобы призвать интерна.
+ent-NerdInternCoin = монета призыва интерна-заучки NT
+    .desc = Подбрось, чтобы призвать интерна-заучку.
+ent-NTIntern = интерн NanoTrasen
+    .suffix = { species-name-human }
+    .desc = { ent-MobHuman.desc }
+ent-NTNerdIntern = интерн-заучка NanoTrasen
+    .suffix = { species-name-human }
+    .desc = { ent-MobHuman.desc }

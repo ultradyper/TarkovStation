@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Why the fuck are the aghost and human the only ones with snake case body parts?
+- type: body
+  id: Aghost
+  name: "aghost"
+  root: chest
+  slots:
+    chest:
+      part: ChestHuman
+      connections:
+      - right arm
+      - left arm
+    right arm:
+      part: RightArmHuman
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmHuman
+      connections:
+      - left hand
+    right hand:
+      part: RightHandHuman
+    left hand:
+      part: LeftHandHuman

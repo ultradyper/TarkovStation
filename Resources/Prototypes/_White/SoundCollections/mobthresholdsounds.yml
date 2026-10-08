@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: soundCollection
+  id: DeathSound
+  files:
+    - /Audio/_White/Effects/Death/death.ogg
+
+- type: soundCollection
+  id: CritSound
+  files:
+    - /Audio/_White/Effects/Heart/heart.ogg
+    - /Audio/_White/Effects/Heart/heart3.ogg
+    - /Audio/_White/Effects/Heart/heart4.ogg

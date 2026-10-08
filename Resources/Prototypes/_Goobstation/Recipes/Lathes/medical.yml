@@ -1,0 +1,202 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: latheRecipe
+  id: VehicleWheelchairFolded
+  result: VehicleWheelchairFolded
+  materials:
+    Plastic: 500
+    Steel: 500
+
+- type: latheRecipe
+  id: PrescriptionGlasses
+  result: ClothingEyesPrescriptionGlasses
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+
+- type: latheRecipe
+  id: Cane
+  result: Cane
+  completetime: 3
+  materials:
+    Wood: 100
+
+- type: latheRecipe
+  id: VehicleHoverchairSci
+  result: VehicleHoverchair
+  completetime: 5
+  materials:
+    Steel: 500
+    Gold: 300
+    Plasma: 250
+
+- type: latheRecipe
+  id: TinfoilHats
+  result: ClothingHeadHatTinfoilHat
+  completetime: 5
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  id: SyringeGun
+  result: SyringeGun
+  completetime: 5
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 500
+    Gold: 100
+    Plasma: 100
+
+- type: latheRecipe
+  id: ParamedHypo
+  result: ParamedHypo
+  completetime: 3
+  materials:
+    Steel: 500
+    Plastic: 500
+    Glass: 500
+    Gold: 300
+
+- type: latheRecipe
+  id: HandheldCrewMonitor
+  result: HandheldCrewMonitorEmpty
+  completetime: 5
+  materials:
+    Steel: 500
+    Glass: 200
+    Plastic: 200
+    Gold: 100
+
+- type: latheRecipe
+  id: DefibrillatorCompact
+  result: DefibrillatorCompactEmpty
+  completetime: 5
+  materials:
+    Steel: 250
+    Silver: 50
+
+- type: latheRecipe
+  id: VialBluespace
+  result: BluespaceChemistryVial
+  completetime: 2
+  materials:
+    Steel: 100
+    Plastic: 150
+    Glass: 250
+    Plasma: 100
+    Silver: 50
+
+- type: latheRecipe
+  id: XenoCompatibilityImplanter
+  result: XenoCompatibilityImplanter
+  completetime: 8
+  materials:
+    Steel: 500
+    Glass: 750
+    Plasma: 1500
+    Silver: 300
+
+- type: latheRecipe
+  id: MedicalPatchBasic
+  result: MedicalPatchBasic
+  completetime: 2
+  materials:
+    Plastic: 50 # might be fine as 1 cloth 1 plastic, one textile crate will let chem make like 120 patches.
+    Cloth: 50
+
+- type: latheRecipe
+  id: MedicalPatchRapid
+  result: MedicalPatchRapid
+  completetime: 2
+  materials:
+    Cloth: 50
+    Plastic: 50
+
+- type: latheRecipe
+  id: MedicalPatchTherapeutic
+  result: MedicalPatchTherapeutic
+  completetime: 2
+  materials:
+    Cloth: 50
+    Plastic: 50
+
+- type: latheRecipe
+  id: MedicalPatchLarge
+  result: MedicalPatchLarge
+  completetime: 2
+  materials:
+    Plastic: 50
+    Cloth: 50
+
+- type: latheRecipe
+  id: MedicalCigPack
+  result: CigPackMedical
+  completetime: 8 # slows down mass printing entities
+  materials:
+    Plastic: 500
+    Cloth: 500
+
+- type: latheRecipe
+  id: EnergyChemDispenserMachineCircuitboard
+  parent: BaseGoldCircuitboardRecipe
+  materials:
+    Steel: 100
+    Glass: 500
+    Gold: 100
+    Plasma: 100
+    BSCrystal: 50
+  result: EnergyChemDispenserMachineCircuitboard
+  icon:
+    sprite: Structures/dispensers.rsi
+    state: industrial-working
+
+- type: latheRecipe
+  parent: [BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory]
+  id: CloningPodMachineCircuitboardRecipe
+  icon:
+    sprite: Structures/Machines/cloning.rsi
+    state: pod_0
+  result: CloningPodMachineCircuitboard
+  completetime: 10
+
+- type: latheRecipe
+  parent: [BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory]
+  id: MedicalScannerMachineCircuitboardRecipe
+  icon:
+    sprite: Structures/Machines/scanner.rsi
+    state: open
+  result: MedicalScannerMachineCircuitboard
+  completetime: 10
+
+- type: latheRecipe
+  parent: [BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory]
+  id: CloningConsoleComputerCircuitboardRecipe
+  result: CloningConsoleComputerCircuitboard
+  completetime: 10
+
+- type: latheRecipe
+  id: CrewMonitoringComputerCircuitboard
+  parent: BaseCircuitboardRecipe
+  result: CrewMonitoringComputerCircuitboard
+  icon: _Goobstation/Structures/Machines/Icons/Computers/cloning.png
+
+# Recipes for both cigarettes need tweaking
+- type: latheRecipe
+  id: ECigarette
+  result: ECigarette
+  completetime: 2
+  materials:
+    Plastic: 50
+    Steel: 100
+    Glass: 100
+
+- type: latheRecipe
+  id: CryostasisCigarette
+  result: CryostasisCigarette
+  completetime: 2
+  materials:
+    Plastic: 100
+    Steel: 150
+    Glass: 150

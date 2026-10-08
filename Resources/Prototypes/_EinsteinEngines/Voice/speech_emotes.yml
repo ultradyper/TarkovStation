@@ -1,0 +1,71 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: emote
+  id: SiliconDeathgasp
+  name: chat-emote-name-deathgasp
+  icon: Interface/Emotes/deathgasp.png
+  chatMessages: ["chat-emote-msg-deathgasp-silicon"]
+  chatTriggers:
+  - sdeathgasp
+  whitelist:
+    components:
+    - Silicon
+    - BorgChassis
+
+- type: emote
+  id: Boop
+  name: chat-emote-name-boop
+  category: Vocal
+  chatMessages: [ boops. ]
+  chatTriggers:
+  - boops
+  whitelist:
+    tags:
+    - HarpyEmotes # Goob - more harpy emotes
+    components:
+    - Silicon
+    - BorgChassis
+
+- type: emote
+  id: Whirr
+  name: chat-emote-name-whirr
+  category: Vocal
+  chatMessages: [ whirrs. ]
+  chatTriggers:
+  - whirrs
+  whitelist:
+    tags:
+    - HarpyEmotes # Goob - more harpy emotes
+    components:
+    - Silicon
+    - BorgChassis
+
+- type: emote
+  id: Mars
+  name: chat-emote-name-mars
+  category: Vocal
+  whitelist:
+    tags:
+    - ShadowkinEmotes
+    - HarpyEmotes
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-mars"]
+  chatTriggers:
+    - mars
+    - marsing
+    - marsed
+
+- type: emoteSounds
+  id: UnisexPlasmaman
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: PlasmamanUnisexScreams
+    # Belch: # Frontier  # Reserve edit: Disable intentional belching
+    #   collection: Belch # Frontier
+  sound:
+    path: /Audio/Voice/Skeleton/skeleton_scream.ogg
+

@@ -1,0 +1,27 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: FirelockElectronics
+  parent: BaseElectronics
+  name: firelock electronics
+  description: An electronics board used to detect differences in pressure, temperature and gas concentrations between the two sides of the door.
+  components:
+    - type: Item
+      storedRotation: 0
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: mainboard
+    - type: Tag
+      tags:
+      - DroneUsable # Goobstation
+      - FirelockElectronics
+    - type: ReverseEngineering # reserve: nyano port
+      recipes:
+        - FirelockElectronics
+    - type: StaticPrice
+      price: 61
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 0
+      chemicalComposition:
+        Silicon: 20

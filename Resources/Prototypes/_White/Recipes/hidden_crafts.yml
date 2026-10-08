@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: constructionGraph
+  id: EnergyDoubleSwordGraph
+  start: esword
+  graph:
+  - node: esword
+    edges:
+      - to: desword
+        steps:
+          - tag: EnergySword
+            name: construction-graph-tag-energy-sword
+  - node: desword
+    entity: EnergySwordDouble

@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: reaction
+  id: Fentanyl
+  minTemp: 410
+  maxTemp: 420 # no lavabeaker for the lazy chemist
+  reactants:
+    Desoxyephedrine:
+      amount: 2
+    Impedrezene:
+      amount: 3
+    FourteenLoko:
+      amount: 1
+    Bleach:
+      amount: 1
+  products:
+    Fentanyl: 1
+    VentCrud: 1
+    SpaceGlue: 2
+
+- type: reaction
+  id: Aranesp
+  reactants:
+    Epinephrine:
+      amount: 1
+    Atropine:
+      amount: 1
+    Desoxyephedrine:
+      amount: 1
+  products:
+    Aranesp: 1
+
+- type: reaction
+  id: Amnestizine
+  reactants:
+    Mercury:
+      amount: 1
+    Plasma:
+      amount: 1
+    NevcottaPowder:
+      amount: 2
+  products:
+    Amnestizine: 1
+
+
+- type: reaction
+  id: OleoresinCapsaicin
+  reactants:
+    CapsaicinOil:
+      amount: 1
+    Acetone:
+      amount: 2
+  products:
+    OleoresinCapsaicin: 1

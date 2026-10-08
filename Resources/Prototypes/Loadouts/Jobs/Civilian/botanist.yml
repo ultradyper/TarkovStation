@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Head
+- type: loadout
+  id: BotanistHead
+  equipment:
+    head: ClothingHeadHatTrucker
+
+
+- type: loadout
+  id: BotanistBandana
+  equipment:
+    head: ClothingHeadBandBotany
+
+
+# Jumpsuit
+- type: loadout
+  id: BotanistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHydroponics
+
+
+- type: loadout
+  id: BotanistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHydroponics
+
+
+- type: loadout
+  id: BotanistOveralls
+  equipment:
+    jumpsuit: ClothingUniformOveralls
+
+
+- type: loadout # goob
+  id: HydroMJ
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: MasterBotanist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMilitaryHydroponics
+
+
+# Back
+- type: loadout
+  id: BotanistBackpack
+  equipment:
+    back: ClothingBackpackHydroponics
+
+- type: loadout
+  id: BotanistSatchel
+  equipment:
+    back: ClothingBackpackSatchelHydroponics
+
+- type: loadout
+  id: BotanistDuffel
+  equipment:
+    back: ClothingBackpackDuffelHydroponics
+
+# Outer clothing
+- type: loadout
+  id: BotanistApron
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: AdvancedBotanist
+  equipment:
+    outerClothing: ClothingOuterApronBotanist
+
+- type: loadout
+  id: BotanistWintercoat
+  effects:  # Reserve edit: Orchid's Barmania - Service Heaven
+  - !type:GroupLoadoutEffect
+    proto: AdvancedBotanist
+  equipment:
+    outerClothing: ClothingOuterWinterHydro

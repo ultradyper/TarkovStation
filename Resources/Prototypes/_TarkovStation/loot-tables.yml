@@ -1,0 +1,123 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: tarkovLootTable
+  id: TarkovStationOuterLoot
+  budget: 280
+  rolls: 3
+  entries:
+  - goods: DrinkWaterBottleFull
+    weight: 20
+  - goods: FoodSnackNutribrick
+    weight: 20
+  - goods: Gauze
+    weight: 15
+  - goods: Ointment
+    weight: 10
+  - goods: SheetSteel10
+    weight: 8
+  - goods: SheetGlass10
+    weight: 8
+  - goods: MagazinePistol
+    weight: 8
+  - goods: Wrench
+    weight: 6
+  - goods: PowerCellSmall
+    weight: 5
+  - goods: ClothingBackpackSatchel
+    weight: 8
+  - goods: ClothingBackpack
+    weight: 6
+  - goods: ClothingMaskGas
+    weight: 4
+  - goods: CombatKnife
+    weight: 5
+  - goods: Crowbar
+    weight: 5
+  - goods: Screwdriver
+    weight: 5
+  - goods: CableApcStack
+    weight: 6
+  - goods: FlashlightLantern
+    weight: 10
+- type: tarkovLootTable
+  id: TarkovStationServiceLoot
+  budget: 800
+  rolls: 3
+  entries:
+  - goods: MagazineRifle
+    weight: 15
+  - goods: MagazinePistol
+    weight: 12
+  - goods: BoxLethalshot
+    weight: 10
+  - goods: MedkitFilled
+    weight: 12
+  - goods: Bloodpack
+    weight: 8
+  - goods: SheetSteel10
+    weight: 8
+  - goods: PowerCellMedium
+    weight: 10
+  - goods: TarkovStationWornCircuit
+    weight: 10
+  - goods: TarkovStationEncryptedDrive
+    weight: 3
+  - goods: ClothingBackpackDuffel
+    weight: 10
+  - goods: ClothingBackpack
+    weight: 6
+  - goods: ClothingOuterArmorBasic
+    weight: 8
+  - goods: ClothingOuterVestWeb
+    weight: 6
+  - goods: ClothingHeadHelmetBasic
+    weight: 6
+  - goods: WeaponPistolMk58
+    weight: 8
+  - goods: WeaponShotgunKammerer
+    weight: 5
+  - goods: MagazineLightRifle
+    weight: 8
+  - goods: MagazinePistolSubMachineGun
+    weight: 10
+  - goods: Welder
+    weight: 6
+- type: tarkovLootTable
+  id: TarkovStationFacilityLoot
+  budget: 2400
+  rolls: 3
+  entries:
+  - goods: TarkovStationWornCircuit
+    weight: 22
+  - goods: TarkovStationEncryptedDrive
+    weight: 20
+  - goods: TarkovStationMilitaryModule
+    weight: 10
+  - goods: TarkovStationSignalRecorder
+    weight: 2
+  - goods: WeaponRifleLecter
+    weight: 8
+  - goods: WeaponShotgunSawn
+    weight: 8
+  - goods: MedkitFilled
+    weight: 10
+  - goods: PowerCellMedium
+    weight: 12
+  - goods: ClothingBackpackDuffel
+    weight: 12
+  - goods: ClothingOuterArmorBulletproof
+    weight: 8
+  - goods: ClothingOuterArmorBasic
+    weight: 8
+  - goods: ClothingHeadHelmetBasic
+    weight: 8
+  - goods: WeaponRifleAk
+    weight: 8
+  - goods: WeaponSubMachineGunDrozd
+    weight: 10
+  - goods: WeaponShotgunKammerer
+    weight: 8
+  - goods: MagazineLightRifle
+    weight: 10
+  - goods: MagazinePistolSubMachineGun
+    weight: 10

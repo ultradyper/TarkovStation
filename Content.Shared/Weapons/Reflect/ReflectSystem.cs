@@ -1,0 +1,259 @@
+﻿// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
+using Content.Shared._Goobstation.Wizard.Projectiles;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Audio;
+using Content.Shared.Damage;
+using Content.Shared.Database;
+using Content.Shared.Hands;
+using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Popups;
+using Content.Shared.Projectiles;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Random;
+using Content.Shared.Examine;
+using Content.Shared.Localizations;
+using Content.Shared.Damage.Systems;
+
+namespace Content.Shared.Weapons.Reflect;
+
+/// <summary>
+/// This handles reflecting projectiles and hitscan shots.
+/// </summary>
+public sealed class ReflectSystem : EntitySystem
+{
+    [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly ItemToggleSystem _toggle = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    // [Dependency] private readonly InventorySystem _inventorySystem = default!; // Reserve edit: Fix warnings
+    [Dependency] private readonly DamageableSystem _damageable = default!; // WD EDIT
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        Subs.SubscribeWithRelay<ReflectComponent, ProjectileReflectAttemptEvent>(OnReflectUserCollide, baseEvent: false);
+        Subs.SubscribeWithRelay<ReflectComponent, HitScanReflectAttemptEvent>(OnReflectUserHitscan, baseEvent: false);
+        SubscribeLocalEvent<ReflectComponent, ProjectileReflectAttemptEvent>(OnReflectCollide);
+        SubscribeLocalEvent<ReflectComponent, HitScanReflectAttemptEvent>(OnReflectHitscan);
+
+        SubscribeLocalEvent<ReflectComponent, GotEquippedEvent>(OnReflectEquipped);
+        SubscribeLocalEvent<ReflectComponent, GotUnequippedEvent>(OnReflectUnequipped);
+        SubscribeLocalEvent<ReflectComponent, GotEquippedHandEvent>(OnReflectHandEquipped);
+        SubscribeLocalEvent<ReflectComponent, GotUnequippedHandEvent>(OnReflectHandUnequipped);
+        SubscribeLocalEvent<ReflectComponent, ExaminedEvent>(OnExamine);
+    }
+
+    private void OnReflectUserCollide(Entity<ReflectComponent> ent, ref ProjectileReflectAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (!ent.Comp.InRightPlace)
+            return; // only reflect when equipped correctly
+
+        if (TryReflectProjectile(ent, ent.Owner, args.ProjUid))
+            args.Cancelled = true;
+    }
+
+    private void OnReflectUserHitscan(Entity<ReflectComponent> ent, ref HitScanReflectAttemptEvent args)
+    {
+        if (args.Reflected)
+            return;
+
+        if (!ent.Comp.InRightPlace)
+            return; // only reflect when equipped correctly
+
+        if (TryReflectHitscan(ent, ent.Owner, args.Shooter, args.SourceItem, args.Direction, args.Reflective, args.Damage, out var dir)) // Goob edit
+        {
+            args.Direction = dir.Value;
+            args.Reflected = true;
+        }
+    }
+
+    private void OnReflectCollide(Entity<ReflectComponent> ent, ref ProjectileReflectAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (TryReflectProjectile(ent, ent.Owner, args.ProjUid))
+            args.Cancelled = true;
+    }
+
+    private void OnReflectHitscan(Entity<ReflectComponent> ent, ref HitScanReflectAttemptEvent args)
+    {
+        if (args.Reflected)
+            return;
+
+        if (TryReflectHitscan(ent, ent.Owner, args.Shooter, args.SourceItem, args.Direction, args.Reflective, args.Damage, out var dir))
+        {
+            args.Direction = dir.Value;
+            args.Reflected = true;
+        }
+    }
+
+    public bool TryReflectProjectile(Entity<ReflectComponent> reflector, EntityUid user, Entity<ProjectileComponent?> projectile)
+    {
+        if (!TryComp<ReflectiveComponent>(projectile, out var reflective) ||
+            (reflector.Comp.Reflects & reflective.Reflective) == 0x0 ||
+            !_toggle.IsActivated(reflector.Owner) ||
+            !_random.Prob(reflector.Comp.ReflectProb) ||
+            !TryComp<PhysicsComponent>(projectile, out var physics))
+        {
+            return false;
+        }
+
+        var rotation = _random.NextAngle(-reflector.Comp.Spread / 2, reflector.Comp.Spread / 2).Opposite();
+        var existingVelocity = _physics.GetMapLinearVelocity(projectile, component: physics);
+        var relativeVelocity = existingVelocity - _physics.GetMapLinearVelocity(user);
+        var newVelocity = rotation.RotateVec(relativeVelocity);
+
+        // Have the velocity in world terms above so need to convert it back to local.
+        var difference = newVelocity - existingVelocity;
+
+        _physics.SetLinearVelocity(projectile, physics.LinearVelocity + difference, body: physics);
+
+        var locRot = Transform(projectile).LocalRotation;
+        var newRot = rotation.RotateVec(locRot.ToVec());
+        _transform.SetLocalRotation(projectile, newRot.ToAngle());
+
+        if (TryComp(projectile, out HomingProjectileComponent? homing)) // Goobstation
+            RemCompDeferred(projectile, homing);
+
+        PlayAudioAndPopup(reflector.Comp, user);
+
+        if (Resolve(projectile, ref projectile.Comp, false))
+        {
+            // WD EDIT START
+            if (reflector.Comp.DamageOnReflectModifier != 0)
+            {
+                _damageable.TryChangeDamage(reflector.Owner, projectile.Comp.Damage * reflector.Comp.DamageOnReflectModifier,
+                    projectile.Comp.IgnoreResistances, origin: projectile.Comp.Shooter);
+            }
+            // WD EDIT END
+
+            _adminLogger.Add(LogType.BulletHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected {ToPrettyString(projectile)} from {ToPrettyString(projectile.Comp.Weapon)} shot by {projectile.Comp.Shooter}");
+
+            projectile.Comp.Shooter = user;
+            projectile.Comp.Weapon = user;
+            Dirty(projectile, projectile.Comp);
+        }
+        else
+        {
+            _adminLogger.Add(LogType.BulletHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected {ToPrettyString(projectile)}");
+        }
+
+        return true;
+    }
+
+    public bool TryReflectHitscan( // Goob edit
+        Entity<ReflectComponent> reflector,
+        EntityUid user,
+        EntityUid? shooter,
+        EntityUid shotSource,
+        Vector2 direction,
+        ReflectType hitscanReflectType,
+        DamageSpecifier? damage, // WD EDIT
+        [NotNullWhen(true)] out Vector2? newDirection)
+    {
+        if ((reflector.Comp.Reflects & hitscanReflectType) == 0x0 ||
+            !_toggle.IsActivated(reflector.Owner) ||
+            // Goob edit start
+            !((reflector.Comp.Reflects & hitscanReflectType) != 0x0 && _random.Prob(reflector.Comp.ReflectProb)))
+            // Goob edit end
+        {
+            newDirection = null;
+            return false;
+        }
+
+        PlayAudioAndPopup(reflector.Comp, user);
+
+        // WD EDIT START
+        if (reflector.Comp.DamageOnReflectModifier != 0 && damage != null)
+            _damageable.TryChangeDamage(reflector.Owner, damage * reflector.Comp.DamageOnReflectModifier, origin: shooter);
+        // WD EDIT END
+
+        var spread = _random.NextAngle(-reflector.Comp.Spread / 2, reflector.Comp.Spread / 2);
+        newDirection = -spread.RotateVec(direction);
+
+        if (shooter != null)
+            _adminLogger.Add(LogType.HitScanHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected hitscan from {ToPrettyString(shotSource)} shot by {ToPrettyString(shooter.Value)}");
+        else
+            _adminLogger.Add(LogType.HitScanHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected hitscan from {ToPrettyString(shotSource)}");
+
+        return true;
+    }
+
+    private void PlayAudioAndPopup(ReflectComponent reflect, EntityUid user)
+    {
+        // Can probably be changed for prediction
+        if (_netManager.IsServer)
+        {
+            _popup.PopupEntity(Loc.GetString("reflect-shot"), user);
+            _audio.PlayPvs(reflect.SoundOnReflect, user);
+        }
+    }
+
+    private void OnReflectEquipped(Entity<ReflectComponent> ent, ref GotEquippedEvent args)
+    {
+        ent.Comp.InRightPlace = (ent.Comp.SlotFlags & args.SlotFlags) == args.SlotFlags;
+    }
+
+    private void OnReflectUnequipped(Entity<ReflectComponent> ent, ref GotUnequippedEvent args)
+    {
+        ent.Comp.InRightPlace = false;
+        Dirty(ent);
+    }
+
+    private void OnReflectHandEquipped(Entity<ReflectComponent> ent, ref GotEquippedHandEvent args)
+    {
+        ent.Comp.InRightPlace = ent.Comp.ReflectingInHands;
+        Dirty(ent);
+    }
+
+    private void OnReflectHandUnequipped(Entity<ReflectComponent> ent, ref GotUnequippedHandEvent args)
+    {
+        ent.Comp.InRightPlace = false;
+    }
+
+    #region Examine
+    private void OnExamine(Entity<ReflectComponent> ent, ref ExaminedEvent args)
+    {
+        if (!ent.Comp.Examinable) return; // Goobstation
+        // This isn't examine verb or something just because it looks too much bad.
+        // Trust me, universal verb for the potential weapons, armor and walls looks awful.
+        var value = MathF.Round(ent.Comp.ReflectProb * 100, 1);
+
+        if (!_toggle.IsActivated(ent.Owner) || value == 0 || ent.Comp.Reflects == ReflectType.None)
+            return;
+
+        var compTypes = ent.Comp.Reflects.ToString().Split(", ");
+
+        List<string> typeList = new(compTypes.Length);
+
+        for (var i = 0; i < compTypes.Length; i++)
+        {
+            var type = Loc.GetString(("reflect-component-" + compTypes[i]).ToLower());
+            typeList.Add(type);
+        }
+
+        var msg = ContentLocalizationManager.FormatList(typeList);
+
+        args.PushMarkup(Loc.GetString("reflect-component-examine", ("value", value), ("type", msg)));
+    }
+    #endregion
+}

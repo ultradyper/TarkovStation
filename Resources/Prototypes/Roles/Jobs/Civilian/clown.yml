@@ -1,0 +1,69 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Clown
+  name: job-name-clown
+  description: job-description-clown
+  playTimeTracker: JobClown
+  startingGear: ClownGear
+  icon: "JobIconClown"
+  supervisors: job-supervisors-hop
+  goobcoins: 15 #Goob content
+  weight: 5  # Reserve edit: Fix Service Department job order
+  access:
+  - Theatre
+  - Maintenance
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Clumsy
+      gunShootFailDamage:
+        types: #literally just picked semi random valus. i tested this once and tweaked it.
+          Blunt: 5
+          Piercing: 4
+          Heat: 3
+      catchingFailDamage:
+        types:
+          Blunt: 1
+    - type: SleepEmitSound
+      snore: /Audio/Voice/Misc/silly_snore.ogg
+      interval: 10
+  - !type:AddImplantSpecial
+    implants: [ SadTromboneImplant ]
+  alternateTitles: # Reserve - alternate titles
+  - ClownJester
+  - ClownBouffon
+
+- type: startingGear
+  id: ClownGear
+  equipment:
+    mask: ClothingMaskClown
+    pocket1: BikeHorn
+    pocket2: ClownRecorder
+    id: ClownPDA
+    ears: ClothingHeadsetService
+  inhand:
+  - FoolboxFilled
+  storage:
+    back:
+    - RubberStampClown
+    - CrayonRainbow
+
+
+- type: chameleonOutfit
+  id: ClownChameleonOutfit
+  job: Clown
+  equipment:
+    head: ClothingHeadHatXmasCrown
+    eyes: ClothingEyesGlassesCheapSunglasses
+    neck: ClothingHeadHatFlowerWreath
+    outerClothing: ClothingOuterClownPriest
+    gloves: ClothingHandsGlovesColorYellowBudget
+
+- type: jobAlternateTitle
+  id: ClownJester
+  name: job-name-alt-clown-1
+
+- type: jobAlternateTitle
+  id: ClownBouffon
+  name: job-name-alt-clown-2

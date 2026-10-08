@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: job
+  id: Roboticist
+  name: job-name-roboticist
+  description: job-description-roboticist
+  playTimeTracker: JobRoboticist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 14400 #4 hrs
+  startingGear: RoboticistGear
+  icon: "JobIconRoboticist"
+  supervisors: job-supervisors-rd
+  guides: [ Robotics ]
+  goobcoins: 20
+  weight: 9  # Reserve edit: Fix Assistant job order
+  access:
+  - Research
+  - Maintenance
+  - Robotics
+  alternateTitles: # Reserve - alternate titles
+  - RoboticistCybersurgeon
+  - RoboticistAISpecialist
+
+- type: startingGear
+  id: RoboticistGear
+  equipment:
+    ears: ClothingHeadsetRobotics
+    # eyes: ClothingEyesHudDiagnostic  # Reserve edit: Orchid's Barmania - Service Heaven
+
+- type: chameleonOutfit
+  id: RoboticistChameleonOutfit
+  job: Roboticist
+  equipment:
+    head: ClothingHeadBandSkull
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckTieSci
+    outerClothing: ClothingOuterCoatRobo
+    gloves: ClothingHandsGlovesRobohands
+    ear: ClothingHeadsetRobotics
+    jumpsuit: ClothingUniformJumpsuitRoboticist
+    shoes: ClothingShoesColorBlack
+    id: RoboticistPDA
+
+- type: jobAlternateTitle
+  id: RoboticistCybersurgeon
+  name: job-name-alt-roboticist-1
+
+- type: jobAlternateTitle
+  id: RoboticistAISpecialist
+  name: job-name-alt-roboticist-2

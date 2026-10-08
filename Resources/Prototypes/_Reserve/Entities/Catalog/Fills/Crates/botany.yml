@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: CrateHydroponicsToolsAdvanced
+  parent: CrateHydroSecure
+  name: advanced hydroponics equipment crate
+  description: Contains advanced hydroponics tools and equipment, pre-packed with everything you might need! Agrochemistry and swabs are not included.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingEyesGogglesBotanistAdvanced
+    - id: ClothingMaskBreathBotanistAdvanced
+    - id: ClothingOuterApronBotanistAdvanced
+    - id: ClothingHandsGlovesBotanistAdvanced
+    - id: ClothingBeltPlantFilled
+    - id: WateringCanExperimental
+    - id: HydroponicsToolHatchet
+    - id: HydroponicsToolScythe
+    - id: PlantAnalyzer
+    - id: PlantBGoneSpray
+    - id: WeedSpray
+    - id: PestSpray
+    - id: SeedEmUpSpray
+    - id: ChemistryBottleEZNutrient

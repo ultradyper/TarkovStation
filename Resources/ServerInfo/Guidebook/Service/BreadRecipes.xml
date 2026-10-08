@@ -1,0 +1,13 @@
+<!--
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+
+# Breads
+
+A fresh loaf of bread is without equal, and breads are often incorporated into other recipes.
+
+<GuideFoodIngredientGroupEmbed Group="Breads"/>  <!--Reserve edit: Fix recipe categories-->
+
+</Document>

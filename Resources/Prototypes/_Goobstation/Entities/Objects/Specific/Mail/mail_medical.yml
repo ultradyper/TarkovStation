@@ -1,0 +1,70 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: PackageDelivery
+  id: MailMedicalBasicSupplies
+  suffix: Base Medics
+  components:
+  - type: Mail
+    contents:
+    - id: Brutepack
+      maxAmount: 5
+    - id: Ointment
+      maxAmount: 5
+    - id: Gauze
+      maxAmount: 5
+
+- type: entity
+  parent: PackageDelivery
+  id: MailMedicalMedicinePills
+  suffix: Pills
+  components:
+  - type: Mail
+    contents:
+    - id: PillTricordrazine
+      maxAmount: 2
+    - id: PillDylovene
+      maxAmount: 2
+    - id: PillKelotane
+      maxAmount: 2
+
+- type: entity
+  parent: PackageDelivery
+  id: MailMedicalEmergencyPens
+  suffix: Medipens
+  components:
+  - type: Mail
+    contents:
+    - id: EmergencyMedipen
+      maxAmount: 3
+
+- type: entity
+  parent: PackageDelivery
+  id: MailMedicalStabilizers
+  suffix: Stabilizers
+  components:
+  - type: Mail
+    contents:
+    - id: PillDexalin
+      maxAmount: 2
+    - id: SyringeInaprovaline
+      maxAmount: 2
+    - id: SyringeTranexamicAcid
+      maxAmount: 2
+
+# Chemist
+- type: entity
+  parent: PackageDelivery
+  id: MailMedicalChemistrySupplement
+  suffix: Chemical Supplies
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+    - id: LargeBeaker
+      orGroup: Beaker
+    - id: Beaker
+      maxAmount: 3
+      orGroup: Beaker
+    - id: Syringe
+      maxAmount: 3

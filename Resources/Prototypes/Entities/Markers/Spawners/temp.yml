@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: TemporaryEntityForTimedDespawnSpawners
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: TimedDespawn
+    # we can't declare the SpawnOnDespawnComponent because the entity is required on yml

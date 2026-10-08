@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entityCategory
+  id: Surgeries
+  name: entity-category-name-surgeries
+  hideSpawnMenu: true
+
+- type: entityCategory
+  id: SurgerySteps
+  name: entity-category-name-surgery-steps
+  hideSpawnMenu: true
+
+- type: entityCategory
+  id: Wounds
+  name: entity-category-name-wounds
+  hideSpawnMenu: true
