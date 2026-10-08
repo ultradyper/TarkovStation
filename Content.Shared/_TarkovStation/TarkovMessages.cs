@@ -27,7 +27,7 @@ public enum TarkovAction : byte
     Refresh, Create, Buy, BuyKit, Deposit, Withdraw, Sell, Invite, AcceptInvite, LeaveParty,
     Ready, CancelReady, Extract, CreateContract, AcceptContract, DeliverContract, ConfirmContract,
     CancelContract, OfferTrade, AcceptTrade, CancelTrade, SetTradeMoney, AddTradeItem,
-    RemoveTradeItem, EmergencyKit, ReturnToHub, TestPartner, CloseService,
+    RemoveTradeItem, EmergencyKit, CloseService = 27,
     AcceptRules, AcceptGuide,
 }
 
@@ -96,7 +96,6 @@ public sealed class TarkovStateEvent : EntityEventArgs
     public bool RaidReentryBlocked;
     public long ExtractionSeconds;
     public bool Ready;
-    public bool TestMode;
     public string QueuePhase = "idle";
     public string QueueNotice = "";
     public int ReadyCount;

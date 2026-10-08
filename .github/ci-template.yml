@@ -1,0 +1,33 @@
+# CI template: move to .github/workflows/ci.yml to activate GitHub Actions.
+# SPDX-License-Identifier: AGPL-3.0-or-later
+name: Build and sandbox
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-dotnet@v4.1.0
+        with:
+          dotnet-version: 10.0.x
+      - name: Build client and server
+        run: dotnet build Content.IntegrationTests/Content.IntegrationTests.csproj -c Release -m:2
+      - name: Validate client sandbox
+        run: dotnet test Content.IntegrationTests/Content.IntegrationTests.csproj -c Release --no-build --filter FullyQualifiedName=Content.IntegrationTests.Tests.Utility.SandboxTest.Test
+      - name: Validate Tarkov locale keys
+        run: python3 Tools/_TarkovStation/Server/check-locales.py

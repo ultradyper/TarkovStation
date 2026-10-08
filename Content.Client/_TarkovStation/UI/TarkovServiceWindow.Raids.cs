@@ -18,7 +18,6 @@ public sealed partial class TarkovServiceWindow
     private readonly RichTextLabel _activeRaid = TarkovTheme.Paragraph("");
     private TarkovButton? _readyButton;
     private TarkovButton? _cancelButton;
-    private BoxContainer? _testSection;
 
     private void BuildRaids()
     {
@@ -39,11 +38,6 @@ public sealed partial class TarkovServiceWindow
         _cancelButton = TarkovTheme.Button(Loc.GetString("tarkov-cancel-ready"), () => Request(TarkovAction.CancelReady));
         departure.AddChild(_readyButton); departure.AddChild(_cancelButton);
         briefing.AddChild(TarkovTheme.Paragraph(Loc.GetString("ts-extraction-briefing")));
-        _testSection = TarkovTheme.Column(8);
-        _testSection.AddChild(TarkovTheme.Label(Loc.GetString("ts-solo-test")));
-        _testSection.AddChild(TarkovTheme.Paragraph(Loc.GetString("ts-solo-test-help")));
-        _testSection.AddChild(TarkovTheme.Button(Loc.GetString("ts-prepare-helpers"), () => Request(TarkovAction.TestPartner)));
-        briefing.AddChild(_testSection);
         var team = TarkovTheme.Column();
         team.AddChild(TarkovTheme.Label(Loc.GetString("ts-your-party"), true));
         team.AddChild(List("party-roster"));
@@ -87,7 +81,6 @@ public sealed partial class TarkovServiceWindow
             _readyButton.Text = Loc.GetString(state.ActiveRaid ? "ts-ready-join" : "ts-ready-departure");
         }
         if (_cancelButton != null) _cancelButton.Disabled = !state.Ready;
-        if (_testSection != null) _testSection.Visible = state.TestMode;
         RenderList("party-roster", state.Party, row =>
         {
             var item = TarkovTheme.Row(); item.AddChild(TarkovTheme.Label(row.Name));

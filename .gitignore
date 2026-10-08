@@ -314,14 +314,24 @@ config.json
 .github/workflows/update-prs.yaml
 /.gigaide/gigaide.properties
 
-# Local operational data and private credentials
-.agents/
-.opencode/
-.codex/
-.tarkov*/
-AGENTS.md
+# TarkovStation: local data, credentials and private working notes
+/userdata/
+/.tarkov*/
+/.agents/
+/.opencode/
+/.codex/
+/AGENTS.md
+/server_config.toml
+/server.local.toml
+/credentials/
+/logs/
 *.env
+.env
 *.db
 *.db-*
 *.sqlite*
-credentials/
+*.log
+*.trx
+*.binlog
+*.pfx
+*.key

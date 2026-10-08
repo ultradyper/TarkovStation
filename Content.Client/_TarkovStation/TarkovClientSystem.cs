@@ -50,11 +50,6 @@ public sealed partial class TarkovClientSystem : EntitySystem
     private TimeSpan _noticeUntil;
     private string _noticeKey = "";
     private string _noticeSector = "";
-    /// <summary>The actual rendered lifecycle notice, exposed for native UI verification.</summary>
-    public string NoticeText => _noticeText?.Text ?? "";
-    /// <summary>Most recent explicit action reply, retained across passive HUD snapshots for diagnostics/tests.</summary>
-    public string LastActionMessage { get; private set; } = "";
-
     public override void Initialize()
     {
         base.Initialize(); SubscribeNetworkEvent<TarkovStateEvent>(OnState);
@@ -116,7 +111,7 @@ public sealed partial class TarkovClientSystem : EntitySystem
     private HumanoidProfileEditor MakeEditor()
     {
         var editor = new HumanoidProfileEditor(_preferences, _cfg, EntityManager, _dialogs, _logs, _players, _proto, _cache, _requirements, _markings);
-        editor.SetProfile(HumanoidCharacterProfile.DefaultWithSpecies("Human"), 0); editor.ConfigureForTarkovAlpha(); return editor;
+        editor.SetProfile(HumanoidCharacterProfile.DefaultWithSpecies("Human"), 0); editor.ConfigureForTarkov(); return editor;
     }
 
     private void OnFeedback(TarkovFeedbackEvent feedback)
@@ -193,7 +188,6 @@ public sealed partial class TarkovClientSystem : EntitySystem
             _noticeKey = "ts-notice-extraction-started";
             EnsureNotice();
         }
-        if (state.Message != "") LastActionMessage = state.Message;
         if (!state.NeedsCharacter && _entry != null)
         {
             _entry.Update(state); _entry.Close(); _entry.Dispose(); _entry = null;

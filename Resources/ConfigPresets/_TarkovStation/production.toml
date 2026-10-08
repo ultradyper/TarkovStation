@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-# Direct-connect alpha. Dedicated data directory supplied by launch script.
+# Production defaults. Keep machine-specific overrides outside the repository.
 [net]
 bindto = "0.0.0.0"
 port = 1212
@@ -7,10 +7,10 @@ tickrate = 30
 max_connections = 32
 [status]
 enabled = true
-connectaddress = "udp://94.131.91.40:1212"
+connectaddress = ""
 [game]
-desc = "TarkovStation: мирный хаб, торговля, рейды и общий десятичасовой цикл. Игровая альфа."
-hostname = "TarkovStation | Альфа | Перевал / 17"
+desc = "TarkovStation: мирный хаб, торговля, рейды и общий десятичасовой цикл. Рейдовый режим."
+hostname = "TarkovStation | Перевал / 17"
 defaultpreset = "TarkovStation"
 map = "TarkovStationHub"
 map_rotation = false
@@ -24,7 +24,7 @@ round_restart_time = 5.0
 advertise = false
 [auth]
 mode = 1
-allowlocal = true
+allowlocal = false
 [console]
 loginlocal = false
 [vote]
@@ -32,7 +32,7 @@ restart_enabled = false
 preset_enabled = false
 map_enabled = false
 [build]
-fork_id = "tarkovstation-alpha"
+fork_id = "tarkovstation"
 [loc]
 culture_name = "ru-RU"
 [tarkov]
@@ -41,10 +41,8 @@ cycle_seconds = 36000
 queue_seconds = 30
 raid_seconds = 900
 extraction_seconds = 8
-max_raids = 1
 starting_money = 2500
-database = "tarkov-alpha.db"
-test_bots = true
+database = "tarkovstation.db"
 
 # Disable station infrastructure/maps that do not belong to the hub-and-raids mode.
 [lavaland]
@@ -77,5 +75,5 @@ rules_file = "TarkovStationRules"
 discord = "https://discord.gg/jgUJ9Kwa7K"
 wiki = ""
 forum = ""
-github = ""
+github = "https://github.com/ultradyper/TarkovStation"
 website = ""

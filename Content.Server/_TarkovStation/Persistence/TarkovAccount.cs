@@ -20,9 +20,6 @@ public sealed class TarkovAccount
     public string Raid { get; set; } = "";
     public long LastEmergencyUtc { get; set; }
     public bool Created { get; set; }
-    public bool TestBot { get; set; }
-    public string TestOwner { get; set; } = "";
-    public bool TestTarget { get; set; }
     public string PendingKit { get; set; } = "";
 
     internal TarkovAccount Copy()

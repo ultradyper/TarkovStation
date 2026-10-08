@@ -1,0 +1,22 @@
+name: Предложение
+description: Предложить изменение TarkovStation
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Задача
+      description: Какую проблему это решает или что добавляет игрокам?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Предложение
+      description: Опиши поведение. Для экономики укажи источник награды, стоимость и риск.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Примеры
+      description: Приложи изображения или ссылки на похожую реализацию, если есть.

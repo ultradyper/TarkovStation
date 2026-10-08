@@ -9,23 +9,23 @@ tarkov-welcome = PEREVAL / 17
     You are trapped in a cycle. Find loot, trade, make deals and return alive. The session leaders earn their way out.
 tarkov-onboarding-rules = The hub is peaceful. Anyone may attack anyone in a raid, including teammates. Alliances rely on trust.
     Death loses raid equipment and loot; your money and stash survive until the ten-hour wipe.
-    Keep roleplay chat in character; do not harass or spam in OOC. The alpha currently uses human characters.
+    Keep roleplay chat in character; do not harass or spam in OOC. Characters use the human body.
 tarkov-agreement = I understand raid losses, extraction and the cycle wipe.
 tarkov-enter-hub = Confirm character and enter the hub
 tarkov-faction = Faction
 tarkov-branch = Specialization
-tarkov-overview = Prepare at the hub, visit a trader or use this menu. Your first kit is issued once per cycle. Purchases arrive in your stash.
+tarkov-overview = Prepare at the hub, visit a trader or the appropriate terminal. Your first kit is issued once per cycle. Purchases arrive in your stash.
     Ready up at the raid console. Green beacons near the map edges are extraction points. Leave alive to keep loot and receive assassination rewards.
 tarkov-stash-help = Store equipment here. Containers, ammunition and consumables retain their state. Capacity: 64 root items/containers.
 tarkov-shop-help = All factions share prices and stock. Purchases go to your stash. Emergency equipment is for bankrupt players and cannot be sold.
 tarkov-party-help = Invitations require acceptance. Up to four ready party members deploy together. Friendly fire is enabled.
-tarkov-raids-help = Prepare equipment, then ready up. Planet size follows the deployment roster. Valuable loot attracts danger.
+tarkov-raids-help = Prepare equipment, then ready up. Planet size is chosen in advance, independently of population. Valuable loot attracts danger.
 tarkov-exit-hint = Extraction: find a green beacon near the border, activate it and stay nearby and conscious. Damage interrupts extraction.
-    On the first test server, unfinished raids are lost after a server crash. Committed extractions, money and stash are retained.
+    Unfinished raids are lost after a server restart. Committed extractions, money and stash are retained.
 tarkov-contracts-help = Rewards are reserved up front. Assassination requires the executor to extract alive. Deliver raid-found items from your stash.
     Custom tasks require manual issuer confirmation. Contracts last up to an hour within the current cycle.
 tarkov-trade-help = Offer a trade through the players page. Add stash items and reserve funds. Any change resets both confirmations. Cancellation refunds reservations.
-tarkov-scores-help = Wealth counts money, owned reservations and equipment at fixed buyback prices. Kills are a separate category. Test actors are excluded.
+tarkov-scores-help = Wealth counts money, owned reservations and equipment at fixed buyback prices. Kills are a separate category.
 tarkov-score-killers = Category: hunters
 tarkov-last-results = Previous cycle results
 tarkov-empty = Nothing here yet.
@@ -74,13 +74,7 @@ tarkov-extract-started = Extraction started. Stay near the beacon.
 tarkov-cycle-ended = Cycle complete. The leaders earn their exit; a new cycle begins.
 tarkov-raid-name = Unknown planet · { $seed }
 tarkov-trader-name = Lom — Pereval quartermaster
-tarkov-test-actors = Test: add partner and target
-tarkov-test-partner = Tester · partner
-tarkov-test-target = Tester · target
-tarkov-test-bounty = Trial: eliminate the target and extract alive
 tarkov-examine-faction = Affiliation: { $faction }. Specialization: { $branch }. Friendship is not guaranteed.
-cmd-tarkov_admin-desc = Control the TarkovStation test session.
-cmd-tarkov_admin-help = { $command } status | raidnow | cycle <seconds> | grant <userId> <amount> | partner <userId>
 tarkov-faction-scavengers = Scavengers
 tarkov-faction-scavengers-desc = Survive through salvage and profitable deals. Recognizing your own is easy; trust must be earned.
 tarkov-faction-keepers = Keepers
@@ -132,8 +126,6 @@ tarkov-error-delivery = Required raid-found items are missing from your stash.
 tarkov-error-emergency = Emergency equipment requires bankruptcy and has a two-minute cooldown.
 tarkov-error-exit = Approach a green extraction beacon.
 tarkov-error-generation = Generation failed; you remain in the hub with your equipment.
-tarkov-error-test-disabled = Test actors are disabled.
-tarkov-error-test-exists = Your test actors already exist in this cycle.
 tarkov-error-rules = Acknowledge the rules before creating a character.
 
 tarkov-error-preparing = The roster is locked. Wait for planet preparation to finish.

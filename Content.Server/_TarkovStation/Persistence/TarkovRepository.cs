@@ -50,6 +50,7 @@ public sealed class TarkovRepository : IDisposable
         read.CommandText = "SELECT payload FROM tarkov_state WHERE id=1";
         var stored = read.ExecuteScalar() as string;
         _data = stored == null ? new TarkovData { EndsUtc = now + duration } : Decode(stored);
+        var upgraded = stored != null && TarkovLegacyMigration.Upgrade(_data, stored);
         var embedded = _data.Items.Values.Any(i => i.Snapshot != "");
         using (var snapshots = _connection.CreateCommand())
         {
@@ -59,10 +60,19 @@ public sealed class TarkovRepository : IDisposable
                 if (_data.Items.TryGetValue(rows.GetString(0), out var item)) item.Snapshot = rows.GetString(1);
         }
         // Legacy embedded blobs and their metadata move atomically. Reopening does not reset any progress.
-        if (stored == null || embedded)
+        if (stored == null || embedded || upgraded)
         {
             using var migration = _connection.BeginTransaction();
+            Validate(_data);
             Write(_data, null, migration);
+            if (upgraded)
+            {
+                using var cleanup = _connection.CreateCommand();
+                cleanup.Transaction = migration;
+                cleanup.CommandText = "DELETE FROM tarkov_item_snapshots WHERE id NOT IN (SELECT value FROM json_each($ids))";
+                cleanup.Parameters.AddWithValue("$ids", JsonSerializer.Serialize(_data.Items.Keys));
+                cleanup.ExecuteNonQuery();
+            }
             migration.Commit();
         }
     }

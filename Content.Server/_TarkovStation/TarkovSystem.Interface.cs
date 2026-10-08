@@ -149,8 +149,7 @@ public sealed partial class TarkovSystem
                     return null;
                 });
             case TarkovAction.OfferTrade:
-                if (!before.Accounts.TryGetValue(request.Id, out var tradePartner)
-                    || (tradePartner.TestBot ? tradePartner.TestTarget || tradePartner.TestOwner != user : !AtTradeService(request.Id, body))) return "tarkov-error-service";
+                if (!before.Accounts.ContainsKey(request.Id) || !AtTradeService(request.Id, body)) return "tarkov-error-service";
                 return Write(user, request.RequestId, "start-trade", d => TarkovEconomy.StartTrade(d, user, request.Id, Guid.NewGuid().ToString("N")));
             case TarkovAction.SetTradeMoney:
                 return Write(user, request.RequestId, "trade-money", d => TarkovEconomy.TradeMoney(d, user, request.Id, request.Amount));
@@ -162,7 +161,6 @@ public sealed partial class TarkovSystem
                 return Write(user, request.RequestId, "accept-trade", d => TarkovEconomy.AcceptTrade(d, user, request.Id));
             case TarkovAction.CancelTrade:
                 return Write(user, request.RequestId, "cancel-trade", d => TarkovEconomy.CancelTrade(d, user, request.Id));
-            case TarkovAction.TestPartner: return CreateTestPartner(user);
         }
         return "tarkov-error-request";
     }
@@ -170,7 +168,7 @@ public sealed partial class TarkovSystem
     private string? Invite(string user, string target, string operation)
         => Write(user, operation, "invite", d =>
         {
-            if (user == target || !d.Accounts.TryGetValue(target, out var b) || b.Location != "hub" || b.TestBot)
+            if (user == target || !d.Accounts.TryGetValue(target, out var b) || b.Location != "hub")
                 return "tarkov-error-party";
             if (!b.Invites.Contains(user) && b.Invites.Count < 10) b.Invites.Add(user);
             return null;
@@ -239,7 +237,6 @@ public sealed partial class TarkovSystem
             CharacterName = account?.Name ?? "", Faction = account?.Faction ?? "", Branch = account?.Branch ?? "",
             Balance = account?.Balance ?? 0, Reserved = account?.Reserved ?? 0, Location = account?.Location ?? "hub",
             Ready = _ready.Contains(user) || PendingDeployment(user), QueueSeconds = _queueEnds == null ? 0 : Math.Max(1, (long)(_queueEnds.Value - _timing.CurTime).TotalSeconds),
-            TestMode = _cfg.GetCVar(TarkovCVars.TestBots),
         };
         var plan = TarkovRaidPlanner.Create(d.Cycle, d.RaidSequence);
         state.RaidRadius = plan.Radius;
@@ -312,9 +309,8 @@ public sealed partial class TarkovSystem
                 if (raid.Id == pc.Raid) state.RaidSeconds = Math.Max(0, (long)(raid.EndsAt - _timing.CurTime).TotalSeconds);
         }
         state.Players = d.Accounts.Values.Where(a => a.Created).Select(a => new TarkovRow
-            { Id = a.User, Name = a.Name, Detail = FactionName(a.Faction) + " · " + Loc.GetString("tarkov-location-" + a.Location), Flag = a.Location == "hub" && ((a.TestBot && state.ServicePage == "trade") || (TrySession(a.User, out var online) && online.Status == Robust.Shared.Enums.SessionStatus.InGame))
-                && (state.ServicePage != "trade" || (a.TestBot ? !a.TestTarget && a.TestOwner == user
-                    : FindPlayer(user) is { } trader && AtTradeService(a.User, trader))) }).ToList();
+            { Id = a.User, Name = a.Name, Detail = FactionName(a.Faction) + " · " + Loc.GetString("tarkov-location-" + a.Location), Flag = a.Location == "hub" && TrySession(a.User, out var online) && online.Status == Robust.Shared.Enums.SessionStatus.InGame
+                && (state.ServicePage != "trade" || FindPlayer(user) is { } trader && AtTradeService(a.User, trader)) }).ToList();
         if (account != null)
         {
             state.Party = d.Accounts.Values.Where(a => a.User == user || (account.Party != "" && a.Party == account.Party))
@@ -328,7 +324,7 @@ public sealed partial class TarkovSystem
                 Kind = c.Kind, State = c.Status,
                 Detail = ContractDetail(d, c), Owner = c.Issuer, Price = c.Reward, Flag = c.Assignee == user,
             }).ToList();
-        state.Leaderboard = d.Accounts.Values.Where(a => !a.TestBot).OrderByDescending(a => TarkovEconomy.Wealth(d, a)).Select(a => new TarkovRow
+        state.Leaderboard = d.Accounts.Values.Where(a => a.Created).OrderByDescending(a => TarkovEconomy.Wealth(d, a)).Select(a => new TarkovRow
             { Name = a.Name, Count = a.Kills, Price = TarkovEconomy.Wealth(d, a), Detail = Loc.GetString("tarkov-score-detail", ("kills", a.Kills), ("exits", a.Extractions)) }).ToList();
         state.LastResults = d.Results.Select(a => new TarkovRow
             { Name = a.Name, Count = a.Kills, Price = a.Wealth, Detail = Loc.GetString("tarkov-score-detail", ("kills", a.Kills), ("exits", a.Extractions)) }).ToList();

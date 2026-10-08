@@ -1,0 +1,6 @@
+# TarkovStation-Edit: community and private reporting links.
+blank_issues_enabled: false
+contact_links:
+  - name: Помощь, игровые жалобы и уязвимости
+    url: https://discord.gg/jgUJ9Kwa7K
+    about: Вопросы по игре и закрытые обращения разбираются в Discord проекта.

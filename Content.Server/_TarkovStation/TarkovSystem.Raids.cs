@@ -74,9 +74,6 @@ public sealed partial class TarkovSystem
         var generation = AllEntityQuery<TarkovRaidComponent, TarkovGenerationComponent>();
         while (generation.MoveNext(out _, out var raid, out var pending))
             if (!pending.Cancelled && raid.Participants.Contains(user)) { pending.Cancelled = true; changed = true; }
-        var bots = AllEntityQuery<TarkovTestBotComponent, TarkovPlayerComponent>();
-        while (bots.MoveNext(out _, out var bot, out var player))
-            if (bot.OwnerUser == user) changed |= _ready.Remove(player.User);
         if (_ready.Count == 0) _queueEnds = null;
         if (!changed) return;
         if (FindPlayer(user) is { } body) Comp<TarkovPlayerComponent>(body).QueueNotice = notice;
@@ -104,10 +101,6 @@ public sealed partial class TarkovSystem
         _ready.Add(user);
         Log.Info($"Raid queue ready: user={user}, body={body}, party={account.Party}, status={session.Status}");
         if (_queueEnds == null) _queueEnds = _timing.CurTime + TimeSpan.FromSeconds(Math.Max(3, _cfg.GetCVar(TarkovCVars.QueueSeconds)));
-        var bots = AllEntityQuery<TarkovTestBotComponent, TarkovPlayerComponent>();
-        while (bots.MoveNext(out _, out var bot, out var pc))
-            if (bot.OwnerUser == user && !pc.Closed && pc.Raid == ""
-                && (bot.Target || (account.Party != "" && data.Accounts[pc.User].Party == account.Party))) _ready.Add(pc.User);
         return null;
     }
 
@@ -186,7 +179,6 @@ public sealed partial class TarkovSystem
         }
         if (_queueEnds != null && _timing.CurTime >= _queueEnds)
             BeginRaid();
-        UpdateTestBots();
     }
 
     private bool Alive(EntityUid uid) => TryComp<MobStateComponent>(uid, out var mob) && mob.CurrentState == MobState.Alive;
@@ -208,13 +200,9 @@ public sealed partial class TarkovSystem
         var current = CurrentRaid();
         if (current is { } preparing && HasComp<TarkovGenerationComponent>(preparing.Owner)) return;
         var data = _repository.Read();
-        // NPC helpers never own a departure. Leaving/cancelling/disconnecting must not send them alone.
-        var queuedBots = AllEntityQuery<TarkovTestBotComponent, TarkovPlayerComponent>();
-        while (queuedBots.MoveNext(out _, out var bot, out var pc))
-            if (!_ready.Contains(bot.OwnerUser)) _ready.Remove(pc.User);
         foreach (var user in _ready.ToArray())
         {
-            if (!data.Accounts.TryGetValue(user, out var a) || a.TestBot) continue;
+            if (!data.Accounts.TryGetValue(user, out var a)) continue;
             if (current is { } running && running.Comp.DeadParticipants.Contains(user)) CancelReady(user, "tarkov-error-raid-death-lock");
             else if (FindPlayer(user) is not { } body || !Alive(body)) CancelReady(user, "tarkov-error-not-alive");
             else if (!TrySession(user, out var session) || session.Status != Robust.Shared.Enums.SessionStatus.InGame)
@@ -224,7 +212,7 @@ public sealed partial class TarkovSystem
         }
         var users = _ready.Where(u => data.Accounts.TryGetValue(u, out var a) && a.Location == "hub"
             && FindPlayer(u) is { } body && Alive(body)
-            && (HasComp<TarkovTestBotComponent>(body) || (TrySession(u, out var s) && s.Status == Robust.Shared.Enums.SessionStatus.InGame)))
+            && TrySession(u, out var s) && s.Status == Robust.Shared.Enums.SessionStatus.InGame)
             .Where(u => !data.Trades.Values.Any(t => t.Status == "open" && (t.A == u || t.B == u)))
             .Where(u => data.Accounts[u].Party == "" || data.Accounts.Values.Where(a => a.Party == data.Accounts[u].Party)
                 .All(a => a.Location != "hub" || _ready.Contains(a.User))).ToList();
@@ -233,13 +221,6 @@ public sealed partial class TarkovSystem
         {
             _ready.RemoveWhere(u => !data.Accounts.TryGetValue(u, out var a) || a.Location != "hub" || FindPlayer(u) == null);
             if (_ready.Count == 0) _queueEnds = null;
-            return;
-        }
-        if (!users.Any(u => !data.Accounts[u].TestBot))
-        {
-            foreach (var user in users) _ready.Remove(user);
-            if (_ready.Count == 0) _queueEnds = null;
-            Log.Warning("Rejected NPC-only raid departure");
             return;
         }
         Log.Info($"Raid roster locked: participants={string.Join(',', users)}");
@@ -351,8 +332,7 @@ public sealed partial class TarkovSystem
             foreach (var user in group)
             {
                 if (FindPlayer(user) is not { } body || !Alive(body)
-                    || (!HasComp<TarkovTestBotComponent>(body)
-                        && (!TrySession(user, out var connected) || connected.Status != Robust.Shared.Enums.SessionStatus.InGame)))
+                    || !TrySession(user, out var connected) || connected.Status != Robust.Shared.Enums.SessionStatus.InGame)
                 {
                     RejectDeployment(map, raid, "tarkov-queue-disconnected");
                     return;

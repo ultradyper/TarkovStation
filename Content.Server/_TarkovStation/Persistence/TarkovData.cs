@@ -7,7 +7,7 @@ namespace Content.Server._TarkovStation.Persistence;
 /// <summary>Durable mode data. Runtime entity identifiers never appear in this document.</summary>
 public sealed class TarkovData
 {
-    public int Version { get; set; } = 2;
+    public int Version { get; set; } = 3;
     public string Cycle { get; set; } = Guid.NewGuid().ToString("N");
     public long EndsUtc { get; set; }
     /// <summary>Number of successfully created raids this cycle; survives process recovery.</summary>

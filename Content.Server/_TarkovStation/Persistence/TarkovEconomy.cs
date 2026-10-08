@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Content.Server._TarkovStation.Persistence;
 
-/// <summary>Pure transaction operations shared by gameplay and adversarial persistence tests.</summary>
+/// <summary>Transaction operations for wallets, equipment, contracts and player trades.</summary>
 public static class TarkovEconomy
 {
     /// <summary>Validate the complete roster before changing any account or carried item.</summary>
@@ -151,7 +151,7 @@ public static class TarkovEconomy
     {
         if (killer == victim || !data.Accounts.TryGetValue(killer, out var account))
             return;
-        if (!data.Accounts.TryGetValue(victim, out var target) || !target.TestBot) account.Kills++;
+        account.Kills++;
         if (account.Raid != raid || account.Life != life || account.Location != "raid") return;
         foreach (var contract in data.Contracts.Values.Where(c => c.Kind == "kill" && c.Target == victim
             && c.Assignee == killer && c.Status == "accepted" && c.EndsUtc > now))
@@ -287,7 +287,7 @@ public static class TarkovEconomy
             CancelTrade(data, trade.A, trade.Id);
         foreach (var contract in data.Contracts.Values.Where(c => c.Status is "open" or "accepted" or "proof"))
             Refund(data, contract, "expired");
-        data.Results = data.Accounts.Values.Where(a => a.Created && !a.TestBot).Select(a => new TarkovResult
+        data.Results = data.Accounts.Values.Where(a => a.Created).Select(a => new TarkovResult
         {
             Cycle = data.Cycle, Name = a.Name, Faction = a.Faction, Wealth = Wealth(data, a), Kills = a.Kills, Extractions = a.Extractions,
         }).OrderByDescending(r => r.Wealth).Take(100).ToList();

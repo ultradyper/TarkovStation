@@ -1,7 +1,6 @@
 version = 1
-SPDX-PackageName = "Reserve Station"
-SPDX-PackageSupplier = "Ceterai <ceterai@protonmail.com>"
-SPDX-PackageDownloadLocation = "https://ccdn.reserve-station.space/fork/reserve"
+SPDX-PackageName = "TarkovStation"
+SPDX-PackageDownloadLocation = "https://github.com/ultradyper/TarkovStation"
 
 [[annotations]]
 path = ["Resources/Audio/**", "Resources/Textures/**"]

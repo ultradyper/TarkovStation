@@ -1,0 +1,27 @@
+name: Ошибка
+description: Ошибка механики, интерфейса или запуска
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Что произошло
+      description: Опиши результат и что ожидал вместо него.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Как повторить
+      description: Действия по порядку.
+    validations:
+      required: true
+  - type: input
+    id: build
+    attributes:
+      label: Сборка и время
+      description: Версия, дата, время и часовой пояс, если известны.
+  - type: textarea
+    id: media
+    attributes:
+      label: Скриншоты, запись или лог
+      description: Убери токены и чужие личные данные. Уязвимости отправляй в закрытое обращение Discord.

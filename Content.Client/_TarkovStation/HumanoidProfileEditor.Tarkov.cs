@@ -5,7 +5,7 @@ namespace Content.Client.Lobby.UI;
 // A partial extension of the existing editor intentionally retains its original namespace.
 public sealed partial class HumanoidProfileEditor
 {
-    public void ConfigureForTarkovAlpha()
+    public void ConfigureForTarkov()
     {
         TabContainer.SetTabVisible(1, false);
         TabContainer.SetTabVisible(2, false);

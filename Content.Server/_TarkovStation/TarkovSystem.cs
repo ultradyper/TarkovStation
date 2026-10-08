@@ -35,7 +35,7 @@ using YamlDotNet.RepresentationModel;
 
 namespace Content.Server._TarkovStation;
 
-/// <summary>Coordinates the alpha mode. Account data is durable; per-entity state lives in components.</summary>
+/// <summary>Coordinates the TarkovStation mode. Account data is durable; per-entity state lives in components.</summary>
 public sealed partial class TarkovSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
@@ -68,8 +68,6 @@ public sealed partial class TarkovSystem : EntitySystem
     private readonly HashSet<string> _guideRead = new();
     private bool Enabled => _cfg.GetCVar(TarkovCVars.Enabled);
     private static long Utc => DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-    public TarkovRepository? Repository => _repository;
-    public EntityUid? Hub => _hub;
 
     public override void Initialize()
     {
@@ -82,7 +80,6 @@ public sealed partial class TarkovSystem : EntitySystem
         InitializeItems();
         InitializeRaids();
         InitializeHubPolicy();
-        InitializeCommands();
     }
 
     public override void Shutdown()
@@ -108,21 +105,6 @@ public sealed partial class TarkovSystem : EntitySystem
         // A process restart cannot safely restore an in-flight physics world. Never duplicate its gear.
         Write("system", "recover-" + Guid.NewGuid().ToString("N"), "recovery", data =>
         {
-            if (data.Version < 2)
-            {
-                // Legacy alpha did not persist helper ownership. Infer only unambiguous historical pairs.
-                var humans = data.Accounts.Values.Where(a => !a.TestBot).ToArray();
-                foreach (var contract in data.Contracts.Values.Where(c => c.Kind == "kill"))
-                {
-                    if (!data.Accounts.TryGetValue(contract.Issuer, out var partner) || !partner.TestBot
-                        || !data.Accounts.TryGetValue(contract.Target, out var target) || !target.TestBot) continue;
-                    var owner = contract.Assignee != "" ? contract.Assignee : humans.Length == 1 ? humans[0].User : "";
-                    if (owner == "" || !data.Accounts.ContainsKey(owner)) continue;
-                    partner.TestOwner = target.TestOwner = owner;
-                    target.TestTarget = true;
-                }
-                data.Version = 2;
-            }
             foreach (var account in data.Accounts.Values.Where(a => a.Location == "raid").ToArray())
                 TarkovEconomy.LoseLife(data, account.User);
             foreach (var trade in data.Trades.Values.Where(t => t.Status == "open").ToArray())
@@ -311,7 +293,7 @@ public sealed partial class TarkovSystem : EntitySystem
         var name = new string(input.Name.Trim().Where(c => char.IsLetterOrDigit(c) || c is ' ' or '-' or '\'').Take(32).ToArray());
         if (name.Length < 2 || input.Appearance.Markings.Count > 32)
             throw new ArgumentException("tarkov-error-name");
-        // Alpha characters use the normal human body. No traits, jobs or donor loadouts are imported.
+        // Characters use the normal human body. No traits, jobs or donor loadouts are imported.
         var flavor = (input.FlavorText ?? "").Trim();
         if (flavor.Length > 1000) flavor = flavor[..1000];
         var profile = HumanoidCharacterProfile.DefaultWithSpecies("Human").WithName(name)

@@ -50,9 +50,6 @@ ts-ready-departure = Equipment ready. Deploy.
 ts-extraction-briefing = Two green beacons near opposite edges are your way back.
     Approach and activate one, then wait. Damage or moving away interrupts extraction.
     Unfinished raids are lost on a server crash; confirmed extractions and the stash survive.
-ts-solo-test = SINGLE-PLAYER TEST
-ts-solo-test-help = Prepare a partner and a separate target to test raids and a bounty. Pressing again restores missing helper bodies.
-ts-prepare-helpers = Prepare test characters
 ts-your-party = PARTY ROSTER
 ts-hub-players = PEREVAL RESIDENTS
 ts-invitation = { $name } invites you to a party
