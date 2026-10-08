@@ -241,7 +241,7 @@ public sealed partial class TarkovSystem
             Ready = _ready.Contains(user) || PendingDeployment(user), QueueSeconds = _queueEnds == null ? 0 : Math.Max(1, (long)(_queueEnds.Value - _timing.CurTime).TotalSeconds),
             TestMode = _cfg.GetCVar(TarkovCVars.TestBots),
         };
-        var plan = TarkovRaidPlan.Create(d.Cycle, d.RaidSequence);
+        var plan = TarkovRaidPlanner.Create(d.Cycle, d.RaidSequence);
         state.RaidRadius = plan.Radius;
         state.RaidBiome = plan.Biome;
         state.RaidEvent = plan.Event;

@@ -38,11 +38,11 @@ public sealed class TarkovPlaytestTwoTest
     [Test]
     public void DestinationPersistsAndContainsAllMapSizesWithoutPopulationInput()
     {
-        var plans = Enumerable.Range(0, 100).Select(n => TarkovRaidPlan.Create("test-cycle", n)).ToArray();
+        var plans = Enumerable.Range(0, 100).Select(n => TarkovRaidPlanner.Create("test-cycle", n)).ToArray();
         Assert.That(plans.Select(p => p.Radius).Distinct(), Is.EquivalentTo(new[] { 40, 60, 80 }));
         Assert.That(plans.Select(p => p.Event).Distinct().Count(), Is.EqualTo(2));
         for (var n = 0; n < plans.Length; n++)
-            Assert.That(TarkovRaidPlan.Create("test-cycle", n), Is.EqualTo(plans[n]));
+            Assert.That(TarkovRaidPlanner.Create("test-cycle", n), Is.EqualTo(plans[n]));
     }
 
     [TestCase(TarkovRaidEventKind.Airdrop)]
@@ -188,7 +188,7 @@ public sealed class TarkovPlaytestTwoTest
             }
             mode.Repository.Execute(user, "qa-destination", "test", d =>
             {
-                while (TarkovRaidPlan.Create(d.Cycle, d.RaidSequence) is var plan && (plan.Radius != 80 || plan.Event != eventKind)) d.RaidSequence++;
+                while (TarkovRaidPlanner.Create(d.Cycle, d.RaidSequence) is var plan && (plan.Radius != 80 || plan.Event != eventKind)) d.RaidSequence++;
                 return null;
             }, 100);
         });

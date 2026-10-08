@@ -249,7 +249,7 @@ public sealed partial class TarkovSystem
             JoinRaid(existing, users, data);
             return;
         }
-        var plan = TarkovRaidPlan.Create(data.Cycle, data.RaidSequence);
+        var plan = TarkovRaidPlanner.Create(data.Cycle, data.RaidSequence);
         var radius = plan.Radius;
         EntityUid? map = null;
         try
